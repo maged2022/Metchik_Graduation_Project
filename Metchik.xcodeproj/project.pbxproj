@@ -7,16 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		123612E92B2480A10087B346 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123612E82B2480A10087B346 /* LaunchView.swift */; };
+		123612EC2B2481730087B346 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123612EB2B2481730087B346 /* Color.swift */; };
+		123612F02B2489B00087B346 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 123612EF2B2489B00087B346 /* Launch Screen.storyboard */; };
 		12EEBF2F2B246360003B0B0C /* MetchikApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEBF2E2B246360003B0B0C /* MetchikApp.swift */; };
-		12EEBF312B246360003B0B0C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEBF302B246360003B0B0C /* ContentView.swift */; };
+		12EEBF312B246360003B0B0C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEBF302B246360003B0B0C /* HomeView.swift */; };
 		12EEBF332B246362003B0B0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12EEBF322B246362003B0B0C /* Assets.xcassets */; };
 		12EEBF362B246362003B0B0C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12EEBF352B246362003B0B0C /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		123612E82B2480A10087B346 /* LaunchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		123612EB2B2481730087B346 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		123612EF2B2489B00087B346 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		12EEBF2B2B246360003B0B0C /* Metchik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Metchik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12EEBF2E2B246360003B0B0C /* MetchikApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetchikApp.swift; sourceTree = "<group>"; };
-		12EEBF302B246360003B0B0C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		12EEBF302B246360003B0B0C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		12EEBF322B246362003B0B0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		12EEBF352B246362003B0B0C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -32,6 +38,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		123612E72B24808D0087B346 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				123612E82B2480A10087B346 /* LaunchView.swift */,
+				123612EF2B2489B00087B346 /* Launch Screen.storyboard */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		123612EA2B2481240087B346 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				123612EB2B2481730087B346 /* Color.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		12EEBF222B24635F003B0B0C = {
 			isa = PBXGroup;
 			children = (
@@ -52,7 +75,9 @@
 			isa = PBXGroup;
 			children = (
 				12EEBF2E2B246360003B0B0C /* MetchikApp.swift */,
-				12EEBF302B246360003B0B0C /* ContentView.swift */,
+				12EEBF302B246360003B0B0C /* HomeView.swift */,
+				123612E72B24808D0087B346 /* Launch */,
+				123612EA2B2481240087B346 /* Extensions */,
 				12EEBF322B246362003B0B0C /* Assets.xcassets */,
 				12EEBF342B246362003B0B0C /* Preview Content */,
 			);
@@ -125,6 +150,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				123612F02B2489B00087B346 /* Launch Screen.storyboard in Resources */,
 				12EEBF362B246362003B0B0C /* Preview Assets.xcassets in Resources */,
 				12EEBF332B246362003B0B0C /* Assets.xcassets in Resources */,
 			);
@@ -137,7 +163,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12EEBF312B246360003B0B0C /* ContentView.swift in Sources */,
+				12EEBF312B246360003B0B0C /* HomeView.swift in Sources */,
+				123612EC2B2481730087B346 /* Color.swift in Sources */,
+				123612E92B2480A10087B346 /* LaunchView.swift in Sources */,
 				12EEBF2F2B246360003B0B0C /* MetchikApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,6 +300,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -300,6 +329,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
