@@ -25,7 +25,6 @@ struct MetchikApp: App {
                         LaunchView(showLaunchScreen: $showLaunchScreen)
                             .transition(.move(edge: .leading))
                     }
-                    Text("hello world, i am hassan sayed ")
                 }
                 .zIndex(2)
                 
