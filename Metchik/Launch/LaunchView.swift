@@ -23,7 +23,7 @@ struct LaunchView: View {
             
             Image("logo_image")
                 .resizable()
-                .frame(width: 100, height: 100)
+                .frame(width: 200, height: 200)
             
             ZStack {
                 if showLoadingText {
@@ -31,9 +31,9 @@ struct LaunchView: View {
                     HStack(spacing: 0) {
                         ForEach(loadingText.indices) { index in
                             Text(loadingText[index])
-                                .font(.headline)
+                                .font(.title)
                                 .foregroundColor(Color.launchScreenColor.launchAccentColor)
-                                .fontWeight(.heavy)
+                                .fontWeight(.bold)
                                 .offset(y: counter == index ? -5 : 0)
                         }
                     }
@@ -42,7 +42,7 @@ struct LaunchView: View {
                 }
                 
             }
-            .offset( y: 70)
+            .offset( y: 130)
         }
         .onAppear{
                 showLoadingText = true
