@@ -14,6 +14,7 @@
 		12EEBF312B246360003B0B0C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEBF302B246360003B0B0C /* HomeView.swift */; };
 		12EEBF332B246362003B0B0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12EEBF322B246362003B0B0C /* Assets.xcassets */; };
 		12EEBF362B246362003B0B0C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12EEBF352B246362003B0B0C /* Preview Assets.xcassets */; };
+		97E0AE732B28F9CD0078BD74 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E0AE722B28F9CD0078BD74 /* CategoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		12EEBF302B246360003B0B0C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		12EEBF322B246362003B0B0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		12EEBF352B246362003B0B0C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		97E0AE722B28F9CD0078BD74 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				12EEBF2E2B246360003B0B0C /* MetchikApp.swift */,
-				12EEBF302B246360003B0B0C /* HomeView.swift */,
+				97E0AE712B28F99E0078BD74 /* Home Screen */,
 				123612E72B24808D0087B346 /* Launch */,
 				123612EA2B2481240087B346 /* Extensions */,
 				12EEBF322B246362003B0B0C /* Assets.xcassets */,
@@ -90,6 +92,15 @@
 				12EEBF352B246362003B0B0C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		97E0AE712B28F99E0078BD74 /* Home Screen */ = {
+			isa = PBXGroup;
+			children = (
+				12EEBF302B246360003B0B0C /* HomeView.swift */,
+				97E0AE722B28F9CD0078BD74 /* CategoryView.swift */,
+			);
+			path = "Home Screen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +178,7 @@
 				123612EC2B2481730087B346 /* Color.swift in Sources */,
 				123612E92B2480A10087B346 /* LaunchView.swift in Sources */,
 				12EEBF2F2B246360003B0B0C /* MetchikApp.swift in Sources */,
+				97E0AE732B28F9CD0078BD74 /* CategoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
