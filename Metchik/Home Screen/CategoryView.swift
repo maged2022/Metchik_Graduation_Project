@@ -42,6 +42,9 @@ struct CategoryView: View {
 }
 
 
-#Preview {
-    CategoryView(categorie: "Men")
+struct CategoryView_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        CategoryView(categorie: "Men")
+    }
 }
