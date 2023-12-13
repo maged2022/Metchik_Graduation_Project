@@ -10,6 +10,7 @@
 		123612E92B2480A10087B346 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123612E82B2480A10087B346 /* LaunchView.swift */; };
 		123612EC2B2481730087B346 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123612EB2B2481730087B346 /* Color.swift */; };
 		123612F02B2489B00087B346 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 123612EF2B2489B00087B346 /* Launch Screen.storyboard */; };
+		12CC02822B29EDF3007C6F43 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CC02812B29EDF3007C6F43 /* NetworkingManager.swift */; };
 		12EEBF2F2B246360003B0B0C /* MetchikApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEBF2E2B246360003B0B0C /* MetchikApp.swift */; };
 		12EEBF312B246360003B0B0C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEBF302B246360003B0B0C /* HomeView.swift */; };
 		12EEBF332B246362003B0B0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12EEBF322B246362003B0B0C /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 		123612E82B2480A10087B346 /* LaunchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		123612EB2B2481730087B346 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		123612EF2B2489B00087B346 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		12CC02812B29EDF3007C6F43 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		12EEBF2B2B246360003B0B0C /* Metchik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Metchik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12EEBF2E2B246360003B0B0C /* MetchikApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetchikApp.swift; sourceTree = "<group>"; };
 		12EEBF302B246360003B0B0C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -57,6 +59,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		12CC02802B29EDBD007C6F43 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				12CC02812B29EDF3007C6F43 /* NetworkingManager.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		12EEBF222B24635F003B0B0C = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +90,7 @@
 				97E0AE712B28F99E0078BD74 /* Home Screen */,
 				123612E72B24808D0087B346 /* Launch */,
 				123612EA2B2481240087B346 /* Extensions */,
+				12CC02802B29EDBD007C6F43 /* Utilities */,
 				12EEBF322B246362003B0B0C /* Assets.xcassets */,
 				12EEBF342B246362003B0B0C /* Preview Content */,
 			);
@@ -177,6 +188,7 @@
 				12EEBF312B246360003B0B0C /* HomeView.swift in Sources */,
 				123612EC2B2481730087B346 /* Color.swift in Sources */,
 				123612E92B2480A10087B346 /* LaunchView.swift in Sources */,
+				12CC02822B29EDF3007C6F43 /* NetworkingManager.swift in Sources */,
 				12EEBF2F2B246360003B0B0C /* MetchikApp.swift in Sources */,
 				97E0AE732B28F9CD0078BD74 /* CategoryView.swift in Sources */,
 			);
