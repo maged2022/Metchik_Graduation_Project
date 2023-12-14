@@ -15,28 +15,32 @@ struct CategoryView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 
-                ForEach(0..<3) { outerIndex in
+                ForEach(0..<3) { Index in
                     VStack(alignment: .leading) {
-                        Text("\(categorie) \(productType[outerIndex])")
-                            .font(.headline)
-                            .padding(.horizontal)
-                        
                         ScrollView(.horizontal, showsIndicators: true) {
                             HStack(spacing: 10) {
-                                ForEach(0..<10) { index in
-                                    Image("\(categorie) \(productType[outerIndex])")
+                                ForEach(0..<10) { _ in
+                                    Image("\(categorie) \(productType[Index])")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .frame(width: 200, height: 200)
+                                        .frame( height: 200)
+                                        .clipShape(RoundedRectangle(cornerRadius: 25.0))
                                 }
                             }
-                            .padding(.horizontal)
                         }
+                        
+                        Text("\(categorie) \(productType[Index])")
+                            .font(.headline)
                     }
                 }
             }
+            .navigationTitle(categorie)
+            .navigationBarTitleDisplayMode(.inline)
+            .padding(.leading)
             
-        }
+        }.background(Color.gray
+            .ignoresSafeArea()
+            .opacity(0.2))
     }
     
 }
