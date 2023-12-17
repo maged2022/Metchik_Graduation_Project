@@ -7,11 +7,7 @@
 
 import SwiftUI
 
-
-
-
 struct MainCategoryView: View {
-    let categories = ["Men", "Women", "Kids"]
     
     @State private var mainCategoryViewModel = MainCategoryViewModel()
     

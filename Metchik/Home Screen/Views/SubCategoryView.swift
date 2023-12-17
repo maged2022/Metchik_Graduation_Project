@@ -7,22 +7,21 @@
 
 import SwiftUI
 
-
 struct SubCategoryView: View {
     
     @State var categorie: String
-    let productType: [String] = ["Shoes" ,"Clothing" ,"Accessories"]
+    @State private var subCategoryViewModel = SubCategoryViewModel()
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
                 
-                ForEach(0..<3) { Index in
+                ForEach(subCategoryViewModel.subCategories) { subCategory in
                     VStack(alignment: .leading) {
                         ScrollView(.horizontal, showsIndicators: true) {
                             HStack(spacing: 10) {
                                 ForEach(0..<10) { _ in
-                                    Image("\(categorie) \(productType[Index])")
+                                    Image("\(categorie) \(subCategory.name)")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame( height: 200)
@@ -31,7 +30,7 @@ struct SubCategoryView: View {
                             }
                         }
                         
-                        Text("\(categorie) \(productType[Index])")
+                        Text("\(categorie) \(subCategory.name)")
                             .font(.headline)
                     }
                 }
