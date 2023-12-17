@@ -1,5 +1,5 @@
 //
-//  CategoryView.swift
+//  SubCategoryView.swift
 //  Metchik
 //
 //  Created by Faculty on 12/12/2023.
@@ -8,9 +8,11 @@
 import SwiftUI
 
 
-struct CategoryView: View {
+struct SubCategoryView: View {
+    
     @State var categorie: String
     let productType: [String] = ["Shoes" ,"Clothing" ,"Accessories"]
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -49,6 +51,6 @@ struct CategoryView: View {
 struct CategoryView_Previews: PreviewProvider {
     
     static var previews: some View {
-        CategoryView(categorie: "Men")
+        SubCategoryView(categorie: "Men")
     }
 }
