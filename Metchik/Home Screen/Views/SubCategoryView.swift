@@ -22,20 +22,19 @@ struct SubCategoryView: View {
             VStack(alignment: .leading) {
                 HStack {
                     ForEach(categories, id: \.self) { item in
-                        VStack(spacing: 5) {
+                        VStack(spacing: 10) {
                             Text(item)
+                                .font(.title2)
+                                .fontWeight(item == categorie ? .bold : .regular)
                                 .onTapGesture {
                                     categorie = item
                                 }
+
                             Divider()
-                                .frame(width: 30, height: 3)
+                                .frame(width: 40, height: 3)
                                 .background(.red)
                                 .opacity( item == categorie ? 3 : 0)
-                            
-                            
                         }
-                        
-                        
                     }
                 }
                
@@ -52,9 +51,8 @@ struct SubCategoryView: View {
                                             Image("\(categorie) \(subCategory.name)")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
-                                                .frame( height: 100)
-                                                .clipShape(RoundedRectangle(cornerRadius: 5))
-                                                
+                                                .frame( height: 200)
+                                                .clipShape(RoundedRectangle(cornerRadius: 10))
                                             
                                             Text("\(subCategory.name)")
                                                 .font(.headline)
