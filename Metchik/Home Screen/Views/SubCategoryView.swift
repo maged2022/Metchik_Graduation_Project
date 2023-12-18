@@ -35,6 +35,7 @@ struct SubCategoryView: View {
                                 .background(.red)
                                 .opacity( item == categorie ? 3 : 0)
                         }
+                        .padding(.leading)
                     }
                 }
                 
@@ -61,13 +62,12 @@ struct SubCategoryView: View {
                 }
                 
                 // Discount Section
+                Spacer().frame(height: 40)
                 DiscountView()
                 
             }
             .navigationTitle(categorie)
             .navigationBarTitleDisplayMode(.inline)
-            .padding(.leading)
-            
         }.background(Color.gray
             .ignoresSafeArea()
             .opacity(0.2))
@@ -78,66 +78,5 @@ struct SubCategoryView: View {
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
         SubCategoryView(categorie: "Men")
-    }
-}
-
-
-struct Discount: Identifiable {
-    let id: UUID = UUID()
-    let imageName: String
-    let oldPrice: Double
-    let newPrice: Double
-}
-
-struct DiscountView: View {
-    
-    let discountList: [Discount] = [
-        Discount(imageName: "discount_image1", oldPrice: 514.12, newPrice: 354.21),
-        Discount(imageName: "discount_image1", oldPrice: 514.12, newPrice: 354.21),
-        Discount(imageName: "discount_image1", oldPrice: 514.12, newPrice: 354.21),
-        Discount(imageName: "discount_image1", oldPrice: 514.12, newPrice: 354.21),
-        Discount(imageName: "discount_image1", oldPrice: 514.12, newPrice: 354.21),
-        Discount(imageName: "discount_image1", oldPrice: 514.12, newPrice: 354.21),
-    ]
-    
-    var body: some View {
-        ScrollView {
-            
-            VStack {
-                
-                Text("The End of Season Sale is HERE! 🔥 Don’t miss the chance to shop all your Metchik Favorite at discount price with up to 50% OFF.Shop now ")
-                
-                 // Image Discount logo
-                Image("discount_image")
-                    .resizable()
-                    .scaledToFit()
-                
-                
-                // Image
-                ForEach(discountList) { item in
-                    VStack{
-                        Image(item.imageName)
-                            .resizable()
-                            .scaledToFit()
-                        VStack {
-                            
-                            Text("$\(String(format: "%.2f", item.newPrice))")
-                                .foregroundColor(.gray)
-                                .padding(.top, 4)
-                            
-                            Text("$\(String(format: "%.2f", item.oldPrice))")
-                                .foregroundColor(.gray)
-                                .padding(.top, 4)
-                                .strikethrough() 
-                        }
-                    }
-                }
-                
-                
-                
-            }
-            
-          
-        }
     }
 }
