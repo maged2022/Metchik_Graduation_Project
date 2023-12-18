@@ -15,15 +15,9 @@ struct ProductView: View {
         ScrollView {
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
                 ForEach(productViewModel.products) { product in
-                    NavigationLink {
-                        //                        <#code#>
-                    } label: {
-                        //                        <#code#>
+                    NavigationLink(destination: ProductDetailView(selectedProduct: product)) {
+                        ProductItemView(product: product)
                     }
-                    
-                    //                    NavigationLink(destination: ProductDetailView(selectedProduct: product)) {
-                    //                        ProductItemView(product: product)
-                    //                    }
                 }
             }
             .padding()
