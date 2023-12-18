@@ -21,11 +21,19 @@ struct SubCategoryView: View {
                         ScrollView(.horizontal, showsIndicators: true) {
                             HStack(spacing: 10) {
                                 ForEach(0..<10) { _ in
-                                    Image("\(categorie) \(subCategory.name)")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame( height: 200)
-                                        .clipShape(RoundedRectangle(cornerRadius: 25.0))
+                                    
+                                    NavigationLink {
+                                       // New Screen
+                                        ProductView(selectedSubcategory: subCategory)
+                                    } label: {
+                                        Image("\(categorie) \(subCategory.name)")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame( height: 200)
+                                            .clipShape(RoundedRectangle(cornerRadius: 25.0))
+                                    }
+
+                                 
                                 }
                             }
                         }
