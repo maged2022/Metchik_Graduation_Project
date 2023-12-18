@@ -9,14 +9,7 @@ import SwiftUI
 
 struct DiscountView: View {
     
-    let discountList: [Discount] = [
-        Discount(imageName: "discount_image6", oldPrice: 514.12, newPrice: 354.21),
-        Discount(imageName: "discount_image5", oldPrice: 514.12, newPrice: 354.21),
-        Discount(imageName: "discount_image4", oldPrice: 514.12, newPrice: 354.21),
-        Discount(imageName: "discount_image3", oldPrice: 514.12, newPrice: 354.21),
-        Discount(imageName: "discount_image2", oldPrice: 514.12, newPrice: 354.21),
-        Discount(imageName: "discount_image1", oldPrice: 514.12, newPrice: 354.21),
-    ]
+    @StateObject private var discountViewModel = DiscountViewModel()
     
     var body: some View {
         ScrollView {
@@ -33,7 +26,7 @@ struct DiscountView: View {
                 
                 Spacer().frame(height: 20)
                 // Image
-                ForEach(discountList) { item in
+                ForEach(discountViewModel.discounts) { item in
                     VStack{
                         
                         Image(item.imageName)
