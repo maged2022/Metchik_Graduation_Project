@@ -15,7 +15,6 @@ struct MainCategoryView: View {
         
         ScrollView {
             
-            
             VStack {
                 ForEach(mainCategoryViewModel.categories) { category in
                     NavigationLink {
