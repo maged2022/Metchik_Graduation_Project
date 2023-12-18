@@ -38,21 +38,28 @@ struct SubCategoryView: View {
                         
                     }
                 }
-                ForEach(subCategoryViewModel.subCategories) { subCategory in
+               
                     VStack(alignment: .leading) {
                         ScrollView(.horizontal, showsIndicators: true) {
                             HStack(spacing: 10) {
-                                ForEach(0..<10) { _ in
+                                ForEach(subCategoryViewModel.subCategories) { subCategory in
                                     
                                     NavigationLink {
                                         // New Screen
                                         ProductView(selectedSubcategory: subCategory)
                                     } label: {
-                                        Image("\(categorie) \(subCategory.name)")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame( height: 200)
-                                            .clipShape(RoundedRectangle(cornerRadius: 25.0))
+                                        VStack {
+                                            Image("\(categorie) \(subCategory.name)")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .frame( height: 100)
+                                                .clipShape(RoundedRectangle(cornerRadius: 5))
+                                                
+                                            
+                                            Text("\(subCategory.name)")
+                                                .font(.headline)
+                                        }
+                                        
                                     }
                                     
                                     
@@ -60,10 +67,9 @@ struct SubCategoryView: View {
                             }
                         }
                         
-                        Text("\(categorie) \(subCategory.name)")
-                            .font(.headline)
+                      
                     }
-                }
+                
             }
             .navigationTitle(categorie)
             .navigationBarTitleDisplayMode(.inline)
