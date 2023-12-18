@@ -15,7 +15,7 @@ struct ProductItemView: View {
             Image(product.imageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 150, height: 150)
+                .frame(height: 150)
                 .cornerRadius(10)
             
             Text(product.name)
