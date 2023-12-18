@@ -11,11 +11,33 @@ struct SubCategoryView: View {
     
     @State var categorie: String
     @State private var subCategoryViewModel = SubCategoryViewModel()
+    let categories: [String] = [
+        "Men",
+        "Women",
+        "Kids"
+    ]
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                
+                HStack {
+                    ForEach(categories, id: \.self) { item in
+                        VStack(spacing: 5) {
+                            Text(item)
+                                .onTapGesture {
+                                    categorie = item
+                                }
+                            Divider()
+                                .frame(width: 30, height: 3)
+                                .background(.red)
+                                .opacity( item == categorie ? 3 : 0)
+                            
+                            
+                        }
+                        
+                        
+                    }
+                }
                 ForEach(subCategoryViewModel.subCategories) { subCategory in
                     VStack(alignment: .leading) {
                         ScrollView(.horizontal, showsIndicators: true) {
@@ -23,7 +45,7 @@ struct SubCategoryView: View {
                                 ForEach(0..<10) { _ in
                                     
                                     NavigationLink {
-                                       // New Screen
+                                        // New Screen
                                         ProductView(selectedSubcategory: subCategory)
                                     } label: {
                                         Image("\(categorie) \(subCategory.name)")
@@ -32,8 +54,8 @@ struct SubCategoryView: View {
                                             .frame( height: 200)
                                             .clipShape(RoundedRectangle(cornerRadius: 25.0))
                                     }
-
-                                 
+                                    
+                                    
                                 }
                             }
                         }
