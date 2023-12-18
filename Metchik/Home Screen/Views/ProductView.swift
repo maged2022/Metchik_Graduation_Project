@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct ProductView: View {
+    
     @ObservedObject var productViewModel = ProductViewModel()
     var selectedSubcategory: SubCategory
-    
     
     let columns: [GridItem] = [
         GridItem(.flexible(),spacing: 15), // First column with flexible width
         GridItem(.flexible(),spacing: 15),
     ]
-
     
     var body: some View {
         ScrollView {
@@ -32,7 +31,7 @@ struct ProductView: View {
         .onAppear {
             productViewModel.fetchProducts(for: selectedSubcategory)
         }
-        .navigationBarTitle("Products")
+        .navigationBarTitle(selectedSubcategory.name)
     }
 }
 struct ProductView_Previews: PreviewProvider {

@@ -13,9 +13,11 @@ class ProductViewModel: ObservableObject {
     func fetchProducts(for subcategory: SubCategory) {
         // Simulated fetching products based on selected subcategory
         self.products = [
-            Product(name: "T-Shirt1", imageName: "tshirt", price: 19.99),
-            Product(name: "T-Shirt2", imageName: "tshirt2", price: 20.30),
-            Product(name: "T-Shirt3", imageName: "tshirt3", price: 87.08),
+            Product(name: "T-Shirt1", imageName: "t-shirt1", price: 519.99),
+            Product(name: "T-Shirt2", imageName: "t-shirt2", price: 220.30),
+            Product(name: "T-Shirt3", imageName: "t-shirt3", price: 387.08),
+            Product(name: "T-Shirt3", imageName: "t-shirt4", price: 343.76),
+            Product(name: "T-Shirt3", imageName: "t-shirt5", price: 123.34),
             // Add more products
         ]
     }
