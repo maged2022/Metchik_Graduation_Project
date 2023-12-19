@@ -15,23 +15,15 @@ struct CategoryCardView: View {
         VStack {
             
             Image(category.name)
-                .clipShape(RoundedRectangle(cornerRadius: 25.0))
+                .resizable()
+                .clipShape(RoundedRectangle(cornerRadius: 5))
             
             Text(category.name)
-                .font(.title)
+                .font(.title2)
                 .fontWeight(.semibold)
-                .padding(8)
-                .frame(maxWidth: .infinity)
-                .background(
-                    
-                    LinearGradient(colors: [Color.red,Color.blue], startPoint: .bottomLeading, endPoint: .topTrailing)
-                )
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .foregroundStyle(Color.white)
         }
     }
 }
-
 
 struct CategoryCardView_Previews: PreviewProvider {
     static var previews: some View {
