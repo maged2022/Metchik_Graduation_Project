@@ -23,8 +23,17 @@ struct ProductItemView: View {
             Text(product.name)
                 .font(.headline)
             
-            Text("$\(String(format: "%.2f", product.price))")
-                .foregroundColor(.gray)
+            HStack {
+                Text("$\(String(format: "%.2f", product.price))")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+                    .strikethrough()
+                
+                Text("$\(String(format: "%.2f", product.discountPrice))")
+                    .fontWeight(.bold)
+                    .foregroundColor(.gray)
+            }
+            
             
             Button {
                 // add to card
@@ -53,7 +62,7 @@ struct ProductItemView: View {
 
 struct ProductItemView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductItemView(product: Product(name: "T-Shirt", imageName: "t-shirt1", price: 23.44), onBuutonTap: {
+        ProductItemView(product: Product(name: "T-Shirt", imageName: "t-shirt1", price: 23.44, discountPrice: 16.44), onBuutonTap: {
         })
     }
 }
