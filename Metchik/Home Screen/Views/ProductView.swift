@@ -13,8 +13,8 @@ struct ProductView: View {
     var selectedSubcategory: SubCategory
     
     let columns: [GridItem] = [
-        GridItem(.flexible(),spacing: 15), // First column with flexible width
-        GridItem(.flexible(),spacing: 15),
+        GridItem(.flexible(),spacing: 10), // First column with flexible width
+        GridItem(.flexible(),spacing: 10),
     ]
     
     var body: some View {
