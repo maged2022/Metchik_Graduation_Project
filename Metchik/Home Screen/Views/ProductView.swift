@@ -13,8 +13,8 @@ struct ProductView: View {
     var selectedSubcategory: SubCategory
     
     let columns: [GridItem] = [
-        GridItem(.flexible(),spacing: 15), // First column with flexible width
-        GridItem(.flexible(),spacing: 15),
+        GridItem(.flexible(),spacing: 10), // First column with flexible width
+        GridItem(.flexible(),spacing: 10),
     ]
     
     var body: some View {
@@ -22,7 +22,11 @@ struct ProductView: View {
             LazyVGrid(columns: columns, spacing: 15) {
                 ForEach(productViewModel.products) { product in
                     NavigationLink(destination: ProductDetailView(selectedProduct: product)) {
-                        ProductItemView(product: product)
+                        ProductItemView(product: product, onBuutonTap: {
+                            // When Add to Card button is tapped
+                            // should go to login or register screen 
+                            
+                        })
                     }
                 }
             }

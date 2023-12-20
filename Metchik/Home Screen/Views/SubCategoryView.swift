@@ -39,7 +39,7 @@ struct SubCategoryView: View {
                     }
                 }
                 
-                ScrollView(.horizontal, showsIndicators: true) {
+                ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 10) {
                         ForEach(subCategoryViewModel.subCategories) { subCategory in
                             NavigationLink {
@@ -50,8 +50,8 @@ struct SubCategoryView: View {
                                     Image("\(categorie) \(subCategory.name)")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .frame( height: 200)
-                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        .frame( height: 80)
+                                        .clipShape(RoundedRectangle(cornerRadius: 5))
                                     
                                     Text("\(subCategory.name)")
                                         .font(.headline)

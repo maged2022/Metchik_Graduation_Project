@@ -37,6 +37,6 @@ struct ProductDetailView: View {
 
 struct ProductDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailView(selectedProduct: Product(name: "product Name", imageName: "product ImageName", price: 142.36))
+        ProductDetailView(selectedProduct: Product(name: "product Name", imageName: "product ImageName", price: 142.36, discountPrice: 122.36))
     }
 }
