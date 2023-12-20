@@ -22,7 +22,11 @@ struct ProductView: View {
             LazyVGrid(columns: columns, spacing: 15) {
                 ForEach(productViewModel.products) { product in
                     NavigationLink(destination: ProductDetailView(selectedProduct: product)) {
-                        ProductItemView(product: product)
+                        ProductItemView(product: product, onBuutonTap: {
+                            // When Add to Card button is tapped
+                            // should go to login or register screen 
+                            
+                        })
                     }
                 }
             }
