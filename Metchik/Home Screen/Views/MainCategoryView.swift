@@ -25,7 +25,7 @@ struct MainCategoryView: View {
                         SubCategoryView(categorie: category.name)
                     } label: {
                         CategoryCardView(category: category)
-                            .frame(height: 300)
+                            .frame(height: 170)
                     }
                 }
             }

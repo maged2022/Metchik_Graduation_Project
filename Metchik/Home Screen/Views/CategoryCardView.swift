@@ -16,7 +16,7 @@ struct CategoryCardView: View {
             
             Image(category.name)
                 .resizable()
-                .clipShape(RoundedRectangle(cornerRadius: 5))
+                .cornerRadius(5)
             
             Text(category.name)
                 .font(.title2)

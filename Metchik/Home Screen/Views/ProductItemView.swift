@@ -16,8 +16,7 @@ struct ProductItemView: View {
         VStack {
             Image(product.imageName)
                 .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height: 150)
+                .frame(height: 170)
                 .cornerRadius(10)
             
             Text(product.name)
