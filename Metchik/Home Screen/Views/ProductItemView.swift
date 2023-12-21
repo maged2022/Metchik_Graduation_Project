@@ -30,7 +30,7 @@ struct ProductItemView: View {
                 
                 Text("$\(String(format: "%.2f", product.discountPrice))")
                     .fontWeight(.bold)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.red)
             }
             
             
