@@ -19,18 +19,42 @@ struct ProductView: View {
     
     var body: some View {
         ScrollView {
+            HStack {
+                SearchBarView(searchText: $productViewModel.searchText)
+                Button {
+                    // Filter
+                } label: {
+                    Text("Filter")
+                        .foregroundColor(.gray)
+                    
+                }
+                Rectangle()
+                    .frame(width: 1, height: 20) // Adjust height as needed
+                    .foregroundColor(.gray)
+                
+                Button {
+                    // sort
+                } label: {
+                    Text("Sort")
+                        .foregroundColor(.gray)
+                        .padding(.trailing,5)
+                }
+            }
+            .background(.gray.opacity(0.1))
+            .padding(.horizontal)
+            
             LazyVGrid(columns: columns, spacing: 15) {
                 ForEach(productViewModel.products) { product in
                     NavigationLink(destination: ProductDetailView(selectedProduct: product)) {
                         ProductItemView(product: product, onBuutonTap: {
                             // When Add to Card button is tapped
-                            // should go to login or register screen 
+                            // should go to login or register screen
                             
                         })
                     }
                 }
             }
-            .padding()
+            .padding(.horizontal)
         }
         .onAppear {
             productViewModel.fetchProducts(for: selectedSubcategory)

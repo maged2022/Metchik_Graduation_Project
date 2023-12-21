@@ -9,6 +9,7 @@ import Foundation
 
 class ProductViewModel: ObservableObject {
     @Published var products: [Product] = []
+    @Published  var searchText = ""
     
     func fetchProducts(for subcategory: SubCategory) {
         // Simulated fetching products based on selected subcategory
