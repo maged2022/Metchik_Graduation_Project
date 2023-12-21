@@ -10,35 +10,24 @@ import SwiftUI
 struct DiscountView: View {
     
     @StateObject private var discountViewModel = DiscountViewModel()
-    let description: String = "The End of Season Sale is HERE! 🔥🔥 Don’t miss the chance to shop all your Metchik Favorites at discounted prices with up to 50% OFF. Shop now 🛍"
-    @State var compressDescription: Bool = false
+    let imageLogoString: String
+    let imageDiscountString: String
     
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                VStack(alignment: .leading) {
-                    Text(description)
-                        .font(.title2)
-                        .lineLimit(compressDescription ? nil : 2)
-                    Button {
-                        withAnimation(.easeInOut) {
-                            compressDescription.toggle()
-                        }
-                    } label: {
-                        Text( compressDescription ? "Show less" : "Read more" )
-                            .foregroundColor(.blue)
-                            .underline()
-                    }
-                }
                 
-                Spacer().frame(height: 20)
-                // Image Discount logo
-                Image("discount_image")
+                Image(imageLogoString)
                     .resizable()
                     .scaledToFit()
+                    .shadow(color: Color.black.opacity(0.5), radius: 10, x: 0, y: 15)
+                    .shadow(color: Color.black.opacity(0.5), radius: 10, x: 0, y: -15)
                 
-                Spacer().frame(height: 20)
-                // Image
+                Image(imageDiscountString)
+                    .frame(maxWidth: .infinity)
+                
+                Spacer().frame(height: 1)
+                
                 ForEach(discountViewModel.discounts) { item in
                     VStack{
                         Image(item.imageName)
@@ -46,10 +35,14 @@ struct DiscountView: View {
                             .scaledToFit()
                         VStack(spacing: 5) {
                             Text("$\(String(format: "%.2f", item.oldPrice))")
+                                .font(.title2)
                                 .foregroundColor(.gray)
                                 .strikethrough()
                             Text("$\(String(format: "%.2f", item.newPrice))")
-                                .foregroundColor(.gray)
+                                .font(.title2)
+                                .foregroundColor(.red)
+                                .bold()
+                            
                         }
                     }
                     .padding(.horizontal)
@@ -64,6 +57,6 @@ struct DiscountView: View {
 
 struct DiscountView_Previews: PreviewProvider {
     static var previews: some View {
-        DiscountView()
+        DiscountView(imageLogoString: "discount_image_one", imageDiscountString: "images-2")
     }
 }

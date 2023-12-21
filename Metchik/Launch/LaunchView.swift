@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LaunchView: View {
     
-    @State private var loadingText: [String] = "Metchik Store App...".map({String($0)})
+    @State private var loadingText: [String] = "Metchik".map({String($0)})
     @State private var showLoadingText: Bool = false
     private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     @State private var counter: Int = 0
@@ -21,28 +21,25 @@ struct LaunchView: View {
             Color.launchScreenColor.launchBackgroundColor
                 .ignoresSafeArea()
             
-            Image("logo_image")
+            Image("metchick_logo")
                 .resizable()
-                .frame(width: 200, height: 200)
+                .frame(width: 300, height: 300)
             
             ZStack {
                 if showLoadingText {
-                    
                     HStack(spacing: 0) {
                         ForEach(loadingText.indices) { index in
                             Text(loadingText[index])
-                                .font(.title)
+                                .font(.largeTitle)
                                 .foregroundColor(Color.launchScreenColor.launchAccentColor)
                                 .fontWeight(.bold)
                                 .offset(y: counter == index ? -5 : 0)
                         }
                     }
                     .transition(AnyTransition.scale.animation(.easeInOut))
-                    
                 }
-                
             }
-            .offset( y: 130)
+            .offset( y: 180)
         }
         .onAppear{
                 showLoadingText = true
@@ -53,7 +50,7 @@ struct LaunchView: View {
                 if counter == loadingText.count {
                     counter = 0
                     loop += 1
-                    if loop >= 2 {
+                    if loop >= 3 {
                         showLaunchScreen = false
                     }
                 }else {
