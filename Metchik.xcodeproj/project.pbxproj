@@ -27,6 +27,7 @@
 		12BE291F2B2F94ED00049E36 /* CategoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BE291E2B2F94ED00049E36 /* CategoryCardView.swift */; };
 		12BE29222B2F958300049E36 /* MainCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BE29212B2F958300049E36 /* MainCategoryViewModel.swift */; };
 		12BE29252B2F95AF00049E36 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BE29242B2F95AF00049E36 /* Category.swift */; };
+		12C8BABF2B3523D600AEA6C9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8BABE2B3523D600AEA6C9 /* ImagePicker.swift */; };
 		12CC02822B29EDF3007C6F43 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CC02812B29EDF3007C6F43 /* NetworkingManager.swift */; };
 		12EEBF2F2B246360003B0B0C /* MetchikApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEBF2E2B246360003B0B0C /* MetchikApp.swift */; };
 		12EEBF312B246360003B0B0C /* MainCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEBF302B246360003B0B0C /* MainCategoryView.swift */; };
@@ -56,6 +57,7 @@
 		12BE291E2B2F94ED00049E36 /* CategoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCardView.swift; sourceTree = "<group>"; };
 		12BE29212B2F958300049E36 /* MainCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCategoryViewModel.swift; sourceTree = "<group>"; };
 		12BE29242B2F95AF00049E36 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		12C8BABE2B3523D600AEA6C9 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		12CC02812B29EDF3007C6F43 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		12EEBF2B2B246360003B0B0C /* Metchik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Metchik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12EEBF2E2B246360003B0B0C /* MetchikApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetchikApp.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				121BD4E32B344B58000126C6 /* SearchBarView.swift */,
+				12C8BABE2B3523D600AEA6C9 /* ImagePicker.swift */,
 			);
 			path = "Reusable Component";
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				12A2DE4A2B2FC1230027A253 /* Product.swift in Sources */,
 				121BD4E42B344B58000126C6 /* SearchBarView.swift in Sources */,
 				12A2DE4C2B2FC16B0027A253 /* ProductViewModel.swift in Sources */,
+				12C8BABF2B3523D600AEA6C9 /* ImagePicker.swift in Sources */,
 				1295C0712B30886700C1F4CA /* Discount.swift in Sources */,
 				12A2DE542B2FC5FB0027A253 /* ProductDetailView.swift in Sources */,
 			);

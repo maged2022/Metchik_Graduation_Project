@@ -56,8 +56,8 @@ struct SubCategoryView: View {
                                     .font(.headline)
                                     .bold()
                             }
-                            .shadow(color: Color.black.opacity(0.5), radius: 5, x: 5, y: 5)
-                            .shadow(color: Color.black.opacity(0.5), radius: 5, x: -5, y: -5)
+                            .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
+                            .shadow(color: Color.black.opacity(0.3), radius: 5, x: -5, y: -5)
                         }
                     }
                 }
