@@ -27,23 +27,31 @@ struct ProductDetailView: View {
     @State private var showActionSheet = false
     @State private var showImagePicker = false
     @State private var selectedImage: UIImage?
-    
+    @State private var processingImage = false
     
     var body: some View {
         // Display details about the selected product
         ScrollView {
             
-            if let image = selectedImage {
-                Image(uiImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
+            if processingImage {
+                ProgressView("Processing image using ML")
+                    .font(.title2)
+                    .foregroundColor(.blue)
+                //.progressViewStyle(CircularProgressViewStyle())
+                    .frame(height: 300)
+                    .padding()
             }else {
-                Image(selectedProduct.imageName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
+                // Show the selected image or product image
+                if let image = selectedImage {
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                } else {
+                    Image(selectedProduct.imageName)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                }
             }
-            
-            
             
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
@@ -85,8 +93,16 @@ struct ProductDetailView: View {
                         }
                         .sheet(isPresented: $showImagePicker) {
                             ImagePicker(sourceType: .photoLibrary) { image in
+                                // Show processing indicator and message
+                                processingImage = true
+                                
                                 selectedImage = image
-                                showImagePicker = false // Dismiss image picker after selecting an image
+                                showImagePicker = false
+                                // Simulate processing delay
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                    // Hide processing indicator and message after 3 seconds
+                                    processingImage = false
+                                }
                             }
                         }
                     }
