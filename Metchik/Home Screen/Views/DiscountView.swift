@@ -20,8 +20,8 @@ struct DiscountView: View {
                 Image(imageLogoString)
                     .resizable()
                     .scaledToFit()
-                    .shadow(color: Color.black.opacity(0.5), radius: 10, x: 0, y: 15)
-                    .shadow(color: Color.black.opacity(0.5), radius: 10, x: 0, y: -15)
+                    .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 5)
+                    .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: -5)
                 
                 Image(imageDiscountString)
                     .frame(maxWidth: .infinity)
