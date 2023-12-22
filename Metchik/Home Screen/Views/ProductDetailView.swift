@@ -24,22 +24,75 @@ struct ProductDetailView: View {
     
     @State var compressDescription: Bool = false
     
+    @State private var showActionSheet = false
+    @State private var showImagePicker = false
+    @State private var selectedImage: UIImage?
+    
     
     var body: some View {
         // Display details about the selected product
         ScrollView {
-            //new code
             
-            Image(selectedProduct.imageName)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+            if let image = selectedImage {
+                Image(uiImage: image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            }else {
+                Image(selectedProduct.imageName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            }
             
             
             
             VStack(alignment: .leading, spacing: 10) {
+                HStack {
+                    Text(selectedProduct.name)
+                        .font(.title)
+                    Spacer()
+                    VStack {
+                        
+                        
+                        VStack {
+                            
+                            Button(action: {
+                                showActionSheet = true
+                            }) {
+                                Text("Click Lens 📷")
+                                    .font(.title2)
+                                    .fontWeight(.semibold)
+                                    .padding(4)
+                                    .shadow(color: .black.opacity(1), radius: 10, x: 5, y: 5)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 5)
+                                            .stroke(Color.black, lineWidth: 1)
+                                    )
+                            }
+                        }
+                        .actionSheet(isPresented: $showActionSheet) {
+                            ActionSheet(
+                                title: Text("Choose Source"),
+                                buttons: [
+                                    .default(Text("Open Gallery")) {
+                                        showImagePicker = true
+                                    },
+                                    .default(Text("Open Camera")) {
+                                        openCamera() // Call the function to open the camera
+                                    },
+                                    .cancel()
+                                ]
+                            )
+                        }
+                        .sheet(isPresented: $showImagePicker) {
+                            ImagePicker(sourceType: .photoLibrary) { image in
+                                selectedImage = image
+                                showImagePicker = false // Dismiss image picker after selecting an image
+                            }
+                        }
+                    }
+                    
+                }
                 
-                Text(selectedProduct.name)
-                    .font(.title)
                 
                 HStack {
                     Text("$\(String(format: "%.2f", selectedProduct.price))")
@@ -171,6 +224,15 @@ struct ProductDetailView: View {
         }
         
         .navigationBarTitle(selectedProduct.name)
+    }
+    
+    func openCamera() {
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            print("Camera is not available")
+            return
+        }
+        
+        showImagePicker = true
     }
 }
 
