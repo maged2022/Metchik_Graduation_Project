@@ -39,33 +39,27 @@ struct SubCategoryView: View {
                     }
                 }
                 
-                HStack(spacing: 5) {
-                    ForEach(subCategoryViewModel.subCategories) { subCategory in
+                NavigationLink {
+                    ProductView(selectedSubcategory: SubCategory(name: "Discount"))
+                } label: {
+                    TabView {
+                        ForEach(1..<6){ _ in
+                            DiscountImageView(imageDiscountString: "images-\(Int.random(in: 1...16))")
+                        }
+                    }
+                    .frame(height: 200)
+                    .tabViewStyle(PageTabViewStyle())
+                }
+                ForEach(subCategoryViewModel.subCategories){item in
+                    VStack {
+                        Spacer(minLength: 20)
                         NavigationLink {
-                            // New Screen
-                            ProductView(selectedSubcategory: subCategory)
+                            ProductView(selectedSubcategory: item)
                         } label: {
-                            VStack {
-                                Image("\(categorie) \(subCategory.name)")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame( height: 80)
-                                    .clipShape(RoundedRectangle(cornerRadius: 5))
-                                
-                                Text("\(subCategory.name)")
-                                    .font(.headline)
-                                    .bold()
-                            }
-                            .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
-                            .shadow(color: Color.black.opacity(0.3), radius: 5, x: -5, y: -5)
+                            SubCategoryCardView(category: categorie, subCategory: item)
                         }
                     }
                 }
-                
-                // Discount Section
-                Spacer().frame(height: 30)
-                DiscountView(imageLogoString: "image_discount_two", imageDiscountString: "images-11")
-                
             }
             .navigationTitle(categorie)
             .navigationBarTitleDisplayMode(.inline)
@@ -78,6 +72,8 @@ struct SubCategoryView: View {
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        SubCategoryView(categorie: "Men")
+        NavigationView{
+            SubCategoryView(categorie: "Men")
+        }
     }
 }

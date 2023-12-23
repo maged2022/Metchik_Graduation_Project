@@ -57,7 +57,6 @@ struct LaunchView: View {
                     counter += 1
                 }
             }
-            print("counter: \(counter)")
         }
     }
 }
