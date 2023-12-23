@@ -126,14 +126,10 @@
 		12BE29262B2F95D500049E36 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				12EEBF302B246360003B0B0C /* MainCategoryView.swift */,
-				97E0AE722B28F9CD0078BD74 /* SubCategoryView.swift */,
-				12BE291E2B2F94ED00049E36 /* CategoryCardView.swift */,
-				12A2DE4D2B2FC1DB0027A253 /* ProductView.swift */,
-				12A2DE512B2FC4640027A253 /* ProductItemView.swift */,
-				12A2DE532B2FC5FB0027A253 /* ProductDetailView.swift */,
-				1295C06E2B30881D00C1F4CA /* DiscountView.swift */,
-				97BA53052B36FCCF0061DF1B /* DiscountImageView.swift */,
+				97BA53092B370B810061DF1B /* MainCategory */,
+				97BA530A2B370BA20061DF1B /* SubCategory */,
+				97BA530B2B370BBB0061DF1B /* Product */,
+				97BA530C2B370BE50061DF1B /* Discount */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -185,6 +181,43 @@
 				12EEBF352B246362003B0B0C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		97BA53092B370B810061DF1B /* MainCategory */ = {
+			isa = PBXGroup;
+			children = (
+				12EEBF302B246360003B0B0C /* MainCategoryView.swift */,
+				12BE291E2B2F94ED00049E36 /* CategoryCardView.swift */,
+			);
+			path = MainCategory;
+			sourceTree = "<group>";
+		};
+		97BA530A2B370BA20061DF1B /* SubCategory */ = {
+			isa = PBXGroup;
+			children = (
+				97E0AE722B28F9CD0078BD74 /* SubCategoryView.swift */,
+				97BA53072B37022A0061DF1B /* SubCategoryCardView.swift */,
+			);
+			path = SubCategory;
+			sourceTree = "<group>";
+		};
+		97BA530B2B370BBB0061DF1B /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				12A2DE4D2B2FC1DB0027A253 /* ProductView.swift */,
+				12A2DE512B2FC4640027A253 /* ProductItemView.swift */,
+				12A2DE532B2FC5FB0027A253 /* ProductDetailView.swift */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		97BA530C2B370BE50061DF1B /* Discount */ = {
+			isa = PBXGroup;
+			children = (
+				1295C06E2B30881D00C1F4CA /* DiscountView.swift */,
+				97BA53052B36FCCF0061DF1B /* DiscountImageView.swift */,
+			);
+			path = Discount;
 			sourceTree = "<group>";
 		};
 		97E0AE712B28F99E0078BD74 /* Home Screen */ = {
@@ -419,6 +452,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Metchik/Preview Content\"";
+				DEVELOPMENT_TEAM = S3RJ79YN6K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -448,6 +482,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Metchik/Preview Content\"";
+				DEVELOPMENT_TEAM = S3RJ79YN6K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

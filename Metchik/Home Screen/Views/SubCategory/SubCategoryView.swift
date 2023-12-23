@@ -39,32 +39,11 @@ struct SubCategoryView: View {
                     }
                 }
                 
-                HStack(spacing: 5) {
-                    ForEach(subCategoryViewModel.subCategories) { subCategory in
-                        NavigationLink {
-                            // New Screen
-                            ProductView(selectedSubcategory: subCategory)
-                        } label: {
-                            VStack {
-                                Image("\(categorie) \(subCategory.name)")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame( height: 80)
-                                    .clipShape(RoundedRectangle(cornerRadius: 5))
-                                
-                                Text("\(subCategory.name)")
-                                    .font(.headline)
-                                    .bold()
-                            }
-                            .shadow(color: Color.black.opacity(0.3), radius: 5, x: 5, y: 5)
-                            .shadow(color: Color.black.opacity(0.3), radius: 5, x: -5, y: -5)
-                        }
-                    }
-                }
-                
-                // Discount Section
                 Spacer().frame(height: 30)
-                DiscountView(imageLogoString: "image_discount_two", imageDiscountString: "images-11")
+                ForEach(subCategoryViewModel.subCategories){item in
+                    SubCategoryCardView(subCategory: item)
+                    
+                }
                 
             }
             .navigationTitle(categorie)
