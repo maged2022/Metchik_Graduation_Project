@@ -39,12 +39,27 @@ struct SubCategoryView: View {
                     }
                 }
                 
-                Spacer().frame(height: 30)
-                ForEach(subCategoryViewModel.subCategories){item in
-                    SubCategoryCardView(subCategory: item)
-                    
+                NavigationLink {
+                    ProductView(selectedSubcategory: SubCategory(name: "Discount"))
+                } label: {
+                    TabView {
+                        ForEach(1..<6){ _ in
+                            DiscountImageView(imageDiscountString: "images-\(Int.random(in: 1...16))")
+                        }
+                    }
+                    .frame(height: 200)
+                    .tabViewStyle(PageTabViewStyle())
                 }
-                
+                ForEach(subCategoryViewModel.subCategories){item in
+                    VStack {
+                        Spacer(minLength: 20)
+                        NavigationLink {
+                            ProductView(selectedSubcategory: item)
+                        } label: {
+                            SubCategoryCardView(category: categorie, subCategory: item)
+                        }
+                    }
+                }
             }
             .navigationTitle(categorie)
             .navigationBarTitleDisplayMode(.inline)
@@ -57,6 +72,8 @@ struct SubCategoryView: View {
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        SubCategoryView(categorie: "Men")
+        NavigationView{
+            SubCategoryView(categorie: "Men")
+        }
     }
 }

@@ -32,6 +32,7 @@
 		12EEBF332B246362003B0B0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12EEBF322B246362003B0B0C /* Assets.xcassets */; };
 		12EEBF362B246362003B0B0C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12EEBF352B246362003B0B0C /* Preview Assets.xcassets */; };
 		97BA53062B36FCCF0061DF1B /* DiscountImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA53052B36FCCF0061DF1B /* DiscountImageView.swift */; };
+		97BA53082B37022A0061DF1B /* SubCategoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA53072B37022A0061DF1B /* SubCategoryCardView.swift */; };
 		97E0AE732B28F9CD0078BD74 /* SubCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E0AE722B28F9CD0078BD74 /* SubCategoryView.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		12EEBF322B246362003B0B0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		12EEBF352B246362003B0B0C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		97BA53052B36FCCF0061DF1B /* DiscountImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountImageView.swift; sourceTree = "<group>"; };
+		97BA53072B37022A0061DF1B /* SubCategoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryCardView.swift; sourceTree = "<group>"; };
 		97E0AE722B28F9CD0078BD74 /* SubCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -318,6 +320,7 @@
 				97E0AE732B28F9CD0078BD74 /* SubCategoryView.swift in Sources */,
 				129C57DA2B2B2FD100CA9F2A /* LocalFileManager.swift in Sources */,
 				12BE29222B2F958300049E36 /* MainCategoryViewModel.swift in Sources */,
+				97BA53082B37022A0061DF1B /* SubCategoryCardView.swift in Sources */,
 				12BE29252B2F95AF00049E36 /* Category.swift in Sources */,
 				12A2DE4A2B2FC1230027A253 /* Product.swift in Sources */,
 				121BD4E42B344B58000126C6 /* SearchBarView.swift in Sources */,

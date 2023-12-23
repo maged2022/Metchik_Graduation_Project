@@ -48,7 +48,7 @@ struct DiscountView: View {
             }
         }
         .onAppear {
-            productViewModel.fetchProducts(for: SubCategory(name: "man"))
+            productViewModel.fetchDiscounts(for: SubCategory(name: "man"))
         }
     }
 }
