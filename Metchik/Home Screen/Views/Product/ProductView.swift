@@ -11,6 +11,7 @@ struct ProductView: View {
     
     @ObservedObject var productViewModel = ProductViewModel()
     var selectedSubcategory: SubCategory
+    @State private var isBasketViewPresented = false
     
     let columns: [GridItem] = [
         GridItem(.flexible(),spacing: 10), // First column with flexible width
@@ -45,7 +46,7 @@ struct ProductView: View {
             
             LazyVGrid(columns: columns, spacing: 15) {
                 ForEach(productViewModel.products) { product in
-                    NavigationLink(destination: ProductDetailView(selectedProduct: product)) {
+                    NavigationLink(destination: ProductDetailView(selectedProduct: product, productViewModel: productViewModel)) {
                         ProductItemView(product: product, onBuutonTap: {
                             // When Add to Card button is tapped
                             // should go to login or register screen
@@ -54,8 +55,26 @@ struct ProductView: View {
                     }
                 }
             }
-            .padding(.horizontal)
+            .padding(.horizontal,5)
         }
+        .navigationBarItems(trailing:
+                                
+                                Button(action: {
+            isBasketViewPresented = true
+        }) {
+            //            BasketButtonView(numberOfProducts: cartmanager.cartProducts.count)
+            BasketButtonView(numberOfProducts: productViewModel.basketProducts.count)
+                .foregroundColor(.black)
+                .padding(.leading)
+        }
+        )
+        
+        .sheet(isPresented: $isBasketViewPresented, content: {
+           // CartView()
+           // Text("kkkkkkkk")
+            BasketView(productViewModel: productViewModel)
+        })
+        
         .onAppear {
             productViewModel.fetchProducts(for: selectedSubcategory)
         }
