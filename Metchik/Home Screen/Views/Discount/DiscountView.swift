@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DiscountView: View {
     
-    @StateObject private var productViewModel = ProductViewModel()
+    @StateObject private var discountViewModel = DiscountViewModel()
     let imageLogoString: String
     let imageDiscountString: String
     
@@ -17,23 +17,29 @@ struct DiscountView: View {
         ScrollView {
             VStack(spacing: 20) {
                 
-                DiscountImageView(imageDiscountString: imageLogoString)
-                DiscountImageView(imageDiscountString: imageDiscountString)
+                Image(imageLogoString)
+                    .resizable()
+                    .scaledToFit()
+                    .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 5)
+                    .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: -5)
                 
+                Image(imageDiscountString)
+                    .frame(maxWidth: .infinity)
                 
                 Spacer().frame(height: 1)
                 
-                ForEach(productViewModel.products) { item in
+                ForEach(discountViewModel.discounts) { item in
                     VStack{
                         Image(item.imageName)
                             .resizable()
                             .scaledToFit()
+                            .cornerRadius(5)
                         VStack(spacing: 5) {
-                            Text("$\(String(format: "%.2f", item.price))")
+                            Text("\(String(format: "%.2f", item.oldPrice)) L.E")
                                 .font(.title2)
                                 .foregroundColor(.gray)
                                 .strikethrough()
-                            Text("$\(String(format: "%.2f", item.discountPrice))")
+                            Text("\(String(format: "%.2f", item.newPrice)) L.E")
                                 .font(.title2)
                                 .foregroundColor(.red)
                                 .bold()
@@ -41,14 +47,9 @@ struct DiscountView: View {
                         }
                     }
                     .padding(.horizontal)
-                    .background(Color.white)
-                    .cornerRadius(10)
                     .shadow(radius: 5)
                 }
             }
-        }
-        .onAppear {
-            productViewModel.fetchDiscounts(for: SubCategory(name: "man"))
         }
     }
 }
@@ -58,5 +59,3 @@ struct DiscountView_Previews: PreviewProvider {
         DiscountView(imageLogoString: "discount_image_one", imageDiscountString: "images-2")
     }
 }
-
-

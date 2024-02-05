@@ -12,11 +12,11 @@ struct ProductDetailView: View {
     
     
     // Mock data for colors and sizes
-    let availableColors = ["AccentColor", "RedColor", "GreenColor"]
-    let availableSizes = ["S", "M", "L", "XL"]
+    let availableColors = ["Accent", "Red", "Green"]
+    let availableSizes = ["XS","S", "M", "L", "XL"]
     
-    @State private var selectedColor: String = ""
-    @State private var selectedSize: String = ""
+    @State private var selectedColor: String = "Green"
+    @State private var selectedSize: String = "XS"
     
     
     
@@ -29,6 +29,13 @@ struct ProductDetailView: View {
     @State private var selectedImage: UIImage?
     @State private var processingImage = false
     
+    @State var rating: Int = 4
+    
+    @State private var showingAlertDetail = false
+    
+    var productViewModel: ProductViewModel
+    
+    
     var body: some View {
         // Display details about the selected product
         ScrollView {
@@ -37,110 +44,142 @@ struct ProductDetailView: View {
                 ProgressView("Processing image using ML")
                     .font(.title2)
                     .foregroundColor(.blue)
-                //.progressViewStyle(CircularProgressViewStyle())
-                    .frame(height: 300)
+                    .frame(height: 400)
+                    .scaleEffect(1.4)
                     .padding()
+                
             }else {
                 // Show the selected image or product image
                 if let image = selectedImage {
                     Image(uiImage: image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .cornerRadius(8)
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 7)
+                        .shadow(color: .black.opacity(0.3), radius: 10, x: 5, y: 5)
+                        .shadow(color: .black.opacity(0.3), radius: 10, x: 5, y: -5)
                 } else {
                     Image(selectedProduct.imageName)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .cornerRadius(8)
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 7)
+                        .shadow(color: .black.opacity(0.3), radius: 10, x: 5, y: 5)
+                        .shadow(color: .black.opacity(0.3), radius: 10, x: 5, y: -5)
+
                 }
             }
             
-            VStack(alignment: .leading, spacing: 10) {
-                HStack {
-                    Text(selectedProduct.name)
-                        .font(.title)
-                    Spacer()
-                    VStack {
+            
+            
+            HStack {
+                
+                Text(selectedProduct.name)
+                    .font(.title)
+                    .bold()
+                    .shadow(color: .black.opacity(0.7), radius: 10, x: 5, y: 5)
+                
+                Spacer()
+                
+                Button(action: {
+                    showActionSheet = true
+                }) {
+                    Text("Click Lens 📷")
+                        .foregroundColor(.black)
+                        .font(.system(size: 20))
+//                        .font(.headline)
+                        .fontWeight(.heavy)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(.gray.opacity(0.6), lineWidth: 3)
+                                .frame(width: 160, height: 40)
+                        )
+                        .padding()
+                        .shadow(color: .black.opacity(0.7), radius: 10, x: 5, y: 5)
+                }
+                
+                .actionSheet(isPresented: $showActionSheet) {
+                    ActionSheet(
+                        title: Text("Choose Source"),
+                        buttons: [
+                            .default(Text("Open Gallery")) {
+                                showImagePicker = true
+                            },
+                            .default(Text("Open Camera")) {
+                                openCamera() // Call the function to open the camera
+                            },
+                            .cancel()
+                        ]
+                    )
+                }
+                .sheet(isPresented: $showImagePicker) {
+                    ImagePicker(sourceType: .photoLibrary) { image in
+                        // Show processing indicator and message
+                        processingImage = true
                         
-                        
-                        VStack {
-                            
-                            Button(action: {
-                                showActionSheet = true
-                            }) {
-                                Text("Click Lens 📷")
-                                    .font(.title2)
-                                    .fontWeight(.semibold)
-                                    .padding(4)
-                                    .shadow(color: .black.opacity(1), radius: 10, x: 5, y: 5)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 5)
-                                            .stroke(Color.black, lineWidth: 1)
-                                    )
-                            }
-                        }
-                        .actionSheet(isPresented: $showActionSheet) {
-                            ActionSheet(
-                                title: Text("Choose Source"),
-                                buttons: [
-                                    .default(Text("Open Gallery")) {
-                                        showImagePicker = true
-                                    },
-                                    .default(Text("Open Camera")) {
-                                        openCamera() // Call the function to open the camera
-                                    },
-                                    .cancel()
-                                ]
-                            )
-                        }
-                        .sheet(isPresented: $showImagePicker) {
-                            ImagePicker(sourceType: .photoLibrary) { image in
-                                // Show processing indicator and message
-                                processingImage = true
-                                
-                                selectedImage = image
-                                showImagePicker = false
-                                // Simulate processing delay
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                    // Hide processing indicator and message after 3 seconds
-                                    processingImage = false
-                                }
-                            }
+                        selectedImage = UIImage(named: "discount8")
+                        showImagePicker = false
+                        // Simulate processing delay
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            // Hide processing indicator and message after 3 seconds
+                            processingImage = false
                         }
                     }
-                    
                 }
                 
-                
-                HStack {
-                    Text("$\(String(format: "%.2f", selectedProduct.price))")
-                        .font(.title2)
-                        .foregroundColor(.gray)
-                        .strikethrough()
-                    
-                    Text("$\(String(format: "%.2f", selectedProduct.discountPrice))")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.red)
-                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding()
             
             
-            Divider()
-                .frame(width: 200, height: 2, alignment: .leading)
-                .background(.blue)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal)
+            HStack {
+                Text("\(String(format: "%.2f", selectedProduct.price)) L.E")
+                    .font(.title2)
+                    .foregroundColor(.gray)
+                    .strikethrough()
+                Spacer().frame(width: 15)
+                Text("\(String(format: "%.2f", selectedProduct.discountPrice)) L.E")
+                    .font(.title2)
+                    .bold()
+                    .foregroundColor(.red)
+            }
+            .frame(maxWidth: .infinity,alignment: .leading)
+            .padding(.bottom)
+            .padding(.horizontal)
+            .shadow(color: .black.opacity(0.5), radius: 10, x: 5, y: 5)
+
             
-            
+            HStack {
+                Text("Rating: ")
+                    .font(.title2)
+                    .bold()
+                
+                ForEach(1..<6) {
+                    index in
+                    Image(systemName: "star.fill")
+                        .font(.title)
+                        .foregroundColor(rating >= index ? Color.yellow.opacity(0.5): Color.gray.opacity(0.5))
+                        .onTapGesture {
+                            rating = index
+                        }
+                }
+            }
+            .frame(maxWidth: .infinity,alignment: .leading)
+            .padding(.horizontal)
+//            .shadow(color: .black.opacity(0.4), radius: 10, x: 5, y: 5)
+
             // Color Selector Table
             VStack(alignment: .leading) {
                 HStack {
                     Text("Color:  ")
                         .font(.title2)
+                        .bold()
                     
                     Text("\(selectedColor)")
                         .font(.title2)
+                        .bold()
                 }
                 
                 
@@ -155,11 +194,11 @@ struct ProductDetailView: View {
                                         .resizable()
                                         .scaledToFit()
                                         .clipShape(Circle())
-                                        .frame(width: 50, height: 50)
+                                        .frame(width: 55, height: 55)
                                     
                                         .overlay(
                                             Circle()
-                                                .fill(Color(color)
+                                                .fill(Color("\(color)Color")
                                                     .opacity(selectedColor == color ? 0.5 : 0.3))
                                         )
                                     
@@ -175,18 +214,14 @@ struct ProductDetailView: View {
                 }
             }
             .padding()
-            
-            Divider()
-                .frame(width: 200, height: 2, alignment: .leading)
-                .background(.blue)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal)
-            
+            .shadow(color: .black.opacity(0.6), radius: 10, x: 5, y: 5)
+
             // Size Selector Table
             VStack(alignment: .leading) {
                 HStack {
                     Text("Size:  ")
                         .font(.title2)
+                        .bold()
                     
                     Text("\(selectedSize)")
                         .font(.title2)
@@ -213,12 +248,8 @@ struct ProductDetailView: View {
                 }
             }
             .padding()
+            .shadow(color: .black.opacity(0.4), radius: 10, x: 4, y: 4)
             
-            Divider()
-                .frame(width: 200, height: 2, alignment: .leading)
-                .background(.blue)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal)
             
             // Description about product
             VStack(alignment: .leading) {
@@ -236,9 +267,54 @@ struct ProductDetailView: View {
                 }
             }
             .padding()
+
+            // Add product
+            HStack {
+                Spacer()
+                
+                Button(action: {
+                    
+    //                cartmanager.addToCart(product, selectedSize, selectedColor)
+                    if productViewModel.basketProducts.contains(selectedProduct) {
+                        print("product in the basket...")
+                        print("id: \(selectedProduct.id)")
+                    }else {
+                        print("product not in the basket...")
+                        print("id: \(selectedProduct.id)")
+                        productViewModel.addProduct(product: selectedProduct)
+                    }
+                    
+                    showingAlertDetail = true
+                    
+                }, label: {
+                    Text("ADD TO Basket")
+                        .foregroundColor(.black)
+                        .font(.system(size: 18))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(.gray.opacity(0.4), lineWidth: 3)
+                                .frame(width: 200, height: 40)
+                        )
+                        .shadow(color: .black.opacity(0.7), radius: 10, x: 5, y: 5)
+                })
+                
+                Spacer()
+                
+            }
+            .padding()
+            .padding()
+            .alert("Item Added To Cart", isPresented: $showingAlertDetail) {
+                Button("OK", role: .cancel) {
+                    
+                   
+                }
+            }
+            
             // end of scroll view
         }
-        
+        .background(Color.gray
+            .ignoresSafeArea()
+            .opacity(0.2))
         .navigationBarTitle(selectedProduct.name)
     }
     
@@ -255,6 +331,6 @@ struct ProductDetailView: View {
 
 struct ProductDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailView(selectedProduct: Product(name: "product Name", imageName: "discount_image4", price: 142.36, discountPrice: 122.36))
+        ProductDetailView(selectedProduct: Product(id: "1", name: "T-Shirt", imageName: "discount_image4", price:  142.36, discountPrice:  122.36), productViewModel: ProductViewModel())
     }
 }

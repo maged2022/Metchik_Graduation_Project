@@ -11,39 +11,40 @@ class ProductViewModel: ObservableObject {
     @Published var products: [Product] = []
     @Published  var searchText = ""
     
+    @Published var basketProducts: [Product] = []
+    
     func fetchProducts(for subcategory: SubCategory) {
         // Simulated fetching products based on selected subcategory
         self.products = [
-           
-            Product(name: "T-Shirt3", imageName: "discount_image3", price: 387.08, discountPrice: 197.08),
-            Product(name: "T-Shirt4", imageName: "discount_image4", price: 343.76, discountPrice: 243.76),
-            Product(name: "T-Shirt5", imageName: "discount_image5", price: 123.34, discountPrice: 100.34),
-            Product(name: "T-Shirt5", imageName: "discount_image6", price: 123.34, discountPrice: 100.34),
-            Product(name: "T-Shirt1", imageName: "discount_image1", price: 519.99, discountPrice: 419.99),
-            Product(name: "T-Shirt2", imageName: "discount_image2", price: 220.30, discountPrice: 120.30),
-            Product(name: "T-Shirt3", imageName: "discount_image3", price: 387.08, discountPrice: 197.08),
-            Product(name: "T-Shirt4", imageName: "discount_image4", price: 343.76, discountPrice: 243.76),
-            Product(name: "T-Shirt5", imageName: "discount_image5", price: 123.34, discountPrice: 100.34),
-            Product(name: "T-Shirt5", imageName: "discount_image6", price: 123.34, discountPrice: 100.34),
-            Product(name: "T-Shirt1", imageName: "discount_image1", price: 519.99, discountPrice: 419.99),
-            Product(name: "T-Shirt2", imageName: "discount_image2", price: 220.30, discountPrice: 120.30),
+            
+            Product(id: "1", name: "Jacket_3", imageName: "discount_image3", price: 387.08, discountPrice: 197.08),
+            Product(id: "3", name: "Jacket_5", imageName: "discount_image5", price: 123.34, discountPrice: 100.34),
+            Product(id: "4", name: "Jacket_6", imageName: "discount_image6", price: 123.34, discountPrice: 100.34),
+            Product(id: "2", name: "Jacket_4", imageName: "discount_image4", price: 343.76, discountPrice: 243.76),
+            Product(id: "5", name: "Jacket_1", imageName: "discount_image1", price: 519.99, discountPrice: 419.99),
+            Product(id: "6", name: "Jacket_2", imageName: "discount_image2", price: 220.30, discountPrice: 120.30),
+            Product(id: "1", name: "Jacket_3", imageName: "discount_image3", price: 387.08, discountPrice: 197.08),
+            Product(id: "2", name: "Jacket_4", imageName: "discount_image4", price: 343.76, discountPrice: 243.76),
+            Product(id: "3", name: "Jacket_5", imageName: "discount_image5", price: 123.34, discountPrice: 100.34),
+            Product(id: "4", name: "Jacket_6", imageName: "discount_image6", price: 123.34, discountPrice: 100.34),
+            Product(id: "5", name: "Jacket_1", imageName: "discount_image1", price: 519.99, discountPrice: 419.99),
+            Product(id: "6", name: "Jacket_2", imageName: "discount_image2", price: 220.30, discountPrice: 120.30),
             // Add more products
         ]
     }
-   
-    func fetchDiscounts(for subcategory: SubCategory) {
-        // Simulated fetching Discount products based on selected subcategory
-        self.products = [
-           
-            Product(name: "T-Shirt1", imageName: "discount_image1", price: 519.99, discountPrice: 419.99),
-            Product(name: "T-Shirt2", imageName: "discount_image2", price: 220.30, discountPrice: 120.30),
-            Product(name: "T-Shirt3", imageName: "discount_image3", price: 387.08, discountPrice: 197.08),
-            Product(name: "T-Shirt4", imageName: "discount_image4", price: 343.76, discountPrice: 243.76),
-            Product(name: "T-Shirt5", imageName: "discount_image5", price: 123.34, discountPrice: 100.34),
-            Product(name: "T-Shirt6", imageName: "discount_image6", price: 123.34, discountPrice: 100.34),
-            // Add more products
-        ]
+    
+    func addProduct(product : Product) {
+        self.basketProducts += [product]
     }
+    
+    func removeProduct(index : Int) {
+        self.basketProducts.remove(at: index)
+    }
+    
+    func totalPrice() -> Double {
+          let total = basketProducts.reduce(0) { $0 + $1.discountPrice }
+          return total
+      }
     
     
 }

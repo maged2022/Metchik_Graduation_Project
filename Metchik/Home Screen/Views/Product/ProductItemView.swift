@@ -23,13 +23,13 @@ struct ProductItemView: View {
                 .font(.headline)
             
             HStack {
-                Text("$\(String(format: "%.2f", product.price))")
+                Text("\(String(format: "%.2f", product.price)) L.E")
                     .font(.caption)
                     .foregroundColor(.gray)
                     .strikethrough()
                 
-                Text("$\(String(format: "%.2f", product.discountPrice))")
-                    .fontWeight(.bold)
+                Text("\(String(format: "%.2f", product.discountPrice)) L.E")
+                    .fontWeight(.semibold)
                     .foregroundColor(.red)
             }
             
@@ -52,7 +52,8 @@ struct ProductItemView: View {
             // Solve Conflict between navigationLink tapped && Button tapped
             .contentShape(Rectangle())
         }
-        .padding()
+        .padding(.vertical)
+        .padding(.horizontal,5)
         .background(Color.white)
         .cornerRadius(10)
         .shadow(radius: 3)
@@ -61,7 +62,7 @@ struct ProductItemView: View {
 
 struct ProductItemView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductItemView(product: Product(name: "T-Shirt", imageName: "t-shirt1", price: 23.44, discountPrice: 16.44), onBuutonTap: {
+        ProductItemView(product: Product(id: "1", name: "T-Shirt", imageName: "t-shirt1", price: 23.44, discountPrice: 16.44), onBuutonTap: {
         })
     }
 }
