@@ -9,29 +9,35 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @State private var mainCategoryViewModel = HomeViewModel()
+    @State private var homeViewModel = HomeViewModel()
     
     var body: some View {
         
         ScrollView {
-            VStack(alignment: .leading){
-                Text("Welcome,")
-                    .foregroundStyle(Color.themeColor.primaryLabelColor)
-                    .font(.poppins(.bold, size: 25))
-                Text("Our Fashions App")
-                    .foregroundStyle(Color.themeColor.secondaryLabelColor)
-                    .font(.poppins(.bold, size: 20))
+            VStack(spacing:25) {
+                VStack(spacing:20) {
+                    HStack {
+                        VStack(alignment:.leading){
+                            Text("Welcome,")
+                                .foregroundStyle(Color.themeColor.primaryLabelColor)
+                                .font(.poppins(.bold, size: 25))
+                            Text("Our Fashions App")
+                                .foregroundStyle(Color.themeColor.secondaryLabelColor)
+                                .font(.poppins(.bold, size: 20))
+                        }
+                        Spacer()
+                    }
+                    SearchBarView(searchText: .constant(""))
+                }
+                .padding(.trailing,25)
+                QuickCategoryView(categorys: homeViewModel.categories)
+                OffersView()
+                QuickSubCategoryView()
             }
-            .frame(maxWidth: .infinity)
-            SearchBarView(searchText: .constant(""))
-            QuickCategoryView(categorys: mainCategoryViewModel.categories)
-            OffersView()
-           
-            .navigationTitle("Metchik")
+            .padding(.leading,25)
+            .background(Color.themeColor.backgroundScreenColor
+                .ignoresSafeArea())
         }
-        .background(Color.themeColor.backgroundScreenColor
-            .ignoresSafeArea()
-            )
     }
 }
 
@@ -44,5 +50,3 @@ struct ContentView_Previews: PreviewProvider {
         })
     }
 }
-
-
