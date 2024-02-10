@@ -21,7 +21,7 @@ struct ThemeColor {
     let secondaryTextColor = Color("SecondaryTextColor")
     let primaryLabelColor = Color("PrimaryLabelColor")
     let secondaryLabelColor = Color("SecondaryLabelColor")
-    
+    let backgroundScreenColor = Color("BackgroundScreenColor")
 }
 
 struct LaunchScreenColor {

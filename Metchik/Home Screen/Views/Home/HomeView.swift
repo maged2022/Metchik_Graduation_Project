@@ -17,31 +17,21 @@ struct HomeView: View {
             VStack(alignment: .leading){
                 Text("Welcome,")
                     .foregroundStyle(Color.themeColor.primaryLabelColor)
-                    .font(.poppins(.regular, size: 25))
-//                    .font(.title)
+                    .font(.poppins(.bold, size: 25))
                 Text("Our Fashions App")
                     .foregroundStyle(Color.themeColor.secondaryLabelColor)
+                    .font(.poppins(.bold, size: 20))
             }
+            .frame(maxWidth: .infinity)
+            SearchBarView(searchText: .constant(""))
             
-            DiscountView(imageLogoString: "discount_image_one", imageDiscountString: "images-4")
-            ScrollView(.horizontal, showsIndicators: true) {
-                HStack () {
-                    ForEach(mainCategoryViewModel.categories) { category in
-                        NavigationLink {
-                            SubCategoryView(categorie: category.name)
-                        } label: {
-                            CategoryCardView(category: category)
-                                .frame(height: 150)
-                                .padding()
-                        }
-                    }
-                }
-            }
+            OffersView()
+            QuickCategoryView(categorys: mainCategoryViewModel.categories)
             .navigationTitle("Metchik")
         }
-        .background(Color.gray
+        .background(Color.themeColor.backgroundScreenColor
             .ignoresSafeArea()
-            .opacity(0.2))
+            )
     }
 }
 
