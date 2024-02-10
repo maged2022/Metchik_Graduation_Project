@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainCategoryView: View {
+struct HomeView: View {
     
     @State private var mainCategoryViewModel = MainCategoryViewModel()
     
@@ -39,7 +39,7 @@ struct MainCategoryView: View {
 struct ContentView_Previews: PreviewProvider {
     
     static var previews: some View {
-        MainCategoryView()
+        HomeView()
     }
 }
 
