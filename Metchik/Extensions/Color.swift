@@ -21,7 +21,13 @@ struct ThemeColor {
     let secondaryTextColor = Color("SecondaryTextColor")
     let primaryLabelColor = Color("PrimaryLabelColor")
     let secondaryLabelColor = Color("SecondaryLabelColor")
+    let primaryButtonColor = Color("PrimaryButtonColor")
+    let secondaryButtonColor = Color("SecondaryButtonColor")
     let backgroundScreenColor = Color("BackgroundScreenColor")
+    let backgroundSearchColor = Color("BackgroundSearchColor")
+    let searchLabelColor = Color("SearchLabelColor")
+    let borderCategoryColor = Color("BorderCategoryColor")
+    
 }
 
 struct LaunchScreenColor {
