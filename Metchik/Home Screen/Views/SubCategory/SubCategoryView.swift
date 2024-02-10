@@ -44,7 +44,7 @@ struct SubCategoryView: View {
                 } label: {
                     TabView {
                         ForEach(1..<6){ _ in
-                            DiscountImageView(imageDiscountString: "images-\(Int.random(in: 1...16))")
+                           OffersView()
                         }
                     }
                     .frame(height: 200)

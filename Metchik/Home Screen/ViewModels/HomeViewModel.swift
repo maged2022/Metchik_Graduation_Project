@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MainCategoryViewModel: ObservableObject {
+class HomeViewModel: ObservableObject {
     @Published var categories: [Category] = [
         Category(name: "Men"),
         Category(name: "Women"),
