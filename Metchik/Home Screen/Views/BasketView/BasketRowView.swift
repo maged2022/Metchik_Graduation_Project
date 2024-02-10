@@ -16,7 +16,7 @@ struct BasketRowView: View {
     
     var body: some View {
         HStack(alignment: .center, spacing: 15) {
-            Image(product.imageName)
+            Image(product.images[0])
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 110)
@@ -67,7 +67,7 @@ struct BasketRowView: View {
 
 struct BasketRowView_Previews: PreviewProvider {
     static var previews: some View {
-        let product = Product(id: "1", name: "product_1", imageName: "discount_image3", price: 225.50, discountPrice: 125.14)
+        let product = Product(id: "1", name: "product_1", images: ["discount_image3"], price: 225.50, discountPrice: 125.14)
         let productViewModel = ProductViewModel()
         
         return BasketRowView(productViewModel: productViewModel, product: product, index: 0)

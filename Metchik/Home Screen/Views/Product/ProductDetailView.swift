@@ -60,7 +60,7 @@ struct ProductDetailView: View {
                         .shadow(color: .black.opacity(0.3), radius: 10, x: 5, y: 5)
                         .shadow(color: .black.opacity(0.3), radius: 10, x: 5, y: -5)
                 } else {
-                    Image(selectedProduct.imageName)
+                    Image(selectedProduct.images[0])
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .cornerRadius(8)
@@ -190,7 +190,7 @@ struct ProductDetailView: View {
                                 selectedColor = color
                             }) {
                                 ZStack {
-                                    Image(selectedProduct.imageName)
+                                    Image(selectedProduct.images[0])
                                         .resizable()
                                         .scaledToFit()
                                         .clipShape(Circle())
@@ -275,7 +275,7 @@ struct ProductDetailView: View {
                 Button(action: {
                     
     //                cartmanager.addToCart(product, selectedSize, selectedColor)
-                    if productViewModel.basketProducts.contains(selectedProduct) {
+                    if /*productViewModel.basketProducts.contains(where: selectedProduct) */ true {
                         print("product in the basket...")
                         print("id: \(selectedProduct.id)")
                     }else {
@@ -331,6 +331,6 @@ struct ProductDetailView: View {
 
 struct ProductDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailView(selectedProduct: Product(id: "1", name: "T-Shirt", imageName: "discount_image4", price:  142.36, discountPrice:  122.36), productViewModel: ProductViewModel())
+        ProductDetailView(selectedProduct: Product(id: "1", name: "T-Shirt", images: ["discount_image4"], price:  142.36, discountPrice:  122.36), productViewModel: ProductViewModel())
     }
 }

@@ -89,8 +89,8 @@ struct BasketView_Previews: PreviewProvider {
     static var previews: some View {
         let productViewModel = ProductViewModel()
         productViewModel.basketProducts = [
-            Product(id: "1", name: "Sample Product 1", imageName: "discount_image2", price: 50.0, discountPrice: 45.0),
-            Product(id: "2", name: "Sample Product 2", imageName: "discount_image1", price: 30.0, discountPrice: 25.0),
+            Product(id: "1", name: "Sample Product 1", images: ["discount_image2"], price: 50.0, discountPrice: 45.0),
+            Product(id: "2", name: "Sample Product 2", images: ["discount_image1"], price: 30.0, discountPrice: 25.0),
             // Add more sample products as needed
         ]
 
