@@ -16,7 +16,7 @@ struct MetchikApp: App {
         WindowGroup {
             ZStack {
                 NavigationView {
-                    MainCategoryView()
+                    HomeView()
                     
                 }
                 .navigationViewStyle(StackNavigationViewStyle())
