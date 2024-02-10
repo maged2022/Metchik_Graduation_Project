@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @State private var mainCategoryViewModel = MainCategoryViewModel()
+    @State private var mainCategoryViewModel = HomeViewModel()
     
     var body: some View {
         
@@ -24,9 +24,9 @@ struct HomeView: View {
             }
             .frame(maxWidth: .infinity)
             SearchBarView(searchText: .constant(""))
-            
-            OffersView()
             QuickCategoryView(categorys: mainCategoryViewModel.categories)
+            OffersView()
+           
             .navigationTitle("Metchik")
         }
         .background(Color.themeColor.backgroundScreenColor
