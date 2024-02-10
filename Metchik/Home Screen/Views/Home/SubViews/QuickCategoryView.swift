@@ -16,11 +16,15 @@ struct QuickCategoryView: View {
             ScrollView(.horizontal, showsIndicators: true) {
                 HStack () {
                     ForEach(categorys) { category in
-                            
                         Text(category.name)
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            . shadow(color: Color.black.opacity(0.3), radius: 5, x: 3, y: 3)
+                            .font(.poppins(.bold, size: 13))
+                            .foregroundStyle(Color.themeColor.primaryLabelColor)
+                            .frame(width: 80,height: 30)
+                            .background {
+                                Capsule()
+                                    .stroke(style: .init())
+                                    .foregroundColor(Color.themeColor.borderCategoryColor)
+                            }
                     }
                 }
             }
@@ -29,7 +33,7 @@ struct QuickCategoryView: View {
     }
 }
 
-struct CategoryCardView_Previews: PreviewProvider {
+struct QuickCategoryView_Previews: PreviewProvider {
     static var previews: some View {
         QuickCategoryView(categorys: [Category(name: "Men")])
     }
