@@ -9,33 +9,43 @@ import SwiftUI
 
 struct SearchBarView: View {
     @Binding var searchText: String
-    var placeholder: String = "Search"
-
+    var placeholder: String = "Search..."
+    
     var body: some View {
         HStack {
-            Image(systemName: "magnifyingglass")
-                .foregroundColor(.gray)
-            TextField(placeholder, text: $searchText)
-                .textFieldStyle(PlainTextFieldStyle())
-                .overlay(
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.title2)
-                        .foregroundColor(.gray)
-                        .padding()
-                        .opacity(searchText.isEmpty ? 0 : 1)
-                        .onTapGesture {
-                            UIApplication.shared.dismessKeyboard()
-                            searchText = ""
+            HStack {
+                Image(systemName: "magnifyingglass")
+                    .scaledToFill()
+                    .foregroundColor(Color.themeColor.primaryLabelColor)
+                    .padding(.trailing,8)
+                TextField(text: $searchText, label: {
+                    Text(placeholder)
+                        .font(.poppins(.regular, size: 13))
+                        .foregroundStyle(Color.themeColor.searchLabelColor)
+                })
+                
+            }
+            .padding(.horizontal,25)
+            .frame(height: 50)
+            .background(Color.themeColor.backgroundSearchColor)
+            .cornerRadius(30)
+            if true {
+                Button {
+                    
+                } label: {
+                    Circle()
+                        .frame(width: 50)
+                        .overlay {
+                            Image(systemName: "list.bullet")
+                                .foregroundColor(.white)
                         }
-                    ,
-                    alignment: .trailing
-                )
+                        .padding(.leading,8)
+                    
+                }
+                
+            }
         }
-        .padding(.vertical, 8)
-        .padding(.horizontal, 12)
-        .background(Color(.systemGray6))
-        .cornerRadius(10)
-//        .shadow(color: Color.themeColor.accentColor.opacity(0.2), radius: 10)
+        
     }
 }
 
