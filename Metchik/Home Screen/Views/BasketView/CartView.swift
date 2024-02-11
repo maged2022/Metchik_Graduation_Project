@@ -1,5 +1,5 @@
 //
-//  BasketView.swift
+//  CartView.swift
 //  Metchik
 //
 //  Created by maged on 08/01/2024.
@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct BasketView: View {
+struct CartView: View {
     
      var productViewModel : ProductViewModel
     @Environment(\.presentationMode) var presentationMode
     @State var totalPrice: Double = 0
-    var columns = [
-        GridItem(.fixed(10), spacing: 100),
-    ]
+//    var columns = [
+//        GridItem(.fixed(10), spacing: 100),
+//    ]
     
     var body: some View {
         VStack {
@@ -85,7 +85,7 @@ struct BasketView: View {
     }
 }
 
-struct BasketView_Previews: PreviewProvider {
+struct CartView_Previews: PreviewProvider {
     static var previews: some View {
         let productViewModel = ProductViewModel()
         productViewModel.basketProducts = [
@@ -95,7 +95,7 @@ struct BasketView_Previews: PreviewProvider {
         ]
 
         return NavigationView {
-            BasketView(productViewModel: productViewModel)
+            CartView(productViewModel: productViewModel)
         }
     }
 }

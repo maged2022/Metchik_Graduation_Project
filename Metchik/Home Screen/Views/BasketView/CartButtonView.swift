@@ -1,5 +1,5 @@
 //
-//  BasketButtonView.swift
+//  CartButtonView.swift
 //  Metchik
 //
 //  Created by maged on 07/01/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BasketButtonView: View {
+struct CartButtonView: View {
     
     var numberOfProducts: Int //users has in the cart.
     
@@ -31,8 +31,8 @@ struct BasketButtonView: View {
     }
 }
 
-struct BasketButtonView_Previews: PreviewProvider {
+struct CartButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        BasketButtonView(numberOfProducts: 1)
+        CartButtonView(numberOfProducts: 1)
     }
 }

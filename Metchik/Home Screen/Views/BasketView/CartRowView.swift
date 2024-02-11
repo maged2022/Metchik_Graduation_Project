@@ -1,5 +1,5 @@
 //
-//  BasketRowView.swift
+//  CartRowView.swift
 //  Metchik
 //
 //  Created by maged on 08/01/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BasketRowView: View {
+struct CartRowView: View {
     
     var productViewModel: ProductViewModel
     
@@ -65,12 +65,12 @@ struct BasketRowView: View {
     }
 }
 
-struct BasketRowView_Previews: PreviewProvider {
+struct CartRowView_Previews: PreviewProvider {
     static var previews: some View {
         let product = Product(id: "1", name: "product_1", images: ["discount_image3"], price: 225.50, discountPrice: 125.14)
         let productViewModel = ProductViewModel()
         
-        return BasketRowView(productViewModel: productViewModel, product: product, index: 0)
+        return CartRowView(productViewModel: productViewModel, product: product, index: 0)
 //            .previewLayout(.fixed(width: 300, height: 100))
 //            .padding()
     }
