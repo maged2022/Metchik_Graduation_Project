@@ -63,7 +63,7 @@ struct ProductView: View {
             isBasketViewPresented = true
         }) {
             //            BasketButtonView(numberOfProducts: cartmanager.cartProducts.count)
-            BasketButtonView(numberOfProducts: productViewModel.basketProducts.count)
+            CartButtonView(numberOfProducts: productViewModel.basketProducts.count)
                 .foregroundColor(.black)
                 .padding(.leading)
         }
@@ -72,7 +72,7 @@ struct ProductView: View {
         .sheet(isPresented: $isBasketViewPresented, content: {
            // CartView()
            // Text("kkkkkkkk")
-            BasketView(productViewModel: productViewModel)
+            CartView(productViewModel: productViewModel)
         })
         
         .onAppear {
