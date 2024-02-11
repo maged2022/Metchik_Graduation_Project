@@ -13,7 +13,7 @@ struct QuickCategoryView: View {
     
     var body: some View{
         VStack {
-            ScrollView(.horizontal, showsIndicators: true) {
+            ScrollView(.horizontal, showsIndicators: false) {
                 HStack () {
                     ForEach(categorys) { category in
                         Text(category.name)

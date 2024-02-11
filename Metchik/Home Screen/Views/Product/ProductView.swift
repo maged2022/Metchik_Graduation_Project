@@ -54,7 +54,7 @@ struct ProductView: View {
         )
         
         .sheet(isPresented: $isBasketViewPresented, content: {
-            BasketView(productViewModel: productViewModel)
+            CartView(productViewModel: productViewModel)
         })
         .onAppear {
             productViewModel.fetchProducts(for: selectedSubcategory)
