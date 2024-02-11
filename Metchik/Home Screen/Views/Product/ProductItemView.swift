@@ -13,50 +13,53 @@ struct ProductItemView: View {
     var onBuutonTap: () -> Void
     
     var body: some View {
-        VStack {
-            Image(product.images[0])
-                .resizable()
-                .frame(height: 170)
-                .cornerRadius(10)
-            
-            Text(product.name)
-                .font(.headline)
-            
-            HStack {
-                Text("\(String(format: "%.2f", product.price)) L.E")
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                    .strikethrough()
+        ZStack(alignment: .topTrailing) {
+            VStack {
+                Image(product.images[0])
+                    .resizable()
+                    .frame(height: 170)
+                    .cornerRadius(15)
+                    .scaledToFill()
                 
-                Text("\(String(format: "%.2f", product.discountPrice)) L.E")
-                    .fontWeight(.semibold)
-                    .foregroundColor(.red)
+                Text(product.name)
+                    .font(.poppins(.semiBold, size: 14))
+                    .foregroundStyle(Color.themeColor.primaryLabelColor)
+               
+                Text(product.shortDescription)
+                    .font(.poppins(.regular, size: 11))
+                    .foregroundStyle(Color.themeColor.secondaryLabelColor)
+
+                HStack {
+                    Text("\(String(format: "%.2f", product.price)) L.E")
+                        .font(.poppins(.regular, size: 11))
+                        .foregroundColor(.themeColor.secondaryLabelColor)
+                        .strikethrough()
+                    
+                    Text("\(String(format: "%.2f", product.discountPrice)) L.E")
+                        .font(.poppins(.semiBold, size: 14))
+                        .foregroundColor(.themeColor.primaryLabelColor)
+                }
             }
-            
             
             Button {
-                // add to card
                 onBuutonTap()
             } label: {
-                Text("ADD TO CART")
-                    .padding(.horizontal)
-                    .padding(.vertical, 4)
-                    .foregroundColor(.black)
-                    .lineLimit(1) // Ensure the text stays within one line
-                    .minimumScaleFactor(0.5)
+
+                Image(systemName: "heart")
+                    .resizable()
+                    .frame(width: 8,height: 8)
+                    .foregroundColor(.themeColor.primaryButtonColor)
+                    .scaledToFit()
+                    .font(.poppins(.semiBold, size: 8))
+                    .frame(width: 20,height: 20)
                     .background(
-                        RoundedRectangle(cornerRadius: 3)
-                            .stroke(Color.gray, lineWidth: 1)
+                        Color.themeColor.secondaryButtonColor
                     )
+                    .cornerRadius(10)
+                    .padding(15)
+
             }
-            // Solve Conflict between navigationLink tapped && Button tapped
-            .contentShape(Rectangle())
         }
-        .padding(.vertical)
-        .padding(.horizontal,5)
-        .background(Color.white)
-        .cornerRadius(10)
-        .shadow(radius: 3)
     }
 }
 
