@@ -47,7 +47,7 @@ struct ProductView: View {
             isBasketViewPresented = true
         }) {
             //            BasketButtonView(numberOfProducts: cartmanager.cartProducts.count)
-            BasketButtonView(numberOfProducts: productViewModel.basketProducts.count)
+            CartButtonView(numberOfProducts: productViewModel.basketProducts.count)
                 .foregroundColor(.black)
                 .padding(.leading)
         }
