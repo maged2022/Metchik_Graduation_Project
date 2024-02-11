@@ -1,5 +1,5 @@
 //
-//  DiscountView.swift
+//  OffersView.swift
 //  Metchik
 //
 //  Created by maged on 18/12/2023.
@@ -13,22 +13,45 @@ struct OffersView: View {
         ScrollView(.horizontal,showsIndicators: false) {
             LazyHStack{
                 ForEach(1..<5){number in
-                    Image(systemName: "checkmark")
-                        .resizable()
-                        .scaledToFit()
-                        .padding(.leading,15)
-                        .frame(width: 260,height: 160)
-                        .background(
-                            Color.red
-                        )
-                        .clipShape(RoundedRectangle(cornerRadius: 30))
+                    VStack(alignment:.leading, spacing: 15) {
+                        VStack(alignment:.leading, spacing: 10) {
+                            VStack(alignment:.leading, spacing: 8) {
+                                Text("50% Off")
+                                    .font(.poppins(.bold, size: 25))
+                                Text("On everything today")
+                                    .font(.poppins(.regular, size: 16))
+                            }
+                            Text("With code:FSCREATION")
+                                .font(.poppins(.bold, size: 11))
+                                .foregroundStyle(Color.themeColor.secondaryLabelColor)
+                        }
+                        Button(action: {
+                            
+                        }, label: {
+                            Text("Get Now")
+                                .font(.poppins(.bold, size: 10))
+                                .padding(.horizontal,14)
+                                .padding(.vertical,5)
+                                .foregroundStyle(Color.themeColor.primaryButtonColor)
+                                .background(Color.themeColor.secondaryButtonColor)
+                                .cornerRadius(30)
+                        })
+                    }
+                    .padding(15)
+                    .frame(width: 260.0, height: 160.0,alignment: .leading)
+                    .background(
+                        Image( "OfferBackground")
+                            .resizable()
+                            .scaledToFill()
+                            .clipShape(RoundedRectangle(cornerRadius: 20))
+                    )
                 }
             }
         }
     }
 }
 
-struct DiscountView_Previews: PreviewProvider {
+struct OffersView_Previews: PreviewProvider {
     static var previews: some View {
         OffersView()
     }
