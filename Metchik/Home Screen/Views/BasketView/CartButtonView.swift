@@ -13,19 +13,24 @@ struct CartButtonView: View {
     
     var body: some View {
         ZStack(alignment: .topTrailing){
-            Image(systemName: "cart")
-                .resizable()
-                .frame(width: 25, height: 25)
-                .padding(.trailing, 10)
-                .padding(.top, 5)
+
+            Color.themeColor.backgroundScreenColor
+            .frame(width: 30,height: 30)
+            .cornerRadius(30)
+            .shadow(color: .black.opacity(0.1), radius: 10)
+            .overlay {
+                Image(systemName: "cart")
+                    .resizable()
+                    .frame(width: 13, height: 13)
+            }
             
             if numberOfProducts > 0 {
                 Text("\(numberOfProducts)")
-                    .font(.caption2).bold()
-                    .foregroundColor(.white)
-                    .frame(width: 20, height:20)
-                    .background(.black)
-                    .cornerRadius(50)
+                    .font(.poppins(.semiBold, size: 7))
+                    .foregroundColor(.themeColor.primaryButtonColor)
+                    .frame(width: 13, height: 13,alignment: .bottom)
+                    .background(Color.themeColor.secondaryButtonColor)
+                    .cornerRadius(13)
             }
         }
     }
