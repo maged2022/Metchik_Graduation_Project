@@ -12,76 +12,78 @@ struct CartView: View {
      var productViewModel : ProductViewModel
     @Environment(\.presentationMode) var presentationMode
     @State var totalPrice: Double = 0
-//    var columns = [
-//        GridItem(.fixed(10), spacing: 100),
-//    ]
     
     var body: some View {
-        VStack {
-            VStack(spacing:1) {
-                Text("METCHIK")
-                    .bold()
-                    .font(.system(size:20))
-                    .padding(.top, 50)
-                
-                Text("Shopping Bag")
-                    .bold()
-                    .font(.system(size:20))
-            }
+        
+        VStack(alignment: .leading,spacing: 15) {
+            Text("My Cart")
+                .font(.poppins(.bold, size: 18))
             
-            Divider()
-            ScrollView{
-                
-                if productViewModel.basketProducts.count > 0 {
-                    
-                    LazyVGrid(columns: columns) {
-                        ForEach(Array(productViewModel.basketProducts.enumerated()), id: \.element.id) { index, userSelection in
-                            
-                            BasketRowView(productViewModel: productViewModel, product: userSelection, index: index)
-                            
+            ScrollView {
+                LazyVStack {
+                    ForEach(Array(productViewModel.basketProducts.enumerated()), id: \.element.id) { index, userSelection in
+                        CartRowView(productViewModel: productViewModel, product: userSelection, index: index)
+                        if !(index == productViewModel.basketProducts.count - 1) {
+                            Divider()
                         }
                     }
-                    
-                    Divider()
-                        .frame(height: 1)
-                        .background(Color.gray)
-                        .padding(6)
-                    
-                    Text("Total Price:    \(String(format: "%.2f  L.E", productViewModel.totalPrice()))")
-                        .bold()
-                        .font(.system(size:20))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal)
-
-
-                } else {
-                    Text("Your Shopping Bag is currently empty")
-                        .bold()
-                        .font(.system(size:20))
-                    
-                    Button(action: {
-                        
-                        presentationMode.wrappedValue.dismiss() //dismiss the screen
-                        
-                    }, label: {
-                        Text("Shop Now")
-                            .foregroundColor(.black)
-                        
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 16)
-                                    .stroke(.black, lineWidth: 1)
-                                    .frame(width: 150, height: 30)
-                            )
-                            .padding()
-                    })
                 }
             }
-            .navigationTitle(Text("My Cart"))
-            .padding(.top)
+            .padding(.bottom,20)
+            
+            VStack {
+                HStack{
+                    Text("Subtotal:")
+                        .font(.poppins(.semiBold, size: 14))
+                    Spacer()
+                    Text("$483")
+                        .font(.poppins(.semiBold, size: 20))
+                }
+                Divider()
+                HStack{
+                    Text("Shipping:")
+                        .font(.poppins(.semiBold, size: 14))
+                    Spacer()
+                    Text("$17")
+                        .font(.poppins(.semiBold, size: 20))
+                }
+                Divider()
+                HStack{
+                    Text("BagTotal:")
+                        .font(.poppins(.semiBold, size: 14))
+                    Spacer()
+                    Text("(3 item)")
+                        .font(.poppins(.regular, size: 14))
+                        .foregroundStyle(Color.themeColor.secondaryLabelColor)
+                    Text("$500")
+                        .font(.poppins(.semiBold, size: 20))
+                }
+            }
+            .foregroundStyle(Color.themeColor.primaryLabelColor)
+            .padding(.horizontal,20)
+            .padding(.vertical,15)
+            .background(
+                RoundedRectangle(cornerRadius: 15)
+                    .stroke()
+            )
+            .padding(.bottom,50)
+            
+            Button(action: {}, label: {
+                Text("Proceed to Checkout")
+                    .font(.poppins(.semiBold, size: 16))
+                    .foregroundStyle(Color.themeColor.primaryButtonColor)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 50)
+                    .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundStyle(Color.themeColor.secondaryButtonColor)
+                    )
+            })
         }
-        .background(Color.gray
-            .ignoresSafeArea()
-            .opacity(0.2))
+        .padding(.bottom,50)
+        .padding(.horizontal,25)
+        .background(Color.themeColor.backgroundScreenColor )
+        .ignoresSafeArea(.all,edges: .bottom)
     }
 }
 
@@ -93,7 +95,6 @@ struct CartView_Previews: PreviewProvider {
             Product(id: "2", name: "Sample Product 2", images: ["discount_image1"], price: 30.0, discountPrice: 25.0),
             // Add more sample products as needed
         ]
-
         return NavigationView {
             CartView(productViewModel: productViewModel)
         }
