@@ -14,8 +14,7 @@ class LocalFileManager {
     
     private init() {  }
     
-    
-    func saveImage(_ image: UIImage, imageName: String, fileName: String)  {
+    func saveImage(_ image: UIImage, imageName: String, fileName: String) {
         
         // Create Folder
         createFolderIfNeeded(fileName: fileName)
@@ -35,8 +34,6 @@ class LocalFileManager {
             print(error.localizedDescription)
         }
     }
-    
-    
     
     func getImage(imageName: String, fileName: String) -> UIImage? {
         guard
@@ -68,7 +65,7 @@ class LocalFileManager {
         if !FileManager.default.fileExists(atPath: fileURL.path) {
             do {
                 try FileManager.default.createDirectory(atPath: fileURL.path, withIntermediateDirectories: true)
-            }catch let error {
+            } catch let error {
                 print("Error creating folder \(error)")
             }
         }

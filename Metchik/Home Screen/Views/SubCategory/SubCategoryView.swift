@@ -43,14 +43,14 @@ struct SubCategoryView: View {
                     ProductView(selectedSubcategory: SubCategory(name: "Discount"))
                 } label: {
                     TabView {
-                        ForEach(1..<6){ _ in
+                        ForEach(1..<6) { _ in
                            OffersView()
                         }
                     }
                     .frame(height: 200)
                     .tabViewStyle(PageTabViewStyle())
                 }
-                ForEach(subCategoryViewModel.subCategories){item in
+                ForEach(subCategoryViewModel.subCategories) {item in
                     VStack {
                         Spacer(minLength: 20)
                         NavigationLink {
@@ -69,10 +69,9 @@ struct SubCategoryView: View {
     }
 }
 
-
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView{
+        NavigationView {
             SubCategoryView(categorie: "Men")
         }
     }

@@ -11,10 +11,10 @@ struct QuickCategoryView: View {
     
     let categorys: [Category]
     
-    var body: some View{
+    var body: some View {
         VStack {
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack () {
+                HStack {
                     ForEach(categorys) { category in
                         Text(category.name)
                             .font(.poppins(.bold, size: 13))

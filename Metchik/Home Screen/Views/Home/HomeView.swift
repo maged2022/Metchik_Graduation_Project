@@ -17,7 +17,7 @@ struct HomeView: View {
             VStack(spacing:25) {
                 VStack(spacing:20) {
                     HStack {
-                        VStack(alignment:.leading){
+                        VStack(alignment:.leading) {
                             Text("Welcome,")
                                 .foregroundStyle(Color.themeColor.primaryLabelColor)
                                 .font(.poppins(.bold, size: 25))
