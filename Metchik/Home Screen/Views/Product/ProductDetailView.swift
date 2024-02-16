@@ -19,7 +19,7 @@ struct ProductDetailView: View {
         VStack {
            
             ZStack(alignment: .bottomTrailing) {
-                Image("discount_image2")
+                AssetImage.discountImage2.swiftUIImage
                     .resizable()
                     .frame(maxWidth: .infinity, minHeight: 200, maxHeight: 430).tag("0")
                     
