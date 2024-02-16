@@ -56,6 +56,9 @@
 		5C82AE9A2B76F461001742E8 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C82AE872B76F460001742E8 /* Poppins-SemiBold.ttf */; };
 		5C82AE9C2B76F485001742E8 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C82AE9B2B76F485001742E8 /* Fonts.swift */; };
 		5C91C6BD2B795037006A018C /* ProductSizeSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C91C6BC2B795037006A018C /* ProductSizeSectionView.swift */; };
+		5CF5E8962B7FAD100096F7AB /* AssetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF5E8952B7FAD100096F7AB /* AssetImage.swift */; };
+		5CF5E8982B7FAED30096F7AB /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5CF5E8972B7FAED30096F7AB /* Colors.xcassets */; };
+		5CF5E89A2B7FC4580096F7AB /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF5E8992B7FC4580096F7AB /* Colors.swift */; };
 		97BA53082B37022A0061DF1B /* SubCategoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA53072B37022A0061DF1B /* SubCategoryCardView.swift */; };
 		97E0AE732B28F9CD0078BD74 /* SubCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E0AE722B28F9CD0078BD74 /* SubCategoryView.swift */; };
 /* End PBXBuildFile section */
@@ -112,6 +115,9 @@
 		5C82AE872B76F460001742E8 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		5C82AE9B2B76F485001742E8 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		5C91C6BC2B795037006A018C /* ProductSizeSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSizeSectionView.swift; sourceTree = "<group>"; };
+		5CF5E8952B7FAD100096F7AB /* AssetImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetImage.swift; sourceTree = "<group>"; };
+		5CF5E8972B7FAED30096F7AB /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		5CF5E8992B7FC4580096F7AB /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		97BA53072B37022A0061DF1B /* SubCategoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryCardView.swift; sourceTree = "<group>"; };
 		97E0AE722B28F9CD0078BD74 /* SubCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -249,6 +255,9 @@
 		5C82AE732B76F41A001742E8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5CF5E8992B7FC4580096F7AB /* Colors.swift */,
+				5CF5E8972B7FAED30096F7AB /* Colors.xcassets */,
+				5CF5E8952B7FAD100096F7AB /* AssetImage.swift */,
 				5C82AE742B76F435001742E8 /* Fonts */,
 				12EEBF322B246362003B0B0C /* Assets.xcassets */,
 			);
@@ -413,6 +422,7 @@
 				5C82AE902B76F461001742E8 /* Poppins-Bold.ttf in Resources */,
 				5C82AE8F2B76F461001742E8 /* Poppins-ExtraBold.ttf in Resources */,
 				5C82AE8D2B76F461001742E8 /* Poppins-LightItalic.ttf in Resources */,
+				5CF5E8982B7FAED30096F7AB /* Colors.xcassets in Resources */,
 				12EEBF332B246362003B0B0C /* Assets.xcassets in Resources */,
 				5C82AE8E2B76F461001742E8 /* Poppins-Medium.ttf in Resources */,
 				5C82AE912B76F461001742E8 /* Poppins-ExtraLight.ttf in Resources */,
@@ -433,9 +443,11 @@
 				12EEBF312B246360003B0B0C /* HomeView.swift in Sources */,
 				12A2DE462B2FBDEF0027A253 /* SubCategoryViewModel.swift in Sources */,
 				5C91C6BD2B795037006A018C /* ProductSizeSectionView.swift in Sources */,
+				5CF5E89A2B7FC4580096F7AB /* Colors.swift in Sources */,
 				123612EC2B2481730087B346 /* Color.swift in Sources */,
 				121F495A2B2DCCC3000CD3BB /* LocalCacheImage.swift in Sources */,
 				1263EDA02B6FFB8400658725 /* CartRowView.swift in Sources */,
+				5CF5E8962B7FAD100096F7AB /* AssetImage.swift in Sources */,
 				12A2DE522B2FC4640027A253 /* ProductItemView.swift in Sources */,
 				123612E92B2480A10087B346 /* LaunchView.swift in Sources */,
 				1295C06F2B30881D00C1F4CA /* OffersView.swift in Sources */,
