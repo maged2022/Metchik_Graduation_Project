@@ -18,7 +18,7 @@ struct LaunchView: View {
     
     var body: some View {
         ZStack {
-            Color.launchScreenColor.launchBackgroundColor
+            Colors.launchBackgroundColor.swiftUIColor
                 .ignoresSafeArea()
             AssetImage.logoImage.swiftUIImage
                 .resizable()
@@ -30,7 +30,7 @@ struct LaunchView: View {
                         ForEach(loadingText.indices) { index in
                             Text(loadingText[index])
                                 .font(.largeTitle)
-                                .foregroundColor(Color.launchScreenColor.launchAccentColor)
+                                .foregroundColor(Colors.launchAccentColor.swiftUIColor)
                                 .fontWeight(.bold)
                                 .offset(y: counter == index ? -5 : 0)
                         }

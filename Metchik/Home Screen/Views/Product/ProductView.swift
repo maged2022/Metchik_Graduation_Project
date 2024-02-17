@@ -29,7 +29,7 @@ struct ProductView: View {
             Text("Shoes")
                 .frame(maxWidth: .infinity,alignment: .leading)
                 .font(.poppins(.bold, size: 18))
-                .foregroundColor(.themeColor.primaryLabelColor)
+                .foregroundColor(Colors.primaryLabelColor.swiftUIColor)
             
             LazyVGrid(columns: columns, spacing: 24) {
                 ForEach(productViewModel.products) { product in

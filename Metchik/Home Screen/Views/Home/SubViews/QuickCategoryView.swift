@@ -18,12 +18,12 @@ struct QuickCategoryView: View {
                     ForEach(categorys) { category in
                         Text(category.name)
                             .font(.poppins(.bold, size: 13))
-                            .foregroundStyle(Color.themeColor.primaryLabelColor)
+                            .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
                             .frame(width: 80,height: 30)
                             .background {
                                 Capsule()
                                     .stroke(style: .init())
-                                    .foregroundColor(Color.themeColor.borderCategoryColor)
+                                    .foregroundColor(Colors.borderCategoryColor.swiftUIColor)
                             }
                     }
                 }

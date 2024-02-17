@@ -28,7 +28,7 @@ struct CartRowView: View {
                 
                 Text("Vado Odelle Dress")
                     .font(.poppins(.regular, size: 11))
-                    .foregroundStyle(Color.themeColor.secondaryLabelColor)
+                    .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)
                     .padding(.bottom,12)
                 Text("$198.00")
                     .font(.poppins(.bold, size: 14))
@@ -48,10 +48,10 @@ struct CartRowView: View {
                 }
             }
             .font(.poppins(.regular, size: 14))
-            .foregroundStyle(Color.themeColor.primaryLabelColor)
+            .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
             .padding(.vertical,5)
             .padding(.horizontal,12)
-            .background(Color.themeColor.backgroundSearchColor)
+            .background(Colors.backgroundSearchColor.swiftUIColor)
             .cornerRadius(30)
             .padding(.leading,10)
             .padding(.trailing,5)

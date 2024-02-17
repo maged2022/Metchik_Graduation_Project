@@ -14,14 +14,14 @@ struct QuickSubCategoryView: View {
             HStack {
                 Text(sectionName)
                     .font(.poppins(.bold, size: 18))
-                    .foregroundStyle(Color.themeColor.primaryLabelColor)
+                    .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
                 Spacer()
                 Button {
                     
                 } label: {
                     Text("View All")
                         .font(.poppins(.bold, size: 11))
-                        .foregroundStyle(Color.themeColor.secondaryLabelColor)
+                        .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)
                         .padding(.trailing,25)
                 }
             }
