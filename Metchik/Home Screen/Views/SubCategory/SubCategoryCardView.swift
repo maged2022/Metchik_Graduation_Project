@@ -11,7 +11,7 @@ struct SubCategoryCardView: View {
     let category: String
     let subCategory: SubCategory
     
-    var body: some View{
+    var body: some View {
         VStack {
             Text(subCategory.name)
                 .font(.title2)

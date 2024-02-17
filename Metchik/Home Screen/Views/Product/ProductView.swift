@@ -15,13 +15,16 @@ struct ProductView: View {
     
     let columns: [GridItem] = [
         GridItem(.flexible(),spacing: 15), // First column with flexible width
-        GridItem(.flexible(),spacing: 10),
+        GridItem(.flexible(),spacing: 10)
     ]
     
     var body: some View {
         ScrollView {
             HStack {
-                QuickCategoryView(categorys: [Category(name: "shoes"), Category(name: "jacket"), Category(name: "jeans"), Category(name: "dress")])
+                QuickCategoryView(categorys: [Category(name: "shoes"), 
+                                              Category(name: "jacket"),
+                                              Category(name: "jeans"), 
+                                              Category(name: "dress")])
             }
             Text("Shoes")
                 .frame(maxWidth: .infinity,alignment: .leading)
@@ -30,7 +33,8 @@ struct ProductView: View {
             
             LazyVGrid(columns: columns, spacing: 24) {
                 ForEach(productViewModel.products) { product in
-                    NavigationLink(destination: ProductDetailView(selectedProduct: product, productViewModel: productViewModel)) {
+                    NavigationLink(destination: ProductDetailView(selectedProduct: product,
+                                                                  productViewModel: productViewModel)) {
                         ProductItemView(product: product, onBuutonTap: {
                             // When Add to Card button is tapped
                             // should go to login or register screen
@@ -41,16 +45,18 @@ struct ProductView: View {
             }
         }
         .padding(.horizontal,25)
-        .navigationBarItems(trailing:
-                                
-                                Button(action: {
-            isBasketViewPresented = true
-        }) {
-            //            BasketButtonView(numberOfProducts: cartmanager.cartProducts.count)
-            CartButtonView(numberOfProducts: productViewModel.basketProducts.count)
-                .foregroundColor(.black)
-                .padding(.leading)
-        }
+        .navigationBarItems(
+            trailing:
+                
+                Button(action: {
+                    isBasketViewPresented = true
+                }, label: {
+                    // BasketButtonView(numberOfProducts: cartmanager.cartProducts.count)
+                    CartButtonView(numberOfProducts: productViewModel.basketProducts.count)
+                        .foregroundColor(.black)
+                        .padding(.leading)
+                })
+               
         )
         
         .sheet(isPresented: $isBasketViewPresented, content: {

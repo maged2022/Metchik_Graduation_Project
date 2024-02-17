@@ -11,6 +11,6 @@ class SubCategoryViewModel: ObservableObject {
     @Published var subCategories: [SubCategory] = [
         SubCategory(name: "Shoes"),
         SubCategory(name: "Clothing"),
-        SubCategory(name: "Accessories"),
+        SubCategory(name: "Accessories")
     ]
 }

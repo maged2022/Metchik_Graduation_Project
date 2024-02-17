@@ -28,7 +28,7 @@ class ProductViewModel: ObservableObject {
             Product(id: "3", name: "Jacket_5", images: ["discount_image5"], price: 123.34, discountPrice: 100.34),
             Product(id: "4", name: "Jacket_6", images: ["discount_image6"], price: 123.34, discountPrice: 100.34),
             Product(id: "5", name: "Jacket_1", images: ["discount_image1"], price: 519.99, discountPrice: 419.99),
-            Product(id: "6", name: "Jacket_2", images: ["discount_image2"], price: 220.30, discountPrice: 120.30),
+            Product(id: "6", name: "Jacket_2", images: ["discount_image2"], price: 220.30, discountPrice: 120.30)
             // Add more products
         ]
     }
@@ -45,6 +45,5 @@ class ProductViewModel: ObservableObject {
           let total = basketProducts.reduce(0) { $0 + $1.discountPrice }
           return total
       }
-    
     
 }

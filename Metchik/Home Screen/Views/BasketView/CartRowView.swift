@@ -65,11 +65,11 @@ struct CartRowView: View {
 
 struct CartRowView_Previews: PreviewProvider {
     static var previews: some View {
-        let product = Product(id: "1", name: "product_1", images: ["discount_image3"], price: 225.50, discountPrice: 125.14)
+        let product = Product(id: "1", name: "product_1",
+                              images: ["discount_image3"], price: 225.50, discountPrice: 125.14)
         let productViewModel = ProductViewModel()
         
         return CartRowView(productViewModel: productViewModel, product: product, index: 0)
 
     }
 }
-

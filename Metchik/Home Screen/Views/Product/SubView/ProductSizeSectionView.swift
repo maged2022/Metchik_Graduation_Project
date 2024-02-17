@@ -17,7 +17,7 @@ struct ProductSizeSectionView: View {
                     HStack(spacing: 15) {
                         ForEach(1..<10) { _ in
                             Button(action: {
-                            }) {
+                            }, label: {
                                 Text("5")
                                 
                                     .font(.poppins(.semiBold, size: 14))
@@ -28,6 +28,7 @@ struct ProductSizeSectionView: View {
                                         .foregroundColor(.themeColor.borderCategoryColor)
                                     )
                             }
+                            )
                         }
                     }
                 }
@@ -37,12 +38,12 @@ struct ProductSizeSectionView: View {
                 VStack(spacing: 10) {
                     ForEach(1..<3) { _ in
                         Button(action: {
-                        }) {
+                        }, label: {
                             Color.themeColor.greenColor
                                 .foregroundColor(.themeColor.secondaryLabelColor)
                                 .frame(width: 20, height: 20)
                                 .cornerRadius(10)
-                        }
+                        })
                     }
                 }
             }
@@ -54,7 +55,6 @@ struct ProductSizeSectionView: View {
         }
     }
 }
-
 
 #Preview {
     ProductSizeSectionView()

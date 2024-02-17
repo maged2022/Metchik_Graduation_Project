@@ -40,11 +40,11 @@ struct LaunchView: View {
             }
             .offset( y: 180)
         }
-        .onAppear{
+        .onAppear {
                 showLoadingText = true
         }
         
-        .onReceive(timer) { receivedValue in
+        .onReceive(timer) { _ in
             withAnimation(.spring()) {
                 if counter == loadingText.count {
                     counter = 0
@@ -52,12 +52,10 @@ struct LaunchView: View {
                     if loop >= 3 {
                         showLaunchScreen = false
                     }
-                }else {
+                } else {
                     counter += 1
                 }
             }
         }
     }
 }
-
-

@@ -11,8 +11,8 @@ struct OffersView: View {
     
     var body: some View {
         ScrollView(.horizontal,showsIndicators: false) {
-            LazyHStack{
-                ForEach(1..<5){number in
+            LazyHStack {
+                ForEach(1..<5) { _ /*number*/ in
                     VStack(alignment:.leading, spacing: 15) {
                         VStack(alignment:.leading, spacing: 10) {
                             VStack(alignment:.leading, spacing: 8) {

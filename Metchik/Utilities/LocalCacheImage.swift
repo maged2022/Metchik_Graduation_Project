@@ -22,7 +22,6 @@ class LocalCacheImage {
         return cache
     }()
     
-    
     func saveImage(image: UIImage, name: String) {
         cache.setObject(image, forKey: name as NSString)
         print("Saving Succeed ")

@@ -37,7 +37,7 @@ struct ProductDetailView: View {
                 .tag("1")
                
             }
-            VStack(alignment: .leading){
+            VStack(alignment: .leading) {
                 HStack {
                     VStack(alignment:.leading) {
                         Text(selectedProduct.name)
@@ -48,10 +48,9 @@ struct ProductDetailView: View {
                             .font(.poppins(.regular, size: 11))
                             .foregroundStyle(Color.themeColor.secondaryLabelColor)
                         HStack(spacing:10) {
-                            ForEach(1..<6) {
-                                index in
+                            ForEach(1..<6) { index in
                                 Image(systemName: "star.fill")
-                                    .foregroundColor(rating >= index ? Color.yellow.opacity(0.5): Color.gray.opacity(0.5))
+                                    .foregroundColor(Color(rating >= index ? .yellow: .gray).opacity(0.5) )
                                     .frame(width: 12,height: 12)
                                     .scaledToFill()
                                     .onTapGesture {
@@ -98,14 +97,15 @@ struct ProductDetailView: View {
                         .font(.poppins(.semiBold, size: 16))
                         .foregroundColor(.themeColor.primaryLabelColor)
                     
-                    Text("Engineered to crush any movement-based workout, these On sneakers enhance the label's original Cloud sneaker with cutting edge technologies for a pair.")
+                    Text("Engineered to crush any movement-based workout, these On sneakers enhance" +
+                         " the label's original Cloud sneaker with cutting edge technologies for a pair.")
                         .font(.poppins(.regular, size: 11))
                         .foregroundColor(.themeColor.secondaryLabelColor)
                 }
                 .padding(.bottom,30)
                 
                 HStack(spacing: 50) {
-                    VStack(alignment:.leading){
+                    VStack(alignment:.leading) {
                         Text("Total Price")
                             .font(.poppins(.regular, size: 9))
                             .foregroundColor(.themeColor.borderCategoryColor)
@@ -143,7 +143,10 @@ struct ProductDetailView: View {
 
 struct ProductDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailView(selectedProduct: Product(id: "1", name: "T-Shirt", images: ["discount_image4"], price:  142.36, discountPrice:  122.36), productViewModel: ProductViewModel())
+        ProductDetailView(selectedProduct: Product(id: "1", name: "T-Shirt",
+                                                   images: ["discount_image4"],
+                                                   price:  142.36, discountPrice:  122.36),
+                          productViewModel: ProductViewModel())
         //            .previewLayout(.fixed(width: 500, height: 1500))
     }
 }
