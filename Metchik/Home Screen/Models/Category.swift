@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Category: Identifiable{
+struct Category: Identifiable {
     let id: UUID = UUID()
     let name: String
     let subCategory: [SubCategory] = [SubCategory(name: "error Category")]

@@ -21,7 +21,8 @@ struct CartView: View {
             
             ScrollView {
                 LazyVStack {
-                    ForEach(Array(productViewModel.basketProducts.enumerated()), id: \.element.id) { index, userSelection in
+                    ForEach(Array(productViewModel.basketProducts.enumerated()),
+                            id: \.element.id) { index, userSelection in
                         CartRowView(productViewModel: productViewModel, product: userSelection, index: index)
                         if !(index == productViewModel.basketProducts.count - 1) {
                             Divider()
@@ -32,7 +33,7 @@ struct CartView: View {
             .padding(.bottom,20)
             
             VStack {
-                HStack{
+                HStack {
                     Text("Subtotal:")
                         .font(.poppins(.semiBold, size: 14))
                     Spacer()
@@ -40,7 +41,7 @@ struct CartView: View {
                         .font(.poppins(.semiBold, size: 20))
                 }
                 Divider()
-                HStack{
+                HStack {
                     Text("Shipping:")
                         .font(.poppins(.semiBold, size: 14))
                     Spacer()
@@ -48,7 +49,7 @@ struct CartView: View {
                         .font(.poppins(.semiBold, size: 20))
                 }
                 Divider()
-                HStack{
+                HStack {
                     Text("BagTotal:")
                         .font(.poppins(.semiBold, size: 14))
                     Spacer()
@@ -92,7 +93,7 @@ struct CartView_Previews: PreviewProvider {
         let productViewModel = ProductViewModel()
         productViewModel.basketProducts = [
             Product(id: "1", name: "Sample Product 1", images: ["discount_image2"], price: 50.0, discountPrice: 45.0),
-            Product(id: "2", name: "Sample Product 2", images: ["discount_image1"], price: 30.0, discountPrice: 25.0),
+            Product(id: "2", name: "Sample Product 2", images: ["discount_image1"], price: 30.0, discountPrice: 25.0)
             // Add more sample products as needed
         ]
         return NavigationView {

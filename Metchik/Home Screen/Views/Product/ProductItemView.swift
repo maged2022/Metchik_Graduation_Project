@@ -65,7 +65,8 @@ struct ProductItemView: View {
 
 struct ProductItemView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductItemView(product: Product(id: "1", name: "T-Shirt", images: ["t-shirt1"], price: 23.44, discountPrice: 16.44), onBuutonTap: {
+        ProductItemView(product: Product(id: "1", name: "T-Shirt",
+                                         images: ["t-shirt1"], price: 23.44, discountPrice: 16.44), onBuutonTap: {
         })
     }
 }

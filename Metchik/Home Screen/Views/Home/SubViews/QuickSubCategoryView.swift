@@ -26,9 +26,12 @@ struct QuickSubCategoryView: View {
                 }
             }
             ScrollView(.horizontal,showsIndicators: false) {
-                LazyHStack{
-                    ForEach(1..<5){number in
-                        ProductItemView(product: Product(id: "1", name: "T-Shirt", images: ["discount_image4"], price:  142.36, discountPrice:  122.36)) {
+                LazyHStack {
+                    ForEach(1..<5) { _ /*number*/ in
+                        ProductItemView(product: Product(id: "1", name: "T-Shirt",
+                                                         images: ["discount_image4"],
+                                                         price:  142.36,
+                                                         discountPrice:  122.36)) {
                             
                         }
                     }

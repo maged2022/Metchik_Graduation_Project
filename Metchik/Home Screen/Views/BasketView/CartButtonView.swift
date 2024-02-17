@@ -9,10 +9,10 @@ import SwiftUI
 
 struct CartButtonView: View {
     
-    var numberOfProducts: Int //users has in the cart.
+    var numberOfProducts: Int // users has in the cart.
     
     var body: some View {
-        ZStack(alignment: .topTrailing){
+        ZStack(alignment: .topTrailing) {
 
             Color.themeColor.backgroundScreenColor
             .frame(width: 30,height: 30)

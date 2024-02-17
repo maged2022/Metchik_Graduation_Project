@@ -21,7 +21,10 @@ struct Product: Identifiable, Codable {
     let description: String
     let price: Double
     let discountPrice: Double
-    init(id: String, name: String, shortDescription: String = "shortDescription", images: [String], isFavorite: Bool = true, rating: Double = 1.1, review: Int = 50, productAttribute: [ProductAttribute] = [ProductAttribute(sizes: .m, avaliableInStok: [1,2], colors: ["red","blue"])], description: String = "long description", price: Double, discountPrice: Double) {
+    init(id: String, name: String, shortDescription: String = "shortDescription", images: [String], isFavorite: Bool = true, rating: Double = 1.1, review: Int = 50,
+         productAttribute: [ProductAttribute] = [ProductAttribute(sizes: .m,
+                                                                  avaliableInStok: [1,2], colors: ["red","blue"])],
+         description: String = "long description", price: Double, discountPrice: Double) {
         self.id = id
         self.name = name
         self.shortDescription = shortDescription
