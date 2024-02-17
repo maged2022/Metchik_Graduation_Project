@@ -23,7 +23,7 @@ struct OffersView: View {
                             }
                             Text("With code:FSCREATION")
                                 .font(.poppins(.bold, size: 11))
-                                .foregroundStyle(Color.themeColor.secondaryLabelColor)
+                                .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)
                         }
                         Button(action: {
                             
@@ -32,8 +32,8 @@ struct OffersView: View {
                                 .font(.poppins(.bold, size: 10))
                                 .padding(.horizontal,14)
                                 .padding(.vertical,5)
-                                .foregroundStyle(Color.themeColor.primaryButtonColor)
-                                .background(Color.themeColor.secondaryButtonColor)
+                                .foregroundStyle(Colors.primaryButtonColor.swiftUIColor)
+                                .background(Colors.secondaryButtonColor.swiftUIColor)
                                 .cornerRadius(30)
                         })
                     }

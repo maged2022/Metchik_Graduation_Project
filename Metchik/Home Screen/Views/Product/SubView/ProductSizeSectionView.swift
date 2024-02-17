@@ -21,11 +21,11 @@ struct ProductSizeSectionView: View {
                                 Text("5")
                                 
                                     .font(.poppins(.semiBold, size: 14))
-                                    .foregroundColor(.themeColor.secondaryLabelColor)
+                                    .foregroundColor(Colors.secondaryLabelColor.swiftUIColor)
                                     .frame(width: 40, height: 40)
                                     .background(RoundedRectangle(cornerRadius: 25)
                                         .stroke()
-                                        .foregroundColor(.themeColor.borderCategoryColor)
+                                        .foregroundColor(Colors.borderCategoryColor.swiftUIColor)
                                     )
                             }
                             )
@@ -39,8 +39,8 @@ struct ProductSizeSectionView: View {
                     ForEach(1..<3) { _ in
                         Button(action: {
                         }, label: {
-                            Color.themeColor.greenColor
-                                .foregroundColor(.themeColor.secondaryLabelColor)
+                            Colors.greenColor.swiftUIColor
+                                .foregroundColor(Colors.secondaryLabelColor.swiftUIColor)
                                 .frame(width: 20, height: 20)
                                 .cornerRadius(10)
                         })

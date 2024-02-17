@@ -55,12 +55,12 @@ struct CartView: View {
                     Spacer()
                     Text("(3 item)")
                         .font(.poppins(.regular, size: 14))
-                        .foregroundStyle(Color.themeColor.secondaryLabelColor)
+                        .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)
                     Text("$500")
                         .font(.poppins(.semiBold, size: 20))
                 }
             }
-            .foregroundStyle(Color.themeColor.primaryLabelColor)
+            .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
             .padding(.horizontal,20)
             .padding(.vertical,15)
             .background(
@@ -72,18 +72,18 @@ struct CartView: View {
             Button(action: {}, label: {
                 Text("Proceed to Checkout")
                     .font(.poppins(.semiBold, size: 16))
-                    .foregroundStyle(Color.themeColor.primaryButtonColor)
+                    .foregroundStyle(Colors.primaryButtonColor.swiftUIColor)
                     .frame(maxWidth: .infinity)
                     .frame(height: 50)
                     .background(
                     RoundedRectangle(cornerRadius: 10)
-                        .foregroundStyle(Color.themeColor.secondaryButtonColor)
+                        .foregroundStyle(Colors.secondaryButtonColor.swiftUIColor)
                     )
             })
         }
         .padding(.bottom,50)
         .padding(.horizontal,25)
-        .background(Color.themeColor.backgroundScreenColor )
+        .background(Colors.backgroundScreenColor.swiftUIColor )
         .ignoresSafeArea(.all,edges: .bottom)
     }
 }

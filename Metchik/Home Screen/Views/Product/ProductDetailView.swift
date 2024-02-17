@@ -28,7 +28,7 @@ struct ProductDetailView: View {
                         
                         .frame(width: 30,height: 30)
                         .aspectRatio(contentMode: .fill)
-                        .background(Color.themeColor.primaryButtonColor
+                        .background(Colors.primaryButtonColor.swiftUIColor
                             .cornerRadius(15)
                         )
                 })
@@ -42,11 +42,10 @@ struct ProductDetailView: View {
                     VStack(alignment:.leading) {
                         Text(selectedProduct.name)
                             .font(.poppins(.semiBold, size: 18))
-                            .foregroundStyle(Color
-                                .themeColor.primaryLabelColor)
+                            .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
                         Text(selectedProduct.shortDescription)
                             .font(.poppins(.regular, size: 11))
-                            .foregroundStyle(Color.themeColor.secondaryLabelColor)
+                            .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)
                         HStack(spacing:10) {
                             ForEach(1..<6) { index in
                                 Image(systemName: "star.fill")
@@ -77,10 +76,10 @@ struct ProductDetailView: View {
                             }
                         }
                         .font(.poppins(.regular, size: 14))
-                        .foregroundStyle(Color.themeColor.primaryLabelColor)
+                        .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
                         .padding(.vertical,5)
                         .padding(.horizontal,12)
-                        .background(Color.themeColor.backgroundSearchColor)
+                        .background(Colors.backgroundSearchColor.swiftUIColor)
                         .cornerRadius(30)
                         .padding(.top,10)
                         
@@ -95,12 +94,12 @@ struct ProductDetailView: View {
                 VStack(alignment: .leading,spacing: 15) {
                     Text("Description")
                         .font(.poppins(.semiBold, size: 16))
-                        .foregroundColor(.themeColor.primaryLabelColor)
+                        .foregroundColor(Colors.primaryLabelColor.swiftUIColor)
                     
                     Text("Engineered to crush any movement-based workout, these On sneakers enhance" +
                          " the label's original Cloud sneaker with cutting edge technologies for a pair.")
                         .font(.poppins(.regular, size: 11))
-                        .foregroundColor(.themeColor.secondaryLabelColor)
+                        .foregroundColor(Colors.secondaryLabelColor.swiftUIColor)
                 }
                 .padding(.bottom,30)
                 
@@ -108,21 +107,21 @@ struct ProductDetailView: View {
                     VStack(alignment:.leading) {
                         Text("Total Price")
                             .font(.poppins(.regular, size: 9))
-                            .foregroundColor(.themeColor.borderCategoryColor)
+                            .foregroundColor(Colors.borderCategoryColor.swiftUIColor)
                         Text("$\(String(format: "%.2f", selectedProduct.price))")
                             .font(.poppins(.bold, size: 18))
-                            .foregroundColor(.themeColor.primaryLabelColor)
+                            .foregroundColor(Colors.primaryLabelColor.swiftUIColor)
                     }
                     
                     Button(action: {}, label: {
                         Text("Add To Cart")
-                            .foregroundColor(.themeColor.primaryButtonColor)
+                            .foregroundColor(Colors.primaryButtonColor.swiftUIColor)
                             .font(.poppins(.semiBold, size: 16))
                             .frame(maxWidth: .infinity)
                             .frame( height: 50)
                             .background(
                                 RoundedRectangle(cornerRadius: 30)
-                                    .foregroundColor(.themeColor.secondaryButtonColor)
+                                    .foregroundColor(Colors.secondaryButtonColor.swiftUIColor)
                             )
                         
                     })
@@ -131,7 +130,7 @@ struct ProductDetailView: View {
             .padding(.vertical,20)
             .padding(.horizontal,25)
             .padding(.bottom,-25)
-            .background(Color.themeColor.backgroundScreenColor
+            .background(Colors.backgroundScreenColor.swiftUIColor
                 .ignoresSafeArea()
                 .cornerRadius(30)
             )
