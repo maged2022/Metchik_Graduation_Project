@@ -35,6 +35,6 @@ struct QuickCategoryView: View {
 
 struct QuickCategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        QuickCategoryView(categorys: [Category(name: "Men")])
+        QuickCategoryView(categorys: [Category(name: "Men"),Category(name: "Men"),Category(name: "Men"),Category(name: "Men")])
     }
 }

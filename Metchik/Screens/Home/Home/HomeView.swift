@@ -31,7 +31,7 @@ struct HomeView: View {
                 }
                 .padding(.trailing,25)
                 QuickCategoryView(categorys: homeViewModel.categories)
-                OffersView()
+                OffersView(offers: $homeViewModel.offers)
                 QuickSubCategoryView()
             }
             .padding(.leading,25)

@@ -44,7 +44,7 @@ struct SubCategoryView: View {
                 } label: {
                     TabView {
                         ForEach(1..<6) { _ in
-                           OffersView()
+//                           OffersView()
                         }
                     }
                     .frame(height: 200)
