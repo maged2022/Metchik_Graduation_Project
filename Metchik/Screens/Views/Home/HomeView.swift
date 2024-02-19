@@ -19,10 +19,10 @@ struct HomeView: View {
                     HStack {
                         VStack(alignment:.leading) {
                             Text("Welcome,")
-                                .foregroundStyle(Color.themeColor.primaryLabelColor)
+                                .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
                                 .font(.poppins(.bold, size: 25))
                             Text("Our Fashions App")
-                                .foregroundStyle(Color.themeColor.secondaryLabelColor)
+                                .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)
                                 .font(.poppins(.bold, size: 20))
                         }
                         Spacer()
@@ -35,7 +35,7 @@ struct HomeView: View {
                 QuickSubCategoryView()
             }
             .padding(.leading,25)
-            .background(Color.themeColor.backgroundScreenColor
+            .background(Colors.backgroundScreenColor.swiftUIColor
                 .ignoresSafeArea())
         }
     }

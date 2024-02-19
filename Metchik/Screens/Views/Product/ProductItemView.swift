@@ -23,21 +23,21 @@ struct ProductItemView: View {
                 
                 Text(product.name)
                     .font(.poppins(.semiBold, size: 14))
-                    .foregroundStyle(Color.themeColor.primaryLabelColor)
+                    .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
                
                 Text(product.shortDescription)
                     .font(.poppins(.regular, size: 11))
-                    .foregroundStyle(Color.themeColor.secondaryLabelColor)
+                    .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)
 
                 HStack {
                     Text("\(String(format: "%.2f", product.price)) L.E")
                         .font(.poppins(.regular, size: 11))
-                        .foregroundColor(.themeColor.secondaryLabelColor)
+                        .foregroundColor(Colors.secondaryLabelColor.swiftUIColor)
                         .strikethrough()
                     
                     Text("\(String(format: "%.2f", product.discountPrice)) L.E")
                         .font(.poppins(.semiBold, size: 14))
-                        .foregroundColor(.themeColor.primaryLabelColor)
+                        .foregroundColor(Colors.primaryLabelColor.swiftUIColor)
                 }
             }
             
@@ -48,12 +48,11 @@ struct ProductItemView: View {
                 Image(systemName: "heart")
                     .resizable()
                     .frame(width: 8,height: 8)
-                    .foregroundColor(.themeColor.primaryButtonColor)
+                    .foregroundColor(Colors.primaryButtonColor.swiftUIColor)
                     .scaledToFit()
                     .font(.poppins(.semiBold, size: 8))
                     .frame(width: 20,height: 20)
-                    .background(
-                        Color.themeColor.secondaryButtonColor
+                    .background(Colors.secondaryButtonColor.swiftUIColor
                     )
                     .cornerRadius(10)
                     .padding(15)

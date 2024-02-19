@@ -16,18 +16,18 @@ struct SearchBarView: View {
             HStack {
                 Image(systemName: "magnifyingglass")
                     .scaledToFill()
-                    .foregroundColor(Color.themeColor.primaryLabelColor)
+                    .foregroundColor(Colors.primaryLabelColor.swiftUIColor)
                     .padding(.trailing,8)
                 TextField(text: $searchText, label: {
                     Text(placeholder)
                         .font(.poppins(.regular, size: 13))
-                        .foregroundStyle(Color.themeColor.searchLabelColor)
+                        .foregroundStyle(Colors.searchLabelColor.swiftUIColor)
                 })
                 
             }
             .padding(.horizontal,25)
             .frame(height: 50)
-            .background(Color.themeColor.backgroundSearchColor)
+            .background(Colors.backgroundSearchColor.swiftUIColor)
             .cornerRadius(30)
             if true {
                 Button {

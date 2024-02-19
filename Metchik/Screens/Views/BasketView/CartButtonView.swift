@@ -14,7 +14,7 @@ struct CartButtonView: View {
     var body: some View {
         ZStack(alignment: .topTrailing) {
 
-            Color.themeColor.backgroundScreenColor
+            Colors.backgroundScreenColor.swiftUIColor
             .frame(width: 30,height: 30)
             .cornerRadius(30)
             .shadow(color: .black.opacity(0.1), radius: 10)
@@ -27,9 +27,9 @@ struct CartButtonView: View {
             if numberOfProducts > 0 {
                 Text("\(numberOfProducts)")
                     .font(.poppins(.semiBold, size: 7))
-                    .foregroundColor(.themeColor.primaryButtonColor)
+                    .foregroundColor(Colors.primaryButtonColor.swiftUIColor)
                     .frame(width: 13, height: 13,alignment: .bottom)
-                    .background(Color.themeColor.secondaryButtonColor)
+                    .background(Colors.secondaryButtonColor.swiftUIColor)
                     .cornerRadius(13)
             }
         }
