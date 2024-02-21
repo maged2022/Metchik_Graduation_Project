@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct OffersView: View {
-    @Binding var offers: [Offer]
+    @EnvironmentObject var vmod: HomeViewModel
     var body: some View {
         ScrollView(.horizontal,showsIndicators: false) {
             LazyHStack {
-                ForEach(offers) { offer in
+                ForEach(vmod.offers) { offer in
                     OfferCard(offer: offer)
                 }
             }
@@ -22,7 +22,9 @@ struct OffersView: View {
 
 struct OffersView_Previews: PreviewProvider {
     static var previews: some View {
-        OffersView(offers: .constant([]))
+        OffersView()
+            .environmentObject(HomeViewModel())
+
     }
 }
 
@@ -32,9 +34,9 @@ struct OfferCard: View {
         VStack(alignment:.leading, spacing: 15) {
             VStack(alignment:.leading, spacing: 10) {
                 VStack(alignment:.leading, spacing: 8) {
-                    Text(offer.headLine)
+                    Text(offer.title)
                         .font(.poppins(.bold, size: 25))
-                    Text(offer.subHeadLine)
+                    Text(offer.subTitle)
                         .font(.poppins(.regular, size: 16))
                 }
                 Text(offer.promoCode)

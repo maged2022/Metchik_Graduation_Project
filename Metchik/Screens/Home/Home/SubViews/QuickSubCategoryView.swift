@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct QuickSubCategoryView: View {
+    @EnvironmentObject var vmod: HomeViewModel
+
     @State var sectionName = "new Arrivals"
     var body: some View {
         VStack {
@@ -22,28 +24,16 @@ struct QuickSubCategoryView: View {
                     Text("View All")
                         .font(.poppins(.bold, size: 11))
                         .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)
-                        .padding(.trailing,25)
                 }
             }
             HStack {
-                
-                ProductItemView(product:
-                                    Product(id: "1",
-                                            name: "T-Shirt",
-                                            images: ["discount_image4"],
-                                            price:  142.36,
-                                            discountPrice:  122.36)) {
+                ForEach(vmod.products) { product in
+                    ProductItemView(product: product) {
+                        
+                    }
                     
                 }
-                ProductItemView(product:
-                                    Product(id: "1",
-                                            name: "T-Shirt",
-                                            images: ["discount_image4"],
-                                            price:  142.36,
-                                            discountPrice:  122.36)) {
-                    
-                }
-                
+  
             }
         }
     }
@@ -52,5 +42,7 @@ struct QuickSubCategoryView: View {
 struct QuickSubCategoryView_Previews: PreviewProvider {
     static var previews: some View {
         QuickSubCategoryView()
+            .environmentObject(HomeViewModel())
+
     }
 }

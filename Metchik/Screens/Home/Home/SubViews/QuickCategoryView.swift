@@ -8,22 +8,30 @@
 import SwiftUI
 
 struct QuickCategoryView: View {
-    
-    let categorys: [Category]
+    @EnvironmentObject var vmod: HomeViewModel
     
     var body: some View {
         VStack {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(categorys) { category in
-                        Text(category.name)
+                    ForEach(vmod.categories,id: \.self) { category in
+                        Text(category)
                             .font(.poppins(.bold, size: 13))
-                            .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
+                            .foregroundStyle(vmod.selectedCategory == category ? Colors.primaryButtonColor.swiftUIColor : Colors.secondaryButtonColor.swiftUIColor)
                             .frame(width: 80,height: 30)
-                            .background {
-                                Capsule()
-                                    .stroke(style: .init())
-                                    .foregroundColor(Colors.borderCategoryColor.swiftUIColor)
+                            .background(
+                                (vmod.selectedCategory == category ? Color.black : .white)
+                            )
+
+                            .clipShape(Capsule())
+//                            .background{
+//                                Capsule()
+//                                .stroke(style: .init())
+//                                .foregroundColor(Colors.borderCategoryColor.swiftUIColor)
+//                            
+//                            }
+                            .onTapGesture {
+                                vmod.selectedCategory = category
                             }
                     }
                 }
@@ -35,6 +43,7 @@ struct QuickCategoryView: View {
 
 struct QuickCategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        QuickCategoryView(categorys: [Category(name: "Men"),Category(name: "Men"),Category(name: "Men"),Category(name: "Men")])
+        QuickCategoryView()
+            .environmentObject(HomeViewModel())
     }
 }

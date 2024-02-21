@@ -15,7 +15,7 @@ struct ProductItemView: View {
     var body: some View {
         ZStack(alignment: .topTrailing) {
             VStack {
-                Image(product.images[0])
+                product.mainImage
                     .resizable()
                     .frame(height: 170)
                     .cornerRadius(15)
@@ -35,7 +35,7 @@ struct ProductItemView: View {
                         .foregroundColor(Colors.secondaryLabelColor.swiftUIColor)
                         .strikethrough()
                     
-                    Text("\(String(format: "%.2f", product.discountPrice)) L.E")
+                    Text("\(String(format: "%.2f", product.discountPercentage)) L.E")
                         .font(.poppins(.semiBold, size: 14))
                         .foregroundColor(Colors.primaryLabelColor.swiftUIColor)
                 }
@@ -64,8 +64,9 @@ struct ProductItemView: View {
 
 struct ProductItemView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductItemView(product: Product(id: "1", name: "T-Shirt",
-                                         images: ["t-shirt1"], price: 23.44, discountPrice: 16.44), onBuutonTap: {
+        ProductItemView(product: Product(id: "1", name: "t-shirt1", shortDescription: "t-shirt1", price: 33, discountPercentage: 33,
+//                                         isFavorite: false,
+                                         mainImage: ImageAsset(name: "t-shirt1").swiftUIImage, category: "t-shirt1", subCategory: "t-shirt1"), onBuutonTap: {
         })
     }
 }
