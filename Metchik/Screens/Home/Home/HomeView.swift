@@ -16,28 +16,20 @@ struct HomeView: View {
         ScrollView {
             VStack(spacing:25) {
                 VStack(spacing:20) {
-                    HStack {
-                        VStack(alignment:.leading) {
-                            Text("Welcome,")
-                                .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
-                                .font(.poppins(.bold, size: 25))
-                            Text("Our Fashions App")
-                                .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)
-                                .font(.poppins(.bold, size: 20))
-                        }
-                        Spacer()
-                    }
+                    headerView
                     SearchBarView(searchText: .constant(""))
                 }
                 .padding(.trailing,25)
-                QuickCategoryView(categorys: homeViewModel.categories)
-                OffersView(offers: $homeViewModel.offers)
+                QuickCategoryView()
+                OffersView()
                 QuickSubCategoryView()
+                    .padding(.trailing,25)
             }
             .padding(.leading,25)
             .background(Colors.backgroundScreenColor.swiftUIColor
                 .ignoresSafeArea())
         }
+        .environmentObject(homeViewModel)
     }
 }
 
@@ -48,5 +40,21 @@ struct ContentView_Previews: PreviewProvider {
             HomeView()
 
         })
+    }
+}
+
+extension HomeView {
+    private var headerView: some View {
+        HStack {
+            VStack(alignment:.leading) {
+                Text("Welcome,")
+                    .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
+                    .font(.poppins(.bold, size: 25))
+                Text("Our Fashions App")
+                    .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)
+                    .font(.poppins(.bold, size: 20))
+            }
+            Spacer()
+        }
     }
 }
