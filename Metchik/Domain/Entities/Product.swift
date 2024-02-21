@@ -5,7 +5,7 @@
 //  Created by maged on 18/12/2023.
 //
 
-import Foundation
+import SwiftUI
 
 struct Product: Identifiable {
     let id: String
