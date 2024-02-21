@@ -6,9 +6,9 @@
 //
 
 import Foundation
-struct OfferSource {
-    let headLine: String
-    let subHeadLine: String
+struct OfferSource: Codable {
+    let title: String
+    let subTitle: String
     let promoCode: String
     let buttonTitle: String
     let backgroundImage: String

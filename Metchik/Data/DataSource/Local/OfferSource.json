@@ -1,0 +1,34 @@
+[
+    {
+        "title": "50% Off",
+        "subTitle": "On everything today",
+        "promoCode": "With code:FSCREATION",
+        "buttonTitle": "Get Now",
+        "backgroundImage": "OfferBackground"
+
+    },
+    {
+        "title": "30% Off",
+        "subTitle": "On everything today",
+        "promoCode": "With code:FSCREATION",
+        "buttonTitle": "Get Now",
+        "backgroundImage": "OfferBackground"
+
+    },
+    {
+        "title": "60% Off",
+        "subTitle": "On everything today",
+        "promoCode": "With code:FSCREATION",
+        "buttonTitle": "Get Now",
+        "backgroundImage": "OfferBackground"
+
+    },
+    {
+        "title": "20% Off",
+        "subTitle": "On everything today",
+        "promoCode": "With code:FSCREATION",
+        "buttonTitle": "Get Now",
+        "backgroundImage": "OfferBackground"
+
+    },
+]

@@ -11,13 +11,13 @@ protocol ProductSourceRepositories {
 }
 
 struct ProductSourceRepositoriesImpl: ProductSourceRepositories {
-    var productsLocal = ProductSourceMock()
+    let products: [ProductSource] = JSONDecoder().decode(forResource: "ProductSource") ?? []
     func getProductsSource() -> [ProductSource] {
 
         if false {
             
         } else {
-            return productsLocal.getProductsSource()
+           return products
         }
     }
         
