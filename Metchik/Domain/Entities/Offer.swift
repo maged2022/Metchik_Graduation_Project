@@ -9,8 +9,8 @@ import SwiftUI
 
 struct Offer :Identifiable {
     let id = UUID()
-    let headLine: String
-    let subHeadLine: String
+    let title: String
+    let subTitle: String
     let promoCode: String
     let buttonTitle: String
     let backgroundImage: Image

@@ -7,5 +7,6 @@
 
 import Foundation
 protocol ProductRepositories {
-    func getProducts() -> [Product]
+    func getProducts(category: String) -> [Product]
+    func getCategories() -> [String]
 }

@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol HomeRepositories {
-    func getOffers()-> [Offer]
+protocol OffersRepositories {
+    func getOffers() -> [Offer]
 }

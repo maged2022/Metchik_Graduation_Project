@@ -7,45 +7,48 @@
 
 import Foundation
 
-struct Product: Identifiable, Codable {
+struct Product: Identifiable {
     let id: String
     let name: String
     let shortDescription: String
-//    let category: Category
-//    let subCategory: SubCategory
+    let price: Double
+    let discountPercentage: Double
+//    let isFavorite: Bool
+    let mainImage: Image
+    let category: String
+    let subCategory: String
+
+}
+
+extension ProductSource {
+    func toProduct() -> Product {
+        Product(id: self.id,
+                name: self.name,
+                shortDescription: self.shortDescription,
+                price: self.price,
+                discountPercentage: self.discountPercentage,
+//                isFavorite: self.isFavorite,
+                mainImage: ImageAsset(name: self.mainImage).swiftUIImage ,
+                category: self.category,
+                subCategory: self.subCategory)
+    }
+}
+
+struct ProductDetail {
     let images: [String]// url(string: images)
-    let isFavorite: Bool
     let rating: Double // 1 - 5
     let review: Int
     let productAttribute: [ProductAttribute]
     let description: String
-    let price: Double
-    let discountPrice: Double
-    init(id: String, name: String, shortDescription: String = "shortDescription", images: [String], isFavorite: Bool = true, rating: Double = 1.1, review: Int = 50,
-         productAttribute: [ProductAttribute] = [ProductAttribute(sizes: .m,
-                                                                  avaliableInStok: [1,2], colors: ["red","blue"])],
-         description: String = "long description", price: Double, discountPrice: Double) {
-        self.id = id
-        self.name = name
-        self.shortDescription = shortDescription
-        self.images = images
-        self.isFavorite = isFavorite
-        self.rating = rating
-        self.review = review
-        self.productAttribute = productAttribute
-        self.description = description
-        self.price = price
-        self.discountPrice = discountPrice
-    }
 }
 
-struct ProductAttribute: Codable {
+struct ProductAttribute {
     let sizes: ProductSizes
     let avaliableInStok: [Int]
     let colors: [String]
 }
 
-enum ProductSizes: Codable {
+enum ProductSizes {
     case s
     case m
     case l
