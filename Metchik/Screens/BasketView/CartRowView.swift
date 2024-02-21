@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+/*
 struct CartRowView: View {
     
     var productViewModel: ProductViewModel
@@ -73,3 +73,4 @@ struct CartRowView_Previews: PreviewProvider {
 
     }
 }
+*/

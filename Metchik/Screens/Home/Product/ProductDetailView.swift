@@ -4,7 +4,7 @@
 //
 //  Created by maged on 18/12/2023.
 //
-
+/*
 import SwiftUI
 
 struct ProductDetailView: View {
@@ -149,3 +149,4 @@ struct ProductDetailView_Previews: PreviewProvider {
         //            .previewLayout(.fixed(width: 500, height: 1500))
     }
 }
+*/

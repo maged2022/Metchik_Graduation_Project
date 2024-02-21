@@ -4,7 +4,7 @@
 //
 //  Created by Faculty on 12/12/2023.
 //
-
+/*
 import SwiftUI
 
 struct SubCategoryView: View {
@@ -76,3 +76,4 @@ struct CategoryView_Previews: PreviewProvider {
         }
     }
 }
+*/

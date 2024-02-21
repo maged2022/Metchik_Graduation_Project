@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+/*
 struct CartButtonView: View {
     
     var numberOfProducts: Int // users has in the cart.
@@ -41,3 +41,4 @@ struct CartButtonView_Previews: PreviewProvider {
         CartButtonView(numberOfProducts: 1)
     }
 }
+*/

@@ -4,7 +4,7 @@
 //
 //  Created by maged on 18/12/2023.
 //
-
+/*
 import SwiftUI
 
 struct ProductView: View {
@@ -60,7 +60,7 @@ struct ProductView: View {
         )
         
         .sheet(isPresented: $isBasketViewPresented, content: {
-            CartView(productViewModel: productViewModel)
+//            CartView(productViewModel: productViewModel)
         })
         .onAppear {
             productViewModel.fetchProducts(for: selectedSubcategory)
@@ -73,3 +73,5 @@ struct ProductView_Previews: PreviewProvider {
         ProductView( selectedSubcategory: SubCategory(name: "Clothing"))
     }
 }
+
+*/

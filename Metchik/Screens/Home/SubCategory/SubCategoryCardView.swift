@@ -4,7 +4,7 @@
 //
 //  Created by Faculty on 23/12/2023.
 //
-
+/*
 import SwiftUI
 
 struct SubCategoryCardView: View {
@@ -33,3 +33,4 @@ struct SubCategoryCardView_Previews: PreviewProvider {
         SubCategoryCardView(category: "Men", subCategory: SubCategory(name: "Shoes"))
     }
 }
+*/
