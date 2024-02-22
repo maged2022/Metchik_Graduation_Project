@@ -11,21 +11,19 @@ class HomeViewModel: ObservableObject {
     private let offersUseCase: OffersRepositories = OffersUseCase()
     private let productUseCase: ProductRepositories = ProductUseCase()
     private var cancellables =  Set<AnyCancellable>()
-    @Published var categories: [String] = []
     
+    @Published var categories: [String] = []
     @Published var offers: [Offer] = []
     @Published var products: [Product] = []
     @Published var selectedCategory: String = "" {
         didSet {
-            productUseCase.getProducts(category: selectedCategory).sink {[weak self] product in
-                self?.products = product
-            }.store(in: &cancellables)
+            updateProducts()
         }
     }
+    
     init() {
         updateOffers()
         updateCategories()
-        updateProducts()
     }
     
     private func updateOffers() {
@@ -33,8 +31,9 @@ class HomeViewModel: ObservableObject {
     }
     
     private func updateProducts() {
-        productUseCase.getProducts(category: selectedCategory).sink { product in
-            print("product \(product)")
+        productUseCase.getProducts(category: selectedCategory)
+            .sink {[weak self] product in
+            self?.products = product
         }.store(in: &cancellables)
     }
     
@@ -48,7 +47,5 @@ class HomeViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
-            print("category in updateCategories \(categories)")
-        
     }
 }

@@ -29,23 +29,26 @@ class ProductUseCase: ProductRepositories, ObservableObject {
 
     private func updateProducts() {
         repo.getProductsSource()
+            .map { $0.toProducts() }
             .sink { [weak self] products in
-                self?.products = products.toProducts()
+                self?.products = products
             }
             .store(in: &cancellables)
     }
 
     func getProducts(category: String) -> AnyPublisher<[Product], Never> {
-        let filteredProducts = products.filter { $0.category.capitalized == category }
-        return Just(filteredProducts).eraseToAnyPublisher()
+        return $products
+            .map { products in
+                products.filter { $0.category.capitalized == category }
+            }
+            .eraseToAnyPublisher()
     }
 
     func getCategories() -> AnyPublisher<[String], Never> {
-        guard !products.isEmpty else {
-            return Just([]).eraseToAnyPublisher()
-        }
-
-        let uniqueCategories = Set(products.map { $0.category }).map { $0.capitalized }
-        return Just(uniqueCategories).eraseToAnyPublisher()
+        return $products
+             .map { products in
+                 Set(products.map { $0.category }).map { $0.capitalized }
+             }
+             .eraseToAnyPublisher()
     }
 }
