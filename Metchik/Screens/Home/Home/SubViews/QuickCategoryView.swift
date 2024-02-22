@@ -8,22 +8,22 @@
 import SwiftUI
 
 struct QuickCategoryView: View {
-    
-    let categorys: [Category]
+    @EnvironmentObject var vmod: HomeViewModel
     
     var body: some View {
         VStack {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(categorys) { category in
-                        Text(category.name)
+                    ForEach(vmod.categories,id: \.self) { category in
+                        Text(category)
                             .font(.poppins(.bold, size: 13))
-                            .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
-                            .frame(width: 80,height: 30)
-                            .background {
-                                Capsule()
-                                    .stroke(style: .init())
-                                    .foregroundColor(Colors.borderCategoryColor.swiftUIColor)
+                            .foregroundColor(
+                                vmod.selectedCategory == category ? Colors.primaryButtonColor.swiftUIColor : Colors.secondaryButtonColor.swiftUIColor
+                               )
+                            .frame(width: 80, height: 30)
+                            .background( capsuleBackground(for: category))
+                            .onTapGesture {
+                                vmod.selectedCategory = category
                             }
                     }
                 }
@@ -31,10 +31,23 @@ struct QuickCategoryView: View {
             
         }
     }
+    
+    @ViewBuilder
+    func capsuleBackground(for category: String) -> some View {
+        if vmod.selectedCategory == category {
+            Capsule()
+                .fill( Color.black)
+        } else {
+            Capsule()
+                .stroke( Colors.borderCategoryColor.swiftUIColor, lineWidth: 2)
+        }
+    }
+
 }
 
 struct QuickCategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        QuickCategoryView(categorys: [Category(name: "Men")])
+        QuickCategoryView()
+            .environmentObject(HomeViewModel())
     }
 }

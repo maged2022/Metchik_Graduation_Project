@@ -6,19 +6,38 @@
 //
 
 import Foundation
+import Combine
+
 protocol ProductSourceRepositories {
-    func getProductsSource() -> [ProductSource]
+    func getProductsSource() -> AnyPublisher<[ProductSource], Never> 
 }
 
-struct ProductSourceRepositoriesImpl: ProductSourceRepositories {
-    var productsLocal = ProductSourceMock()
-    func getProductsSource() -> [ProductSource] {
-
-        if false {
-            
-        } else {
-            return productsLocal.getProductsSource()
+class ProductSourceRepositoriesImpl: ProductSourceRepositories , ObservableObject {
+    @Published private var products: [ProductSource] = []
+    
+    init() {
+        repeatEveryThreeSeconds()
+        updateProductsSource()
+    }
+    private func updateProductsSource () {
+        products = JSONDecoder().decode(forResource: "ProductSource") ?? []
+//        let product:[ProductSource] = JSONDecoder().decode(forResource: "ProductSource") ?? []
+//        products.append(contentsOf: product)
+//        print("products from updateProductsSource \(products)")
+    }
+    
+    func repeatEveryThreeSeconds() {
+        // Your code to be executed repeatedly
+        print("Executing code every 3 seconds...")
+        
+        // Schedule the next execution after 3 seconds
+        DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
+            self.updateProductsSource()
+            self.repeatEveryThreeSeconds()
         }
     }
+    func getProductsSource() -> AnyPublisher<[ProductSource], Never> {
+        return $products.eraseToAnyPublisher()
+        }
         
 }

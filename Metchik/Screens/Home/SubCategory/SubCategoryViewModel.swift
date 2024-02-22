@@ -4,7 +4,7 @@
 //
 //  Created by maged on 18/12/2023.
 //
-
+/*
 import Foundation
 
 class SubCategoryViewModel: ObservableObject {
@@ -14,3 +14,4 @@ class SubCategoryViewModel: ObservableObject {
         SubCategory(name: "Accessories")
     ]
 }
+*/

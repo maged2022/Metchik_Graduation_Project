@@ -4,7 +4,7 @@
 //
 //  Created by Hassan on 11/02/2024.
 //
-
+/*
 import SwiftUI
 
 struct ProductSizeSectionView: View {
@@ -59,3 +59,4 @@ struct ProductSizeSectionView: View {
 #Preview {
     ProductSizeSectionView()
 }
+*/

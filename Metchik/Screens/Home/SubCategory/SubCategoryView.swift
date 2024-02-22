@@ -4,7 +4,7 @@
 //
 //  Created by Faculty on 12/12/2023.
 //
-
+/*
 import SwiftUI
 
 struct SubCategoryView: View {
@@ -44,7 +44,7 @@ struct SubCategoryView: View {
                 } label: {
                     TabView {
                         ForEach(1..<6) { _ in
-                           OffersView()
+//                           OffersView()
                         }
                     }
                     .frame(height: 200)
@@ -76,3 +76,4 @@ struct CategoryView_Previews: PreviewProvider {
         }
     }
 }
+*/

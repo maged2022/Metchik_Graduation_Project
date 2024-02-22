@@ -4,7 +4,7 @@
 //
 //  Created by maged on 18/12/2023.
 //
-
+/*
 import Foundation
 
 class ProductViewModel: ObservableObject {
@@ -32,3 +32,4 @@ class ProductViewModel: ObservableObject {
       }
     
 }
+*/
