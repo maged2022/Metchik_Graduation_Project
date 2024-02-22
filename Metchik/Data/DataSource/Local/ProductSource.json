@@ -5,7 +5,6 @@
         "shortDescription": "shortDescription",
         "price": 33,
         "discountPercentage": 33,
-        "isFavorite": false,
         "mainImage": "discount_image3",
         "category": "men",
         "subCategory": "shoes"
@@ -16,7 +15,6 @@
         "shortDescription": "shortDescription",
         "price": 33,
         "discountPercentage": 33,
-        "isFavorite": false,
         "mainImage": "discount_image3",
         "category": "men",
         "subCategory": "shoes"
@@ -27,7 +25,6 @@
         "shortDescription": "shortDescription",
         "price": 33,
         "discountPercentage": 33,
-        "isFavorite": false,
         "mainImage": "discount_image3",
         "category": "men",
         "subCategory": "t-shirt"
@@ -38,7 +35,6 @@
         "shortDescription": "shortDescription",
         "price": 33,
         "discountPercentage": 33,
-        "isFavorite": false,
         "mainImage": "discount_image3",
         "category": "woman",
         "subCategory": "dresses"
@@ -49,7 +45,6 @@
         "shortDescription": "shortDescription",
         "price": 33,
         "discountPercentage": 33,
-        "isFavorite": false,
         "mainImage": "discount_image3",
         "category": "kids",
         "subCategory": "toys"

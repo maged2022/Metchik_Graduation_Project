@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import Combine
 protocol ProductRepositories {
-    func getProducts(category: String) -> [Product]
-    func getCategories() -> [String]
+    func getProducts(category: String) -> AnyPublisher<[Product], Never> 
+    func getCategories() -> AnyPublisher<[String], Never>
 }

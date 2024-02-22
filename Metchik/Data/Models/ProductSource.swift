@@ -13,7 +13,7 @@ struct ProductSource: Identifiable, Codable {
     let shortDescription: String
     let price: Double
     let discountPercentage: Double
-    let isFavorite: Bool
+//    let isFavorite: Bool
     let mainImage: String
     let category: String
     let subCategory: String

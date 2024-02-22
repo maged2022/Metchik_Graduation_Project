@@ -17,19 +17,11 @@ struct QuickCategoryView: View {
                     ForEach(vmod.categories,id: \.self) { category in
                         Text(category)
                             .font(.poppins(.bold, size: 13))
-                            .foregroundStyle(vmod.selectedCategory == category ? Colors.primaryButtonColor.swiftUIColor : Colors.secondaryButtonColor.swiftUIColor)
-                            .frame(width: 80,height: 30)
-                            .background(
-                                (vmod.selectedCategory == category ? Color.black : .white)
-                            )
-
-                            .clipShape(Capsule())
-//                            .background{
-//                                Capsule()
-//                                .stroke(style: .init())
-//                                .foregroundColor(Colors.borderCategoryColor.swiftUIColor)
-//                            
-//                            }
+                            .foregroundColor(
+                                vmod.selectedCategory == category ? Colors.primaryButtonColor.swiftUIColor : Colors.secondaryButtonColor.swiftUIColor
+                               )
+                            .frame(width: 80, height: 30)
+                            .background( capsuleBackground(for: category))
                             .onTapGesture {
                                 vmod.selectedCategory = category
                             }
@@ -39,6 +31,18 @@ struct QuickCategoryView: View {
             
         }
     }
+    
+    @ViewBuilder
+    func capsuleBackground(for category: String) -> some View {
+        if vmod.selectedCategory == category {
+            Capsule()
+                .fill( Color.black)
+        } else {
+            Capsule()
+                .stroke( Colors.borderCategoryColor.swiftUIColor, lineWidth: 2)
+        }
+    }
+
 }
 
 struct QuickCategoryView_Previews: PreviewProvider {

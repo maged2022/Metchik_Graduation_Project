@@ -6,19 +6,26 @@
 //
 
 import Foundation
-
+import Combine
 class HomeViewModel: ObservableObject {
-    let offersUseCase: OffersRepositories = OffersUseCase()
-    let productUseCase: ProductRepositories = ProductUseCase()
+    private let offersUseCase: OffersRepositories = OffersUseCase()
+    private let productUseCase: ProductRepositories = ProductUseCase()
+    private var cancellables =  Set<AnyCancellable>()
     @Published var categories: [String] = []
     
     @Published var offers: [Offer] = []
     @Published var products: [Product] = []
-    @Published var selectedCategory: String = ""
+    @Published var selectedCategory: String = "" {
+        didSet {
+            productUseCase.getProducts(category: selectedCategory).sink {[weak self] product in
+                self?.products = product
+            }.store(in: &cancellables)
+        }
+    }
     init() {
         updateOffers()
-        updateProducts()
         updateCategories()
+        updateProducts()
     }
     
     private func updateOffers() {
@@ -26,12 +33,22 @@ class HomeViewModel: ObservableObject {
     }
     
     private func updateProducts() {
-        products = productUseCase.getProducts(category: selectedCategory)
+        productUseCase.getProducts(category: selectedCategory).sink { product in
+            print("product \(product)")
+        }.store(in: &cancellables)
     }
     
     private func updateCategories() {
-        let arraytemp = productUseCase.getCategories()
-        selectedCategory = arraytemp[0]
-        categories = arraytemp.sorted()
+        productUseCase.getCategories()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] categories in
+                self?.categories = categories
+                if let firstCategory = categories.first {
+                    self?.selectedCategory = firstCategory
+                }
+            }
+            .store(in: &cancellables)
+            print("category in updateCategories \(categories)")
+        
     }
 }

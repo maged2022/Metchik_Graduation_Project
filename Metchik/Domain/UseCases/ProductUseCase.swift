@@ -6,32 +6,46 @@
 //
 
 import Foundation
+import Combine
 
-struct ProductUseCase: ProductRepositories {
-    let repo = ProductSourceRepositoriesImpl()
+class ProductUseCase: ProductRepositories, ObservableObject {
+    @Published private var repo = ProductSourceRepositoriesImpl()
+    @Published private var products: [Product] = []
+
+    private var cancellables = Set<AnyCancellable>()
+
     init() {
-       
+        setupObserving()
+        updateProducts()
     }
-    private func updateProducts() -> [Product] {
-        repo.getProductsSource().map {$0.toProduct()}
+
+    private func setupObserving() {
+        $products
+            .sink { [weak self] _ in
+                self?.objectWillChange.send()
+            }
+            .store(in: &cancellables)
     }
-    func getProducts(category:String) -> [Product] {
-        
-        let temp = updateProducts().filter {
-            $0.category == category
+
+    private func updateProducts() {
+        repo.getProductsSource()
+            .sink { [weak self] products in
+                self?.products = products.toProducts()
+            }
+            .store(in: &cancellables)
+    }
+
+    func getProducts(category: String) -> AnyPublisher<[Product], Never> {
+        let filteredProducts = products.filter { $0.category.capitalized == category }
+        return Just(filteredProducts).eraseToAnyPublisher()
+    }
+
+    func getCategories() -> AnyPublisher<[String], Never> {
+        guard !products.isEmpty else {
+            return Just([]).eraseToAnyPublisher()
         }
-        print(temp)
-        return temp
+
+        let uniqueCategories = Set(products.map { $0.category }).map { $0.capitalized }
+        return Just(uniqueCategories).eraseToAnyPublisher()
     }
-    func getCategories() -> [String] {
-        let temps: [String] = updateProducts()
-            .map { $0.category  }
-        var setTemp: Set<String> = []
-        for temp in temps {
-            setTemp.insert(temp)
-        }
-        var arraytemp = setTemp.map { $0.capitalized }
-        return arraytemp
-    }
-    
 }

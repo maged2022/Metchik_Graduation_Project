@@ -20,20 +20,24 @@ struct Product: Identifiable {
 
 }
 
-extension ProductSource {
-    func toProduct() -> Product {
-        Product(id: self.id,
-                name: self.name,
-                shortDescription: self.shortDescription,
-                price: self.price,
-                discountPercentage: self.discountPercentage,
-//                isFavorite: self.isFavorite,
-                mainImage: ImageAsset(name: self.mainImage).swiftUIImage ,
-                category: self.category,
-                subCategory: self.subCategory)
-    }
+extension Array where Element == ProductSource {
+    
+    func toProducts() -> [Product] {
+            return self.map { source in
+                Product(
+                    id: source.id, // Replace with the actual id property of ProductSource
+                    name: source.name,
+                    shortDescription: source.shortDescription,
+                    price: source.price,
+                    discountPercentage: source.discountPercentage,
+//                    isFavorite: source.isFavorite, // Assuming isFavorite is a property of ProductSource
+                    mainImage: ImageAsset(name: source.mainImage).swiftUIImage, // Update based on ImageAsset initialization
+                    category: source.category,
+                    subCategory: source.subCategory
+                )
+            }
+        }
 }
-
 struct ProductDetail {
     let images: [String]// url(string: images)
     let rating: Double // 1 - 5
