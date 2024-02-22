@@ -15,3 +15,17 @@ struct Offer :Identifiable {
     let buttonTitle: String
     let backgroundImage: Image
 }
+
+extension Array where Element == OfferSource {
+    
+    func toOffers() -> [Offer] {
+        return self.map { source in
+            Offer(
+                title: source.title,
+                subTitle: source.subTitle,
+                promoCode: source.promoCode,
+                buttonTitle: source.buttonTitle,
+                backgroundImage: ImageAsset(name: source.backgroundImage).swiftUIImage)
+        }
+    }
+}

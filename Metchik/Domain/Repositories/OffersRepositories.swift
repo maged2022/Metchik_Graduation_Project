@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import Combine
 
 protocol OffersRepositories {
-    func getOffers() -> [Offer]
+    func getOffers() -> AnyPublisher<[Offer], Never>
 }

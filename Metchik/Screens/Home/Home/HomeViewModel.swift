@@ -27,7 +27,10 @@ class HomeViewModel: ObservableObject {
     }
     
     private func updateOffers() {
-        offers = offersUseCase.getOffers()
+         offersUseCase.getOffers()
+            .sink { [weak self] offers in
+                self?.offers = offers
+            }.store(in: &cancellables)
     }
     
     private func updateProducts() {

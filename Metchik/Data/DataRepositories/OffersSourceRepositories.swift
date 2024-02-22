@@ -6,18 +6,37 @@
 //
 
 import Foundation
+import Combine
+
 protocol OffersSourceRepositories {
-    func getOffers() -> [OfferSource]
+    func getOffersSource() -> AnyPublisher<[OfferSource], Never>
 }
 
-struct OffersSourceRepositoriesImpl: OffersSourceRepositories {
-    let offers: [OfferSource] = JSONDecoder().decode(forResource: "OffersSource") ?? []
+class OffersSourceRepositoriesImpl: OffersSourceRepositories, ObservableObject {
+    @Published private var offers: [OfferSource] = []
 
-    func getOffers() -> [OfferSource] {
-        if false {
-            
-        } else {
-           return offers
+    init() {
+        updateOffersSource()
+        repeatEveryThreeSeconds()
+    }
+    
+    private func updateOffersSource () {
+        offers = JSONDecoder().decode(forResource: "OfferSource") ?? []
+        print("offers \(offers)")
+    }
+    
+    func repeatEveryThreeSeconds() {
+        // Your code to be executed repeatedly
+        print("Executing code every 3 seconds...")
+        
+        // Schedule the next execution after 3 seconds
+        DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
+            self.updateOffersSource()
+            self.repeatEveryThreeSeconds()
         }
+    }
+    
+    func getOffersSource() -> AnyPublisher<[OfferSource], Never> {
+        return $offers.eraseToAnyPublisher()
     }
 }

@@ -36,8 +36,7 @@ class ProductSourceRepositoriesImpl: ProductSourceRepositories , ObservableObjec
             self.repeatEveryThreeSeconds()
         }
     }
-    func getProductsSource() -> AnyPublisher<[ProductSource], Never>
-    {
+    func getProductsSource() -> AnyPublisher<[ProductSource], Never> {
         return $products.eraseToAnyPublisher()
         }
         

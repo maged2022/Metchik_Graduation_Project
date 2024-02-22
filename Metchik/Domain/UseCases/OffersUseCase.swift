@@ -6,15 +6,29 @@
 //
 
 import Foundation
-struct OffersUseCase: OffersRepositories {
-    var offerSourceRepo: OffersSourceRepositories = OffersSourceRepositoriesImpl()
-    func getOffers() -> [Offer] {
-        offerSourceRepo.getOffers().map {
-            Offer(title: $0.title,
-                  subTitle: $0.subTitle,
-                  promoCode: $0.promoCode,
-                  buttonTitle: $0.buttonTitle,
-                  backgroundImage: ImageAsset(name: $0.backgroundImage).swiftUIImage)}
+import Combine
+
+class OffersUseCase: OffersRepositories, ObservableObject {
+    @Published private var offerSourceRepo: OffersSourceRepositories = OffersSourceRepositoriesImpl()
+    @Published private var offers: [Offer] = []
+    private var cancellables = Set<AnyCancellable>()
+    
+    init() {
+        updateOffers()
+    }
+    
+    private func updateOffers() {
+        offerSourceRepo.getOffersSource()
+            .map { $0.toOffers() }
+            .sink { [weak self] offers in
+                self?.offers = offers
+            }
+            .store(in: &cancellables)
+        
+    }
+    func getOffers() -> AnyPublisher<[Offer], Never> {
+        print(offers)
+        return $offers.eraseToAnyPublisher()
     }
     
 }
