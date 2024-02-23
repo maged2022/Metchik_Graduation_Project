@@ -40,8 +40,8 @@ struct CardSubCategoriesView: View {
                     .font(.poppins(.bold, size: 18))
                     .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
                 Spacer()
-                Button {
-                    
+                NavigationLink {
+                    ProductView(selectedCategory: vmod.selectedCategory, selectedSubCategory: sectionName)
                 } label: {
                     Text("View All")
                         .font(.poppins(.bold, size: 11))

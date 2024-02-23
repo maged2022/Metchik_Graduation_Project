@@ -265,8 +265,8 @@
 			children = (
 				97BA53092B370B810061DF1B /* Home */,
 				97BA530A2B370BA20061DF1B /* SubCategory */,
-				5C431D102B8865F20091BF09 /* ProductDetail */,
 				97BA530B2B370BBB0061DF1B /* Product */,
+				5C431D102B8865F20091BF09 /* ProductDetail */,
 			);
 			path = Home;
 			sourceTree = "<group>";

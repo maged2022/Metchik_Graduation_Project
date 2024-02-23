@@ -6,20 +6,21 @@
 //
 
 import Foundation
+import Combine
 
 class ProductViewModel: ObservableObject {
     private var productUseCase: ProductRepositories = ProductUseCase()
+    private var cancellables = Set<AnyCancellable>()
+
     @Published var products: [Product] = []
     
-    init() {
-    }
-    
     func getProducts(category: String, subCategories: String) {
-        productUseCase.getProducts(category: "Men", subCategories: ["Shoes"])
+        productUseCase.getProducts(category: category, subCategories: [subCategories])
             .sink { [weak self] productsDectionary in
-            if let products = productsDectionary["Shoes"] {
+            if let products = productsDectionary[subCategories] {
                 self?.products = products
             }
         }
+            .store(in: &cancellables)
     }
 }
