@@ -22,7 +22,6 @@ class OffersSourceRepositoriesImpl: OffersSourceRepositories, ObservableObject {
     
     private func updateOffersSource () {
         offers = JSONDecoder().decode(forResource: "OfferSource") ?? []
-        print("offers \(offers)")
     }
     
     func repeatEveryThreeSeconds() {

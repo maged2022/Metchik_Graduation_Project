@@ -36,19 +36,39 @@ class ProductUseCase: ProductRepositories, ObservableObject {
             .store(in: &cancellables)
     }
 
-    func getProducts(category: String) -> AnyPublisher<[Product], Never> {
+    func getCategories() -> AnyPublisher<[String], Never> {
+        return $products
+             .map { products in
+                 Array(Set(products.map { $0.category }))
+                     .map { $0.capitalized }
+                     .sorted()
+             }
+             .eraseToAnyPublisher()
+    }
+    
+    func getSubCategories(category: String) -> AnyPublisher<[String], Never> {
         return $products
             .map { products in
                 products.filter { $0.category.capitalized == category }
             }
+            .map { products in
+                Set(products.map { $0.subCategory }).map { $0.capitalized }
+                
+            }
             .eraseToAnyPublisher()
     }
-
-    func getCategories() -> AnyPublisher<[String], Never> {
+    
+    func getProducts(category: String, subCategories: [String]) -> AnyPublisher<[String: [Product]], Never> {
         return $products
-             .map { products in
-                 Set(products.map { $0.category }).map { $0.capitalized }
-             }
-             .eraseToAnyPublisher()
+            .map { products in
+                products.filter { $0.category.capitalized == category }
+            }
+            .map { filteredProducts in
+                Dictionary(grouping: filteredProducts, by: { $0.subCategory.capitalized })
+                    .mapValues { products in
+                        products.sorted { $0.name < $1.name }
+                    }
+            }
+            .eraseToAnyPublisher()
     }
 }

@@ -12,12 +12,17 @@ class HomeViewModel: ObservableObject {
     private let productUseCase: ProductRepositories = ProductUseCase()
     private var cancellables =  Set<AnyCancellable>()
     
-    @Published var categories: [String] = []
     @Published var offers: [Offer] = []
-    @Published var products: [Product] = []
-    @Published var selectedCategory: String = "" {
+    @Published var categories: [String] = []
+    @Published var subCategories: [String] = [] {
         didSet {
             updateProducts()
+        }
+    }
+    @Published var products: [String:[Product]] = [:]
+    @Published var selectedCategory: String = "" {
+        didSet {
+            updateSubCategories()
         }
     }
     
@@ -33,13 +38,6 @@ class HomeViewModel: ObservableObject {
             }.store(in: &cancellables)
     }
     
-    private func updateProducts() {
-        productUseCase.getProducts(category: selectedCategory)
-            .sink {[weak self] product in
-            self?.products = product
-        }.store(in: &cancellables)
-    }
-    
     private func updateCategories() {
         productUseCase.getCategories()
             .receive(on: DispatchQueue.main)
@@ -50,5 +48,21 @@ class HomeViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
+    }
+    
+    private func updateSubCategories() {
+        productUseCase.getSubCategories(category: selectedCategory)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] subCategories in
+                self?.subCategories = subCategories
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func updateProducts() {
+        productUseCase.getProducts(category: selectedCategory, subCategories: subCategories)
+            .sink {[weak self] product in
+            self?.products = product
+        }.store(in: &cancellables)
     }
 }

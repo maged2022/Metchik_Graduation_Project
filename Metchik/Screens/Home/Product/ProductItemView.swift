@@ -64,9 +64,17 @@ struct ProductItemView: View {
 
 struct ProductItemView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductItemView(product: Product(id: "1", name: "t-shirt1", shortDescription: "t-shirt1", price: 33, discountPercentage: 33,
+        ProductItemView(product:
+                            Product(id: "1",
+                                    name: "t-shirt1",
+                                    shortDescription: "t-shirt1",
+                                    price: 33,
+                                    discountPercentage: 33,
 //                                         isFavorite: false,
-                                         mainImage: ImageAsset(name: "t-shirt1").swiftUIImage, category: "t-shirt1", subCategory: "t-shirt1"), onBuutonTap: {
+                                    mainImage: ImageAsset(name: "t-shirt1").swiftUIImage,
+                                    category: "t-shirt1",
+                                    subCategory: "t-shirt1"),
+                        onBuutonTap: {
         })
     }
 }

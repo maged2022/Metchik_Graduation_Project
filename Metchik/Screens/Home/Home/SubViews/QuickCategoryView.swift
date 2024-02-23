@@ -18,7 +18,8 @@ struct QuickCategoryView: View {
                         Text(category)
                             .font(.poppins(.bold, size: 13))
                             .foregroundColor(
-                                vmod.selectedCategory == category ? Colors.primaryButtonColor.swiftUIColor : Colors.secondaryButtonColor.swiftUIColor
+                                ((vmod.selectedCategory == category) ?
+                                 Colors.primaryButtonColor : Colors.secondaryButtonColor).swiftUIColor
                                )
                             .frame(width: 80, height: 30)
                             .background( capsuleBackground(for: category))
