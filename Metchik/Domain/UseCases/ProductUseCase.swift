@@ -39,8 +39,7 @@ class ProductUseCase: ProductRepositories, ObservableObject {
     func getCategories() -> AnyPublisher<[String], Never> {
         return $products
              .map { products in
-                 Array(Set(products.map { $0.category }))
-                     .map { $0.capitalized }
+                 Array(Set(products.map { $0.category.capitalized }))
                      .sorted()
              }
              .eraseToAnyPublisher()
@@ -49,10 +48,11 @@ class ProductUseCase: ProductRepositories, ObservableObject {
     func getSubCategories(category: String) -> AnyPublisher<[String], Never> {
         return $products
             .map { products in
-                products.filter { $0.category.capitalized == category }
-            }
-            .map { products in
-                Set(products.map { $0.subCategory }).map { $0.capitalized }
+                Set(products
+                    .filter { $0.category.capitalized == category }
+                    .map { $0.subCategory.capitalized }
+                )
+                .sorted()
                 
             }
             .eraseToAnyPublisher()

@@ -26,7 +26,7 @@ class OffersSourceRepositoriesImpl: OffersSourceRepositories, ObservableObject {
     
     func repeatEveryThreeSeconds() {
         // Your code to be executed repeatedly
-        print("Executing code every 3 seconds...")
+        print("Executing code every 3 seconds... update offers")
         
         // Schedule the next execution after 3 seconds
         DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
