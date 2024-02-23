@@ -70,7 +70,6 @@ struct ProductItemView_Previews: PreviewProvider {
                                     shortDescription: "t-shirt1",
                                     price: 33,
                                     discountPercentage: 33,
-//                                         isFavorite: false,
                                     mainImage: ImageAsset(name: "t-shirt1").swiftUIImage,
                                     category: "t-shirt1",
                                     subCategory: "t-shirt1"),
