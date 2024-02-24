@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct ProductDetail {
     let images: [String]// url(string: images)
@@ -21,17 +22,17 @@ struct ProductDetail {
                                                         .init(
                                                             sizes: .m,
                                                             avaliableInStok: [22],
-                                                            colors: ["white"])],
+                                                            colors: [.blue])],
                                                       description: "srfsdf")
 }
 
 struct ProductAttribute {
     let sizes: ProductSizes
     let avaliableInStok: [Int]
-    let colors: [String]
+    let colors: [Color]
 }
 
-enum ProductSizes {
+enum ProductSizes: String, CaseIterable {
     case s
     case m
     case l
@@ -50,12 +51,30 @@ extension ProductSourceDetail {
 }
 
 extension Array where Element == ProductSourceAttribute {
-    func toProductSourceAttribute ()-> [ProductAttribute] {
+    func toProductSourceAttribute() -> [ProductAttribute] {
         return self.map { source in
             ProductAttribute(sizes: source.sizes.toProductSizes(),
                              avaliableInStok: source.avaliableInStok,
-                             colors:  source.colors/*.map{ColorAsset(name:$0)}*/)
-            
+                             colors:  source.colors.map { getColor(name: $0)})
+        }
+    }
+    
+    func getColor (name: String) -> Color {
+        switch name {
+        case "Red":
+            return Asset.ProductColor.red.swiftUIColor
+        case "Blue":
+            return Asset.ProductColor.blue.swiftUIColor
+        case "Green":
+            return Asset.ProductColor.green.swiftUIColor
+        case "Black":
+            return Asset.ProductColor.black.swiftUIColor
+        case "White":
+            return Asset.ProductColor.white.swiftUIColor  
+        case "Yellow":
+            return Asset.ProductColor.yellow.swiftUIColor
+        default:
+            return Asset.ProductColor.yellow.swiftUIColor
         }
     }
 }
