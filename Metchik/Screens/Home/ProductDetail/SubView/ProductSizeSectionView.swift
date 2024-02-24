@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
-/*
+
 struct ProductSizeSectionView: View {
+    @EnvironmentObject var viewModel: ProductDetailViewModel
+
     var body: some View {
         HStack(spacing: 10) {
             VStack(alignment: .leading) {
@@ -56,7 +58,9 @@ struct ProductSizeSectionView: View {
     }
 }
 
-#Preview {
-    ProductSizeSectionView()
+struct ProductSizeSectionView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProductSizeSectionView()
+            .environmentObject(ProductDetailViewModel(product:Product.mockData))
+    }
 }
-*/
