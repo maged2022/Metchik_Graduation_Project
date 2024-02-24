@@ -31,7 +31,7 @@ extension Array where Element == ProductSource {
                     price: source.price,
                     discountPercentage: source.discountPercentage,
 //                    isFavorite: source.isFavorite, // Assuming isFavorite is a property of ProductSource
-                    mainImage: ImageAsset(name: source.mainImage).swiftUIImage, // Update based on ImageAsset initialization
+                    mainImage: ImageAsset(name: source.mainImage).swiftUIImage,
                     category: source.category,
                     subCategory: source.subCategory
                 )

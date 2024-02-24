@@ -4,32 +4,23 @@
 //
 //  Created by maged on 18/12/2023.
 //
-/*
+
 import Foundation
+import Combine
 
 class ProductViewModel: ObservableObject {
-    var productUseCase: ProductRepositories = ProductUseCase()
+    private var productUseCase: ProductRepositories = ProductUseCase()
+    private var cancellables = Set<AnyCancellable>()
+
     @Published var products: [Product] = []
-    @Published  var searchText = ""
     
-    @Published var basketProducts: [Product] = []
-    
-    func fetchProducts(for subcategory: SubCategory) {
-        self.products = productUseCase.getProducts()
+    func getProducts(category: String, subCategories: String) {
+        productUseCase.getProducts(category: category, subCategories: [subCategories])
+            .sink { [weak self] productsDectionary in
+            if let products = productsDectionary[subCategories] {
+                self?.products = products
+            }
+        }
+            .store(in: &cancellables)
     }
-    
-    func addProduct(product : Product) {
-        self.basketProducts += [product]
-    }
-    
-    func removeProduct(index : Int) {
-        self.basketProducts.remove(at: index)
-    }
-    
-    func totalPrice() -> Double {
-          let total = basketProducts.reduce(0) { $0 + $1.discountPrice }
-          return total
-      }
-    
 }
-*/

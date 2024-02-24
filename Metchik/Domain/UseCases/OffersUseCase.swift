@@ -27,7 +27,6 @@ class OffersUseCase: OffersRepositories, ObservableObject {
         
     }
     func getOffers() -> AnyPublisher<[Offer], Never> {
-        print(offers)
         return $offers.eraseToAnyPublisher()
     }
     

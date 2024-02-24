@@ -4,74 +4,48 @@
 //
 //  Created by maged on 18/12/2023.
 //
-/*
+
 import SwiftUI
 
 struct ProductView: View {
     
     @ObservedObject var productViewModel = ProductViewModel()
-    var selectedSubcategory: SubCategory
-    @State private var isBasketViewPresented = false
-    
+    var selectedCategory: String
+    var selectedSubCategory: String
     let columns: [GridItem] = [
-        GridItem(.flexible(),spacing: 15), // First column with flexible width
-        GridItem(.flexible(),spacing: 10)
+        GridItem(.flexible(),spacing: 15),
+        GridItem(.flexible(),spacing: 0)
     ]
     
     var body: some View {
         ScrollView {
-            HStack {
-                QuickCategoryView(categorys: [Category(name: "shoes"), 
-                                              Category(name: "jacket"),
-                                              Category(name: "jeans"), 
-                                              Category(name: "dress")])
-            }
-            Text("Shoes")
-                .frame(maxWidth: .infinity,alignment: .leading)
-                .font(.poppins(.bold, size: 18))
-                .foregroundColor(Colors.primaryLabelColor.swiftUIColor)
-            
             LazyVGrid(columns: columns, spacing: 24) {
                 ForEach(productViewModel.products) { product in
-                    NavigationLink(destination: ProductDetailView(selectedProduct: product,
-                                                                  productViewModel: productViewModel)) {
                         ProductItemView(product: product, onBuutonTap: {
-                            // When Add to Card button is tapped
-                            // should go to login or register screen
                             
                         })
-                    }
                 }
             }
         }
         .padding(.horizontal,25)
         .navigationBarItems(
             trailing:
-                
                 Button(action: {
-                    isBasketViewPresented = true
                 }, label: {
-                    // BasketButtonView(numberOfProducts: cartmanager.cartProducts.count)
-                    CartButtonView(numberOfProducts: productViewModel.basketProducts.count)
-                        .foregroundColor(.black)
-                        .padding(.leading)
+                    Image(systemName: "magnifyingglass")
+                        .padding(.trailing)
                 })
-               
         )
-        
-        .sheet(isPresented: $isBasketViewPresented, content: {
-//            CartView(productViewModel: productViewModel)
-        })
         .onAppear {
-            productViewModel.fetchProducts(for: selectedSubcategory)
+            productViewModel.getProducts(category: selectedCategory, subCategories: selectedSubCategory)
         }
-        .navigationBarTitle(selectedSubcategory.name)
+        .navigationBarTitle(selectedSubCategory)
     }
 }
 struct ProductView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductView( selectedSubcategory: SubCategory(name: "Clothing"))
+        NavigationView {
+            ProductView(selectedCategory: "Men", selectedSubCategory: "Shoes")
+        }
     }
 }
-
-*/
