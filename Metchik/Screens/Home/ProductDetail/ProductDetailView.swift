@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProductDetailView: View {
+    typealias Colors = Asset.Colors
     @State var productDetailViewModel : ProductDetailViewModel
     var body: some View {
         
@@ -20,7 +21,12 @@ struct ProductDetailView: View {
                     Spacer()
                     StepperView()
                 }
-                ProductSizeSectionView()
+                HStack {
+                    ProductSizeSectionView()
+                    
+                    ProductColorsView()
+
+                }
                 
                 ProductDescriptionSectionView()
                 

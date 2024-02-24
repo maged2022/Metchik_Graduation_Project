@@ -8,15 +8,24 @@
 import SwiftUI
 
 struct StepperView: View {
+    typealias Colors = Asset.Colors
+    @EnvironmentObject var viewModel: ProductDetailViewModel
+
     var body: some View {
         VStack(spacing:12) {
             HStack {
                 Button {
+                    if viewModel.currentStepperValue > 1 {
+                        viewModel.currentStepperValue -= 1
+                    }
                 } label: {
                     Image(systemName: "minus")
                 }
-                Text("1")
+                Text("\(viewModel.currentStepperValue)")
                 Button {
+                    if viewModel.currentStepperValue <= viewModel.maxAvailableProduct {
+                        viewModel.currentStepperValue += 1
+                    }
                 } label: {
                     Image(systemName: "plus")
                 }
@@ -35,6 +44,9 @@ struct StepperView: View {
     }
 }
 
-#Preview {
+struct StepperView_Previews: PreviewProvider {
+    static var previews: some View {
     StepperView()
+        .environmentObject(ProductDetailViewModel(product:Product.mockData))
+    }
 }

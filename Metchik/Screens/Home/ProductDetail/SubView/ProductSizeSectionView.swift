@@ -8,52 +8,49 @@
 import SwiftUI
 
 struct ProductSizeSectionView: View {
+    typealias Colors = Asset.Colors
     @EnvironmentObject var viewModel: ProductDetailViewModel
-
+    
     var body: some View {
-        HStack(spacing: 10) {
-            VStack(alignment: .leading) {
-                Text("Size")
-                    .font(.poppins(.semiBold, size: 16))
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 15) {
-                        ForEach(1..<10) { _ in
-                            Button(action: {
-                            }, label: {
-                                Text("5")
-                                
-                                    .font(.poppins(.semiBold, size: 14))
-                                    .foregroundColor(Colors.secondaryLabelColor.swiftUIColor)
-                                    .frame(width: 40, height: 40)
-                                    .background(RoundedRectangle(cornerRadius: 25)
-                                        .stroke()
-                                        .foregroundColor(Colors.borderCategoryColor.swiftUIColor)
-                                    )
+        VStack(alignment: .center) {
+            Text("Size")
+                .font(.poppins(.semiBold, size: 16))
+                .frame(maxWidth: .infinity,alignment: .leading)
+            HStack(alignment: .center, spacing: 15) {
+                ForEach(ProductSizes.allCases, id: \.self) { size in
+                    Text(size.rawValue)
+                        .font(.poppins(.semiBold, size: 14))
+                        .foregroundColor(getForegroundColor(for: size))
+                        .frame(width: 40, height: 40)
+                        .background(sizeBackground(for: size))
+                        .onTapGesture {
+                            if viewModel.availableSizes.contains(size) {
+                                viewModel.selectedSize = size
                             }
-                            )
                         }
-                    }
                 }
             }
-            
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(spacing: 10) {
-                    ForEach(1..<3) { _ in
-                        Button(action: {
-                        }, label: {
-                            Colors.greenColor.swiftUIColor
-                                .foregroundColor(Colors.secondaryLabelColor.swiftUIColor)
-                                .frame(width: 20, height: 20)
-                                .cornerRadius(10)
-                        })
-                    }
-                }
-            }
-            .padding(10)
-            .frame(minHeight: 20,maxHeight: 145)
-            .background(Color.white
-                .cornerRadius(30))
-            .shadow(color: .black.opacity(0.1),radius: 10)
+        }
+    }
+    
+    @ViewBuilder
+    func sizeBackground(for size: ProductSizes) -> some View {
+        if viewModel.selectedSize == size {
+            RoundedRectangle(cornerRadius: 25)
+                .fill( Color.black)
+        } else {
+            RoundedRectangle(cornerRadius: 25)
+                .stroke()
+                .foregroundColor(Colors.borderCategoryColor.swiftUIColor)
+        }
+    }
+    func getForegroundColor(for size: ProductSizes) -> Color {
+        if viewModel.selectedSize == size {
+            return Colors.primaryButtonColor.swiftUIColor
+        } else if viewModel.availableSizes.contains(size) {
+            return Colors.secondaryButtonColor.swiftUIColor
+        } else {
+            return Colors.borderCategoryColor.swiftUIColor
         }
     }
 }
