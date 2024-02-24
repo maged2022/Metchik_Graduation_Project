@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct LaunchView: View {
-    
+    typealias Colors = Asset.LaunchColors
+
     @State private var loadingText: [String] = "Metchik".map({String($0)})
     @State private var showLoadingText: Bool = false
     private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ProductItemView: View {
-    
+    typealias Colors = Asset.Colors
+
     let product: Product
     var onBuutonTap: () -> Void
     

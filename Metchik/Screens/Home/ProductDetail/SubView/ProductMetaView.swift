@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProductMetaView: View {
+    typealias Colors = Asset.Colors
+
     @State var rating: Double = 3
     @EnvironmentObject var viewModel: ProductDetailViewModel
 
@@ -39,6 +41,7 @@ struct ProductMetaView: View {
 
 struct ProductMetaView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductMetaView().environmentObject(ProductDetailViewModel(product:Product.mockData))
+        ProductMetaView()
+            .environmentObject(ProductDetailViewModel(product:Product.mockData))
     }
 }

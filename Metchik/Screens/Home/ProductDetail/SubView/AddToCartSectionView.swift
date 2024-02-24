@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AddToCartSectionView: View {
+    typealias Colors = Asset.Colors
+
     @EnvironmentObject var viewModel: ProductDetailViewModel
 
     var body: some View {

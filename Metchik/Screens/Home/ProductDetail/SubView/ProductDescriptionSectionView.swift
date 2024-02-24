@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProductDescriptionSectionView: View {
+    typealias Colors = Asset.Colors
+
     @EnvironmentObject var viewModel: ProductDetailViewModel
 
     var body: some View {

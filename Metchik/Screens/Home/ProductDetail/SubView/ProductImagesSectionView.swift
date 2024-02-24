@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProductImagesSectionView: View {
+    typealias Colors = Asset.Colors
+
     @EnvironmentObject var viewModel: ProductDetailViewModel
     var body: some View {
         ZStack(alignment: .bottomTrailing) {

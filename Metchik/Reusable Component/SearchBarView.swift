@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SearchBarView: View {
+    typealias Colors = Asset.Colors
     @Binding var searchText: String
     var placeholder: String = "Search..."
     

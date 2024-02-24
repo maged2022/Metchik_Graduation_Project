@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
-    
+    typealias Colors = Asset.Colors
+
     @State private var homeViewModel = HomeViewModel()
     
     var body: some View {

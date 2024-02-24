@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct OffersView: View {
+    typealias Colors = Asset.Colors
+
     @EnvironmentObject var vmod: HomeViewModel
     var body: some View {
         ScrollView(.horizontal,showsIndicators: false) {
@@ -29,6 +31,7 @@ struct OffersView_Previews: PreviewProvider {
 }
 
 struct OfferCard: View {
+    typealias Colors = Asset.Colors
     var offer: Offer
     var body: some View {
         VStack(alignment:.leading, spacing: 15) {
