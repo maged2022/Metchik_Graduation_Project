@@ -1,0 +1,18 @@
+{
+  "images": ["discount_image4", "discount_image3", "discount_image5"],
+  "rating": 4.5,
+  "review": 120,
+  "productAttribute": [
+    {
+      "sizes": "s",
+      "avaliableInStok": [10, 20, 30],
+      "colors": ["Red", "Blue", "Green"]
+    },
+    {
+      "sizes": "m",
+      "avaliableInStok": [15, 25, 35],
+      "colors": ["Black", "White", "Yellow"]
+    }
+  ],
+  "description": "Engineered to crush any movement-based workout, these On sneakers enhance the label's original Cloud sneaker with cutting edge technologies for a pair."
+}
