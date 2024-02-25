@@ -21,14 +21,7 @@ struct ProductView: View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 24) {
                 ForEach(productViewModel.products) { product in
-                    NavigationLink {
-                        NavigationLazyView(
-                            ProductDetailView( productDetailViewModel: ProductDetailViewModel(product: product)))
-                    } label: {
-                        ProductItemView(product: product, onBuutonTap: {
-                            
-                        })
-                    }
+                    ProductItemView(product: product, onBuutonTap: { })
                 }
             }
         }

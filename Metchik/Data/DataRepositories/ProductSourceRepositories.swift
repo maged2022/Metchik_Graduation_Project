@@ -16,7 +16,7 @@ class ProductSourceRepositoriesImpl: ProductSourceRepositories , ObservableObjec
     @Published private var products: [ProductSource] = []
     
     init() {
-        repeatEveryThreeSeconds()
+//        repeatEveryThreeSeconds()
         updateProductsSource()
     }
     private func updateProductsSource () {

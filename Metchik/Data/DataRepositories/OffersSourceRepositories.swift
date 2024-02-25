@@ -17,7 +17,7 @@ class OffersSourceRepositoriesImpl: OffersSourceRepositories, ObservableObject {
 
     init() {
         updateOffersSource()
-        repeatEveryThreeSeconds()
+//        repeatEveryThreeSeconds()
     }
     
     private func updateOffersSource () {
