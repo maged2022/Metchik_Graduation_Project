@@ -22,8 +22,8 @@ struct ProductView: View {
             LazyVGrid(columns: columns, spacing: 24) {
                 ForEach(productViewModel.products) { product in
                     NavigationLink {
-                        ProductDetailView(
-                            productDetailViewModel: ProductDetailViewModel(product: product))
+                        NavigationLazyView(
+                            ProductDetailView( productDetailViewModel: ProductDetailViewModel(product: product)))
                     } label: {
                         ProductItemView(product: product, onBuutonTap: {
                             
