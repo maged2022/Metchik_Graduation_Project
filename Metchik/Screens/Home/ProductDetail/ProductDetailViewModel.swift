@@ -39,43 +39,47 @@ class ProductDetailViewModel: ObservableObject {
     
     init(product: Product) {
         self.product = product
-        getProductdetail(by: product.id)
+        getProductdetail()
     }
     
-    private func getProductdetail(by id : String) {
-        productUseCase.getProductDetail(by: id)
+    private func getProductdetail() {
+        productUseCase.fetchProductDetail(by: product.id)
+        productUseCase.getProductDetail()
             .sink {[weak self] productDetail in
-//                print(" productUseCase.getProductDetail(by: id) = \(productDetail)")
-            self?.productDetail = productDetail
-        }
-        .store(in: &cancellables)
+                self?.productDetail = productDetail
+            }
+            .store(in: &cancellables)
     }
     
     private func getAvilableSizes () {
-        availableSizes = productDetail.productAttribute.map { $0.sizes}
-        if let firstSize = availableSizes.first {
-            selectedSize = firstSize
-        }
+        productUseCase.getAvilableSizes()
+            .sink { [weak self] sizes in
+                self?.availableSizes = sizes
+                if let firstSize = sizes.first {
+                    self?.selectedSize = firstSize
+                }
+            }
+            .store(in: &cancellables)
+        
     }
     
     private func getAvilableColors () {
-        guard let sizeAttribute = productDetail.productAttribute
-            .filter({ $0.sizes == selectedSize })
-            .first else {return}
-        availableColors = sizeAttribute.colors
-        if let firstColor = availableColors.first {
-            selectedColor = firstColor
-        }
+        productUseCase.getAvilableColors(forSize: selectedSize)
+            .sink { [weak self] colors in
+                self?.availableColors = colors
+                if let firstColor = colors.first {
+                    self?.selectedColor = firstColor
+                }
+            }
+            .store(in: &cancellables)
     }
     
     private func getMaxAvilableProducts () {
-        guard let sizeAttribute = productDetail.productAttribute
-            .filter({ $0.sizes == selectedSize })
-            .first else {return}
-        let indexedColors = sizeAttribute.colors.enumerated()
-        if let (colorIndex, _) = indexedColors.first(where: { $0.element == selectedColor }) {
-            maxAvailableProduct = sizeAttribute.avaliableInStok[colorIndex]
-        }
+        productUseCase.getMaxAvilableProducts(size: selectedSize, color: selectedColor)
+            .sink { [weak self] maxAvilable in
+                self?.maxAvailableProduct = maxAvilable
+            }
+            .store(in: &cancellables)
     }
     
     func getTotalPrice() -> Double {

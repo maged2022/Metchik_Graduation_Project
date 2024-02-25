@@ -46,6 +46,7 @@
 		5C431D262B89BACE0091BF09 /* AddToCartSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C431D252B89BACD0091BF09 /* AddToCartSectionView.swift */; };
 		5C431D282B89BB3E0091BF09 /* ProductDescriptionSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C431D272B89BB3E0091BF09 /* ProductDescriptionSectionView.swift */; };
 		5C431D2A2B89CF250091BF09 /* ProductColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C431D292B89CF250091BF09 /* ProductColorsView.swift */; };
+		5C45B0872B8AF3CB00BE62F4 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45B0862B8AF3CB00BE62F4 /* NavigationView.swift */; };
 		5C713B6C2B83599C0040AE10 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C713B6B2B83599C0040AE10 /* Offer.swift */; };
 		5C713B6E2B835AEA0040AE10 /* OffersRepositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C713B6D2B835AEA0040AE10 /* OffersRepositories.swift */; };
 		5C713B702B835B2A0040AE10 /* OffersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C713B6F2B835B2A0040AE10 /* OffersUseCase.swift */; };
@@ -127,6 +128,7 @@
 		5C431D252B89BACD0091BF09 /* AddToCartSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCartSectionView.swift; sourceTree = "<group>"; };
 		5C431D272B89BB3E0091BF09 /* ProductDescriptionSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDescriptionSectionView.swift; sourceTree = "<group>"; };
 		5C431D292B89CF250091BF09 /* ProductColorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductColorsView.swift; sourceTree = "<group>"; };
+		5C45B0862B8AF3CB00BE62F4 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
 		5C713B6B2B83599C0040AE10 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 		5C713B6D2B835AEA0040AE10 /* OffersRepositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersRepositories.swift; sourceTree = "<group>"; };
 		5C713B6F2B835B2A0040AE10 /* OffersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersUseCase.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				121BD4E52B344D05000126C6 /* UIApplication.swift */,
 				5C91C4012B84A1FF00308218 /* JSONDecoder.swift */,
 				5C91C40F2B85E34A00308218 /* HapticsManager.swift */,
+				5C45B0862B8AF3CB00BE62F4 /* NavigationView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -621,6 +624,7 @@
 				5C431D282B89BB3E0091BF09 /* ProductDescriptionSectionView.swift in Sources */,
 				5CF5E8962B7FAD100096F7AB /* AssetImage.swift in Sources */,
 				5CF5E8AA2B8073090096F7AB /* ProductUseCase.swift in Sources */,
+				5C45B0872B8AF3CB00BE62F4 /* NavigationView.swift in Sources */,
 				12A2DE522B2FC4640027A253 /* ProductItemView.swift in Sources */,
 				123612E92B2480A10087B346 /* LaunchView.swift in Sources */,
 				1295C06F2B30881D00C1F4CA /* OffersView.swift in Sources */,
