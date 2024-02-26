@@ -38,21 +38,6 @@ enum ProductSourceSizes:String, Codable {
     case xl
     case xxl
     
-    func toProductSizes () -> ProductSizes {
-        switch self {
-        case .s:
-            ProductSizes.s
-        case .m:
-            ProductSizes.m
-        case .l:
-            ProductSizes.l
-        case .xl:
-            ProductSizes.xl
-        case .xxl:
-            ProductSizes.xxl
-        }
-    }
-    
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let rawValue = try container.decode(String.self)

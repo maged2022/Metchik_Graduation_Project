@@ -78,3 +78,20 @@ extension Array where Element == ProductSourceAttribute {
         }
     }
 }
+
+extension ProductSourceSizes {
+    func toProductSizes () -> ProductSizes {
+        switch self {
+        case .s:
+                .s
+        case .m:
+                .m
+        case .l:
+                .l
+        case .xl:
+                .xl
+        case .xxl:
+                .xxl
+        }
+    }
+}
