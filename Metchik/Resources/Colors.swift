@@ -21,20 +21,32 @@ internal typealias AssetColorTypeAlias = ColorAsset.Color
 // MARK: - Asset Catalogs
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
-internal enum Colors {
-  internal static let accentColor = ColorAsset(name: "AccentColor")
-  internal static let backgroundScreenColor = ColorAsset(name: "BackgroundScreenColor")
-  internal static let backgroundSearchColor = ColorAsset(name: "BackgroundSearchColor")
-  internal static let borderCategoryColor = ColorAsset(name: "BorderCategoryColor")
-  internal static let greenColor = ColorAsset(name: "GreenColor")
-  internal static let primaryButtonColor = ColorAsset(name: "PrimaryButtonColor")
-  internal static let primaryLabelColor = ColorAsset(name: "PrimaryLabelColor")
-  internal static let redColor = ColorAsset(name: "RedColor")
-  internal static let searchLabelColor = ColorAsset(name: "SearchLabelColor")
-  internal static let secondaryButtonColor = ColorAsset(name: "SecondaryButtonColor")
-  internal static let secondaryLabelColor = ColorAsset(name: "SecondaryLabelColor")
-  internal static let launchAccentColor = ColorAsset(name: "LaunchAccentColor")
-  internal static let launchBackgroundColor = ColorAsset(name: "LaunchBackgroundColor")
+internal enum Asset {
+  internal enum Colors {
+    internal static let accentColor = ColorAsset(name: "Colors/AccentColor")
+    internal static let backgroundScreenColor = ColorAsset(name: "Colors/BackgroundScreenColor")
+    internal static let backgroundSearchColor = ColorAsset(name: "Colors/BackgroundSearchColor")
+    internal static let borderCategoryColor = ColorAsset(name: "Colors/BorderCategoryColor")
+    internal static let greenColor = ColorAsset(name: "Colors/GreenColor")
+    internal static let primaryButtonColor = ColorAsset(name: "Colors/PrimaryButtonColor")
+    internal static let primaryLabelColor = ColorAsset(name: "Colors/PrimaryLabelColor")
+    internal static let redColor = ColorAsset(name: "Colors/RedColor")
+    internal static let searchLabelColor = ColorAsset(name: "Colors/SearchLabelColor")
+    internal static let secondaryButtonColor = ColorAsset(name: "Colors/SecondaryButtonColor")
+    internal static let secondaryLabelColor = ColorAsset(name: "Colors/SecondaryLabelColor")
+  }
+  internal enum LaunchColors {
+    internal static let launchAccentColor = ColorAsset(name: "LaunchColors/LaunchAccentColor")
+    internal static let launchBackgroundColor = ColorAsset(name: "LaunchColors/LaunchBackgroundColor")
+  }
+  internal enum ProductColor {
+    internal static let black = ColorAsset(name: "ProductColor/Black")
+    internal static let blue = ColorAsset(name: "ProductColor/Blue")
+    internal static let green = ColorAsset(name: "ProductColor/Green")
+    internal static let red = ColorAsset(name: "ProductColor/Red")
+    internal static let white = ColorAsset(name: "ProductColor/White")
+    internal static let yellow = ColorAsset(name: "ProductColor/Yellow")
+  }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

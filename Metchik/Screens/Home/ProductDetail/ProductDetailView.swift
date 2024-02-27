@@ -4,128 +4,33 @@
 //
 //  Created by maged on 18/12/2023.
 //
-/*
+
 import SwiftUI
 
 struct ProductDetailView: View {
-    var selectedProduct: Product
-    @State var rating: Int = 4
-    
-    var productViewModel: ProductViewModel
-    
+    typealias Colors = Asset.Colors
+    @ObservedObject var productDetailViewModel : ProductDetailViewModel
     var body: some View {
-        // Display details about the selected product
         
         VStack {
            
-            ZStack(alignment: .bottomTrailing) {
-                AssetImage.discountImage2.swiftUIImage
-                    .resizable()
-                    .frame(maxWidth: .infinity, minHeight: 200, maxHeight: 430).tag("0")
-                    
-                Button(action: {}, label: {
-                    Image(systemName: "heart")
-                        
-                        .frame(width: 30,height: 30)
-                        .aspectRatio(contentMode: .fill)
-                        .background(Colors.primaryButtonColor.swiftUIColor
-                            .cornerRadius(15)
-                        )
-                })
-                .padding(25)
-                .padding(.bottom,25)
-                .tag("1")
-               
-            }
+            ProductImagesSectionView()
             VStack(alignment: .leading) {
                 HStack {
-                    VStack(alignment:.leading) {
-                        Text(selectedProduct.name)
-                            .font(.poppins(.semiBold, size: 18))
-                            .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
-                        Text(selectedProduct.shortDescription)
-                            .font(.poppins(.regular, size: 11))
-                            .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)
-                        HStack(spacing:10) {
-                            ForEach(1..<6) { index in
-                                Image(systemName: "star.fill")
-                                    .foregroundColor(Color(rating >= index ? .yellow: .gray).opacity(0.5) )
-                                    .frame(width: 12,height: 12)
-                                    .scaledToFill()
-                                    .onTapGesture {
-                                        rating = index
-                                    }
-                            }
-                            Text("(\(selectedProduct.review) Review)")
-                                .font(.poppins(.regular, size: 11))
-                        }
-                    }
-                    
+                    ProductMetaView()
                     Spacer()
+                    StepperView()
+                }
+                HStack {
+                    ProductSizeSectionView()
                     
-                    VStack(spacing:12) {
-                        HStack {
-                            Button {
-                            } label: {
-                                Image(systemName: "minus")
-                            }
-                            Text("1")
-                            Button {
-                            } label: {
-                                Image(systemName: "plus")
-                            }
-                        }
-                        .font(.poppins(.regular, size: 14))
-                        .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
-                        .padding(.vertical,5)
-                        .padding(.horizontal,12)
-                        .background(Colors.backgroundSearchColor.swiftUIColor)
-                        .cornerRadius(30)
-                        .padding(.top,10)
-                        
-                        Text("Avaliable in stok")
-                            .font(.poppins(.semiBold, size: 11))
-                    }
-                    
+                    ProductColorsView()
+
                 }
                 
-                ProductSizeSectionView()
+                ProductDescriptionSectionView()
                 
-                VStack(alignment: .leading,spacing: 15) {
-                    Text("Description")
-                        .font(.poppins(.semiBold, size: 16))
-                        .foregroundColor(Colors.primaryLabelColor.swiftUIColor)
-                    
-                    Text("Engineered to crush any movement-based workout, these On sneakers enhance" +
-                         " the label's original Cloud sneaker with cutting edge technologies for a pair.")
-                        .font(.poppins(.regular, size: 11))
-                        .foregroundColor(Colors.secondaryLabelColor.swiftUIColor)
-                }
-                .padding(.bottom,30)
-                
-                HStack(spacing: 50) {
-                    VStack(alignment:.leading) {
-                        Text("Total Price")
-                            .font(.poppins(.regular, size: 9))
-                            .foregroundColor(Colors.borderCategoryColor.swiftUIColor)
-                        Text("$\(String(format: "%.2f", selectedProduct.price))")
-                            .font(.poppins(.bold, size: 18))
-                            .foregroundColor(Colors.primaryLabelColor.swiftUIColor)
-                    }
-                    
-                    Button(action: {}, label: {
-                        Text("Add To Cart")
-                            .foregroundColor(Colors.primaryButtonColor.swiftUIColor)
-                            .font(.poppins(.semiBold, size: 16))
-                            .frame(maxWidth: .infinity)
-                            .frame( height: 50)
-                            .background(
-                                RoundedRectangle(cornerRadius: 30)
-                                    .foregroundColor(Colors.secondaryButtonColor.swiftUIColor)
-                            )
-                        
-                    })
-                }
+                AddToCartSectionView()
             }
             .padding(.vertical,20)
             .padding(.horizontal,25)
@@ -136,17 +41,15 @@ struct ProductDetailView: View {
             )
             .offset(y:-30)
         }
+        .environmentObject(productDetailViewModel)
         
     }
 }
 
 struct ProductDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailView(selectedProduct: Product(id: "1", name: "T-Shirt",
-                                                   images: ["discount_image4"],
-                                                   price:  142.36, discountPrice:  122.36),
-                          productViewModel: ProductViewModel())
-        //            .previewLayout(.fixed(width: 500, height: 1500))
+        ProductDetailView(productDetailViewModel: ProductDetailViewModel(product:Product.mockData)
+        )
+        .previewLayout(.fixed(width: 500, height: 1000))
     }
 }
-*/

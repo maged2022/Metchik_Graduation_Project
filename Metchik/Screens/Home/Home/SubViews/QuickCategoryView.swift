@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct QuickCategoryView: View {
+    typealias Colors = Asset.Colors
+
     @EnvironmentObject var vmod: HomeViewModel
     
     var body: some View {

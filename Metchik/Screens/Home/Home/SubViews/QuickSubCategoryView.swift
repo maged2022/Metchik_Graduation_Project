@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct QuickSubCategoryView: View {
+    typealias Colors = Asset.Colors
     @EnvironmentObject var vmod: HomeViewModel
     var body: some View {
         VStack {
@@ -29,6 +30,7 @@ struct QuickSubCategoryView_Previews: PreviewProvider {
 }
 
 struct CardSubCategoriesView: View {
+    typealias Colors = Asset.Colors
     @EnvironmentObject var vmod: HomeViewModel
     @State var sectionName: String
     @State var products: [Product]

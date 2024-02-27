@@ -21,9 +21,7 @@ struct ProductView: View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 24) {
                 ForEach(productViewModel.products) { product in
-                        ProductItemView(product: product, onBuutonTap: {
-                            
-                        })
+                    ProductItemView(product: product, onBuutonTap: { })
                 }
             }
         }
@@ -42,6 +40,7 @@ struct ProductView: View {
         .navigationBarTitle(selectedSubCategory)
     }
 }
+
 struct ProductView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
