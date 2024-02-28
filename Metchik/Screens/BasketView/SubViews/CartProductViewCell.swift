@@ -1,36 +1,36 @@
 //
-//  CartRowView.swift
+//  CartProductViewCell.swift
 //  Metchik
 //
-//  Created by maged on 08/01/2024.
+//  Created by Hassan on 28/02/2024.
 //
 
 import SwiftUI
-/*
-struct CartRowView: View {
-    
-    var productViewModel: ProductViewModel
-    
+
+struct CartProductViewCell: View {
+    typealias Colors = Asset.Colors
+    @EnvironmentObject var viewModel: CartViewModel
+
     var product: Product
-    var index: Int
+//    var index: Int
     
     var body: some View {
         HStack(alignment: .bottom, spacing: 6) {
-            Image(product.images[0])
+            product.mainImage
                 .resizable()
                 .scaledToFill()
                 .frame(width: 80,height: 80)
                 .cornerRadius(10)
 
             VStack(alignment: .leading,spacing: 2) {
-                Text("Roller Rabbit")
+                Text(product.name)
                     .font(.poppins(.semiBold, size: 14))
                 
-                Text("Vado Odelle Dress")
+                Text(product.shortDescription)
                     .font(.poppins(.regular, size: 11))
                     .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)
                     .padding(.bottom,12)
-                Text("$198.00")
+                Text("\(String(format: "%.2f", product.price)) L.E")
                     .font(.poppins(.bold, size: 14))
                     .padding(.bottom,4)
             }
@@ -63,14 +63,10 @@ struct CartRowView: View {
         
 }
 
-struct CartRowView_Previews: PreviewProvider {
+struct CartProductViewCell_Previews: PreviewProvider {
     static var previews: some View {
-        let product = Product(id: "1", name: "product_1",
-                              images: ["discount_image3"], price: 225.50, discountPrice: 125.14)
-        let productViewModel = ProductViewModel()
-        
-        return CartRowView(productViewModel: productViewModel, product: product, index: 0)
+        return CartProductViewCell(product: Product.mockData)
+            .environmentObject(CartViewModel())
 
     }
 }
-*/
