@@ -71,4 +71,13 @@ class ProductUseCase: ProductRepositories, ObservableObject {
             }
             .eraseToAnyPublisher()
     }
+    
+    func getProducts(category: String, subCategories: String) -> AnyPublisher< [Product], Never> {
+        return $products
+            .map{
+                $0.filter { $0.category.lowercased() == category.lowercased() }
+                .filter { $0.subCategory.lowercased() == subCategories.lowercased() }
+            }
+            .eraseToAnyPublisher()
+    }
 }

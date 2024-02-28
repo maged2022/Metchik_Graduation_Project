@@ -43,7 +43,13 @@ struct CardSubCategoriesView: View {
                     .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
                 Spacer()
                 NavigationLink {
-                    ProductView(selectedCategory: vmod.selectedCategory, selectedSubCategory: sectionName)
+                   NavigationLazyView(
+                    ProductView(
+                        productViewModel: ProductViewModel(
+                            selectedCategory: vmod.selectedCategory,
+                            selectedSubCategory: sectionName)
+                    )
+                   )
                 } label: {
                     Text("View All")
                         .font(.poppins(.bold, size: 11))
@@ -53,7 +59,6 @@ struct CardSubCategoriesView: View {
             HStack {
                 ForEach(products.prefix(2)) { product in
                         ProductItemView(product: product) {
-                            
                         }
                     }
             }

@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView: View {
     typealias Colors = Asset.Colors
 
-    @State private var homeViewModel = HomeViewModel()
+    @StateObject private var homeViewModel = HomeViewModel()
     
     var body: some View {
         
@@ -30,6 +30,19 @@ struct HomeView: View {
             .background(Colors.backgroundScreenColor.swiftUIColor
                 .ignoresSafeArea())
         }
+        .navigationBarItems(
+            leading:
+                NavigationLink(
+                    destination: NavigationLazyView(
+                        SubCategoryView(
+                            subCategoryViewModel: SubCategoryViewModel(
+                                category: homeViewModel.selectedCategory)))) {
+                    Image(systemName: "text.alignleft")
+                        .foregroundColor(.white)
+                        .frame(width: 40, height: 40)
+                        .background(Color.black.cornerRadius(20))
+                }
+        )
         .environmentObject(homeViewModel)
     }
 }
