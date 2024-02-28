@@ -9,9 +9,8 @@ import SwiftUI
 
 struct ProductView: View {
     
-    @ObservedObject var productViewModel = ProductViewModel()
-    var selectedCategory: String
-    var selectedSubCategory: String
+    @StateObject var productViewModel: ProductViewModel
+
     let columns: [GridItem] = [
         GridItem(.flexible(),spacing: 15),
         GridItem(.flexible(),spacing: 0)
@@ -34,17 +33,13 @@ struct ProductView: View {
                         .padding(.trailing)
                 })
         )
-        .onAppear {
-            productViewModel.getProducts(category: selectedCategory, subCategories: selectedSubCategory)
-        }
-        .navigationBarTitle(selectedSubCategory)
     }
 }
 
 struct ProductView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ProductView(selectedCategory: "Men", selectedSubCategory: "Shoes")
+            ProductView(productViewModel: ProductViewModel(selectedCategory: "Men", selectedSubCategory: "Shoes"))
         }
     }
 }
