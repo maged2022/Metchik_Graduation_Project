@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProductDetailView: View {
     typealias Colors = Asset.Colors
-    @ObservedObject var productDetailViewModel : ProductDetailViewModel
+    @StateObject var productDetailViewModel : ProductDetailViewModel
     var body: some View {
         
         VStack {
