@@ -59,6 +59,7 @@
 		5C45B0EA2B8F687100BE62F4 /* Models+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45B0E92B8F687100BE62F4 /* Models+Extension.swift */; };
 		5C45B0ED2B8F81F600BE62F4 /* CartProductContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5C45B0EB2B8F81F600BE62F4 /* CartProductContainer.xcdatamodeld */; };
 		5C45B0EF2B8F82AB00BE62F4 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45B0EE2B8F82AB00BE62F4 /* CoreDataManager.swift */; };
+		5C5A6D202B92114F0013E0B2 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5A6D1F2B92114F0013E0B2 /* Color.swift */; };
 		5C713B6C2B83599C0040AE10 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C713B6B2B83599C0040AE10 /* Offer.swift */; };
 		5C713B6E2B835AEA0040AE10 /* OffersRepositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C713B6D2B835AEA0040AE10 /* OffersRepositories.swift */; };
 		5C713B702B835B2A0040AE10 /* OffersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C713B6F2B835B2A0040AE10 /* OffersUseCase.swift */; };
@@ -153,6 +154,7 @@
 		5C45B0E92B8F687100BE62F4 /* Models+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models+Extension.swift"; sourceTree = "<group>"; };
 		5C45B0EC2B8F81F600BE62F4 /* CartProductContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CartProductContainer.xcdatamodel; sourceTree = "<group>"; };
 		5C45B0EE2B8F82AB00BE62F4 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		5C5A6D1F2B92114F0013E0B2 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		5C713B6B2B83599C0040AE10 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 		5C713B6D2B835AEA0040AE10 /* OffersRepositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersRepositories.swift; sourceTree = "<group>"; };
 		5C713B6F2B835B2A0040AE10 /* OffersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersUseCase.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				5C91C4012B84A1FF00308218 /* JSONDecoder.swift */,
 				5C91C40F2B85E34A00308218 /* HapticsManager.swift */,
 				5C45B0862B8AF3CB00BE62F4 /* NavigationView.swift */,
+				5C5A6D1F2B92114F0013E0B2 /* Color.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -697,6 +700,7 @@
 				5C431D1A2B89AC370091BF09 /* ProductDetailUseCase.swift in Sources */,
 				12A2DE4E2B2FC1DB0027A253 /* ProductView.swift in Sources */,
 				5C82AE9C2B76F485001742E8 /* Fonts.swift in Sources */,
+				5C5A6D202B92114F0013E0B2 /* Color.swift in Sources */,
 				12EEBF2F2B246360003B0B0C /* MetchikApp.swift in Sources */,
 				5C431D162B89AB100091BF09 /* ProductSourceDetailRepositories.swift in Sources */,
 				97E0AE732B28F9CD0078BD74 /* SubCategoryView.swift in Sources */,

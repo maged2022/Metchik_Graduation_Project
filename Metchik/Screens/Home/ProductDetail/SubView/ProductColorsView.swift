@@ -19,7 +19,6 @@ struct ProductColorsView: View {
                     Button(action: {
                     }, label: {
                         color
-                            .foregroundColor(Colors.secondaryLabelColor.swiftUIColor)
                             .overlay {
                                 if viewModel.selectedColor == color {
                                     Image(systemName: "checkmark")
