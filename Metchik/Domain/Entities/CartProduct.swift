@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct CartProduct {
+struct CartProduct: Identifiable {
+    let id = UUID().uuidString
     let productID: String
     let size: ProductSizes
     let color: Color

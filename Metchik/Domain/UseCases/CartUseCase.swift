@@ -21,7 +21,6 @@ class CartUseCase: CartRepositories {
         cartRepo.getCartProducts()
             .map {$0.map {$0.toCartProduct()}}
             .sink { products in
-                print(products)
             self.cartProducts = products
         }
             .store(in: &cancellables)
@@ -34,6 +33,10 @@ class CartUseCase: CartRepositories {
     func saveCartProduct(product: Product, size: ProductSizes, color: Color, count: Int) {
         let cartProduct = CartProduct(productID: product.id, size: size, color: color, selectedCount: count)
         cartRepo.saveCartProductSource(cartProduct.toCartProductSource())
+    } 
+    
+    func deleteCartProduct(indexSet: IndexSet) {
+        cartRepo.deleteCartProductSource(indexSet: indexSet)
     }
     
 }

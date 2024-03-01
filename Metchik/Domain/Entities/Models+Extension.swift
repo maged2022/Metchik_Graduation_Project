@@ -126,7 +126,7 @@ extension CartProduct {
         CartProductSource(
             productID: productID,
             size: size.rawValue,
-            color: color.description,
+            color: color.toString(),
             selectedCount: selectedCount )
     }
   
@@ -137,8 +137,8 @@ extension CartProductSource {
         CartProduct(
             productID: productID ,
             size: toProductSizes(size: size ),
-            color: Color(color  ),
-            selectedCount: Int(selectedCount))
+            color: Color.fromString(color) ?? .black,
+            selectedCount: selectedCount)
     }
     
 //

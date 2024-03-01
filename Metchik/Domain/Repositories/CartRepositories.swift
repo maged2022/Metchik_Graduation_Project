@@ -11,4 +11,5 @@ import Combine
 protocol CartRepositories {
     func saveCartProduct(product: Product, size: ProductSizes, color: Color, count: Int )
     func getCartProducts() -> AnyPublisher<[CartProduct], Never>
+    func deleteCartProduct(indexSet: IndexSet)
 }

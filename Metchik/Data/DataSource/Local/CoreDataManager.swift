@@ -10,10 +10,11 @@ import CoreData
 
 class CoreDataManager: ObservableObject {
     let container:NSPersistentContainer
-    @Published var cartProducts: [CartProductSourceEntity] = []
+    @Published private var cartProductsEntity: [CartProductSourceEntity] = []
+    @Published var cartProducts: [CartProductSource] = []
     init () {
         container = NSPersistentContainer(name: "CartProductContainer")
-        container.loadPersistentStores { description, error in
+        container.loadPersistentStores { _ , error in
             if let error = error {
                 print("error loading core data. \(error.localizedDescription)")
             }
@@ -24,32 +25,44 @@ class CoreDataManager: ObservableObject {
     func fetchCartProducts() {
         let request = NSFetchRequest<CartProductSourceEntity>(entityName: "CartProductSourceEntity")
         do {
-            cartProducts = try         container.viewContext.fetch(request)
-print(cartProducts)
+            cartProductsEntity = try container.viewContext.fetch(request)
+            self.cartProducts = cartProductsEntity.map {
+                CartProductSource(
+                    productID: $0.productID ?? "555",
+                    size: $0.size ?? "m",
+                    color: $0.color ?? "",
+                    selectedCount: Int($0.selectedCount)
+                )
+            }
+//            print("core data manager \(self.cartProducts) end get data ")
         } catch {
             print("error fetching. \(error.localizedDescription)")
         }
         
     }
     
-    func addCartProduct(cartProduct: CartProductSourceEntity) {
-        var newProduct = CartProductSourceEntity(context: container.viewContext)
-        newProduct = cartProduct
+    func addCartProduct(cartProduct: CartProductSource) {
+        let newProduct = CartProductSourceEntity(context: container.viewContext)
+        newProduct.productID = cartProduct.productID
+        newProduct.size = cartProduct.size
+        newProduct.color = cartProduct.color
+        newProduct.selectedCount = Int32(cartProduct.selectedCount)
         saveData()
     }
     
-    func deleteCartProduct(cartProduct: CartProductSourceEntity) {
-        var entity = CartProductSourceEntity()
-        entity = cartProduct
-        container.viewContext.delete(entity)
-        
+    func deleteCartProduct(indexSet: IndexSet) {
+        guard let index = indexSet.first else {return}
+        let cartProduct = cartProductsEntity[index]
+        container.viewContext.delete(cartProduct)
+        saveData()
     }
     
-//    func updateCartProduct(entity: CartProductSource){
-//        let currentName = entity.name ?? ""
-//        let newName = currentName + "?"
-//        entity.name = newName
+//    func updateCartProduct(entity: CartProductSource) {
+//        guard let entityIndex = cartProductsEntity.firstIndex(where: {$0.productID == entity.productID && $0.color == entity.color && $0.size == entity.size}) else {return}
+//        let currentEntity = cartProductsEntity[entityIndex]
+//        currentEntity.selectedCount = Int32(entity.selectedCount)
 //        saveData()
+//        
 //    }
     
     func saveData() {
