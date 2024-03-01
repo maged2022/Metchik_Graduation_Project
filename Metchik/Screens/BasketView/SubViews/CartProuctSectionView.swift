@@ -11,17 +11,13 @@ struct CartProuctSectionView: View {
     @EnvironmentObject var viewModel: CartViewModel
 
     var body: some View {
-        ScrollView {
-            LazyVStack {
-                ForEach(viewModel.products) { product in
-                    CartProductViewCell(product: product)
-                    //                        if !(index == productViewModel.basketProducts.count - 1) {
-                    //                            Divider()
-                    //                        }
-                }
+        List {
+            ForEach(viewModel.cartProducts.indices,id: \.self) { index in
+                CartProductViewCell(index: index)
             }
+            .onDelete(perform: viewModel.deleteCartProduct)
         }
-        .padding(.bottom,20)
+        .listStyle(PlainListStyle())
     }
 }
 

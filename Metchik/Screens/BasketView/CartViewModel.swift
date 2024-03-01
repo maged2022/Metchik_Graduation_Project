@@ -8,15 +8,15 @@
 import Foundation
 import Combine
 class CartViewModel: ObservableObject {
-
+    
     private var productUseCase: ProductRepositories = ProductUseCase()
     private var cartUseCase: CartRepositories = CartUseCase()
     private var cancellables = Set<AnyCancellable>()
     
     @Published var products : [Product] = []
-    @Published private var cartProducts: [CartProduct] = [] {
+    @Published var cartProducts: [CartProduct] = [] {
         didSet {
-            getProducts()
+            getProduct()
         }
     }
     init() {
@@ -25,16 +25,20 @@ class CartViewModel: ObservableObject {
     
     func getCartProducts() {
         cartUseCase.getCartProducts()
+//            .receive(on: DispatchQueue.main)
             .sink {[weak self] cartProducts in
             self?.cartProducts = cartProducts
         }
         .store(in: &cancellables)
     }
     
-    func getProducts() {
-        productUseCase.getProducts(by: cartProducts.map{$0.productID})
+    private func getProduct() {
+        productUseCase.getProducts(by: cartProducts.map {$0.productID})
+//            .receive(on: DispatchQueue.main)
             .sink {[weak self] products in
-            self?.products = products
+                guard let validProducts = self?.cartProducts
+                    .map({cartProduct in products[products.firstIndex(where: {$0.id == cartProduct.productID}) ?? 1] }) else {return}
+                self?.products = validProducts
         }
             .store(in: &cancellables)
     }
@@ -42,5 +46,9 @@ class CartViewModel: ObservableObject {
     func calculateTotalPrice() -> Double {
         products.map {$0.price * ( 1 - ($0.discountPercentage / 100.0))}
             .reduce(0.0, +)
+    }
+    
+    func deleteCartProduct(indexSet: IndexSet) {
+        cartUseCase.deleteCartProduct(indexSet: indexSet)
     }
 }
