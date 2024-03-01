@@ -16,7 +16,28 @@ struct MetchikApp: App {
         WindowGroup {
             ZStack {
                 NavigationView {
-                    HomeView()
+                    TabView(selection: .constant(1),
+                            content: {
+                        HomeView()
+                            .tabItem {
+                                Text("Home")
+                                Image(systemName: "house.fill")
+                            }.tag(0)
+                        CartView(viewModel: CartViewModel())
+                            .tabItem {
+                                VStack {
+                                    Text("cart")
+                                    Image(systemName: "cart.fill")
+                                }
+                            }.tag(1)
+                        Text("Profile Tab")
+                            .tabItem {
+                                VStack {
+                                    Text("profile")
+                                    Image(systemName: "person.fill")
+                                }
+                            }.tag(2)
+                    })
                     
                 }
                 .navigationViewStyle(StackNavigationViewStyle())
