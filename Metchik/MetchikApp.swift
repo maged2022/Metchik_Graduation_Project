@@ -15,15 +15,18 @@ struct MetchikApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack {
-                NavigationView {
-                    TabView(selection: .constant(1),
+                    TabView(selection: .constant(0),
                             content: {
-                        HomeView()
+                        NavigationView {
+                            HomeView()
+                        }
                             .tabItem {
                                 Text("Home")
                                 Image(systemName: "house.fill")
                             }.tag(0)
-                        CartView(viewModel: CartViewModel())
+                        NavigationView {
+                            CartView(viewModel: CartViewModel())
+                        }
                             .tabItem {
                                 VStack {
                                     Text("cart")
@@ -39,8 +42,6 @@ struct MetchikApp: App {
                             }.tag(2)
                     })
                     
-                }
-                .navigationViewStyle(StackNavigationViewStyle())
                 ZStack {
                     if showLaunchScreen {
                         LaunchView(showLaunchScreen: $showLaunchScreen)
