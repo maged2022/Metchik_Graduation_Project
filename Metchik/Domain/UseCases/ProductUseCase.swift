@@ -13,8 +13,9 @@ class ProductUseCase: ProductRepositories, ObservableObject {
     @Published private var products: [Product] = []
 
     private var cancellables = Set<AnyCancellable>()
-
-    init() {
+    static var instance = ProductUseCase()
+    
+    private init() {
         setupObserving()
         updateProducts()
     }
@@ -74,9 +75,19 @@ class ProductUseCase: ProductRepositories, ObservableObject {
     
     func getProducts(category: String, subCategories: String) -> AnyPublisher< [Product], Never> {
         return $products
-            .map{
+            .map {
                 $0.filter { $0.category.lowercased() == category.lowercased() }
                 .filter { $0.subCategory.lowercased() == subCategories.lowercased() }
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    func getProducts(by id: [String]) -> AnyPublisher< [Product], Never> {
+        return $products
+            .map { products in
+                products.filter { product in
+                    id.contains { $0.lowercased() == product.id.lowercased() }
+                }
             }
             .eraseToAnyPublisher()
     }

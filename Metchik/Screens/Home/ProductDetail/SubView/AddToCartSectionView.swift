@@ -23,7 +23,9 @@ struct AddToCartSectionView: View {
                     .foregroundColor(Colors.primaryLabelColor.swiftUIColor)
             }
             
-            Button(action: {}, label: {
+            Button(action: {
+                viewModel.addToCart()
+            }, label: {
                 Text("Add To Cart")
                     .foregroundColor(Colors.primaryButtonColor.swiftUIColor)
                     .font(.poppins(.semiBold, size: 16))

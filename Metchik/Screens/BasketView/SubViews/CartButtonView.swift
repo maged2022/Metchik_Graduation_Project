@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
-/*
+
 struct CartButtonView: View {
-    
+    typealias Colors = Asset.Colors
+
     var numberOfProducts: Int // users has in the cart.
     
     var body: some View {
@@ -41,4 +42,3 @@ struct CartButtonView_Previews: PreviewProvider {
         CartButtonView(numberOfProducts: 1)
     }
 }
-*/

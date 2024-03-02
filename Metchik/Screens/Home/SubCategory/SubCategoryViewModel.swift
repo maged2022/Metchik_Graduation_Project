@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class SubCategoryViewModel: ObservableObject {
-    private let productUseCase: ProductRepositories = ProductUseCase()
+    private let productUseCase: ProductRepositories = ProductUseCase.instance
     private var cancellables = Set<AnyCancellable>()
     
     let category: String

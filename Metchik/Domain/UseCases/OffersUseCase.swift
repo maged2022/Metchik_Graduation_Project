@@ -12,8 +12,9 @@ class OffersUseCase: OffersRepositories, ObservableObject {
     @Published private var offerSourceRepo: OffersSourceRepositories = OffersSourceRepositoriesImpl()
     @Published private var offers: [Offer] = []
     private var cancellables = Set<AnyCancellable>()
-    
-    init() {
+    static var instance = OffersUseCase()
+
+    private init() {
         updateOffers()
     }
     

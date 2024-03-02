@@ -12,4 +12,5 @@ protocol ProductRepositories {
     func getSubCategories(category: String) -> AnyPublisher<[String], Never>
     func getProducts(category: String, subCategories: [String]) -> AnyPublisher<[String : [Product]], Never>
     func getProducts(category: String, subCategories: String) -> AnyPublisher< [Product], Never>
+    func getProducts(by id: [String]) -> AnyPublisher< [Product], Never>
 }

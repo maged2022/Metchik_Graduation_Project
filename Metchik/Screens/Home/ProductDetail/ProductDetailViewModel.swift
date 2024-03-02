@@ -10,7 +10,8 @@ import SwiftUI
 import Combine
 
 class ProductDetailViewModel: ObservableObject {
-    private var productUseCase: ProductDetailRepositories = ProductDetailUseCase()
+    private var productUseCase: ProductDetailRepositories = ProductDetailUseCase.instance
+    private var cartUseCase: CartRepositories = CartUseCase.instance
     private var cancellables: [String: AnyCancellable] = [:]
     let product: Product
     @Published var productDetail: ProductDetail = .mockData {
@@ -87,5 +88,13 @@ class ProductDetailViewModel: ObservableObject {
     
     func getTotalPrice() -> Double {
         return product.price * Double(currentStepperValue)
+    }
+    
+    func addToCart() {
+        cartUseCase.saveCartProduct(
+            product: product,
+            size: selectedSize,
+            color: selectedColor,
+            count: currentStepperValue)
     }
 }
