@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct CartProduct: Identifiable {
-    let id = UUID().uuidString
     let productID: String
     let size: ProductSizes
     let color: Color
     let selectedCount: Int
+    var id: String {
+        productID + size.rawValue + color.toString()
+    }
 }

@@ -20,8 +20,8 @@ class CartUseCase: CartRepositories {
     func fetchCartProduct () {
         cartRepo.getCartProducts()
             .map {$0.map {$0.toCartProduct()}}
-            .sink { products in
-            self.cartProducts = products
+            .sink {[weak self] products in
+            self?.cartProducts = products
         }
             .store(in: &cancellables)
     }

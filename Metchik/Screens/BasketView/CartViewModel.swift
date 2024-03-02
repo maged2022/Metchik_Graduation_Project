@@ -11,7 +11,7 @@ class CartViewModel: ObservableObject {
     
     private var productUseCase: ProductRepositories = ProductUseCase()
     private var cartUseCase: CartRepositories = CartUseCase()
-    private var cancellables = Set<AnyCancellable>()
+    private var cancellables: [String: AnyCancellable] = [:]
     
     @Published var products : [Product] = []
     @Published var cartProducts: [CartProduct] = [] {
@@ -24,25 +24,29 @@ class CartViewModel: ObservableObject {
     }
     
     func getCartProducts() {
-        cartUseCase.getCartProducts()
-//            .receive(on: DispatchQueue.main)
+        self.cancellables["getCartProducts"]?.cancel()
+        let cancellable = AnyCancellable(cartUseCase.getCartProducts()
             .sink {[weak self] cartProducts in
-            self?.cartProducts = cartProducts
-        }
-        .store(in: &cancellables)
+                self?.cartProducts = cartProducts
+            })
+        self.cancellables["getCartProducts"] = cancellable
     }
     
     private func getProduct() {
-        productUseCase.getProducts(by: cartProducts.map {$0.productID})
-//            .receive(on: DispatchQueue.main)
+        self.cancellables["getProduct"]?.cancel()
+        let cancellable = AnyCancellable(productUseCase.getProducts(by: cartProducts.map {$0.productID})
             .sink {[weak self] products in
                 guard let validProducts = self?.cartProducts
-                    .map({cartProduct in products[products.firstIndex(where: {$0.id == cartProduct.productID}) ?? 1] }) else {return}
+                    .map({cartProduct in
+                        products[products.firstIndex(where: {$0.id == cartProduct.productID}) ?? 1] }) else {return}
                 self?.products = validProducts
-        }
-            .store(in: &cancellables)
+            })
+        self.cancellables["getProduct"] = cancellable
     }
-
+    
+    func getProduct(by cartProduct: CartProduct) -> Product {
+        products.first(where: {$0.id == cartProduct.productID}) ?? .mockData
+    }
     func calculateTotalPrice() -> Double {
         products.map {$0.price * ( 1 - ($0.discountPercentage / 100.0))}
             .reduce(0.0, +)

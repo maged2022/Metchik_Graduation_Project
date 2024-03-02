@@ -27,7 +27,6 @@ struct CartView: View {
         .padding(.horizontal,25)
         .navigationTitle("My Cart")
         .background(Colors.backgroundScreenColor.swiftUIColor )
-//        .ignoresSafeArea(.all,edges: .bottom)
         .environmentObject(viewModel)
 
     }

@@ -12,8 +12,8 @@ struct CartProuctSectionView: View {
 
     var body: some View {
         List {
-            ForEach(viewModel.cartProducts.indices,id: \.self) { index in
-                CartProductViewCell(index: index)
+            ForEach(viewModel.cartProducts,id: \.id) { cartProduct in
+                CartProductViewCell(cartProduct: cartProduct)
             }
             .onDelete(perform: viewModel.deleteCartProduct)
         }
