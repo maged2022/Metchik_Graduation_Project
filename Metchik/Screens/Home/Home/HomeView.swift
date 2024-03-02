@@ -13,7 +13,6 @@ struct HomeView: View {
     @StateObject private var homeViewModel = HomeViewModel()
     
     var body: some View {
-        NavigationView {
         ScrollView {
             VStack(spacing:25) {
                 VStack(spacing:20) {
@@ -45,7 +44,6 @@ struct HomeView: View {
                 }
         )
         .environmentObject(homeViewModel)
-        }
     }
 }
 

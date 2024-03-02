@@ -9,7 +9,3 @@ xcassets:
       - templateName: swift5
         output: Resources/Assets.swift
       
-  - inputs: Resources/Colors.xcassets
-    outputs:
-      - templateName: swift5
-        output: Resources/Colors.swift

@@ -21,7 +21,7 @@ struct LaunchView: View {
         ZStack {
             Colors.launchBackgroundColor.swiftUIColor
                 .ignoresSafeArea()
-            AssetImage.logoImage.swiftUIImage
+            Asset.Images.metchickLogo.swiftUIImage
                 .resizable()
                 .frame(width: 300, height: 300)
             

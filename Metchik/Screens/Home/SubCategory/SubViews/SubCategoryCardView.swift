@@ -42,7 +42,7 @@ struct SubCategoryViewCell: View {
     @State var index: Int
     var body: some View {
         ZStack(alignment: index.isMultiple(of: 2) ? .leading : .trailing) {
-            AssetImage.discountImage2.swiftUIImage
+            Asset.Images.discountImage2.swiftUIImage
                 .resizable()
                 .scaledToFill()
                 .frame(height: 100)

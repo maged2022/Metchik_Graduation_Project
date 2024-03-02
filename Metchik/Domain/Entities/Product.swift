@@ -22,7 +22,7 @@ struct Product: Identifiable {
                                            shortDescription: "shortDescription",
                                            price: 44.7,
                                            discountPercentage: 32,
-                                           mainImage:  AssetImage.discountImage2.swiftUIImage ,
+                                           mainImage:  Asset.Images.discountImage2.swiftUIImage ,
                                            category: "",
                                            subCategory: "")
     
