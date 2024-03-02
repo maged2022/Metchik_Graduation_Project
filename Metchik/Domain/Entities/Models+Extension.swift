@@ -16,7 +16,7 @@ extension ProductSource {
             price: price,
             discountPercentage: discountPercentage,
 //                    isFavorite: source.isFavorite, // Assuming isFavorite is a property of ProductSource
-            mainImage: ImageAsset(name: mainImage).swiftUIImage,
+            mainImage: ImageAsset(name: "Images/\(mainImage)").swiftUIImage,
             category: category,
             subCategory: subCategory
         )
@@ -116,7 +116,7 @@ extension Array where Element == OfferSource {
                 subTitle: source.subTitle,
                 promoCode: source.promoCode,
                 buttonTitle: source.buttonTitle,
-                backgroundImage: ImageAsset(name: source.backgroundImage).swiftUIImage)
+                backgroundImage: ImageAsset(name: "Images/\(source.backgroundImage)").swiftUIImage)
         }
     }
 }
@@ -141,42 +141,5 @@ extension CartProductSource {
             selectedCount: selectedCount)
     }
     
-//
 }
-//    func getColor (name: String) -> Color {
-                                //        switch name {
-                                //        case "Red":
-                                //            return Asset.ProductColor.red.swiftUIColor
-                                //        case "Blue":
-                                //            return Asset.ProductColor.blue.swiftUIColor
-                                //        case "Green":
-                                //            return Asset.ProductColor.green.swiftUIColor
-                                //        case "Black":
-                                //            return Asset.ProductColor.black.swiftUIColor
-                                //        case "White":
-                                //            return Asset.ProductColor.white.swiftUIColor
-                                //        case "Yellow":
-                                //            return Asset.ProductColor.yellow.swiftUIColor
-                                //        default:
-                                //            return Asset.ProductColor.yellow.swiftUIColor
-                                //        }
-                                //    }
-                                
-                            //    func getColorName (color: Color) -> String {
-                            //        switch color {
-                            //        case .red:
-                            //            return "Red"
-                            //        case .blue:
-                            //            return "Blue"
-                            //        case .green:
-                            //            return "Green"
-                            //        case .black:
-                            //            return "Black"
-                            //        case .white:
-                            //            return "White"
-                            //        case .yellow:
-                            //            return "Yellow"
-                            //        default:
-                            //            return "Yellow"
-                            //        }
-                            //    }
+
