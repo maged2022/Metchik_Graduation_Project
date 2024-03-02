@@ -9,8 +9,8 @@ import Foundation
 import Combine
 class CartViewModel: ObservableObject {
     
-    private var productUseCase: ProductRepositories = ProductUseCase()
-    private var cartUseCase: CartRepositories = CartUseCase()
+    private var productUseCase: ProductRepositories = ProductUseCase.instance
+    private var cartUseCase: CartRepositories = CartUseCase.instance
     private var cancellables: [String: AnyCancellable] = [:]
     
     @Published var products : [Product] = []

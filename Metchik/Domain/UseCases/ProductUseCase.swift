@@ -13,8 +13,9 @@ class ProductUseCase: ProductRepositories, ObservableObject {
     @Published private var products: [Product] = []
 
     private var cancellables = Set<AnyCancellable>()
-
-    init() {
+    static var instance = ProductUseCase()
+    
+    private init() {
         setupObserving()
         updateProducts()
     }

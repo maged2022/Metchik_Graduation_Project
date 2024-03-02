@@ -10,8 +10,8 @@ import SwiftUI
 import Combine
 
 class ProductDetailViewModel: ObservableObject {
-    private var productUseCase: ProductDetailRepositories = ProductDetailUseCase()
-    private var cartUseCase: CartRepositories = CartUseCase()
+    private var productUseCase: ProductDetailRepositories = ProductDetailUseCase.instance
+    private var cartUseCase: CartRepositories = CartUseCase.instance
     private var cancellables: [String: AnyCancellable] = [:]
     let product: Product
     @Published var productDetail: ProductDetail = .mockData {

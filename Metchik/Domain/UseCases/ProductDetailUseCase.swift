@@ -14,6 +14,11 @@ class ProductDetailUseCase: ProductDetailRepositories, ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
 
+    static var instance = ProductDetailUseCase()
+    private init(){
+        
+    }
+    
     func fetchProductDetail(by id : String) {
         repo.getProductSourceDetail(by: id)
             .map { $0.toProductDetail() }

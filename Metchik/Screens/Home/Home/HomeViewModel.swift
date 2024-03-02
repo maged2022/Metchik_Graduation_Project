@@ -9,8 +9,8 @@ import Foundation
 import Combine
 
 class HomeViewModel: ObservableObject {
-    private let offersUseCase: OffersRepositories = OffersUseCase()
-    private let productUseCase: ProductRepositories = ProductUseCase()
+    private let offersUseCase: OffersRepositories = OffersUseCase.instance
+    private let productUseCase: ProductRepositories = ProductUseCase.instance
     private var cancellables = Set<AnyCancellable>()
 
     @Published var offers: [Offer] = []

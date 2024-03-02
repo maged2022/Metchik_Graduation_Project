@@ -12,8 +12,8 @@ class CartUseCase: CartRepositories {
     @Published private var cartRepo: CartSourceRepositories = CartSourceRepositoriesImpl()
     @Published private var cartProducts: [CartProduct] = []
     private var cancellables = Set<AnyCancellable>()
-    
-    init() {
+    static var instance = CartUseCase()
+    private init() {
         fetchCartProduct()
     }
     
