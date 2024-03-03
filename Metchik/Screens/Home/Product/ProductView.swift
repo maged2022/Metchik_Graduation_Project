@@ -24,15 +24,21 @@ struct ProductView: View {
                 }
             }
         }
+        .animation(.spring)
         .padding(.horizontal,25)
-        .navigationBarItems(
-            trailing:
-                Button(action: {
-                }, label: {
-                    Image(systemName: "magnifyingglass")
-                        .padding(.trailing)
-                })
-        )
+        .background(Asset.Colors.backgroundScreenColor.swiftUIColor )
+        .navigationBarBackButtonHidden()
+        .navigationBarItems(leading: BackButton(), trailing: searchButton )
+        .navigationTitle(productViewModel.selectedSubCategory)
+    }
+    
+    private var searchButton: some View {
+            Button(action: {
+            }, label: {
+                Image(systemName: "magnifyingglass")
+                    .padding(.trailing)
+                    .foregroundColor(Asset.Colors.primaryLabelColor.swiftUIColor)
+            })
     }
 }
 
