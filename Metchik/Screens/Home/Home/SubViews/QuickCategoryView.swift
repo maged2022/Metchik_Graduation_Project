@@ -33,6 +33,7 @@ struct QuickCategoryView: View {
             }
             
         }
+        .padding(.leading,25)
     }
     
     @ViewBuilder

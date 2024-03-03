@@ -19,6 +19,7 @@ struct OffersView: View {
                 }
             }
         }
+        .padding(.leading,25)
     }
 }
 
@@ -42,6 +43,7 @@ struct OfferCard: View {
                     Text(offer.subTitle)
                         .font(.poppins(.regular, size: 16))
                 }
+                .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
                 Text(offer.promoCode)
                     .font(.poppins(.bold, size: 11))
                     .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)
