@@ -77,7 +77,7 @@ struct CartProductViewCell: View {
             
         }
         .cornerRadius(13)
-        
+
     }
     
 }

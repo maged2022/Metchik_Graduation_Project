@@ -31,7 +31,7 @@ struct HomeView: View {
             leading: leadingNavigationButton
             ,trailing: trailingNavigationButton )
         .environmentObject(homeViewModel)
-        .onAppear {startTimer() }
+        .onAppear {showCategory() }
     }
 }
 
@@ -95,21 +95,19 @@ extension HomeView {
             if showQuickCategoryView {
                 QuickCategoryView()
                     .onAppear {
-                        startHideTimer()
+                        hideCategory()
                     }
             }
         }
     }
     
-    private func startTimer() {
-        Timer.scheduledTimer(withTimeInterval: 0, repeats: false) { _ in
-            withAnimation {
-                showQuickCategoryView = true
-            }
+    private func showCategory() {
+        withAnimation {
+            showQuickCategoryView = true
         }
     }
     
-    private func startHideTimer() {
+    private func hideCategory() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
             withAnimation {
                 showQuickCategoryView = false
@@ -126,6 +124,9 @@ extension HomeView {
             .background(GeometryReader { proxy -> Color in
                 DispatchQueue.main.async {
                     offset = -proxy.frame(in: .named("scroll")).origin.y
+                    if offset < -1 {
+                        showCategory()
+                    }
                 }
                 return Color.clear
             })
@@ -148,7 +149,6 @@ extension HomeView {
     func getNewHeaderScale() -> CGSize {
         let newOffset = offset
         if newOffset < 0 {
-            startTimer()
             return CGSize(width: 1, height: 1)
         } else if newOffset + 10 < height {
             return CGSize(

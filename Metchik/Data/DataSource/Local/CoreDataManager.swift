@@ -58,7 +58,9 @@ class CoreDataManager: ObservableObject {
     }
     
 //    func updateCartProduct(entity: CartProductSource) {
-//        guard let entityIndex = cartProductsEntity.firstIndex(where: {$0.productID == entity.productID && $0.color == entity.color && $0.size == entity.size}) else {return}
+//        guard let entityIndex = cartProductsEntity
+//        .firstIndex(where: {$0.productID == entity.productID && $0.color == entity.color && $0.size == entity.size})
+//    else {return}
 //        let currentEntity = cartProductsEntity[entityIndex]
 //        currentEntity.selectedCount = Int32(entity.selectedCount)
 //        saveData()

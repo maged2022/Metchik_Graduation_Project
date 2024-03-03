@@ -48,7 +48,9 @@ class ProductDetailViewModel: ObservableObject {
         self.cancellables["Productdetail"]?.cancel()
         let cancellable = AnyCancellable(productUseCase.getProductDetail()
             .sink {[weak self] productDetail in
-                self?.productDetail = productDetail
+                DispatchQueue.main.async {
+                    self?.productDetail = productDetail
+                }
             })
         self.cancellables["Productdetail"] = cancellable
     }

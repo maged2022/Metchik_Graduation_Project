@@ -15,7 +15,7 @@ class ProductDetailUseCase: ProductDetailRepositories, ObservableObject {
     private var cancellables = Set<AnyCancellable>()
 
     static var instance = ProductDetailUseCase()
-    private init(){
+    private init() {
         
     }
     

@@ -36,6 +36,13 @@ internal enum Asset {
     internal static let searchLabelColor = ColorAsset(name: "Colors/SearchLabelColor")
     internal static let secondaryButtonColor = ColorAsset(name: "Colors/SecondaryButtonColor")
     internal static let secondaryLabelColor = ColorAsset(name: "Colors/SecondaryLabelColor")
+    internal static let userBackground = ColorAsset(name: "Colors/UserBackground")
+  }
+  internal enum Icons {
+    internal static let backIcon = ImageAsset(name: "Icons/backIcon")
+    internal static let cartIcon = ImageAsset(name: "Icons/cartIcon")
+    internal static let menuIcon = ImageAsset(name: "Icons/menuIcon")
+    internal static let userIcon = ImageAsset(name: "Icons/userIcon")
   }
   internal enum Images {
     internal static let offerBackground = ImageAsset(name: "Images/OfferBackground")

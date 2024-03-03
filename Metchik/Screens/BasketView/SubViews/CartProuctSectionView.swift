@@ -14,10 +14,13 @@ struct CartProuctSectionView: View {
         List {
             ForEach(viewModel.cartProducts,id: \.id) { cartProduct in
                 CartProductViewCell(cartProduct: cartProduct)
+                    .background(Asset.Colors.backgroundScreenColor.swiftUIColor )
             }
             .onDelete(perform: viewModel.deleteCartProduct)
         }
+        .tint(Asset.Colors.backgroundScreenColor.swiftUIColor)
         .listStyle(PlainListStyle())
+        .background(Asset.Colors.backgroundScreenColor.swiftUIColor )
     }
 }
 

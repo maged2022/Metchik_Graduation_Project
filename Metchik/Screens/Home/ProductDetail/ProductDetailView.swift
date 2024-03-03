@@ -34,22 +34,31 @@ struct ProductDetailView: View {
             }
             .padding(.vertical,20)
             .padding(.horizontal,25)
-            .padding(.bottom,-25)
             .background(Colors.backgroundScreenColor.swiftUIColor
                 .ignoresSafeArea()
                 .cornerRadius(30)
             )
             .offset(y:-30)
         }
+        .animation(.spring)
+        .padding(.bottom,40)
+        .ignoresSafeArea()
+        .background(Colors.backgroundScreenColor.swiftUIColor )
         .environmentObject(productDetailViewModel)
-        
+        .navigationBarBackButtonHidden()
+        .navigationBarItems(
+            leading: BackButton(),
+            trailing: CartButtonView())
     }
 }
 
 struct ProductDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailView(productDetailViewModel: ProductDetailViewModel(product:Product.mockData)
-        )
-        .previewLayout(.fixed(width: 500, height: 1000))
+        NavigationView(content: {
+            ProductDetailView(productDetailViewModel: ProductDetailViewModel(product:Product.mockData)
+            )
+            .previewLayout(.fixed(width: 500, height: 1000))
+        })
+       
     }
 }
