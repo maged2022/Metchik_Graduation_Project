@@ -31,9 +31,6 @@ extension Font {
       }
 
       static func poppins(_ poppinsFont: Poppins, size: CGFloat) -> Font {
-          guard let font = UIFont(name: poppinsFont.rawValue, size: size) else {
-              fatalError("Error loading Poppins font: \(poppinsFont.rawValue)")
-          }
-          return Font(font)
+          return Font.custom(poppinsFont.rawValue, size: size)
       }
 }
