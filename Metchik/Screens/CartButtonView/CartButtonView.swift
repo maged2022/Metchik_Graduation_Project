@@ -7,31 +7,16 @@
 
 import SwiftUI
 import Combine
-class CartButtonViewModel: ObservableObject {
-    private var cartUseCase: CartRepositories = CartUseCase.instance
-    private var cancellables: [String: AnyCancellable] = [:]
-    @Published var numberOfProducts: Int = 0
-    init() {
-        updateCartProductCount()
-    }
-    private func updateCartProductCount() {
-        self.cancellables["updateCartProductCount"]?.cancel()
-        let cancellable = AnyCancellable(cartUseCase.getCartProductsCount()
-            .sink { [weak self] count in
-                self?.numberOfProducts = count
-            })
-        self.cancellables["updateCartProductCount"] = cancellable
-    }
-}
+
 struct CartButtonView: View {
     typealias Colors = Asset.Colors
 
-    @StateObject var cartViewModel = CartButtonViewModel()
+    @StateObject var cartViewModel: CartButtonViewModel
     
     var body: some View {
-//        NavigationLink {
-//            CartView(viewModel: CartViewModel())
-//        } label: {
+        Button {
+            cartViewModel.cartButtonPressed()
+        } label: {
             ZStack(alignment: .topTrailing) {
                 Colors.backgroundScreenColor.swiftUIColor
                 .frame(width: 30,height: 30)
@@ -53,12 +38,16 @@ struct CartButtonView: View {
                         .offset(y:-4)
                 }
             }
-//        }
+        }
     }
 }
 
 struct CartButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        CartButtonView()
+        let navigationController = UINavigationController()
+        let router = AppRouter(navigationController: navigationController)
+        let homeCoordinator = HomeTabCoordinator(router: router)
+        let cartButtonViewModel = CartButtonViewModel(coordinator: homeCoordinator)
+        CartButtonView(cartViewModel: cartButtonViewModel)
     }
 }

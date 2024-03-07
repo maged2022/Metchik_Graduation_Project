@@ -33,7 +33,12 @@ struct SubCategoryView: View {
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            SubCategoryView(subCategoryViewModel: SubCategoryViewModel(category: "Men"))
+            let navigationController = UINavigationController()
+            let router = AppRouter(navigationController: navigationController)
+            let homeCoordinator = HomeTabCoordinator(router: router)
+
+            let subCategoryViewModel = SubCategoryViewModel(category: "Men", coordinator: homeCoordinator)
+            SubCategoryView(subCategoryViewModel: subCategoryViewModel)
         }
     }
 }

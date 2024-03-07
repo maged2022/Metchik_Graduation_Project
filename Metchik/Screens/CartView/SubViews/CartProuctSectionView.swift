@@ -26,8 +26,13 @@ struct CartProuctSectionView: View {
 
 struct CartProuctSectionView_Previews: PreviewProvider {
     static var previews: some View {
+        let navigationController = UINavigationController()
+        let router = AppRouter(navigationController: navigationController)
+        let cartCoordinator = TabBarCoordinator(router: router)
+        let cartViewModel = CartViewModel(coordinator: cartCoordinator)
+
         CartProuctSectionView()
-            .environmentObject(CartViewModel())
+            .environmentObject(cartViewModel)
         
     }
 }

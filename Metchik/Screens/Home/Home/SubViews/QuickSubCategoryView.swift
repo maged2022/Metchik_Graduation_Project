@@ -23,8 +23,12 @@ struct QuickSubCategoryView: View {
 
 struct QuickSubCategoryView_Previews: PreviewProvider {
     static var previews: some View {
+        let navigationController = UINavigationController()
+        let router = AppRouter(navigationController: navigationController)
+        let homeCoordinator = HomeTabCoordinator(router: router)
+        let homeViewModel = HomeViewModel(coordinator: homeCoordinator)
         QuickSubCategoryView()
-            .environmentObject(HomeViewModel())
+            .environmentObject(homeViewModel)
 
     }
 }
@@ -42,14 +46,8 @@ struct CardSubCategoriesView: View {
                     .font(.poppins(.bold, size: 18))
                     .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
                 Spacer()
-                NavigationLink {
-                   NavigationLazyView(
-                    ProductView(
-                        productViewModel: ProductViewModel(
-                            selectedCategory: vmod.selectedCategory,
-                            selectedSubCategory: sectionName)
-                    )
-                   )
+                Button {
+                    vmod.pressedViewAllButton(selectedSubCategory: sectionName)
                 } label: {
                     Text("View All")
                         .font(.poppins(.bold, size: 11))
@@ -58,8 +56,8 @@ struct CardSubCategoriesView: View {
             }
             HStack {
                 ForEach(products.prefix(2)) { product in
-                        ProductItemView(product: product) {
-                        }
+                    let productItemViewModel = vmod.getProductItemViewModel(product: product)
+                        ProductItemView(productItemViewModel: productItemViewModel)
                     }
             }
         }

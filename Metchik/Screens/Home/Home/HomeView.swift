@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @StateObject private var homeViewModel = HomeViewModel()
+    @StateObject var homeViewModel: HomeViewModel
     @State private var offset = CGFloat.zero
     @State private var showQuickCategoryView = false
     let height: CGFloat = 70
@@ -39,7 +39,13 @@ struct ContentView_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView(content: {
-            HomeView()
+            let navigationController = UINavigationController()
+            let router = AppRouter(navigationController: navigationController)
+            let homeCoordinator = HomeTabCoordinator(router: router)
+
+            let homeViewModel = HomeViewModel(coordinator: homeCoordinator)
+           
+            HomeView(homeViewModel: homeViewModel)
         })
     }
 }
@@ -47,30 +53,29 @@ struct ContentView_Previews: PreviewProvider {
 extension HomeView {
     
     private var leadingNavigationButton: some View {
-        NavigationLink(
-            destination: NavigationLazyView(
-                SubCategoryView(
-                    subCategoryViewModel:
-                        SubCategoryViewModel(
-                            category: homeViewModel.selectedCategory)))) {
-                                Asset.Icons.menuIcon.swiftUIImage
-                                    .resizable()
-                                    .frame(width: 17, height: 12)
-                                    .foregroundColor(Asset.Colors.primaryButtonColor.swiftUIColor)
-                                    .frame(width: 35, height: 35)
-                                    .background(Asset.Colors.secondaryButtonColor.swiftUIColor.cornerRadius(20))
-                            }
+        Button {
+            homeViewModel.pressedLeadingNavigationButton()
+        } label: {
+            Asset.Icons.menuIcon.swiftUIImage
+                .resizable()
+                .frame(width: 17, height: 12)
+                .foregroundColor(Asset.Colors.primaryButtonColor.swiftUIColor)
+                .frame(width: 35, height: 35)
+                .background(Asset.Colors.secondaryButtonColor.swiftUIColor.cornerRadius(20))
+        }
     }
     
     private var trailingNavigationButton: some View {
-        NavigationLink(
-            destination: Text("profile")) {
-                Asset.Icons.userIcon.swiftUIImage
-                    .resizable()
-                    .frame(width: 56, height: 56)
-                    .frame(width: 50, height: 50)
-                    .background(Asset.Colors.userBackground.swiftUIColor.cornerRadius(25))
-            }
+        
+        Button {
+            homeViewModel.pressedTrailingNavigationButton()
+        } label: {
+            Asset.Icons.userIcon.swiftUIImage
+                .resizable()
+                .frame(width: 56, height: 56)
+                .frame(width: 50, height: 50)
+                .background(Asset.Colors.userBackground.swiftUIColor.cornerRadius(25))
+        }
     }
     
     private var headerView: some View {

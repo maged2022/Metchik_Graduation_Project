@@ -48,15 +48,20 @@ struct ProductDetailView: View {
         .navigationBarBackButtonHidden()
         .navigationBarItems(
             leading: BackButton(),
-            trailing: CartButtonView())
+            trailing:
+                CartButtonView(cartViewModel: productDetailViewModel.getCartButtonViewModel())
+        )
     }
 }
 
 struct ProductDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView(content: {
-            ProductDetailView(productDetailViewModel: ProductDetailViewModel(product:Product.mockData)
-            )
+            let navigationController = UINavigationController()
+            let router = AppRouter(navigationController: navigationController)
+            let homeCoordinator = HomeTabCoordinator(router: router)
+            let productDetailViewModel = ProductDetailViewModel(product: Product.mockData, coordinator: homeCoordinator)
+            ProductDetailView(productDetailViewModel: productDetailViewModel)
             .previewLayout(.fixed(width: 500, height: 1000))
         })
        

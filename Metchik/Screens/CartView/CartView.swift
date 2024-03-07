@@ -23,14 +23,14 @@ struct CartView: View {
             
             proceedButton
         }
-        .padding(.bottom,50)
+        .padding(.bottom,25)
         .padding(.horizontal,25)
         .navigationTitle("My Cart")
         .background(Colors.backgroundScreenColor.swiftUIColor )
         .environmentObject(viewModel)
         .navigationBarItems(
             leading: BackButton(),
-            trailing: CartButtonView())
+            trailing: CartButtonView(cartViewModel: viewModel.getCartButtonViewModel()))
 
     }
     
@@ -39,7 +39,12 @@ struct CartView: View {
 struct CartView_Previews: PreviewProvider {
     static var previews: some View {
         return NavigationView {
-            CartView(viewModel: CartViewModel())
+            let navigationController = UINavigationController()
+            let router = AppRouter(navigationController: navigationController)
+            let cartCoordinator = TabBarCoordinator(router: router)
+            let cartViewModel = CartViewModel(coordinator: cartCoordinator)
+
+            CartView(viewModel: cartViewModel)
         }
     }
 }

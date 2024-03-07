@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 protocol TabBarCoordinatorProtocol: Coordinator {
     func showTabBar()
@@ -14,6 +15,8 @@ protocol TabBarCoordinatorProtocol: Coordinator {
     func showCart()
     func showNotifications()
     func showProfile()
+    func createCartButtonViewModel() -> CartButtonViewModel
+
 }
 
 class TabBarCoordinator: TabBarCoordinatorProtocol {
@@ -26,6 +29,7 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
         self.tabViewController = UITabBarController()
         tabViewController.tabBar.isTranslucent = true
         tabViewController.tabBar.backgroundColor = .lightGray
+        router.navigationController.isNavigationBarHidden = true
     }
     
     func start() {
@@ -58,18 +62,20 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
     }
     
     private func homeViewController() -> UIViewController {
-        let homeCoordinator = HomeTabCoordinator(router: router)
-        let homeViewController = homeCoordinator.homeViewController
-        setup(view: homeViewController ,
+        let navigationController = UINavigationController()
+        let router = AppRouter(navigationController: navigationController)
+        let homeCoordinator = HomeTabCoordinator(router: router, coordinator: self)
+        homeCoordinator.start()
+        setup(view: navigationController ,
               title: "Home",
               imageName: "house",
               selectedImageName: "house.fill")
-        return homeViewController
+        return navigationController
     }
     
     private func cartViewController() -> UIViewController {
-        let cartCoordinator = CartTabCoordinator(router: router)
-        let cartViewController = cartCoordinator.cartViewController
+        let cartViewModel = CartViewModel(coordinator: self)
+        let cartViewController =  UIHostingController(rootView: CartView(viewModel: cartViewModel))
         setup(view: cartViewController,
               title: "Cart",
               imageName: "cart",
@@ -82,5 +88,12 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
         let selectedImage = UIImage(systemName: selectedImageName)
         let tabBarItem = UITabBarItem(title: title, image: defaultImage, selectedImage: selectedImage)
         view.tabBarItem = tabBarItem
+    }
+    
+    func createCartButtonViewModel() -> CartButtonViewModel {
+        let navigationController = UINavigationController()
+        let router = AppRouter(navigationController: navigationController)
+        let homeCoordinator = HomeTabCoordinator(router: router)
+        return CartButtonViewModel(coordinator: homeCoordinator)
     }
 }

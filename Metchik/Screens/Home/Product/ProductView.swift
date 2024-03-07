@@ -20,7 +20,8 @@ struct ProductView: View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 24) {
                 ForEach(productViewModel.products) { product in
-                    ProductItemView(product: product, onBuutonTap: { })
+                    let productItemViewModel = productViewModel.getProductItemViewModel(product: product)
+                    ProductItemView(productItemViewModel: productItemViewModel)
                 }
             }
         }
@@ -45,7 +46,11 @@ struct ProductView: View {
 struct ProductView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ProductView(productViewModel: ProductViewModel(selectedCategory: "Men", selectedSubCategory: "Shoes"))
+            let navigationController = UINavigationController()
+            let router = AppRouter(navigationController: navigationController)
+            let homeCoordinator = HomeTabCoordinator(router: router)
+            let productViewModel = ProductViewModel(selectedCategory: "Men", selectedSubCategory: "Shoes", coordinator: homeCoordinator)
+            ProductView(productViewModel: productViewModel)
         }
     }
 }

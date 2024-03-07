@@ -25,8 +25,13 @@ struct OffersView: View {
 
 struct OffersView_Previews: PreviewProvider {
     static var previews: some View {
+        let navigationController = UINavigationController()
+        let router = AppRouter(navigationController: navigationController)
+        let homeCoordinator = HomeTabCoordinator(router: router)
+
+        let homeViewModel = HomeViewModel(coordinator: homeCoordinator)
         OffersView()
-            .environmentObject(HomeViewModel())
+            .environmentObject(homeViewModel)
 
     }
 }

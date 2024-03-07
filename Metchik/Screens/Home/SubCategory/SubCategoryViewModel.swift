@@ -11,7 +11,7 @@ import Combine
 class SubCategoryViewModel: ObservableObject {
     private let productUseCase: ProductRepositories = ProductUseCase.instance
     private var cancellables = Set<AnyCancellable>()
-    
+    let coordinator: HomeCoordinatorProtocol
     let category: String
     @Published var subCategories: [String] = [] {
         didSet {
@@ -19,8 +19,9 @@ class SubCategoryViewModel: ObservableObject {
         }
     }
     @Published var products: [String: [Product]] = [:]
-    init(category: String) {
+    init(category: String,coordinator: HomeCoordinatorProtocol) {
         self.category = category
+        self.coordinator = coordinator
         updateSubCategories()
     }
     private func updateSubCategories() {
@@ -39,8 +40,26 @@ class SubCategoryViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
+    
+    func isLeadingAlignment(for outerSubCategory: String) -> Bool {
+      var index = 0
+        for subCategory in subCategories {
+            if subCategory == outerSubCategory {
+                return index.isMultiple(of: 2)
+            }
+            index += 1
+        }
+        return true
+    }
+    
     func getProductsCount(for subCategory: String) -> Int {
         products[subCategory]?.count ?? 1
     }
     
+}
+
+extension SubCategoryViewModel {
+    func subCategoryViewPressed(subCategory: String) {
+        coordinator.showProductView(selectedCategory: category, selectedSubCategory: subCategory)
+    }
 }
