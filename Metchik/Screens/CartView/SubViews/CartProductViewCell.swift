@@ -77,15 +77,20 @@ struct CartProductViewCell: View {
             
         }
         .cornerRadius(13)
-        
+
     }
     
 }
 
 struct CartProductViewCell_Previews: PreviewProvider {
     static var previews: some View {
+        let navigationController = UINavigationController()
+        let router = AppRouter(navigationController: navigationController)
+        let cartCoordinator = TabBarCoordinator(router: router)
+        let cartViewModel = CartViewModel(coordinator: cartCoordinator)
+
         return CartProductViewCell(cartProduct: CartProduct(productID: "1", size: .l, color: .black, selectedCount: 3))
-            .environmentObject(CartViewModel())
+            .environmentObject(cartViewModel)
 
     }
 }

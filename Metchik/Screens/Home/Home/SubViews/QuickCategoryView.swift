@@ -33,6 +33,7 @@ struct QuickCategoryView: View {
             }
             
         }
+        .padding(.leading,25)
     }
     
     @ViewBuilder
@@ -50,7 +51,12 @@ struct QuickCategoryView: View {
 
 struct QuickCategoryView_Previews: PreviewProvider {
     static var previews: some View {
+        let navigationController = UINavigationController()
+        let router = AppRouter(navigationController: navigationController)
+        let homeCoordinator = HomeTabCoordinator(router: router)
+
+        let homeViewModel = HomeViewModel(coordinator: homeCoordinator)
         QuickCategoryView()
-            .environmentObject(HomeViewModel())
+            .environmentObject(homeViewModel)
     }
 }

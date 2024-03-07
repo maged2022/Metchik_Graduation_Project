@@ -25,7 +25,8 @@ extension Color {
 
     // Convert a string representation back to Color
     static func fromString(_ string: String) -> Color? {
-        let regex = try! NSRegularExpression(pattern: #"Color\(red: ([\d.]+), green: ([\d.]+), blue: ([\d.]+), opacity: ([\d.]+)\)"#)
+        let regex = try! NSRegularExpression(
+            pattern: #"Color\(red: ([\d.]+), green: ([\d.]+), blue: ([\d.]+), opacity: ([\d.]+)\)"#)
         
         if let match = regex.firstMatch(in: string, range: NSRange(string.startIndex..., in: string)) {
             let red = Double((string as NSString).substring(with: match.range(at: 1))) ?? 0.0

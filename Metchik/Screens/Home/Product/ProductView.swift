@@ -20,26 +20,37 @@ struct ProductView: View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 24) {
                 ForEach(productViewModel.products) { product in
-                    ProductItemView(product: product, onBuutonTap: { })
+                    let productItemViewModel = productViewModel.getProductItemViewModel(product: product)
+                    ProductItemView(productItemViewModel: productItemViewModel)
                 }
             }
         }
+        .animation(.spring)
         .padding(.horizontal,25)
-        .navigationBarItems(
-            trailing:
-                Button(action: {
-                }, label: {
-                    Image(systemName: "magnifyingglass")
-                        .padding(.trailing)
-                })
-        )
+        .background(Asset.Colors.backgroundScreenColor.swiftUIColor )
+        .navigationBarBackButtonHidden()
+        .navigationBarItems(leading: BackButton(), trailing: searchButton )
+        .navigationTitle(productViewModel.selectedSubCategory)
+    }
+    
+    private var searchButton: some View {
+            Button(action: {
+            }, label: {
+                Image(systemName: "magnifyingglass")
+                    .padding(.trailing)
+                    .foregroundColor(Asset.Colors.primaryLabelColor.swiftUIColor)
+            })
     }
 }
 
 struct ProductView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ProductView(productViewModel: ProductViewModel(selectedCategory: "Men", selectedSubCategory: "Shoes"))
+            let navigationController = UINavigationController()
+            let router = AppRouter(navigationController: navigationController)
+            let homeCoordinator = HomeTabCoordinator(router: router)
+            let productViewModel = ProductViewModel(selectedCategory: "Men", selectedSubCategory: "Shoes", coordinator: homeCoordinator)
+            ProductView(productViewModel: productViewModel)
         }
     }
 }

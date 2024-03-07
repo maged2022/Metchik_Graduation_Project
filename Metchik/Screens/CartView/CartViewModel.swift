@@ -12,14 +12,16 @@ class CartViewModel: ObservableObject {
     private var productUseCase: ProductRepositories = ProductUseCase.instance
     private var cartUseCase: CartRepositories = CartUseCase.instance
     private var cancellables: [String: AnyCancellable] = [:]
-    
+    let coordinator: TabBarCoordinatorProtocol
+
     @Published var products : [Product] = []
     @Published var cartProducts: [CartProduct] = [] {
         didSet {
             getProduct()
         }
     }
-    init() {
+    init(coordinator: TabBarCoordinatorProtocol) {
+        self.coordinator = coordinator
         getCartProducts()
     }
     
@@ -54,5 +56,11 @@ class CartViewModel: ObservableObject {
     
     func deleteCartProduct(indexSet: IndexSet) {
         cartUseCase.deleteCartProduct(indexSet: indexSet)
+    }
+}
+
+extension CartViewModel {
+    func getCartButtonViewModel() -> CartButtonViewModel {
+        coordinator.createCartButtonViewModel()
     }
 }

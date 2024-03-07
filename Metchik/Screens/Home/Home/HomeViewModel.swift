@@ -12,6 +12,7 @@ class HomeViewModel: ObservableObject {
     private let offersUseCase: OffersRepositories = OffersUseCase.instance
     private let productUseCase: ProductRepositories = ProductUseCase.instance
     private var cancellables = Set<AnyCancellable>()
+    let coordinator: HomeCoordinatorProtocol
 
     @Published var offers: [Offer] = []
     @Published var categories: [String] = []
@@ -27,7 +28,8 @@ class HomeViewModel: ObservableObject {
         }
     }
 
-    init() {
+    init(coordinator: HomeCoordinatorProtocol) {
+        self.coordinator = coordinator
         updateOffers()
         updateCategories()
     }
@@ -65,5 +67,27 @@ class HomeViewModel: ObservableObject {
                 self?.products = product
             }
             .store(in: &cancellables)
+    }
+}
+extension HomeViewModel {
+    func pressedViewAllButton(selectedSubCategory: String) {
+   
+        coordinator.showProductView(selectedCategory: selectedCategory,selectedSubCategory: selectedSubCategory)
+    }
+    
+    func productItemPressed(product: Product) {
+
+                coordinator.showDetails(product: product)
+    }
+    func pressedLeadingNavigationButton() {
+        coordinator.showSubCategoryView(category: selectedCategory)
+    }
+    
+    func pressedTrailingNavigationButton() {
+        coordinator.showProfile()
+    }
+    
+    func getProductItemViewModel(product: Product) -> ProductItemViewModel {
+        coordinator.createProductItemViewModel(product: product)
     }
 }

@@ -11,50 +11,47 @@ struct SubCategoryCardView: View {
     @EnvironmentObject var viewModel: SubCategoryViewModel
     var body: some View {
         VStack(spacing: 0) {
-            ForEach(viewModel.subCategories.indices, id: \.self) { index in
-                NavigationLink(
-                    destination:
-                        NavigationLazyView(
-                         ProductView(
-                             productViewModel: ProductViewModel(
-                                selectedCategory: viewModel.category,
-                                 selectedSubCategory: viewModel.subCategories[index])
-                         )
-                        )
-                ) {
-                        SubCategoryViewCell( index: index)
-                    }
+            ForEach(viewModel.subCategories, id: \.self) { subCategory in
+                Button {
+                    viewModel.subCategoryViewPressed(subCategory: subCategory)
+                } label: {
+                    SubCategoryViewCell(subCategory: subCategory)
+                }
             }
         }
-        
     }
 }
 
 struct SubCategoryCardView_Previews: PreviewProvider {
     static var previews: some View {
+        let navigationController = UINavigationController()
+               let router = AppRouter(navigationController: navigationController)
+               let homeCoordinator = HomeTabCoordinator(router: router)
+
+               let subCategoryViewModel = SubCategoryViewModel(category: "Men", coordinator: homeCoordinator)
         SubCategoryCardView()
-            .environmentObject(SubCategoryViewModel(category: "Men"))
+            .environmentObject(subCategoryViewModel)
     }
 }
 
 struct SubCategoryViewCell: View {
     @EnvironmentObject var viewModel: SubCategoryViewModel
-    @State var index: Int
+    @State var subCategory: String
     var body: some View {
-        ZStack(alignment: index.isMultiple(of: 2) ? .leading : .trailing) {
+        ZStack(alignment: viewModel.isLeadingAlignment(for: subCategory) ? .leading : .trailing) {
             Asset.Images.discountImage2.swiftUIImage
                 .resizable()
                 .scaledToFill()
                 .frame(height: 100)
                 .cornerRadius(15)
             VStack(alignment:.leading) {
-                Text(viewModel.subCategories[index])
+                Text(subCategory)
                     .font(.poppins(.bold, size: 16))
-                Text("\(viewModel.getProductsCount(for: viewModel.subCategories[index])) Product")
+                Text("\(viewModel.getProductsCount(for: subCategory)) Product")
                     .font(.poppins(.semiBold, size: 11))
             }
             .foregroundColor(Asset.Colors.primaryLabelColor.swiftUIColor)
-            .padding(index.isMultiple(of: 2) ? .leading : .trailing ,20)
+            .padding( viewModel.isLeadingAlignment(for: subCategory) ? .leading : .trailing ,20)
         }
         .padding(.bottom,15)
     }

@@ -19,13 +19,19 @@ struct OffersView: View {
                 }
             }
         }
+        .padding(.leading,25)
     }
 }
 
 struct OffersView_Previews: PreviewProvider {
     static var previews: some View {
+        let navigationController = UINavigationController()
+        let router = AppRouter(navigationController: navigationController)
+        let homeCoordinator = HomeTabCoordinator(router: router)
+
+        let homeViewModel = HomeViewModel(coordinator: homeCoordinator)
         OffersView()
-            .environmentObject(HomeViewModel())
+            .environmentObject(homeViewModel)
 
     }
 }
@@ -42,6 +48,7 @@ struct OfferCard: View {
                     Text(offer.subTitle)
                         .font(.poppins(.regular, size: 16))
                 }
+                .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
                 Text(offer.promoCode)
                     .font(.poppins(.bold, size: 11))
                     .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)

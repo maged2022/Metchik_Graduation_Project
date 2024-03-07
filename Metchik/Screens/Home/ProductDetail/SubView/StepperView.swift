@@ -46,7 +46,11 @@ struct StepperView: View {
 
 struct StepperView_Previews: PreviewProvider {
     static var previews: some View {
+        let navigationController = UINavigationController()
+        let router = AppRouter(navigationController: navigationController)
+        let homeCoordinator = HomeTabCoordinator(router: router)
+        let productDetailViewModel = ProductDetailViewModel(product: Product.mockData, coordinator: homeCoordinator)
     StepperView()
-        .environmentObject(ProductDetailViewModel(product:Product.mockData))
+        .environmentObject(productDetailViewModel)
     }
 }

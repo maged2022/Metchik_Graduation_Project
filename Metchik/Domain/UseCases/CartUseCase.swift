@@ -39,4 +39,7 @@ class CartUseCase: CartRepositories {
         cartRepo.deleteCartProductSource(indexSet: indexSet)
     }
     
+    func getCartProductsCount() -> AnyPublisher<Int, Never> {
+        $cartProducts.map {$0.count}.eraseToAnyPublisher()
+    }
 }

@@ -9,36 +9,35 @@ import SwiftUI
 
 struct ProductItemView: View {
     typealias Colors = Asset.Colors
-
-    let product: Product
-    var onBuutonTap: () -> Void
+    @StateObject var productItemViewModel: ProductItemViewModel
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
-            NavigationLink(destination: NavigationLazyView(
-                ProductDetailView( productDetailViewModel: ProductDetailViewModel(product: product)))) {
+            Button {
+                productItemViewModel.productItemPressed()
+            } label: {
                 VStack {
-                    product.mainImage
+                    productItemViewModel.product.mainImage
                         .resizable()
                         .frame(height: 170)
                         .cornerRadius(15)
                         .scaledToFill()
                     
-                    Text(product.name)
+                    Text(productItemViewModel.product.name)
                         .font(.poppins(.semiBold, size: 14))
                         .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
                    
-                    Text(product.shortDescription)
+                    Text(productItemViewModel.product.shortDescription)
                         .font(.poppins(.regular, size: 11))
                         .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)
 
                     HStack {
-                        Text("\(String(format: "%.2f", product.price)) L.E")
+                        Text("\(String(format: "%.2f", productItemViewModel.product.price)) L.E")
                             .font(.poppins(.regular, size: 11))
                             .foregroundColor(Colors.secondaryLabelColor.swiftUIColor)
                             .strikethrough()
                         
-                        Text("\(String(format: "%.2f", product.discountPercentage)) L.E")
+                        Text("\(String(format: "%.2f", productItemViewModel.product.discountPercentage)) L.E")
                             .font(.poppins(.semiBold, size: 14))
                             .foregroundColor(Colors.primaryLabelColor.swiftUIColor)
                     }
@@ -46,9 +45,8 @@ struct ProductItemView: View {
             }
             
             Button {
-                onBuutonTap()
+                print("favorite button pressed ")
             } label: {
-
                 Image(systemName: "heart")
                     .resizable()
                     .frame(width: 8,height: 8)
@@ -68,6 +66,11 @@ struct ProductItemView: View {
 
 struct ProductItemView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductItemView(product: Product.mockData, onBuutonTap: { })
+        let navigationController = UINavigationController()
+        let router = AppRouter(navigationController: navigationController)
+        let homeCoordinator = HomeTabCoordinator(router: router)
+
+        let productItemViewModel = ProductItemViewModel(product: Product.mockData, coordinator: homeCoordinator)
+        ProductItemView(productItemViewModel: productItemViewModel)
     }
 }
