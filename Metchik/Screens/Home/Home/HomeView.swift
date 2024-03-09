@@ -39,13 +39,10 @@ struct ContentView_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView(content: {
-            let navigationController = UINavigationController()
-            let router = AppRouter(navigationController: navigationController)
-            let homeCoordinator = HomeTabCoordinator(router: router)
-
-            let homeViewModel = HomeViewModel(coordinator: homeCoordinator)
-           
-            HomeView(homeViewModel: homeViewModel)
+            if let homeViewModel = DependencyManager.shared.sharedContainer.resolve(HomeViewModel.self) {
+                
+                HomeView(homeViewModel: homeViewModel)
+            }
         })
     }
 }

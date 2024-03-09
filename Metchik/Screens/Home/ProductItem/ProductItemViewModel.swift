@@ -9,9 +9,9 @@ import Foundation
 
 class ProductItemViewModel: ObservableObject {
     let product: Product
-    let coordinator: HomeCoordinatorProtocol
+    let coordinator: HomeTabCoordinatorProtocol
     
-    init(product: Product, coordinator: HomeCoordinatorProtocol) {
+    init(product: Product, coordinator: HomeTabCoordinatorProtocol) {
         self.product = product
         self.coordinator = coordinator
     }

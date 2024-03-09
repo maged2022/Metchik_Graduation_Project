@@ -24,13 +24,10 @@ struct SubCategoryCardView: View {
 
 struct SubCategoryCardView_Previews: PreviewProvider {
     static var previews: some View {
-        let navigationController = UINavigationController()
-               let router = AppRouter(navigationController: navigationController)
-               let homeCoordinator = HomeTabCoordinator(router: router)
-
-               let subCategoryViewModel = SubCategoryViewModel(category: "Men", coordinator: homeCoordinator)
-        SubCategoryCardView()
-            .environmentObject(subCategoryViewModel)
+        if let subCategoryViewModel = DependencyManager.shared.sharedContainer.resolve(SubCategoryViewModel.self) {
+            SubCategoryCardView()
+                .environmentObject(subCategoryViewModel)
+        }
     }
 }
 

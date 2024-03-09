@@ -43,11 +43,10 @@ struct AddToCartSectionView: View {
 
 struct AddToCartSectionView_Previews: PreviewProvider {
     static var previews: some View {
-        let navigationController = UINavigationController()
-        let router = AppRouter(navigationController: navigationController)
-        let homeCoordinator = HomeTabCoordinator(router: router)
-        let productDetailViewModel = ProductDetailViewModel(product: Product.mockData, coordinator: homeCoordinator)
-        AddToCartSectionView()
-            .environmentObject(productDetailViewModel)
+        if let homeCoordinator = DependencyManager.shared.sharedContainer.resolve(HomeTabCoordinatorProtocol.self) {
+            let productDetailViewModel = ProductDetailViewModel(product: Product.mockData, coordinator: homeCoordinator)
+            AddToCartSectionView()
+                .environmentObject(productDetailViewModel)
+        }
     }
 }

@@ -12,7 +12,7 @@ class HomeViewModel: ObservableObject {
     private let offersUseCase: OffersRepositories = OffersUseCase.instance
     private let productUseCase: ProductRepositories = ProductUseCase.instance
     private var cancellables = Set<AnyCancellable>()
-    let coordinator: HomeCoordinatorProtocol
+    let coordinator: HomeTabCoordinatorProtocol
 
     @Published var offers: [Offer] = []
     @Published var categories: [String] = []
@@ -28,7 +28,7 @@ class HomeViewModel: ObservableObject {
         }
     }
 
-    init(coordinator: HomeCoordinatorProtocol) {
+    init(coordinator: HomeTabCoordinatorProtocol) {
         self.coordinator = coordinator
         updateOffers()
         updateCategories()
