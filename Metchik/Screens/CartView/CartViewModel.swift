@@ -7,7 +7,11 @@
 
 import Foundation
 import Combine
-class CartViewModel: ObservableObject {
+
+protocol CartViewModelProtocol {
+    
+}
+class CartViewModel: CartViewModelProtocol , ObservableObject {
     
     private var productUseCase: ProductRepositories = ProductUseCase.instance
     private var cartUseCase: CartRepositories = CartUseCase.instance

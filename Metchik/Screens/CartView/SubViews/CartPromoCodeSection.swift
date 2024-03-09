@@ -36,13 +36,10 @@ struct CartPromoCodeSection: View {
 
 struct CartPromoCodeSection_Previews: PreviewProvider {
     static var previews: some View {
-        let navigationController = UINavigationController()
-        let router = AppRouter(navigationController: navigationController)
-        let cartCoordinator = TabBarCoordinator(router: router)
-        let cartViewModel = CartViewModel(coordinator: cartCoordinator)
-
-        CartPromoCodeSection()
-            .environmentObject(cartViewModel)
-        
+        if let cartViewModel = DependencyManager.shared.sharedContainer.resolve(CartViewModel.self) {
+            
+            CartPromoCodeSection()
+                .environmentObject(cartViewModel)
+        }
     }
 }
