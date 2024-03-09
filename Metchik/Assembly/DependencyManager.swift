@@ -17,9 +17,10 @@ class DependencyManager {
     // MARK: - Lifecycle
     init() {
         self.sharedContainer = Container()
+        setupAssemblers()
     }
     // MARK: - Functions
-    func setupAssemplers() {
+    private func setupAssemblers() {
         storeAssempler = Assembler([CoordinatorAssembly(sharedContainer: sharedContainer),
                                     HomeAssemply(sharedContainer: sharedContainer),
                                     CartAssembly(sharedContainer: sharedContainer)])

@@ -67,7 +67,7 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
     private func homeViewController() -> UIViewController {
         let navigationController = UINavigationController()
         let router = AppRouter(navigationController: navigationController)
-        let coordinator = HomeTabCoordinator(router: router, resolver: resolver, coordinator: self)
+        let coordinator = HomeTabCoordinator(router: router, coordinator: self, resolver: resolver)
         coordinator.start()
         setup(view: navigationController ,
               title: "Home",
@@ -97,7 +97,7 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
     func createCartButtonViewModel() -> CartButtonViewModel {
         let navigationController = UINavigationController()
         let router = AppRouter(navigationController: navigationController)
-        let homeCoordinator = HomeTabCoordinator(router: router, resolver: resolver, coordinator: self)
+        let homeCoordinator = HomeTabCoordinator(router: router, coordinator: self, resolver: resolver)
         return CartButtonViewModel(coordinator: homeCoordinator)
     }
 }
