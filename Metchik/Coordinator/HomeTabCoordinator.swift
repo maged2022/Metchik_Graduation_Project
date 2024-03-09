@@ -7,8 +7,9 @@
 
 import UIKit
 import SwiftUI
+import Swinject
 
-protocol HomeCoordinatorProtocol: Coordinator {
+protocol HomeTabCoordinatorProtocol: Coordinator {
     func showHome()
     func showSubCategoryView(category: String)
     func showProductView(selectedCategory: String,selectedSubCategory: String)
@@ -19,15 +20,16 @@ protocol HomeCoordinatorProtocol: Coordinator {
     func createCartButtonViewModel() -> CartButtonViewModel
 }
 
-class HomeTabCoordinator: NSObject, HomeCoordinatorProtocol {
+class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
     
-    var router: Router
+    let router: Router
     let coordinator: TabBarCoordinatorProtocol
-    init(router: Router,
-         coordinator: TabBarCoordinatorProtocol = TabBarCoordinator(
-            router: AppRouter(navigationController: UINavigationController()))) {
-        self.router = router
+    private let resolver : Resolver
+
+    init(router: Router, coordinator: TabBarCoordinatorProtocol, resolver: Resolver) {
+        self.router =  router
         self.coordinator = coordinator
+        self.resolver = resolver
     }
     
     func start() {

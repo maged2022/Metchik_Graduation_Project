@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import Swinject
 
 protocol AppCoordinatorProtocol: Coordinator {
+    func startApp(window: UIWindow)
     func showTabBar()
     func showOnboarding()
     func showAuth()
@@ -15,14 +17,20 @@ protocol AppCoordinatorProtocol: Coordinator {
 
 class AppCoordinator: AppCoordinatorProtocol {
 
-    let window: UIWindow
+    private let resolver : Resolver
     var isLogin = true
     
     var router: Router
-    init(window: UIWindow) {
-        
-        self.window = window
+    
+    init(resolver: Resolver) {
+        self.resolver = resolver
         router = AppRouter(navigationController: .init())
+    }
+    
+    func startApp(window: UIWindow) {
+        window.rootViewController = router.navigationController
+        window.makeKeyAndVisible()
+        start()
     }
     
     func start() {
@@ -34,9 +42,7 @@ class AppCoordinator: AppCoordinatorProtocol {
     }
     
     func showTabBar() {
-        let coordinator = TabBarCoordinator(router: self.router)
-        router.reset()
-        coordinator.start()
+        TabBarCoordinator(router: router, resolver: resolver).start()
     }
     
     func showOnboarding() {
