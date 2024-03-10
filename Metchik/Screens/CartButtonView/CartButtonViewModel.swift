@@ -9,9 +9,9 @@ import Combine
 class CartButtonViewModel: ObservableObject {
     private var cartUseCase: CartRepositories = CartUseCase.instance
     private var cancellables: [String: AnyCancellable] = [:]
-    let coordinator: HomeTabCoordinator
+    let coordinator: HomeTabCoordinatorProtocol
     @Published var numberOfProducts: Int = 0
-    init(coordinator: HomeTabCoordinator) {
+    init(coordinator: HomeTabCoordinatorProtocol) {
         self.coordinator = coordinator
         updateCartProductCount()
     }

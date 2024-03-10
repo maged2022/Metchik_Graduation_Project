@@ -11,7 +11,7 @@ import Combine
 class SubCategoryViewModel: ObservableObject {
     private let productUseCase: ProductRepositories = ProductUseCase.instance
     private var cancellables = Set<AnyCancellable>()
-    let coordinator: HomeCoordinatorProtocol
+    let coordinator: HomeTabCoordinatorProtocol
     let category: String
     @Published var subCategories: [String] = [] {
         didSet {
@@ -19,7 +19,7 @@ class SubCategoryViewModel: ObservableObject {
         }
     }
     @Published var products: [String: [Product]] = [:]
-    init(category: String,coordinator: HomeCoordinatorProtocol) {
+    init(category: String,coordinator: HomeTabCoordinatorProtocol) {
         self.category = category
         self.coordinator = coordinator
         updateSubCategories()

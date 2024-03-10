@@ -10,17 +10,12 @@ import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
-    var applicationCoordintor: AppCoordinatorProtocol?
+    var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        if let windowScene = scene as? UIWindowScene {
-            let window = UIWindow(windowScene: windowScene)
-            let applicationCoordintor = AppCoordinator(window: window)
-            window.rootViewController = applicationCoordintor.router.navigationController
-            applicationCoordintor.start()
-          
-            self.applicationCoordintor = applicationCoordintor
-            window.makeKeyAndVisible()
-        }
+        guard let sceneWindow = (scene as? UIWindowScene) else { return }
+        let window = UIWindow(windowScene: sceneWindow)
+        self.window = window
+        DependencyManager.shared.sharedContainer.resolve(AppCoordinatorProtocol.self)?.startApp(window: window)
     }
 }

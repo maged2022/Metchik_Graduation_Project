@@ -44,10 +44,9 @@ struct CartButtonView: View {
 
 struct CartButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        let navigationController = UINavigationController()
-        let router = AppRouter(navigationController: navigationController)
-        let homeCoordinator = HomeTabCoordinator(router: router)
-        let cartButtonViewModel = CartButtonViewModel(coordinator: homeCoordinator)
-        CartButtonView(cartViewModel: cartButtonViewModel)
+        if let cartButtonViewModel = DependencyManager.shared.sharedContainer
+            .resolve(CartButtonViewModel.self) {
+            CartButtonView(cartViewModel: cartButtonViewModel)
+        }
     }
 }

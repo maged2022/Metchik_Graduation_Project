@@ -23,13 +23,10 @@ struct QuickSubCategoryView: View {
 
 struct QuickSubCategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        let navigationController = UINavigationController()
-        let router = AppRouter(navigationController: navigationController)
-        let homeCoordinator = HomeTabCoordinator(router: router)
-        let homeViewModel = HomeViewModel(coordinator: homeCoordinator)
-        QuickSubCategoryView()
-            .environmentObject(homeViewModel)
-
+        if let homeViewModel = DependencyManager.shared.sharedContainer.resolve(HomeViewModel.self) {
+            QuickSubCategoryView()
+                .environmentObject(homeViewModel)
+        }
     }
 }
 

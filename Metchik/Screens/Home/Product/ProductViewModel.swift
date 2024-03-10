@@ -13,10 +13,10 @@ class ProductViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     var selectedCategory: String
     var selectedSubCategory: String
-    let coordinator: HomeCoordinatorProtocol
+    let coordinator: HomeTabCoordinatorProtocol
     @Published var products: [Product] = []
     
-    init(selectedCategory: String, selectedSubCategory: String, coordinator: HomeCoordinatorProtocol) {
+    init(selectedCategory: String, selectedSubCategory: String, coordinator: HomeTabCoordinatorProtocol) {
         self.selectedCategory = selectedCategory
         self.selectedSubCategory = selectedSubCategory
         self.coordinator = coordinator

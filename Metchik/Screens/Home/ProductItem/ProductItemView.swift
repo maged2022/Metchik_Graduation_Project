@@ -66,11 +66,9 @@ struct ProductItemView: View {
 
 struct ProductItemView_Previews: PreviewProvider {
     static var previews: some View {
-        let navigationController = UINavigationController()
-        let router = AppRouter(navigationController: navigationController)
-        let homeCoordinator = HomeTabCoordinator(router: router)
-
-        let productItemViewModel = ProductItemViewModel(product: Product.mockData, coordinator: homeCoordinator)
-        ProductItemView(productItemViewModel: productItemViewModel)
+        if let productItemViewModel = DependencyManager.shared.sharedContainer
+            .resolve(ProductItemViewModel.self) {
+            ProductItemView(productItemViewModel: productItemViewModel)
+        }
     }
 }

@@ -57,12 +57,12 @@ struct ProductDetailView: View {
 struct ProductDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView(content: {
-            let navigationController = UINavigationController()
-            let router = AppRouter(navigationController: navigationController)
-            let homeCoordinator = HomeTabCoordinator(router: router)
-            let productDetailViewModel = ProductDetailViewModel(product: Product.mockData, coordinator: homeCoordinator)
-            ProductDetailView(productDetailViewModel: productDetailViewModel)
-            .previewLayout(.fixed(width: 500, height: 1000))
+            if let productDetailViewModel = DependencyManager.shared.sharedContainer
+                .resolve(ProductDetailViewModel.self) {
+                
+                ProductDetailView(productDetailViewModel: productDetailViewModel)
+                    .previewLayout(.fixed(width: 500, height: 1000))
+            }
         })
        
     }

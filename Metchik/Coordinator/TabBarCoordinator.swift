@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import Swinject
 
 protocol TabBarCoordinatorProtocol: Coordinator {
     func showTabBar()
@@ -22,10 +23,12 @@ protocol TabBarCoordinatorProtocol: Coordinator {
 class TabBarCoordinator: TabBarCoordinatorProtocol {
     
     var tabViewController: UITabBarController
-    
+    private let resolver : Resolver
     let router: Router
-    init(router: Router) {
+    
+    init(router: Router, resolver: Resolver) {
         self.router = router
+        self.resolver = resolver
         self.tabViewController = UITabBarController()
         tabViewController.tabBar.isTranslucent = true
         tabViewController.tabBar.backgroundColor = .lightGray
@@ -64,8 +67,8 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
     private func homeViewController() -> UIViewController {
         let navigationController = UINavigationController()
         let router = AppRouter(navigationController: navigationController)
-        let homeCoordinator = HomeTabCoordinator(router: router, coordinator: self)
-        homeCoordinator.start()
+        let coordinator = HomeTabCoordinator(router: router, coordinator: self, resolver: resolver)
+        coordinator.start()
         setup(view: navigationController ,
               title: "Home",
               imageName: "house",
@@ -74,8 +77,9 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
     }
     
     private func cartViewController() -> UIViewController {
-        let cartViewModel = CartViewModel(coordinator: self)
+        guard let cartViewModel = resolver.resolve(CartViewModel.self) else {fatalError()}
         let cartViewController =  UIHostingController(rootView: CartView(viewModel: cartViewModel))
+        router.push(cartViewController)
         setup(view: cartViewController,
               title: "Cart",
               imageName: "cart",
@@ -93,7 +97,7 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
     func createCartButtonViewModel() -> CartButtonViewModel {
         let navigationController = UINavigationController()
         let router = AppRouter(navigationController: navigationController)
-        let homeCoordinator = HomeTabCoordinator(router: router)
+        let homeCoordinator = HomeTabCoordinator(router: router, coordinator: self, resolver: resolver)
         return CartButtonViewModel(coordinator: homeCoordinator)
     }
 }

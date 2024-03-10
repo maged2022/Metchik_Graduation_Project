@@ -25,13 +25,9 @@ struct CartPricingSectionView: View {
 
 struct CartPricingSectionView_Previews: PreviewProvider {
     static var previews: some View {
-        let navigationController = UINavigationController()
-        let router = AppRouter(navigationController: navigationController)
-        let cartCoordinator = TabBarCoordinator(router: router)
-        let cartViewModel = CartViewModel(coordinator: cartCoordinator)
-
-        CartPricingSectionView()
-            .environmentObject(cartViewModel)
-        
+        if let cartViewModel = DependencyManager.shared.sharedContainer.resolve(CartViewModel.self) {
+            CartPricingSectionView()
+                .environmentObject(cartViewModel)
+        }
     }
 }

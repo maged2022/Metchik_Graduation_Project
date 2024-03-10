@@ -46,11 +46,9 @@ struct ProductView: View {
 struct ProductView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            let navigationController = UINavigationController()
-            let router = AppRouter(navigationController: navigationController)
-            let homeCoordinator = HomeTabCoordinator(router: router)
-            let productViewModel = ProductViewModel(selectedCategory: "Men", selectedSubCategory: "Shoes", coordinator: homeCoordinator)
-            ProductView(productViewModel: productViewModel)
+            if let productViewModel = DependencyManager.shared.sharedContainer.resolve(ProductViewModel.self) {
+                ProductView(productViewModel: productViewModel)
+            }
         }
     }
 }

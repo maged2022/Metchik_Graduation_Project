@@ -14,7 +14,7 @@ class ProductDetailViewModel: ObservableObject {
     private var cartUseCase: CartRepositories = CartUseCase.instance
     private var cancellables: [String: AnyCancellable] = [:]
     let product: Product
-    let coordinator: HomeCoordinatorProtocol
+    let coordinator: HomeTabCoordinatorProtocol
     @Published var productDetail: ProductDetail = .mockData {
         didSet {
             getAvilableSizes()
@@ -39,7 +39,7 @@ class ProductDetailViewModel: ObservableObject {
     }
     @Published var currentStepperValue: Int = 1
     
-    init(product: Product, coordinator: HomeCoordinatorProtocol) {
+    init(product: Product, coordinator: HomeTabCoordinatorProtocol) {
         self.product = product
         self.coordinator = coordinator
         getProductdetail()
