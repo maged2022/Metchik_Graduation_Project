@@ -101,7 +101,6 @@
 		5CEA29692B99E7CC009DA889 /* ProductItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA29682B99E7CC009DA889 /* ProductItemViewModel.swift */; };
 		5CEA296C2B9A12DF009DA889 /* CartButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA296B2B9A12DF009DA889 /* CartButtonViewModel.swift */; };
 		5CEA29792B9C8A1C009DA889 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 5CEA29782B9C8A1C009DA889 /* Swinject */; };
-		5CEA297B2B9C8A1C009DA889 /* Swinject-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 5CEA297A2B9C8A1C009DA889 /* Swinject-Dynamic */; };
 		5CEA297E2B9C8AB3009DA889 /* DependencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA297D2B9C8AB3009DA889 /* DependencyManager.swift */; };
 		5CEA29802B9C8AE6009DA889 /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA297F2B9C8AE6009DA889 /* HomeAssembly.swift */; };
 		5CEA29822B9CCFD7009DA889 /* CoordinatorAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA29812B9CCFD7009DA889 /* CoordinatorAssembly.swift */; };
@@ -228,7 +227,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CEA29792B9C8A1C009DA889 /* Swinject in Frameworks */,
-				5CEA297B2B9C8A1C009DA889 /* Swinject-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,7 +635,6 @@
 			name = Metchik;
 			packageProductDependencies = (
 				5CEA29782B9C8A1C009DA889 /* Swinject */,
-				5CEA297A2B9C8A1C009DA889 /* Swinject-Dynamic */,
 			);
 			productName = Metchik;
 			productReference = 12EEBF2B2B246360003B0B0C /* Metchik.app */;
@@ -1042,11 +1039,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5CEA29772B9C8A1C009DA889 /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
-		};
-		5CEA297A2B9C8A1C009DA889 /* Swinject-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5CEA29772B9C8A1C009DA889 /* XCRemoteSwiftPackageReference "Swinject" */;
-			productName = "Swinject-Dynamic";
 		};
 /* End XCSwiftPackageProductDependency section */
 
