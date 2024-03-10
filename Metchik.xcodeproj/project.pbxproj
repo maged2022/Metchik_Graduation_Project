@@ -236,6 +236,7 @@
 		121BD4E22B344AF4000126C6 /* Reusable Component */ = {
 			isa = PBXGroup;
 			children = (
+				5C431D212B89BA3B0091BF09 /* StepperView.swift */,
 				121BD4E32B344B58000126C6 /* SearchBarView.swift */,
 				12C8BABE2B3523D600AEA6C9 /* ImagePicker.swift */,
 				5C11CCAE2B94A15D00A1ED63 /* BackButton.swift */,
@@ -431,7 +432,6 @@
 			children = (
 				5C431D1F2B89B8310091BF09 /* ProductImagesSectionView.swift */,
 				5C431D232B89BA7E0091BF09 /* ProductMetaView.swift */,
-				5C431D212B89BA3B0091BF09 /* StepperView.swift */,
 				5C91C6BC2B795037006A018C /* ProductSizeSectionView.swift */,
 				5C431D292B89CF250091BF09 /* ProductColorsView.swift */,
 				5C431D272B89BB3E0091BF09 /* ProductDescriptionSectionView.swift */,

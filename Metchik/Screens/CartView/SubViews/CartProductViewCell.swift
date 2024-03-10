@@ -11,9 +11,10 @@ struct CartProductViewCell: View {
     typealias Colors = Asset.Colors
     @EnvironmentObject var viewModel: CartViewModel
     
-    var cartProduct: CartProduct
+    @State var cartProduct: CartProduct
     @State var product: Product = .mockData
-    
+    @State var maxAvailableProduct = 10
+    @State var currentStepperValue = 2
     var body: some View {
         HStack(alignment: .bottom, spacing: 6) {
             
@@ -52,36 +53,19 @@ struct CartProductViewCell: View {
                             .foregroundColor(Colors.borderCategoryColor.swiftUIColor))
                 }
                 HStack {
-                    Button {
-                    } label: {
-                        Image(systemName: "minus")
-                    }
-                    Text("1")
-                    Button {
-                    } label: {
-                        Image(systemName: "plus")
-                    }
+                    StepperView(
+                        maxAvailableProduct: $maxAvailableProduct,
+                        currentStepperValue: $currentStepperValue)
                 }
-                .font(.poppins(.regular, size: 14))
-                .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
-                .padding(.vertical,5)
-                .padding(.horizontal,12)
-                .background(Colors.backgroundSearchColor.swiftUIColor)
-                .cornerRadius(30)
-                .padding(.leading,10)
-                .padding(.trailing,5)
             }
+            .task {
+                self.product = self.viewModel.getProduct(by: self.cartProduct )
+            }
+            .cornerRadius(13)
         }
-        .task {
-            self.product = self.viewModel.getProduct(by: self.cartProduct )
-            
-        }
-        .cornerRadius(13)
-
+        
     }
-    
 }
-
 struct CartProductViewCell_Previews: PreviewProvider {
     static var previews: some View {
         if let cartViewModel = DependencyManager.shared.sharedContainer.resolve(CartViewModel.self) {
