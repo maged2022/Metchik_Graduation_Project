@@ -12,8 +12,11 @@ struct CartProuctSectionView: View {
 
     var body: some View {
         List {
-            ForEach(viewModel.cartProducts,id: \.id) { cartProduct in
-                CartProductViewCell(cartProduct: cartProduct)
+            ForEach(viewModel.cartProducts,id: \.self) { cartProduct in
+                CartProductViewCell(
+                    viewModel: CartProductViewModelCell(
+                        product: viewModel.getProduct(by: cartProduct),
+                        cartProduct: cartProduct))
                     .background(Asset.Colors.backgroundScreenColor.swiftUIColor )
             }
             .onDelete(perform: viewModel.deleteCartProduct)

@@ -57,15 +57,15 @@ class CoreDataManager: ObservableObject {
         saveData()
     }
     
-//    func updateCartProduct(entity: CartProductSource) {
-//        guard let entityIndex = cartProductsEntity
-//        .firstIndex(where: {$0.productID == entity.productID && $0.color == entity.color && $0.size == entity.size})
-//    else {return}
-//        let currentEntity = cartProductsEntity[entityIndex]
-//        currentEntity.selectedCount = Int32(entity.selectedCount)
-//        saveData()
-//        
-//    }
+    func updateCartProduct(for cartProductSource: CartProductSource ,with count: Int) {
+        guard let entityIndex = cartProductsEntity
+        .firstIndex(where: {$0.productID == cartProductSource.productID && $0.color == cartProductSource.color && $0.size == cartProductSource.size})
+    else {return}
+        let currentEntity = cartProductsEntity[entityIndex]
+        currentEntity.selectedCount = Int32(count)
+        saveData()
+        
+    }
     
     func saveData() {
         do {
