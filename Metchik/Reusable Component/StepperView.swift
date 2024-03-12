@@ -45,9 +45,6 @@ struct StepperView: View {
 
 struct StepperView_Previews: PreviewProvider {
     static var previews: some View {
-        if let productDetailViewModel = DependencyManager.shared.sharedContainer.resolve(ProductDetailViewModel.self) {
-            StepperView(maxAvailableProduct: .constant(10), currentStepperValue: .constant(2))
-                .environmentObject(productDetailViewModel)
-        }
+        StepperView(maxAvailableProduct: .constant(10), currentStepperValue: .constant(2))
     }
 }

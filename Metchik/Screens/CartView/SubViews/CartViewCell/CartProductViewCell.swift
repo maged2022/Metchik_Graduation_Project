@@ -61,11 +61,9 @@ struct CartProductViewCell: View {
 }
 struct CartProductViewCell_Previews: PreviewProvider {
     static var previews: some View {
-        if let cartViewModel = DependencyManager.shared.sharedContainer.resolve(CartViewModel.self) {
-            
-            CartProductViewCell(viewModel: CartProductViewModelCell(product: Product.mockData, cartProduct: CartProduct(productID: "1", size: .l, color: .black, selectedCount: 3)))
-                .environmentObject(cartViewModel)
+        if let cartProductViewModelCell = DependencyManager.shared.sharedContainer
+            .resolve(CartProductViewModelCell.self) {
+            CartProductViewCell(viewModel: cartProductViewModelCell)
         }
-
     }
 }
