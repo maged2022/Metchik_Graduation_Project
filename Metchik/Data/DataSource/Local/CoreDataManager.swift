@@ -42,11 +42,15 @@ class CoreDataManager: ObservableObject {
     }
     
     func addCartProduct(cartProduct: CartProductSource) {
-        let newProduct = CartProductSourceEntity(context: container.viewContext)
-        newProduct.productID = cartProduct.productID
-        newProduct.size = cartProduct.size
-        newProduct.color = cartProduct.color
-        newProduct.selectedCount = Int32(cartProduct.selectedCount)
+        if let savedProduct = getSavedCartProduct(cartProduct: cartProduct) {
+            savedProduct.selectedCount = Int32(cartProduct.selectedCount)
+        } else {
+            let newProduct = CartProductSourceEntity(context: container.viewContext)
+            newProduct.productID = cartProduct.productID
+            newProduct.size = cartProduct.size
+            newProduct.color = cartProduct.color
+            newProduct.selectedCount = Int32(cartProduct.selectedCount)
+        }
         saveData()
     }
     
@@ -57,14 +61,22 @@ class CoreDataManager: ObservableObject {
         saveData()
     }
     
-    func updateCartProduct(for cartProductSource: CartProductSource ,with count: Int) {
-        guard let entityIndex = cartProductsEntity
-        .firstIndex(where: {$0.productID == cartProductSource.productID && $0.color == cartProductSource.color && $0.size == cartProductSource.size})
-    else {return}
-        let currentEntity = cartProductsEntity[entityIndex]
-        currentEntity.selectedCount = Int32(count)
+    func updateCartProduct(for product: CartProductSource ,with count: Int) {
+        guard let savedProduct = getSavedCartProduct(cartProduct: product)
+        else {return}
+        savedProduct.selectedCount = Int32(count)
         saveData()
         
+    }
+    
+    func getSavedCartProduct(cartProduct: CartProductSource) -> CartProductSourceEntity? {
+        if let index = cartProductsEntity
+            .firstIndex(where: {
+                $0.productID == cartProduct.productID && $0.color == cartProduct.color && $0.size == cartProduct.size
+            }) {
+            return cartProductsEntity[index]
+        }
+        return nil
     }
     
     func saveData() {

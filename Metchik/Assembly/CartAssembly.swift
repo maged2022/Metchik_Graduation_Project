@@ -27,8 +27,11 @@ class CartAssembly: Assembly {
             else {fatalError("error resolver TabBarCoordinatorProtocol")}
             return CartButtonViewModel(coordinator: coordinator)
         }     
-        sharedContainer.register(CartProductViewModelCell.self) { resolver in
-            return CartProductViewModelCell(product: Product.mockData, cartProduct: CartProduct(productID: "1", size: .l, color: .black, selectedCount: 3))
+        sharedContainer.register(CartProductViewModelCell.self) { _ in
+            return CartProductViewModelCell(
+                product: Product.mockData,
+                cartProduct: CartProduct(productID: "1", size: .l, color: .black, selectedCount: 3)
+            )
         }
     }
 }

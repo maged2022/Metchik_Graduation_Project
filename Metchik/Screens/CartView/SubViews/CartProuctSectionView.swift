@@ -11,19 +11,15 @@ struct CartProuctSectionView: View {
     @EnvironmentObject var viewModel: CartViewModel
 
     var body: some View {
-        List {
+        ScrollView {
             ForEach(viewModel.cartProducts,id: \.self) { cartProduct in
                 CartProductViewCell(
                     viewModel: CartProductViewModelCell(
                         product: viewModel.getProduct(by: cartProduct),
                         cartProduct: cartProduct))
-                    .background(Asset.Colors.backgroundScreenColor.swiftUIColor )
             }
-            .onDelete(perform: viewModel.deleteCartProduct)
+//            .onDelete(perform: viewModel.deleteCartProduct)
         }
-        .tint(Asset.Colors.backgroundScreenColor.swiftUIColor)
-        .listStyle(PlainListStyle())
-        .background(Asset.Colors.backgroundScreenColor.swiftUIColor )
     }
 }
 
