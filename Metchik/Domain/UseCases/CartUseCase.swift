@@ -39,6 +39,11 @@ class CartUseCase: CartRepositories {
         cartRepo.deleteCartProductSource(indexSet: indexSet)
     }
     
+    func updateCartProduct(for cartProduct: CartProduct,with count: Int) {
+        let cartProductSource = cartProduct.toCartProductSource()
+        cartRepo.updateCartProductSource(for: cartProductSource, with: count)
+    }
+    
     func getCartProductsCount() -> AnyPublisher<Int, Never> {
         $cartProducts.map {$0.count}.eraseToAnyPublisher()
     }

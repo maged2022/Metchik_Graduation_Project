@@ -19,7 +19,7 @@ struct ProductDetailView: View {
                 HStack {
                     ProductMetaView()
                     Spacer()
-                    StepperView()
+                    avaliableInStokView
                 }
                 HStack {
                     ProductSizeSectionView()
@@ -65,5 +65,18 @@ struct ProductDetailView_Previews: PreviewProvider {
             }
         })
        
+    }
+}
+
+extension ProductDetailView {
+    
+    var avaliableInStokView: some View {
+        VStack(spacing: 12) {
+            StepperView(
+                maxAvailableProduct: $productDetailViewModel.maxAvailableProduct,
+                currentStepperValue: $productDetailViewModel.currentStepperValue)
+            Text("Avaliable in stok")
+                .font(.poppins(.semiBold, size: 11))
+        }
     }
 }

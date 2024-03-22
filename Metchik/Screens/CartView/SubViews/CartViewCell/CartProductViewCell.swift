@@ -9,29 +9,26 @@ import SwiftUI
 
 struct CartProductViewCell: View {
     typealias Colors = Asset.Colors
-    @EnvironmentObject var viewModel: CartViewModel
-    
-    var cartProduct: CartProduct
-    @State var product: Product = .mockData
+    @StateObject var viewModel: CartProductViewModelCell
     
     var body: some View {
         HStack(alignment: .bottom, spacing: 6) {
             
-            product.mainImage
+            viewModel.product.mainImage
                 .resizable()
                 .scaledToFill()
                 .frame(width: 80,height: 80)
                 .cornerRadius(10)
             
             VStack(alignment: .leading,spacing: 2) {
-                Text(product.name)
+                Text(viewModel.product.name)
                     .font(.poppins(.semiBold, size: 14))
                 
-                Text(product.shortDescription)
+                Text(viewModel.product.shortDescription)
                     .font(.poppins(.regular, size: 11))
                     .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)
                     .padding(.bottom,12)
-                Text("\(String(format: "%.2f", product.price)) L.E")
+                Text("\(String(format: "%.2f", viewModel.product.price)) L.E")
                     .font(.poppins(.bold, size: 14))
                     .padding(.bottom,4)
             }
@@ -39,10 +36,10 @@ struct CartProductViewCell: View {
             VStack {
                 HStack {
                     
-                    cartProduct.color
+                    viewModel.cartProduct.color
                         .frame(width: 20, height: 20)
                         .cornerRadius(10)
-                    Text(cartProduct.size.rawValue)
+                    Text(viewModel.cartProduct.size.rawValue)
                         .font(.poppins(.semiBold, size: 14))
                         .foregroundColor(Colors.secondaryButtonColor.swiftUIColor
                         )
@@ -51,44 +48,22 @@ struct CartProductViewCell: View {
                             .stroke()
                             .foregroundColor(Colors.borderCategoryColor.swiftUIColor))
                 }
-                HStack {
-                    Button {
-                    } label: {
-                        Image(systemName: "minus")
-                    }
-                    Text("1")
-                    Button {
-                    } label: {
-                        Image(systemName: "plus")
-                    }
+                VStack {
+                    StepperView(
+                        maxAvailableProduct: $viewModel.maxAvailableProduct,
+                        currentStepperValue: $viewModel.currentStepperValue)
                 }
-                .font(.poppins(.regular, size: 14))
-                .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
-                .padding(.vertical,5)
-                .padding(.horizontal,12)
-                .background(Colors.backgroundSearchColor.swiftUIColor)
-                .cornerRadius(30)
-                .padding(.leading,10)
-                .padding(.trailing,5)
             }
+            .cornerRadius(13)
         }
-        .task {
-            self.product = self.viewModel.getProduct(by: self.cartProduct )
-            
-        }
-        .cornerRadius(13)
-
+        
     }
-    
 }
-
 struct CartProductViewCell_Previews: PreviewProvider {
     static var previews: some View {
-        if let cartViewModel = DependencyManager.shared.sharedContainer.resolve(CartViewModel.self) {
-            
-            CartProductViewCell(cartProduct: CartProduct(productID: "1", size: .l, color: .black, selectedCount: 3))
-                .environmentObject(cartViewModel)
+        if let cartProductViewModelCell = DependencyManager.shared.sharedContainer
+            .resolve(CartProductViewModelCell.self) {
+            CartProductViewCell(viewModel: cartProductViewModelCell)
         }
-
     }
 }

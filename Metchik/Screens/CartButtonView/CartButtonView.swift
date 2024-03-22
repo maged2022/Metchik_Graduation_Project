@@ -32,6 +32,7 @@ struct CartButtonView: View {
                     Text("\(cartViewModel.numberOfProducts)")
                         .font(.poppins(.semiBold, size: 7))
                         .foregroundColor(Colors.primaryButtonColor.swiftUIColor)
+                        .offset(y:-2)
                         .frame(width: 13, height: 13,alignment: .bottom)
                         .background(Colors.secondaryButtonColor.swiftUIColor)
                         .cornerRadius(13)

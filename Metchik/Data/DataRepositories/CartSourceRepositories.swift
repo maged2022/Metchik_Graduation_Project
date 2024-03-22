@@ -12,6 +12,7 @@ protocol CartSourceRepositories {
     func getCartProducts() -> AnyPublisher<[CartProductSource], Never>
     func saveCartProductSource(_ cartProductSource: CartProductSource)
     func deleteCartProductSource(indexSet: IndexSet)
+    func updateCartProductSource(for cartProductSource: CartProductSource ,with count: Int)
 }
 
 class CartSourceRepositoriesImpl: CartSourceRepositories {
@@ -35,6 +36,10 @@ class CartSourceRepositoriesImpl: CartSourceRepositories {
     
     func saveCartProductSource(_ cartProductSource: CartProductSource) {
         coreManager.addCartProduct(cartProduct: cartProductSource)
+    }
+    
+    func updateCartProductSource(for cartProductSource: CartProductSource ,with count: Int) {
+        coreManager.updateCartProduct(for: cartProductSource, with: count)
     }
     
     func deleteCartProductSource(indexSet: IndexSet) {
