@@ -6,38 +6,32 @@
 //
 
 import Foundation
-import Combine
+import Network
 
 protocol ProductSourceRepositories {
-    func getProductsSource() -> AnyPublisher<[ProductSource], Never> 
+    func getProductsSource(parameters: [String: Any], completion: @escaping (Result<[ProductSource], RemoteError>) -> Void)
 }
 
-class ProductSourceRepositoriesImpl: ProductSourceRepositories , ObservableObject {
-    @Published private var products: [ProductSource] = []
-    
-    init() {
-//        repeatEveryThreeSeconds()
-        updateProductsSource()
-    }
-    private func updateProductsSource () {
-        products = JSONDecoder().decode(forResource: "ProductSource") ?? []
-//        let product:[ProductSource] = JSONDecoder().decode(forResource: "ProductSource") ?? []
-//        products.append(contentsOf: product)
-//        print("products from updateProductsSource \(products)")
-    }
-    
-    func repeatEveryThreeSeconds() {
-        // Your code to be executed repeatedly
-        print("Executing code every 3 seconds... update product")
-        
-        // Schedule the next execution after 3 seconds
-        DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
-            self.updateProductsSource()
-            self.repeatEveryThreeSeconds()
+class ProductSourceRepositoriesImpl: ProductSourceRepositories {
+    let monitor = NWPathMonitor()
+
+    func getProductsSource(parameters: [String: Any], completion: @escaping (Result<[ProductSource], RemoteError>) -> Void) {
+        monitor.pathUpdateHandler = { path in
+            if path.status == .satisfied {
+                let route = EndPoints.getProductsWith(parameters: parameters)
+                BaseRequest().request(route: route, method: .get, completion: completion)
+            } else {
+                let products: [ProductSource]? = JSONDecoder().decode(forResource: "ProductSource")
+                if let products {
+                    completion(.success(products))
+                } else {
+                    completion(.failure(.detectError(statusCode: 400)))
+                }
+            }
         }
+        let queue = DispatchQueue(label: "NetworkMonitor")
+        monitor.start(queue: queue)
+       
     }
-    func getProductsSource() -> AnyPublisher<[ProductSource], Never> {
-        return $products.eraseToAnyPublisher()
-        }
         
 }

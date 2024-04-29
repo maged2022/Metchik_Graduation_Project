@@ -93,6 +93,7 @@
 		5C8E5DC72BDFBB6200DEF02D /* ResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8E5DC62BDFBB6200DEF02D /* ResponseHandler.swift */; };
 		5C8E5DC92BDFBB9100DEF02D /* ServiceLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8E5DC82BDFBB9100DEF02D /* ServiceLayer.swift */; };
 		5C8E5DCB2BDFBBA400DEF02D /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8E5DCA2BDFBBA400DEF02D /* Task.swift */; };
+		5C8E5DCD2BDFC97C00DEF02D /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8E5DCC2BDFC97C00DEF02D /* EndPoints.swift */; };
 		5C91C4002B84A17600308218 /* ProductSource.json in Resources */ = {isa = PBXBuildFile; fileRef = 5C91C3FF2B84A17600308218 /* ProductSource.json */; };
 		5C91C4022B84A1FF00308218 /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C91C4012B84A1FF00308218 /* JSONDecoder.swift */; };
 		5C91C4102B85E34A00308218 /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C91C40F2B85E34A00308218 /* HapticsManager.swift */; };
@@ -205,6 +206,7 @@
 		5C8E5DC62BDFBB6200DEF02D /* ResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseHandler.swift; sourceTree = "<group>"; };
 		5C8E5DC82BDFBB9100DEF02D /* ServiceLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLayer.swift; sourceTree = "<group>"; };
 		5C8E5DCA2BDFBBA400DEF02D /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		5C8E5DCC2BDFC97C00DEF02D /* EndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoints.swift; sourceTree = "<group>"; };
 		5C91C3FF2B84A17600308218 /* ProductSource.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ProductSource.json; sourceTree = "<group>"; };
 		5C91C4012B84A1FF00308218 /* JSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoder.swift; sourceTree = "<group>"; };
 		5C91C4032B85B15500308218 /* OfferSource.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = OfferSource.json; sourceTree = "<group>"; };
@@ -595,6 +597,7 @@
 			isa = PBXGroup;
 			children = (
 				121F49592B2DCCC3000CD3BB /* LocalCacheImage.swift */,
+				5C8E5DCC2BDFC97C00DEF02D /* EndPoints.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -856,6 +859,7 @@
 				12A2DE542B2FC5FB0027A253 /* ProductDetailView.swift in Sources */,
 				5C361CC22B7808DD00232B94 /* QuickSubCategoryView.swift in Sources */,
 				5CEA296C2B9A12DF009DA889 /* CartButtonViewModel.swift in Sources */,
+				5C8E5DCD2BDFC97C00DEF02D /* EndPoints.swift in Sources */,
 				5C713B6E2B835AEA0040AE10 /* OffersRepositories.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

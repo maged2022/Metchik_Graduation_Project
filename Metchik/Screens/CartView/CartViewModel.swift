@@ -42,9 +42,9 @@ class CartViewModel: CartViewModelProtocol , ObservableObject {
         self.cancellables["getProduct"]?.cancel()
         let cancellable = AnyCancellable(productUseCase.getProducts(by: cartProducts.map {$0.productID})
             .sink {[weak self] products in
-                guard let validProducts = self?.cartProducts
+                guard !products.isEmpty, let validProducts = self?.cartProducts
                     .map({cartProduct in
-                        products[products.firstIndex(where: {$0.id == cartProduct.productID}) ?? 1] }) else {return}
+                        products[products.firstIndex(where: {$0.id == cartProduct.productID}) ?? 0] }) else {return}
                 self?.products = validProducts
             })
         self.cancellables["getProduct"] = cancellable

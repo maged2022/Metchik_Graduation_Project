@@ -9,23 +9,24 @@ import Combine
 import SwiftUI
 
 class ProductDetailUseCase: ProductDetailRepositories, ObservableObject {
-    @Published private var repo = ProductSourceDetailRepositoriesImpl()
+    private var repo = ProductSourceDetailRepositoriesImpl()
     @Published private var productDetail: ProductDetail = .mockData
 
     private var cancellables = Set<AnyCancellable>()
 
     static var instance = ProductDetailUseCase()
-    private init() {
-        
-    }
+    private init() { }
     
     func fetchProductDetail(by id : String) {
-        repo.getProductSourceDetail(by: id)
-            .map { $0.toProductDetail() }
-            .sink {[weak self] productDetail in
-                self?.productDetail = productDetail
+        let parameters = ["id": id]
+        repo.getProductSourceDetail(parameters: parameters ) { result in
+            switch result {
+            case .success(let success):
+                self.productDetail = success.toProductDetail()
+            case .failure(let failure):
+                print(failure)
             }
-            .store(in: &cancellables)
+        }
     }
     
     func getProductDetail() -> AnyPublisher<ProductDetail, Never> {

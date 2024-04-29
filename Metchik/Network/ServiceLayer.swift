@@ -17,6 +17,9 @@ public protocol ServiceLayer {
 
 public extension ServiceLayer {
     var baseUrl: String {
-        "https://fakestoreapi.com"
+        "https://metchik.onrender.com/api/"
+    }
+    var headers: [String: String]? {
+        [:]
     }
 }
