@@ -17,12 +17,16 @@ struct ProductItemView: View {
                 productItemViewModel.productItemPressed()
             } label: {
                 VStack {
-                    productItemViewModel.product.mainImage
-                        .resizable()
-                        .frame(height: 170)
-                        .cornerRadius(15)
-                        .scaledToFill()
-                    
+                    AsyncImage(url: productItemViewModel.product.imageURL) { image in
+                        image
+                            .resizable()
+                            .scaledToFit()
+                            .frame( height: 170)
+                            .cornerRadius(15)
+                        
+                    } placeholder: {
+                        ProgressView()
+                    }
                     Text(productItemViewModel.product.name)
                         .font(.poppins(.semiBold, size: 14))
                         .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
@@ -37,7 +41,7 @@ struct ProductItemView: View {
                             .foregroundColor(Colors.secondaryLabelColor.swiftUIColor)
                             .strikethrough()
                         
-                        Text("\(String(format: "%.2f", productItemViewModel.product.discountPercentage)) L.E")
+                        Text("\(String(format: "%.2f", productItemViewModel.product.discountPrecentage)) L.E")
                             .font(.poppins(.semiBold, size: 14))
                             .foregroundColor(Colors.primaryLabelColor.swiftUIColor)
                     }

@@ -10,13 +10,13 @@ import SwiftUI
 extension ProductSource {
     func toProduct() -> Product {
         Product(
-            id: id, // Replace with the actual id property of ProductSource
-            name: name,
+            id: id,
+            name: title,
             shortDescription: shortDescription,
             price: price,
-            discountPercentage: discountPercentage,
-//                    isFavorite: source.isFavorite, // Assuming isFavorite is a property of ProductSource
-            mainImage: ImageAsset(name: "Images/\(mainImage)").swiftUIImage,
+            discountPrecentage: discountPrecentage,
+//                    isFavorite: source.isFavorite, 
+            imageURL: URL(string: imageUrl),
             category: category,
             subCategory: subCategory
         )

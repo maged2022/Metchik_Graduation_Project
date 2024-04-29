@@ -32,7 +32,7 @@ class ProductUseCase: ProductRepositories, ObservableObject {
         repo.getProductsSource(parameters: [:]) { result in
             switch result {
             case .success(let success):
-                self.products = success.toProducts()
+                self.products = success.data.products.toProducts()
             case .failure(let failure):
                 print(failure)
             }

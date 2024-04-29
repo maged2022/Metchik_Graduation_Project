@@ -14,12 +14,15 @@ struct CartProductViewCell: View {
     var body: some View {
         HStack(alignment: .bottom, spacing: 6) {
             
-            viewModel.product.mainImage
-                .resizable()
-                .scaledToFill()
-                .frame(width: 80,height: 80)
-                .cornerRadius(10)
-            
+            AsyncImage(url: viewModel.product.imageURL) { image in
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 80,height: 80)
+                    .cornerRadius(10)
+            } placeholder: {
+                ProgressView()
+            }
             VStack(alignment: .leading,spacing: 2) {
                 Text(viewModel.product.name)
                     .font(.poppins(.semiBold, size: 14))

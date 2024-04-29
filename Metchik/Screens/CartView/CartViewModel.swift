@@ -55,7 +55,7 @@ class CartViewModel: CartViewModelProtocol , ObservableObject {
     }
     
     func calculateTotalPrice() -> Double {
-        products.map {$0.price * ( 1 - ($0.discountPercentage / 100.0))}
+        products.map {$0.price * ( 1 - ($0.discountPrecentage / 100.0))}
             .reduce(0.0, +)
     }
     

@@ -9,19 +9,19 @@ import Foundation
 import Network
 
 protocol ProductSourceRepositories {
-    func getProductsSource(parameters: [String: Any], completion: @escaping (Result<[ProductSource], RemoteError>) -> Void)
+    func getProductsSource(parameters: [String: Any], completion: @escaping (Result<MetaProductSource, RemoteError>) -> Void)
 }
 
 class ProductSourceRepositoriesImpl: ProductSourceRepositories {
     let monitor = NWPathMonitor()
 
-    func getProductsSource(parameters: [String: Any], completion: @escaping (Result<[ProductSource], RemoteError>) -> Void) {
+    func getProductsSource(parameters: [String: Any], completion: @escaping (Result<MetaProductSource, RemoteError>) -> Void) {
         monitor.pathUpdateHandler = { path in
             if path.status == .satisfied {
                 let route = EndPoints.getProductsWith(parameters: parameters)
                 BaseRequest().request(route: route, method: .get, completion: completion)
             } else {
-                let products: [ProductSource]? = JSONDecoder().decode(forResource: "ProductSource")
+                let products: MetaProductSource? = JSONDecoder().decode(forResource: "ProductSource")
                 if let products {
                     completion(.success(products))
                 } else {
