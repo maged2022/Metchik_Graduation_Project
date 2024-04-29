@@ -15,6 +15,8 @@ struct CartView: View {
         
         VStack(alignment: .leading,spacing: 15) {
             
+            titleLabel
+            
             CartProuctSectionView()
             
             CartPromoCodeSection()
@@ -23,9 +25,7 @@ struct CartView: View {
             
             proceedButton
         }
-        .padding(.bottom,25)
-        .padding(.horizontal,25)
-        .navigationTitle("My Cart")
+        .padding(25)
         .background(Colors.backgroundScreenColor.swiftUIColor )
         .environmentObject(viewModel)
         .navigationBarItems(
@@ -47,6 +47,13 @@ struct CartView_Previews: PreviewProvider {
 }
 
 extension CartView {
+    
+    var titleLabel: some View {
+        Text("My Cart")
+            .font(.poppins(.bold, size: 18))
+            .foregroundColor(Asset.Colors.primaryLabelColor.swiftUIColor)
+    }
+    
     var proceedButton: some View {
         Button(action: { 
             
