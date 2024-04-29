@@ -53,6 +53,7 @@ class CartViewModel: CartViewModelProtocol , ObservableObject {
     func getProduct(by cartProduct: CartProduct) -> Product {
         products.first(where: {$0.id == cartProduct.productID}) ?? .mockData
     }
+    
     func calculateTotalPrice() -> Double {
         products.map {$0.price * ( 1 - ($0.discountPercentage / 100.0))}
             .reduce(0.0, +)

@@ -7,12 +7,9 @@
 
 import SwiftUI
 
-struct CartProduct: Identifiable {
+struct CartProduct: Hashable {
     let productID: String
     let size: ProductSizes
     let color: Color
     let selectedCount: Int
-    var id: String {
-        productID + size.rawValue + color.toString()
-    }
 }
