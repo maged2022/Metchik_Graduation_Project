@@ -42,9 +42,9 @@ class CartViewModel: CartViewModelProtocol , ObservableObject {
         self.cancellables["getProduct"]?.cancel()
         let cancellable = AnyCancellable(productUseCase.getProducts(by: cartProducts.map {$0.productID})
             .sink {[weak self] products in
-                guard let validProducts = self?.cartProducts
+                guard !products.isEmpty, let validProducts = self?.cartProducts
                     .map({cartProduct in
-                        products[products.firstIndex(where: {$0.id == cartProduct.productID}) ?? 1] }) else {return}
+                        products[products.firstIndex(where: {$0.id == cartProduct.productID}) ?? 0] }) else {return}
                 self?.products = validProducts
             })
         self.cancellables["getProduct"] = cancellable
@@ -55,7 +55,7 @@ class CartViewModel: CartViewModelProtocol , ObservableObject {
     }
     
     func calculateTotalPrice() -> Double {
-        products.map {$0.price * ( 1 - ($0.discountPercentage / 100.0))}
+        products.map {$0.price * ( 1 - ($0.discountPrecentage / 100.0))}
             .reduce(0.0, +)
     }
     

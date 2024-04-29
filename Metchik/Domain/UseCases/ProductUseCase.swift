@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class ProductUseCase: ProductRepositories, ObservableObject {
-    @Published private var repo = ProductSourceRepositoriesImpl()
+    private var repo = ProductSourceRepositoriesImpl()
     @Published private var products: [Product] = []
 
     private var cancellables = Set<AnyCancellable>()
@@ -29,21 +29,23 @@ class ProductUseCase: ProductRepositories, ObservableObject {
     }
 
     private func updateProducts() {
-        repo.getProductsSource()
-            .map { $0.toProducts() }
-            .sink { [weak self] products in
-                self?.products = products
+        repo.getProductsSource(parameters: [:]) { result in
+            switch result {
+            case .success(let success):
+                self.products = success.data.products.toProducts()
+            case .failure(let failure):
+                print(failure)
             }
-            .store(in: &cancellables)
+        }
     }
 
     func getCategories() -> AnyPublisher<[String], Never> {
         return $products
-             .map { products in
-                 Array(Set(products.map { $0.category.capitalized }))
-                     .sorted()
-             }
-             .eraseToAnyPublisher()
+            .map { products in
+                Array(Set(products.map { $0.category.capitalized }))
+                    .sorted()
+            }
+            .eraseToAnyPublisher()
     }
     
     func getSubCategories(category: String) -> AnyPublisher<[String], Never> {
@@ -77,7 +79,7 @@ class ProductUseCase: ProductRepositories, ObservableObject {
         return $products
             .map {
                 $0.filter { $0.category.lowercased() == category.lowercased() }
-                .filter { $0.subCategory.lowercased() == subCategories.lowercased() }
+                    .filter { $0.subCategory.lowercased() == subCategories.lowercased() }
             }
             .eraseToAnyPublisher()
     }

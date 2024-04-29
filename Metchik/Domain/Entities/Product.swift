@@ -12,17 +12,17 @@ struct Product: Identifiable {
     let name: String
     let shortDescription: String
     let price: Double
-    let discountPercentage: Double
+    let discountPrecentage: Double
 //    let isFavorite: Bool
-    let mainImage: Image
+    let imageURL: URL?
     let category: String
     let subCategory: String
     static let mockData: Product = Product(id: "1",
                                            name: "test",
                                            shortDescription: "shortDescription",
                                            price: 44.7,
-                                           discountPercentage: 32,
-                                           mainImage:  Asset.Images.discountImage2.swiftUIImage ,
+                                           discountPrecentage: 32,
+                                           imageURL: URL(string: "https://res.cloudinary.com/duwfy7ale/image/upload/v1714353252/owzrmpeqc1qj7rkydvrn.jpg")  ,
                                            category: "",
                                            subCategory: "")
     

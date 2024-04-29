@@ -7,15 +7,29 @@
 
 import Foundation
 
-struct ProductSource: Identifiable, Codable {
-    let id: String
-    let name: String
+struct MetaProductSource: Codable {
+    let status: String
+    let data: DataProductSource
+}
+
+// MARK: - DataProductSource
+struct DataProductSource: Codable {
+    let products: [ProductSource]
+}
+
+// MARK: - ProductSource
+struct ProductSource: Codable {
+    let id, title: String
+    let avatar: String
     let shortDescription: String
     let price: Double
-    let discountPercentage: Double
 //    let isFavorite: Bool
-    let mainImage: String
-    let category: String
-    let subCategory: String
+    let discountPrecentage: Double
+    let category, subCategory: String
+    let imageUrl: String
     
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case title, avatar, shortDescription, price, discountPrecentage, category, subCategory, imageUrl
+    }
 }

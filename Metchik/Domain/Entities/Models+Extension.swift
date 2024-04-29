@@ -10,13 +10,13 @@ import SwiftUI
 extension ProductSource {
     func toProduct() -> Product {
         Product(
-            id: id, // Replace with the actual id property of ProductSource
-            name: name,
+            id: id,
+            name: title,
             shortDescription: shortDescription,
             price: price,
-            discountPercentage: discountPercentage,
-//                    isFavorite: source.isFavorite, // Assuming isFavorite is a property of ProductSource
-            mainImage: ImageAsset(name: "Images/\(mainImage)").swiftUIImage,
+            discountPrecentage: discountPrecentage,
+//                    isFavorite: source.isFavorite, 
+            imageURL: URL(string: imageUrl),
             category: category,
             subCategory: subCategory
         )
@@ -34,7 +34,7 @@ extension Array where Element == ProductSource {
 
 extension ProductSourceDetail {
     func toProductDetail() -> ProductDetail {
-        ProductDetail(images: self.images,
+        ProductDetail(images: imageUrl.map{URL(string: $0)},
                       rating: self.rating,
                       review: self.review,
                       productAttribute: self.productAttribute.toProductSourceAttribute(),
@@ -45,8 +45,8 @@ extension ProductSourceDetail {
 extension Array where Element == ProductSourceAttribute {
     func toProductSourceAttribute() -> [ProductAttribute] {
         return self.map { source in
-            ProductAttribute(sizes: source.sizes.toProductSizes(),
-                             avaliableInStok: source.avaliableInStok,
+            ProductAttribute(sizes: ProductSizes(rawValue: source.sizes) ?? .l,
+                             avaliableInStok: source.availableInStock,
                              colors:  source.colors.map { getColor(name: $0)})
         }
     }
@@ -67,42 +67,6 @@ extension Array where Element == ProductSourceAttribute {
             return Asset.ProductColor.yellow.swiftUIColor
         default:
             return Asset.ProductColor.yellow.swiftUIColor
-        }
-    }
-}
-
-extension CartProductSource {
-    func toProductSizes (size:String) -> ProductSizes {
-        switch size {
-        case "s":
-                .s
-        case "m":
-                .m
-        case "l":
-                .l
-        case "xl":
-                .xl
-        case "xxl":
-                .xxl
-        default:
-                .l
-        }
-    }
-}
-
-extension ProductSourceSizes {
-    func toProductSizes () -> ProductSizes {
-        switch self {
-        case .s:
-                .s
-        case .m:
-                .m
-        case .l:
-                .l
-        case .xl:
-                .xl
-        case .xxl:
-                .xxl
         }
     }
 }
@@ -136,7 +100,7 @@ extension CartProductSource {
     func toCartProduct() -> CartProduct {
         CartProduct(
             productID: productID ,
-            size: toProductSizes(size: size ),
+            size: ProductSizes(rawValue: size) ?? .l,
             color: Color.fromString(color) ?? .black,
             selectedCount: selectedCount)
     }

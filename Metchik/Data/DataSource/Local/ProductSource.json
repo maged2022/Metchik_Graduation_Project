@@ -1,103 +1,108 @@
-[
-    {
-        "id": "1",
-        "name": "Jacket_1",
-        "shortDescription": "shortDescription",
-        "price": 11,
-        "discountPercentage": 11,
-        "mainImage": "discount_image3",
-        "category": "men",
-        "subCategory": "shoes"
-    },
-    {
-        "id": "2",
-        "name": "Jacket_2",
-        "shortDescription": "shortDescription",
-        "price": 22,
-        "discountPercentage": 22,
-        "mainImage": "discount_image3",
-        "category": "men",
-        "subCategory": "shoes"
-    },
-    {
-        "id": "3",
-        "name": "Jacket_3",
-        "shortDescription": "shortDescription",
-        "price": 33,
-        "discountPercentage": 33,
-        "mainImage": "discount_image3",
-        "category": "men",
-        "subCategory": "t-shirt"
-    },
-    {
-        "id": "4",
-        "name": "Jacket_4",
-        "shortDescription": "shortDescription",
-        "price": 44,
-        "discountPercentage": 44,
-        "mainImage": "discount_image3",
-        "category": "woman",
-        "subCategory": "dresses"
-    },
-    {
-        "id": "5",
-        "name": "Jacket_5",
-        "shortDescription": "shortDescription",
-        "price": 55,
-        "discountPercentage": 55,
-        "mainImage": "discount_image3",
-        "category": "kids",
-        "subCategory": "toys"
-    },
-    {
-        "id": "6",
-        "name": "Jacket_36",
-        "shortDescription": "shortDescription",
-        "price": 66,
-        "discountPercentage": 66,
-        "mainImage": "discount_image3",
-        "category": "kids",
-        "subCategory": "shoes"
-    },
-    {
-        "id": "7",
-        "name": "Jacket_37",
-        "shortDescription": "shortDescription",
-        "price": 77,
-        "discountPercentage": 77,
-        "mainImage": "discount_image3",
-        "category": "men",
-        "subCategory": "jacket"
-    },
-    {
-        "id": "8",
-        "name": "Jacket_38",
-        "shortDescription": "shortDescription",
-        "price": 88,
-        "discountPercentage": 88,
-        "mainImage": "discount_image3",
-        "category": "men",
-        "subCategory": "t-shirt"
-    },
-    {
-        "id": "9",
-        "name": "Jacket_39",
-        "shortDescription": "shortDescription",
-        "price": 99,
-        "discountPercentage": 99,
-        "mainImage": "discount_image3",
-        "category": "woman",
-        "subCategory": "top dresses"
-    },
-    {
-        "id": "10",
-        "name": "Jacket_10",
-        "shortDescription": "shortDescription",
-        "price": 10,
-        "discountPercentage": 10,
-        "mainImage": "discount_image3",
-        "category": "kids",
-        "subCategory": "shoes"
+{
+    "status": "success",
+    "data": {
+        "products": [
+            {
+                "id": "1",
+                "name": "Jacket_1",
+                "shortDescription": "shortDescription",
+                "price": 11,
+                "discountPercentage": 11,
+                "mainImage": "discount_image3",
+                "category": "men",
+                "subCategory": "shoes"
+            },
+            {
+                "id": "2",
+                "name": "Jacket_2",
+                "shortDescription": "shortDescription",
+                "price": 22,
+                "discountPercentage": 22,
+                "mainImage": "discount_image3",
+                "category": "men",
+                "subCategory": "shoes"
+            },
+            {
+                "id": "3",
+                "name": "Jacket_3",
+                "shortDescription": "shortDescription",
+                "price": 33,
+                "discountPercentage": 33,
+                "mainImage": "discount_image3",
+                "category": "men",
+                "subCategory": "t-shirt"
+            },
+            {
+                "id": "4",
+                "name": "Jacket_4",
+                "shortDescription": "shortDescription",
+                "price": 44,
+                "discountPercentage": 44,
+                "mainImage": "discount_image3",
+                "category": "woman",
+                "subCategory": "dresses"
+            },
+            {
+                "id": "5",
+                "name": "Jacket_5",
+                "shortDescription": "shortDescription",
+                "price": 55,
+                "discountPercentage": 55,
+                "mainImage": "discount_image3",
+                "category": "kids",
+                "subCategory": "toys"
+            },
+            {
+                "id": "6",
+                "name": "Jacket_36",
+                "shortDescription": "shortDescription",
+                "price": 66,
+                "discountPercentage": 66,
+                "mainImage": "discount_image3",
+                "category": "kids",
+                "subCategory": "shoes"
+            },
+            {
+                "id": "7",
+                "name": "Jacket_37",
+                "shortDescription": "shortDescription",
+                "price": 77,
+                "discountPercentage": 77,
+                "mainImage": "discount_image3",
+                "category": "men",
+                "subCategory": "jacket"
+            },
+            {
+                "id": "8",
+                "name": "Jacket_38",
+                "shortDescription": "shortDescription",
+                "price": 88,
+                "discountPercentage": 88,
+                "mainImage": "discount_image3",
+                "category": "men",
+                "subCategory": "t-shirt"
+            },
+            {
+                "id": "9",
+                "name": "Jacket_39",
+                "shortDescription": "shortDescription",
+                "price": 99,
+                "discountPercentage": 99,
+                "mainImage": "discount_image3",
+                "category": "woman",
+                "subCategory": "top dresses"
+            },
+            {
+                "id": "10",
+                "name": "Jacket_10",
+                "shortDescription": "shortDescription",
+                "price": 10,
+                "discountPercentage": 10,
+                "mainImage": "discount_image3",
+                "category": "kids",
+                "subCategory": "shoes"
+            }
+        ]
     }
-]
+}
 
