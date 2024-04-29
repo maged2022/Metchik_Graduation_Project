@@ -18,11 +18,14 @@ class ProductDetailUseCase: ProductDetailRepositories, ObservableObject {
     private init() { }
     
     func fetchProductDetail(by id : String) {
-        let parameters = ["id": id]
+        let parameters = ["productId": id]
         repo.getProductSourceDetail(parameters: parameters ) { result in
             switch result {
             case .success(let success):
-                self.productDetail = success.toProductDetail()
+//                if let productDetail = success.data?.productContain[0] {
+                    self.productDetail = success.data.productContain[0].toProductDetail()
+//                }
+                
             case .failure(let failure):
                 print(failure)
             }

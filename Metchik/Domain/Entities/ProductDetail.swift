@@ -9,13 +9,13 @@ import Foundation
 import SwiftUI
 
 struct ProductDetail {
-    let images: [String]// url(string: images)
-    let rating: Double // 1 - 5
+    let images: [URL?]
+    let rating: Double
     let review: Int
     let productAttribute: [ProductAttribute]
     let description: String
     
-    static let mockData:ProductDetail = ProductDetail(images: ["discount_image4"],
+    static let mockData:ProductDetail = ProductDetail(images: [URL(string:" https://res.cloudinary.com/duwfy7ale/image/upload/v1714400077/hwm087lyxwvzccfrfoh1.webp")],
                                                       rating: 4,
                                                       review: 33,
                                                       productAttribute: [

@@ -13,9 +13,19 @@ struct ProductImagesSectionView: View {
     @EnvironmentObject var viewModel: ProductDetailViewModel
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
-            Asset.Images.discountImage2.swiftUIImage
-                .resizable()
-                .frame(maxWidth: .infinity, minHeight: 200, maxHeight: 430).tag("0")
+            TabView {
+                 ForEach(viewModel.productDetail.images, id: \.self) { imageUrl in
+                     AsyncImage(url: imageUrl) { image in
+                         image
+                             .resizable()
+                             .frame(maxWidth: .infinity, minHeight: 200, maxHeight: 430)
+                     } placeholder: {
+                         ProgressView()
+                     }
+                     .tag(imageUrl)
+                 }
+             }
+            .tabViewStyle(PageTabViewStyle())
             
             Button(action: {}, label: {
                 Image(systemName: "heart")
