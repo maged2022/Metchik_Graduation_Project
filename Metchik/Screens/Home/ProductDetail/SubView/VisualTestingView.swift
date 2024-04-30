@@ -8,11 +8,17 @@
 import SwiftUI
 
 
+struct ImageWrapper: Identifiable {
+    let id = UUID()
+    let image: UIImage
+}
+
 struct VistualTestingView: View {
     
     typealias Colors = Asset.Colors
     @State private var showActionSheet = false
     @State private var showImagePicker = false
+    @State private var selectedImage: ImageWrapper? // Use ImageWrapper instead of UIImage
     
     var body: some View {
         VStack {
@@ -24,13 +30,11 @@ struct VistualTestingView: View {
                     .font(.system(size: 25))
                     .frame(width: 30,height: 30)
                     .aspectRatio(contentMode: .fill)
-                    .background(Colors.primaryButtonColor.swiftUIColor
-                        .cornerRadius(15)
-                    )
+                    .background(Colors.primaryButtonColor.swiftUIColor.cornerRadius(15))
                     .padding(25)
                     .padding(.bottom,25)
             }
-        
+            
             .actionSheet(isPresented: $showActionSheet) {
                 ActionSheet(
                     title: Text("Choose Source"),
@@ -47,17 +51,14 @@ struct VistualTestingView: View {
             }
             .sheet(isPresented: $showImagePicker) {
                 ImagePicker(sourceType: .photoLibrary) { image in
-                    // Show processing indicator and message
-                    //                processingImage = true
-                    //
-                    //                selectedImage = UIImage(named: "discount8")
+                    selectedImage = ImageWrapper(image: image!) // Store the selected image
                     showImagePicker = false
-                    // Simulate processing delay
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        // Hide processing indicator and message after 3 seconds
-                        //                    processingImage = false
-                    }
                 }
+            }
+        }
+        .fullScreenCover(item: $selectedImage) { imageWrapper in
+            if let image = imageWrapper.image {
+                ImageView(image: image) // Show the selected image in full screen
             }
         }
     }
@@ -72,9 +73,16 @@ struct VistualTestingView: View {
     }
 }
 
-
-struct VisualTestingView_Previews: PreviewProvider {
-    static var previews: some View {
-        VistualTestingView()
+// Separate view to display the selected image in full screen
+struct ImageView: View {
+    let image: UIImage
+    
+    var body: some View {
+        Image(uiImage: image)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .navigationBarTitle("Selected Image")
+            .edgesIgnoringSafeArea(.all) // Ignore safe area to cover the entire screen
     }
 }
+
