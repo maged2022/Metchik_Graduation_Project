@@ -26,7 +26,7 @@ public enum EndPoints: ServiceLayer {
     public var baseUrl: String {
         switch self {
         case .getVirtualImageWith:
-            return "https://3912-197-59-122-223.ngrok-free.app/api"
+            return "https://0517-197-59-122-223.ngrok-free.app/"
         default :
             return "https://metchik.onrender.com/api/"
         }
@@ -38,7 +38,7 @@ public enum EndPoints: ServiceLayer {
         case .getProductDetailWith:
             return "ProductContain"
         case .getVirtualImageWith:
-            return ""
+            return "process_images"
         }
     }
     
