@@ -15,7 +15,7 @@ public protocol Networkable {
 public class BaseRequest: Networkable {
     public static let shared = BaseRequest()
     public func request<T: Codable>(route: ServiceLayer, method: HTTPMethod, completion: @escaping (Result<T, RemoteError>) -> Void) {
-        let headers = Alamofire.HTTPHeaders(route.headers ?? [:])
+        let headers = Alamofire.HTTPHeaders(route.headers)
         let parameters = extractParameters(task: route.task)
         AF.request(route.baseUrl + route.path, method : method,
                    parameters: parameters.params,

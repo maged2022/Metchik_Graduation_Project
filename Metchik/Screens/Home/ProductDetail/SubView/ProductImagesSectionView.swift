@@ -47,7 +47,6 @@ struct ProductImagesSectionView_Previews: PreviewProvider {
     }
 }
 
-
 extension ProductImagesSectionView {
     var heartButton: some View {
         Button(action: {}, label: {

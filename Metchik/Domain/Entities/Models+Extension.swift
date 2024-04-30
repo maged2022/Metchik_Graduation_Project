@@ -34,7 +34,9 @@ extension Array where Element == ProductSource {
 
 extension ProductSourceDetail {
     func toProductDetail() -> ProductDetail {
-        ProductDetail(images: imageUrl.map{URL(string: $0)},
+        ProductDetail(images: imageUrl.map {
+            URL(string: $0)
+        },
                       rating: self.rating,
                       review: self.review,
                       productAttribute: self.productAttribute.toProductSourceAttribute(),
