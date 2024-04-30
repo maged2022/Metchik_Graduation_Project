@@ -26,20 +26,13 @@ struct ProductImagesSectionView: View {
                  }
              }
             .tabViewStyle(PageTabViewStyle())
-            
-            Button(action: {}, label: {
-                Image(systemName: "heart")
+            HStack {
+                VistualTestingView()
                 
-                    .frame(width: 30,height: 30)
-                    .aspectRatio(contentMode: .fill)
-                    .background(Colors.primaryButtonColor.swiftUIColor
-                        .cornerRadius(15)
-                    )
-            })
-            .padding(25)
-            .padding(.bottom,25)
-            .tag("1")
-            
+                Spacer()
+                
+                heartButton
+            }
         }
     }
 }
@@ -51,5 +44,23 @@ struct ProductImagesSectionView_Previews: PreviewProvider {
             ProductImagesSectionView()
                 .environmentObject(productDetailViewModel)
         }
+    }
+}
+
+
+extension ProductImagesSectionView {
+    var heartButton: some View {
+        Button(action: {}, label: {
+            Image(systemName: "heart")
+            
+                .frame(width: 30,height: 30)
+                .aspectRatio(contentMode: .fill)
+                .background(Colors.primaryButtonColor.swiftUIColor
+                    .cornerRadius(15)
+                )
+        })
+        .padding(25)
+        .padding(.bottom,25)
+        .tag("1")
     }
 }
