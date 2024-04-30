@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ProductDetailView: View {
+    
     typealias Colors = Asset.Colors
     @StateObject var productDetailViewModel : ProductDetailViewModel
+    
     var body: some View {
         
         VStack {

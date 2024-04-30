@@ -22,7 +22,7 @@ class ProductSourceDetailRepositoriesImpl: ProductSourceDetailRepositories {
                 BaseRequest().request(route: route, method: .get, completion: completion)
             } else {
                 let productDetail: MetaProductSourceDetail? = JSONDecoder().decode(forResource: "ProductSourceDetail")
-                if let productDetail {
+                if let productDetail = productDetail {
                     completion(.success(productDetail))
                 } else {
                     completion(.failure(.detectError(statusCode: 400)))
