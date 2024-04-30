@@ -22,7 +22,7 @@ class ProductSourceRepositoriesImpl: ProductSourceRepositories {
                 BaseRequest().request(route: route, method: .get, completion: completion)
             } else {
                 let products: MetaProductSource? = JSONDecoder().decode(forResource: "ProductSource")
-                if let products {
+                if let products = products {
                     completion(.success(products))
                 } else {
                     completion(.failure(.detectError(statusCode: 400)))

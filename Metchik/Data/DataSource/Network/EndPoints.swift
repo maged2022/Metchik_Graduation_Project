@@ -23,9 +23,9 @@ public enum EndPoints: ServiceLayer {
     public var task: Task {
         switch self {
         case .getProductsWith(let parameters):
-                .requestWithParameters(parameters: parameters, encoding: URLEncoding.default)
+               return .requestWithParameters(parameters: parameters, encoding: URLEncoding.default)
         case .getProductDetailWith(let parameters):
-                .requestWithParameters(parameters: parameters, encoding: URLEncoding.default)
+              return .requestWithParameters(parameters: parameters, encoding: URLEncoding.default)
         }
     }
 }
