@@ -106,4 +106,8 @@ extension ProductDetailViewModel {
     func getCartButtonViewModel() -> CartButtonViewModel {
         coordinator.createCartButtonViewModel()
     }
+    
+    func pressedTryItButton(personImage: UIImage?) {
+        coordinator.showVirtualTry(personImage: personImage, productImageURL: product.imageURL)
+    }
 }
