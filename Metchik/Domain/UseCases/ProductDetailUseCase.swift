@@ -22,10 +22,7 @@ class ProductDetailUseCase: ProductDetailRepositories, ObservableObject {
         repo.getProductSourceDetail(parameters: parameters ) { result in
             switch result {
             case .success(let success):
-//                if let productDetail = success.data?.productContain[0] {
-                    self.productDetail = success.data.productContain[0].toProductDetail()
-//                }
-                
+                self.productDetail = success.data.productContain[0].toProductDetail()  
             case .failure(let failure):
                 print(failure)
             }

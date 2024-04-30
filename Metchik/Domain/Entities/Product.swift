@@ -17,13 +17,17 @@ struct Product: Identifiable {
     let imageURL: URL?
     let category: String
     let subCategory: String
-    static let mockData: Product = Product(id: "1",
-                                           name: "test",
-                                           shortDescription: "shortDescription",
-                                           price: 44.7,
-                                           discountPrecentage: 32,
-                                           imageURL: URL(string: "https://res.cloudinary.com/duwfy7ale/image/upload/v1714353252/owzrmpeqc1qj7rkydvrn.jpg")  ,
-                                           category: "",
-                                           subCategory: "")
+    static let mockData: Product = Product(
+        id: "1",
+        name: "test",
+        shortDescription: "shortDescription",
+        price: 44.7,
+        discountPrecentage: 32,
+        imageURL: URL(
+            string: "https://shopgroove.pk/cdn/shop/products/S01e7c5c3f5bf4632b8e94d2d73cd6f6e5_jpg_640x640Q90_jpg.jpg"
+        )  ,
+        category: "",
+        subCategory: ""
+    )
     
 }

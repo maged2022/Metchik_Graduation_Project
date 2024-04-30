@@ -42,5 +42,17 @@ class HomeAssemply: Assembly {
             else {fatalError("error resolver HomeTabCoordinatorProtocol")}
             return SubCategoryViewModel(category: "Men", coordinator: coordinator)
         }
+        sharedContainer.register(VirtualTryViewModel.self) { resolver in
+            guard let coordinator = resolver.resolve(HomeTabCoordinatorProtocol.self)
+            else {fatalError("error resolver HomeTabCoordinatorProtocol")}
+            let image = Asset.Images.discountImage3.image
+            let virtualTryUseCase = VirtualTryUseCase()
+            return VirtualTryViewModel(
+                personImage: image,
+                productImageURL: Product.mockData.imageURL,
+                coordinator: coordinator,
+                virtualTryUseCase: virtualTryUseCase
+            )
+        }
     }
 }

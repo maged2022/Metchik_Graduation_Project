@@ -17,6 +17,7 @@ protocol HomeTabCoordinatorProtocol: Coordinator {
     func createProductItemViewModel(product: Product) -> ProductItemViewModel
     func showProfile()
     func showCart()
+    func showVirtualTry(personImage: UIImage?, productImageURL: URL?)
     func createCartButtonViewModel() -> CartButtonViewModel
 }
 
@@ -86,4 +87,23 @@ class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
         router.popToRoot()
         coordinator.showCart()
     }
+    
+    func showVirtualTry(
+        personImage: UIImage?,
+        productImageURL: URL?
+    ) {
+        guard let personImage else {
+            fatalError("personImage error ")
+        }
+        let virtualTryUseCase = VirtualTryUseCase()
+        let viewModel = VirtualTryViewModel(
+            personImage: personImage,
+            productImageURL: productImageURL,
+            coordinator: self,
+            virtualTryUseCase: virtualTryUseCase)
+        let virualTry = VirtualTryView(virtualTryViewModel: viewModel)
+        let virualTryViewController = UIHostingController(rootView: virualTry)
+        router.push(virualTryViewController)
+    }
+
 }

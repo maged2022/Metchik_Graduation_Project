@@ -20,10 +20,6 @@ public enum RemoteError: Error {
         switch statusCode {
         case 200: return "Request succeeded"
         case 201: return "Created"
-        case 204: return "No content to send"
-        case 300: return "Multiple choices available, please choose one"
-        case 301: return "Resource has been permanently moved to new resource URL"
-        case 304: return "Resource has not been modified since last request"
         case 400: return "Request syntax is invalid"
         case 401: return "Authentication failed, please provide valid credentials"
         case 403: return "Access to resource is forbidden"
@@ -33,7 +29,6 @@ public enum RemoteError: Error {
         case 503: return "Service is currently unavailable, please try again later"
         default:
             return "Some thing went wrong!"
-
         }
     }
 }

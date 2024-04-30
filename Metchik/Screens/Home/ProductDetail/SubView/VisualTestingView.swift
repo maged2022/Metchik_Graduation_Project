@@ -7,10 +7,9 @@
 
 import SwiftUI
 
-
 struct ImageWrapper: Identifiable {
     let id = UUID()
-    let image: UIImage
+    let image: UIImage?
 }
 
 struct VistualTestingView: View {
@@ -18,14 +17,14 @@ struct VistualTestingView: View {
     typealias Colors = Asset.Colors
     @State private var showActionSheet = false
     @State private var showImagePicker = false
-    @State private var selectedImage: ImageWrapper? // Use ImageWrapper instead of UIImage
-    
+    @EnvironmentObject var viewModel: ProductDetailViewModel
+
     var body: some View {
         VStack {
-            Button(action: {
+            
+            Button {
                 showActionSheet = true
-            }) {
-                
+            } label: {
                 Image(systemName: "camera.on.rectangle")
                     .font(.system(size: 25))
                     .frame(width: 30,height: 30)
@@ -43,7 +42,7 @@ struct VistualTestingView: View {
                             showImagePicker = true
                         },
                         .default(Text("Open Camera")) {
-                            openCamera() // Call the function to open the camera
+                            openCamera()
                         },
                         .cancel()
                     ]
@@ -51,14 +50,8 @@ struct VistualTestingView: View {
             }
             .sheet(isPresented: $showImagePicker) {
                 ImagePicker(sourceType: .photoLibrary) { image in
-                    selectedImage = ImageWrapper(image: image!) // Store the selected image
-                    showImagePicker = false
+                    self.viewModel.pressedTryItButton(personImage: image)
                 }
-            }
-        }
-        .fullScreenCover(item: $selectedImage) { imageWrapper in
-            if let image = imageWrapper.image {
-                ImageView(image: image) // Show the selected image in full screen
             }
         }
     }
@@ -68,21 +61,6 @@ struct VistualTestingView: View {
             print("Camera is not available")
             return
         }
-        
         showImagePicker = true
     }
 }
-
-// Separate view to display the selected image in full screen
-struct ImageView: View {
-    let image: UIImage
-    
-    var body: some View {
-        Image(uiImage: image)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .navigationBarTitle("Selected Image")
-            .edgesIgnoringSafeArea(.all) // Ignore safe area to cover the entire screen
-    }
-}
-

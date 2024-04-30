@@ -34,6 +34,14 @@
 		5C11CCAB2B93338700A1ED63 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C11CCAA2B93338700A1ED63 /* Assets.swift */; };
 		5C11CCAF2B94A15D00A1ED63 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C11CCAE2B94A15D00A1ED63 /* BackButton.swift */; };
 		5C361CC22B7808DD00232B94 /* QuickSubCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C361CC12B7808DD00232B94 /* QuickSubCategoryView.swift */; };
+		5C3EB6752BE1285D0093BE26 /* VirtualTryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EB6742BE1285D0093BE26 /* VirtualTryView.swift */; };
+		5C3EB6772BE134600093BE26 /* VirtualTryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EB6762BE134600093BE26 /* VirtualTryViewModel.swift */; };
+		5C3EB6792BE141230093BE26 /* VirtualTryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EB6782BE141230093BE26 /* VirtualTryUseCase.swift */; };
+		5C3EB67B2BE141780093BE26 /* VirtualTryRepositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EB67A2BE141780093BE26 /* VirtualTryRepositories.swift */; };
+		5C3EB67D2BE142C20093BE26 /* VirtualTrySourceRepositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EB67C2BE142C20093BE26 /* VirtualTrySourceRepositories.swift */; };
+		5C3EB6802BE146B50093BE26 /* Cloudinary in Frameworks */ = {isa = PBXBuildFile; productRef = 5C3EB67F2BE146B50093BE26 /* Cloudinary */; };
+		5C3EB6822BE14E440093BE26 /* VirtualTrySource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EB6812BE14E440093BE26 /* VirtualTrySource.swift */; };
+		5C3EB6842BE1723C0093BE26 /* UploadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EB6832BE1723C0093BE26 /* UploadImage.swift */; };
 		5C431D0F2B8750050091BF09 /* OfferSource.json in Resources */ = {isa = PBXBuildFile; fileRef = 5C91C4032B85B15500308218 /* OfferSource.json */; };
 		5C431D122B893B520091BF09 /* ProductDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C431D112B893B520091BF09 /* ProductDetailViewModel.swift */; };
 		5C431D142B899CB50091BF09 /* ProductSourceDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 5C431D132B899CB50091BF09 /* ProductSourceDetail.json */; };
@@ -148,6 +156,13 @@
 		5C11CCAE2B94A15D00A1ED63 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		5C2C36582B7709660062C3FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C361CC12B7808DD00232B94 /* QuickSubCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickSubCategoryView.swift; sourceTree = "<group>"; };
+		5C3EB6742BE1285D0093BE26 /* VirtualTryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualTryView.swift; sourceTree = "<group>"; };
+		5C3EB6762BE134600093BE26 /* VirtualTryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualTryViewModel.swift; sourceTree = "<group>"; };
+		5C3EB6782BE141230093BE26 /* VirtualTryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualTryUseCase.swift; sourceTree = "<group>"; };
+		5C3EB67A2BE141780093BE26 /* VirtualTryRepositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualTryRepositories.swift; sourceTree = "<group>"; };
+		5C3EB67C2BE142C20093BE26 /* VirtualTrySourceRepositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualTrySourceRepositories.swift; sourceTree = "<group>"; };
+		5C3EB6812BE14E440093BE26 /* VirtualTrySource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualTrySource.swift; sourceTree = "<group>"; };
+		5C3EB6832BE1723C0093BE26 /* UploadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImage.swift; sourceTree = "<group>"; };
 		5C431D112B893B520091BF09 /* ProductDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewModel.swift; sourceTree = "<group>"; };
 		5C431D132B899CB50091BF09 /* ProductSourceDetail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ProductSourceDetail.json; sourceTree = "<group>"; };
 		5C431D152B89AB100091BF09 /* ProductSourceDetailRepositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSourceDetailRepositories.swift; sourceTree = "<group>"; };
@@ -241,6 +256,7 @@
 			files = (
 				125D25A12BE09C89002967F4 /* Alamofire in Frameworks */,
 				125D25A42BE09D23002967F4 /* Swinject in Frameworks */,
+				5C3EB6802BE146B50093BE26 /* Cloudinary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +320,7 @@
 				5C431D172B89ABF60091BF09 /* ProductSourceDetail.swift */,
 				5C713B712B835B920040AE10 /* OfferSource.swift */,
 				5C45B0E52B8F5E1D00BE62F4 /* CartProductSource.swift */,
+				5C3EB6812BE14E440093BE26 /* VirtualTrySource.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -361,6 +378,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		5C3EB6712BE127520093BE26 /* VirtualTry */ = {
+			isa = PBXGroup;
+			children = (
+				5C3EB6742BE1285D0093BE26 /* VirtualTryView.swift */,
+				5C3EB6762BE134600093BE26 /* VirtualTryViewModel.swift */,
+			);
+			path = VirtualTry;
+			sourceTree = "<group>";
+		};
 		5C431D102B8865F20091BF09 /* ProductDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,6 +433,7 @@
 				5CEA29672B99E763009DA889 /* ProductItem */,
 				97BA530B2B370BBB0061DF1B /* Product */,
 				5C431D102B8865F20091BF09 /* ProductDetail */,
+				5C3EB6712BE127520093BE26 /* VirtualTry */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -554,6 +581,7 @@
 				5C431D192B89AC370091BF09 /* ProductDetailUseCase.swift */,
 				5C713B6F2B835B2A0040AE10 /* OffersUseCase.swift */,
 				5C45B0E12B8F5D5C00BE62F4 /* CartUseCase.swift */,
+				5C3EB6782BE141230093BE26 /* VirtualTryUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -565,6 +593,7 @@
 				5C431D1B2B89ACA90091BF09 /* ProductDetailRepositories.swift */,
 				5C713B6D2B835AEA0040AE10 /* OffersRepositories.swift */,
 				5C45B0E32B8F5D7600BE62F4 /* CartRepositories.swift */,
+				5C3EB67A2BE141780093BE26 /* VirtualTryRepositories.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -586,6 +615,7 @@
 				5C431D152B89AB100091BF09 /* ProductSourceDetailRepositories.swift */,
 				5C713B732B835BD90040AE10 /* OffersSourceRepositories.swift */,
 				5C45B0E72B8F5E8900BE62F4 /* CartSourceRepositories.swift */,
+				5C3EB67C2BE142C20093BE26 /* VirtualTrySourceRepositories.swift */,
 			);
 			path = DataRepositories;
 			sourceTree = "<group>";
@@ -607,6 +637,7 @@
 			children = (
 				121F49592B2DCCC3000CD3BB /* LocalCacheImage.swift */,
 				5C8E5DCC2BDFC97C00DEF02D /* EndPoints.swift */,
+				5C3EB6832BE1723C0093BE26 /* UploadImage.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -680,6 +711,7 @@
 			packageProductDependencies = (
 				125D25A02BE09C89002967F4 /* Alamofire */,
 				125D25A32BE09D23002967F4 /* Swinject */,
+				5C3EB67F2BE146B50093BE26 /* Cloudinary */,
 			);
 			productName = Metchik;
 			productReference = 12EEBF2B2B246360003B0B0C /* Metchik.app */;
@@ -712,6 +744,7 @@
 			packageReferences = (
 				125D259E2BE09C5F002967F4 /* XCRemoteSwiftPackageReference "Swinject" */,
 				125D259F2BE09C89002967F4 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				5C3EB67E2BE146B50093BE26 /* XCRemoteSwiftPackageReference "cloudinary_ios" */,
 			);
 			productRefGroup = 12EEBF2C2B246360003B0B0C /* Products */;
 			projectDirPath = "";
@@ -807,11 +840,14 @@
 				5C8E5DBE2BDFBB0000DEF02D /* BaseRequest.swift in Sources */,
 				5C431D1E2B89ACD90091BF09 /* ProductDetail.swift in Sources */,
 				121F495A2B2DCCC3000CD3BB /* LocalCacheImage.swift in Sources */,
+				5C3EB67B2BE141780093BE26 /* VirtualTryRepositories.swift in Sources */,
 				1263EDA02B6FFB8400658725 /* CartProductViewCell.swift in Sources */,
 				5C91C4022B84A1FF00308218 /* JSONDecoder.swift in Sources */,
 				5C45B0E82B8F5E8900BE62F4 /* CartSourceRepositories.swift in Sources */,
+				5C3EB67D2BE142C20093BE26 /* VirtualTrySourceRepositories.swift in Sources */,
 				5C431D262B89BACE0091BF09 /* AddToCartSectionView.swift in Sources */,
 				5C8E5DC52BDFBB3900DEF02D /* RemoteError.swift in Sources */,
+				5C3EB6842BE1723C0093BE26 /* UploadImage.swift in Sources */,
 				5C8E5DCB2BDFBBA400DEF02D /* Task.swift in Sources */,
 				5C431D1C2B89ACA90091BF09 /* ProductDetailRepositories.swift in Sources */,
 				5CF5E8A82B8072CB0096F7AB /* ProductRepositories.swift in Sources */,
@@ -826,19 +862,23 @@
 				5CDA08562B96EB7A001EBBEF /* TabBarCoordinator.swift in Sources */,
 				5C45B0872B8AF3CB00BE62F4 /* NavigationView.swift in Sources */,
 				12A2DE522B2FC4640027A253 /* ProductItemView.swift in Sources */,
+				5C3EB6752BE1285D0093BE26 /* VirtualTryView.swift in Sources */,
 				123612E92B2480A10087B346 /* LaunchView.swift in Sources */,
 				1295C06F2B30881D00C1F4CA /* OffersView.swift in Sources */,
 				5C45B0EA2B8F687100BE62F4 /* Models+Extension.swift in Sources */,
 				5C431D202B89B8310091BF09 /* ProductImagesSectionView.swift in Sources */,
 				5C469C092B9716A2004DD1A0 /* Router.swift in Sources */,
+				5C3EB6822BE14E440093BE26 /* VirtualTrySource.swift in Sources */,
 				12BE291F2B2F94ED00049E36 /* QuickCategoryView.swift in Sources */,
 				1263EDA12B6FFB8400658725 /* CartView.swift in Sources */,
+				5C3EB6792BE141230093BE26 /* VirtualTryUseCase.swift in Sources */,
 				125D25A82BE0A95F002967F4 /* VisualTestingView.swift in Sources */,
 				5C45B0D82B8EFDA500BE62F4 /* CartProuctSectionView.swift in Sources */,
 				5C431D122B893B520091BF09 /* ProductDetailViewModel.swift in Sources */,
 				5C431D1A2B89AC370091BF09 /* ProductDetailUseCase.swift in Sources */,
 				12A2DE4E2B2FC1DB0027A253 /* ProductView.swift in Sources */,
 				5C82AE9C2B76F485001742E8 /* Fonts.swift in Sources */,
+				5C3EB6772BE134600093BE26 /* VirtualTryViewModel.swift in Sources */,
 				5C5A6D202B92114F0013E0B2 /* Color.swift in Sources */,
 				5C431D162B89AB100091BF09 /* ProductSourceDetailRepositories.swift in Sources */,
 				97E0AE732B28F9CD0078BD74 /* SubCategoryView.swift in Sources */,
@@ -1094,6 +1134,14 @@
 				version = 5.8.0;
 			};
 		};
+		5C3EB67E2BE146B50093BE26 /* XCRemoteSwiftPackageReference "cloudinary_ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cloudinary/cloudinary_ios.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1106,6 +1154,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 125D259E2BE09C5F002967F4 /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
+		};
+		5C3EB67F2BE146B50093BE26 /* Cloudinary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C3EB67E2BE146B50093BE26 /* XCRemoteSwiftPackageReference "cloudinary_ios" */;
+			productName = Cloudinary;
 		};
 /* End XCSwiftPackageProductDependency section */
 
