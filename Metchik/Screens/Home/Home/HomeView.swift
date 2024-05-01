@@ -23,7 +23,7 @@ struct HomeView: View {
             contentScrollView
         }
         .offset(CGSize(width: 0,height: (offset < height) ? (offset > -1 ) ? -offset : 0  : -height))
-        .animation(.spring())
+        //.animation(.spring())
         .background(Asset.Colors.backgroundScreenColor.swiftUIColor
             .ignoresSafeArea())
         .navigationBarItems(
@@ -31,7 +31,7 @@ struct HomeView: View {
             ,trailing: trailingNavigationButton )
         .environmentObject(homeViewModel)
         .onAppear {showCategory() }
-        .padding(.horizontal)
+        .padding(.leading)
     }
 }
 
@@ -118,7 +118,8 @@ extension HomeView {
     }
     
     private var contentScrollView: some View {
-        ScrollView {
+            ScrollView(.vertical, showsIndicators: false) {
+                
             VStack(spacing:25) {
                 OffersView()
                 QuickSubCategoryView()
@@ -133,9 +134,9 @@ extension HomeView {
                 return Color.clear
             })
         }
-        .coordinateSpace(name: "scroll")
-        .offset(CGSize(width: 0, height: height))
-        .padding(.top,-height )
+//        .coordinateSpace(name: "scroll")
+//        .offset(CGSize(width: 0, height: height))
+//        .padding(.top,-height )
     }
     
     func getNewHeaderOffset() -> CGSize {
