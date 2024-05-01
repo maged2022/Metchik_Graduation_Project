@@ -47,7 +47,7 @@ struct CardSubCategoriesView: View {
                     vmod.pressedViewAllButton(selectedSubCategory: sectionName)
                 } label: {
                     Text("View All")
-                        .font(.poppins(.bold, size: 18))
+                        .font(.poppins(.bold, size: 17))
                         .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)
                         .padding(.trailing, 20)
                 }
