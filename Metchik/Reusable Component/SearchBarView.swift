@@ -35,7 +35,7 @@ struct SearchBarView: View {
                     
                 } label: {
                     Circle()
-                        .frame(width: 50)
+                        .frame(width: 50, height: 50)
                         .overlay {
                             Image(systemName: "list.bullet")
                                 .foregroundColor(.white)
@@ -46,6 +46,7 @@ struct SearchBarView: View {
                 
             }
         }
+        .padding(.vertical)
         
     }
 }

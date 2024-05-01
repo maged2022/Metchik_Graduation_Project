@@ -18,13 +18,12 @@ struct HomeView: View {
             headerView
             
             SearchBarView(searchText: .constant(""))
-                .padding(.horizontal,25)
             quickCategoryView
             
             contentScrollView
         }
         .offset(CGSize(width: 0,height: (offset < height) ? (offset > -1 ) ? -offset : 0  : -height))
-        .animation(.spring)
+        .animation(.spring())
         .background(Asset.Colors.backgroundScreenColor.swiftUIColor
             .ignoresSafeArea())
         .navigationBarItems(
@@ -32,6 +31,7 @@ struct HomeView: View {
             ,trailing: trailingNavigationButton )
         .environmentObject(homeViewModel)
         .onAppear {showCategory() }
+        .padding(.horizontal)
     }
 }
 
@@ -77,7 +77,8 @@ extension HomeView {
     
     private var headerView: some View {
         HStack {
-            VStack(alignment:.leading) {
+            VStack(alignment:.leading, spacing: 5) {
+                Spacer().frame(height: 15)
                 Text("Welcome,")
                     .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
                     .font(.poppins(.bold, size: 25))
@@ -87,7 +88,6 @@ extension HomeView {
             }
             Spacer()
         }
-        .padding(.leading,25)
         .offset(getNewHeaderOffset())
         .scaleEffect(getNewHeaderScale())
     }

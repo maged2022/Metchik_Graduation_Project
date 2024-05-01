@@ -58,6 +58,5 @@ struct CardSubCategoriesView: View {
                     }
             }
         }
-        .padding(.horizontal,25)
     }
 }
