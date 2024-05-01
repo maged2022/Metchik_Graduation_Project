@@ -80,8 +80,7 @@ extension HomeView {
             VStack(alignment:.leading, spacing: 5) {
                 Spacer().frame(height: 15)
                 Text("Welcome,")
-                    .fontWeight(.heavy)
-                    .font(.system(size: 28))
+                    .font(.poppins(.bold, size: 25))
                 Text("Our Fashions App")
                     .foregroundStyle(Asset.Colors.secondaryLabelColor.swiftUIColor)
                     .font(.poppins(.bold, size: 20))
@@ -134,9 +133,6 @@ extension HomeView {
                 return Color.clear
             })
         }
-//        .coordinateSpace(name: "scroll")
-//        .offset(CGSize(width: 0, height: height))
-//        .padding(.top,-height )
     }
     
     func getNewHeaderOffset() -> CGSize {
