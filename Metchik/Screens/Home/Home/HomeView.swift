@@ -80,8 +80,8 @@ extension HomeView {
             VStack(alignment:.leading, spacing: 5) {
                 Spacer().frame(height: 15)
                 Text("Welcome,")
-                    .font(.poppins(.bold, size: 25))
                     .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
+                    .font(.poppins(.bold, size: 25))
                 Text("Our Fashions App")
                     .foregroundStyle(Asset.Colors.secondaryLabelColor.swiftUIColor)
                     .font(.poppins(.bold, size: 20))
