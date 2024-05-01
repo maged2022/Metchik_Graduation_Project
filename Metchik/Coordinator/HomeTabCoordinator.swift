@@ -92,7 +92,7 @@ class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
         personImage: UIImage?,
         productImageURL: URL?
     ) {
-        guard let personImage else {
+        guard let personImage = personImage else {
             fatalError("personImage error ")
         }
         let virtualTryUseCase = VirtualTryUseCase()

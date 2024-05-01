@@ -27,7 +27,7 @@ struct ProductImagesSectionView: View {
              }
             .tabViewStyle(PageTabViewStyle())
             HStack {
-                VistualTestingView()
+                VirtualTryButtonView()
                 
                 Spacer()
                 

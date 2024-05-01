@@ -12,7 +12,7 @@ struct ImageWrapper: Identifiable {
     let image: UIImage?
 }
 
-struct VistualTestingView: View {
+struct VirtualTryButtonView: View {
     
     typealias Colors = Asset.Colors
     @State private var showActionSheet = false

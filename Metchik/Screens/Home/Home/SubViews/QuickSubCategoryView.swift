@@ -47,17 +47,19 @@ struct CardSubCategoriesView: View {
                     vmod.pressedViewAllButton(selectedSubCategory: sectionName)
                 } label: {
                     Text("View All")
-                        .font(.poppins(.bold, size: 11))
+                        .font(.poppins(.bold, size: 17))
                         .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)
+                        .padding(.trailing, 20)
                 }
             }
-            HStack {
+            HStack() {
                 ForEach(products.prefix(2)) { product in
                     let productItemViewModel = vmod.getProductItemViewModel(product: product)
-                        ProductItemView(productItemViewModel: productItemViewModel)
-                    }
+                    ProductItemView(productItemViewModel: productItemViewModel)
+                        .frame(maxWidth: .infinity)
+                }
             }
+            .padding(.trailing)
         }
-        .padding(.horizontal,25)
     }
 }
