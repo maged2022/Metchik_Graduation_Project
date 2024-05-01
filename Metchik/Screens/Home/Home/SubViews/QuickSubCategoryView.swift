@@ -40,8 +40,8 @@ struct CardSubCategoriesView: View {
         VStack {
             HStack {
                 Text(sectionName)
-                    .font(.poppins(.bold, size: 18))
-                    .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
+                    .fontWeight(.heavy)
+                    .font(.system(size: 20))
                 Spacer()
                 Button {
                     vmod.pressedViewAllButton(selectedSubCategory: sectionName)
