@@ -81,6 +81,7 @@ extension HomeView {
                 Spacer().frame(height: 15)
                 Text("Welcome,")
                     .font(.poppins(.bold, size: 25))
+                    .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
                 Text("Our Fashions App")
                     .foregroundStyle(Asset.Colors.secondaryLabelColor.swiftUIColor)
                     .font(.poppins(.bold, size: 20))
