@@ -9,7 +9,7 @@ import SwiftUI
 
 struct VirtualTryView: View {
     @StateObject var virtualTryViewModel : VirtualTryViewModel
-
+    
     var body: some View {
         VStack {
             Spacer().frame(height: 10)
@@ -29,13 +29,11 @@ struct VirtualTryView: View {
                     .aspectRatio(contentMode: .fit)
                     .cornerRadius(8)
             }
-            
             .frame(maxWidth: .infinity)
             .padding(.horizontal)
             
-            
             Spacer().frame(height: 40)
-           
+            
             AsyncImage(url: virtualTryViewModel.virtualImageURL) { image in
                 image
                     .resizable()
@@ -43,9 +41,9 @@ struct VirtualTryView: View {
             } placeholder: {
                 ProgressView("ML Processing Image")
                     .padding()
+                    .scaleEffect(1.2)
             }
             Spacer()
-           
         }
         .background(
             Color(red: 220 / 255, green: 224 / 255, blue: 225 / 255)
