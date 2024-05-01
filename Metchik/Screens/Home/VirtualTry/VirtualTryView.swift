@@ -46,7 +46,7 @@ struct VirtualTryView: View {
             Spacer()
         }
         .background(
-            Color(red: 220 / 255, green: 224 / 255, blue: 225 / 255)
+            Asset.Colors.backgroundScreenColor.swiftUIColor
         )
     }
 }
