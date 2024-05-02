@@ -118,6 +118,10 @@
 		5CA670342BE3CB470030BF59 /* OnBoardingItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA670332BE3CB470030BF59 /* OnBoardingItemModel.swift */; };
 		5CA670362BE3E4E20030BF59 /* AuthAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA670352BE3E4E20030BF59 /* AuthAssembly.swift */; };
 		5CA670382BE3F28E0030BF59 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA670372BE3F28E0030BF59 /* SplashViewModel.swift */; };
+		5CA6703C2BE3FF530030BF59 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA6703B2BE3FF530030BF59 /* LoginView.swift */; };
+		5CA6703E2BE400850030BF59 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA6703D2BE400850030BF59 /* LoginViewModel.swift */; };
+		5CA670412BE40D0D0030BF59 /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA670402BE40D0D0030BF59 /* LoginButtonView.swift */; };
+		5CA670432BE4402A0030BF59 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA670422BE4402A0030BF59 /* InputView.swift */; };
 		5CDA084E2B96E9EF001EBBEF /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA084D2B96E9EF001EBBEF /* Coordinator.swift */; };
 		5CDA08502B96EA62001EBBEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA084F2B96EA62001EBBEF /* AppDelegate.swift */; };
 		5CDA08522B96EA99001EBBEF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA08512B96EA99001EBBEF /* SceneDelegate.swift */; };
@@ -249,6 +253,10 @@
 		5CA670332BE3CB470030BF59 /* OnBoardingItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingItemModel.swift; sourceTree = "<group>"; };
 		5CA670352BE3E4E20030BF59 /* AuthAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAssembly.swift; sourceTree = "<group>"; };
 		5CA670372BE3F28E0030BF59 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
+		5CA6703B2BE3FF530030BF59 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		5CA6703D2BE400850030BF59 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		5CA670402BE40D0D0030BF59 /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
+		5CA670422BE4402A0030BF59 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		5CDA084D2B96E9EF001EBBEF /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		5CDA084F2B96EA62001EBBEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5CDA08512B96EA99001EBBEF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -526,8 +534,8 @@
 		5CA6700F2BE1BF7C0030BF59 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				5CA670112BE1BF970030BF59 /* Splash */,
 				5CA670212BE332830030BF59 /* OnBoarding */,
+				5CA670112BE1BF970030BF59 /* Splash */,
 				5CA670102BE1BF8C0030BF59 /* Login */,
 				5CA670122BE1BFA80030BF59 /* Register */,
 			);
@@ -537,6 +545,9 @@
 		5CA670102BE1BF8C0030BF59 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				5CA6703F2BE40CF30030BF59 /* SubViews */,
+				5CA6703B2BE3FF530030BF59 /* LoginView.swift */,
+				5CA6703D2BE400850030BF59 /* LoginViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -594,6 +605,15 @@
 				5CA670332BE3CB470030BF59 /* OnBoardingItemModel.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		5CA6703F2BE40CF30030BF59 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				5CA670402BE40D0D0030BF59 /* LoginButtonView.swift */,
+				5CA670422BE4402A0030BF59 /* InputView.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		5CDA084C2B96E977001EBBEF /* Coordinator */ = {
@@ -947,6 +967,7 @@
 				5C3EB67D2BE142C20093BE26 /* VirtualTrySourceRepositories.swift in Sources */,
 				5C431D262B89BACE0091BF09 /* AddToCartSectionView.swift in Sources */,
 				5CA670232BE332B40030BF59 /* OnBoardingView.swift in Sources */,
+				5CA670412BE40D0D0030BF59 /* LoginButtonView.swift in Sources */,
 				5C8E5DC52BDFBB3900DEF02D /* RemoteError.swift in Sources */,
 				5C3EB6842BE1723C0093BE26 /* UploadImage.swift in Sources */,
 				5C8E5DCB2BDFBBA400DEF02D /* Task.swift in Sources */,
@@ -971,6 +992,7 @@
 				1295C06F2B30881D00C1F4CA /* OffersView.swift in Sources */,
 				5C45B0EA2B8F687100BE62F4 /* Models+Extension.swift in Sources */,
 				5C431D202B89B8310091BF09 /* ProductImagesSectionView.swift in Sources */,
+				5CA670432BE4402A0030BF59 /* InputView.swift in Sources */,
 				5C469C092B9716A2004DD1A0 /* Router.swift in Sources */,
 				5C3EB6822BE14E440093BE26 /* VirtualTrySource.swift in Sources */,
 				12BE291F2B2F94ED00049E36 /* QuickCategoryView.swift in Sources */,
@@ -993,6 +1015,7 @@
 				5CDA08542B96EAF2001EBBEF /* AppCoordinator.swift in Sources */,
 				5CDA084E2B96E9EF001EBBEF /* Coordinator.swift in Sources */,
 				5C713B6C2B83599C0040AE10 /* Offer.swift in Sources */,
+				5CA6703C2BE3FF530030BF59 /* LoginView.swift in Sources */,
 				5CEA29842B9CCFE9009DA889 /* CartAssembly.swift in Sources */,
 				12BE29222B2F958300049E36 /* HomeViewModel.swift in Sources */,
 				5CA670362BE3E4E20030BF59 /* AuthAssembly.swift in Sources */,
@@ -1013,6 +1036,7 @@
 				5C8E5DC92BDFBB9100DEF02D /* ServiceLayer.swift in Sources */,
 				12A2DE542B2FC5FB0027A253 /* ProductDetailView.swift in Sources */,
 				5C361CC22B7808DD00232B94 /* QuickSubCategoryView.swift in Sources */,
+				5CA6703E2BE400850030BF59 /* LoginViewModel.swift in Sources */,
 				5CEA296C2B9A12DF009DA889 /* CartButtonViewModel.swift in Sources */,
 				5C8E5DCD2BDFC97C00DEF02D /* EndPoints.swift in Sources */,
 				5C713B6E2B835AEA0040AE10 /* OffersRepositories.swift in Sources */,

@@ -61,10 +61,14 @@ class AppCoordinator: AppCoordinatorProtocol {
         let splashViewController = UIHostingController(rootView: splashView)
         router.reset()
         router.push(splashViewController, animated: true)
+        router.navigationController.navigationBar.isHidden = false
     }
     
     func showLogin() {
-        
+        let viewModel = LoginViewModel(coordinator: self)
+        let loginView = LoginView(viewModel: viewModel)
+        let loginViewController = UIHostingController(rootView: loginView)
+        router.push(loginViewController, animated: true)
     }
     
     func showSignUp() {
