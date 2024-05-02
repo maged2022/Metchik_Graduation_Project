@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OnBoardingView: View {
     @StateObject var viewModel: OnBoardingViewModel
-    @State var pageNumber = 1
+    @State var pageNumber = 0
     var body: some View {
         VStack(spacing: 35) {
             TabView(selection: $pageNumber) {
@@ -44,10 +44,10 @@ extension OnBoardingView {
 
             Spacer()
             Button {
-                if pageNumber < viewModel.items.count {
-                    pageNumber = (pageNumber + 1)
-                } else {
+                if pageNumber == viewModel.items.count - 1 {
                     viewModel.nextButtonPressed()
+                } else {
+                    pageNumber = (pageNumber + 1)
                 }
             } label: {
                 Asset.Icons.backIcon.swiftUIImage

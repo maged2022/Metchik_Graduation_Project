@@ -7,19 +7,21 @@
 
 import UIKit
 import Swinject
+import SwiftUI
 
 protocol AppCoordinatorProtocol: Coordinator {
     func startApp(window: UIWindow)
     func showTabBar()
     func showOnboarding()
     func showAuth()
+    func showLogin()
+    func showSignUp()
 }
 
 class AppCoordinator: AppCoordinatorProtocol {
 
     private let resolver : Resolver
-    var isLogin = true
-    
+    var isLogin = false
     var router: Router
     
     init(resolver: Resolver) {
@@ -54,8 +56,19 @@ class AppCoordinator: AppCoordinatorProtocol {
     }
     
     func showAuth() {
-        print("showAuth")
-
+        let viewModel = SplashViewModel(coordinator: self)
+        let splashView = SplashView(viewModel: viewModel)
+        let splashViewController = UIHostingController(rootView: splashView)
+        router.reset()
+        router.push(splashViewController, animated: true)
+    }
+    
+    func showLogin() {
+        
+    }
+    
+    func showSignUp() {
+        
     }
     
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct OnBoardingInfoView: View {
     let item: OnBoardingItem
+    @State private var isAnimating: Bool = false
     var body: some View {
         VStack(spacing: 35) {
             GeometryReader { geometry in
@@ -16,6 +17,8 @@ struct OnBoardingInfoView: View {
                     .resizable()
                     .clipShape(drawSplashImage(geometry: geometry))
                     .scaledToFill()
+                    .scaleEffect(isAnimating ? 1 : 0.9)
+
             }
             VStack(spacing: 10) {
                 Text(item.title)
@@ -27,6 +30,12 @@ struct OnBoardingInfoView: View {
             }
             
         }
+        .onAppear(perform: {
+                 isAnimating = false
+                 withAnimation(.easeOut(duration: 0.5)) {
+                     self.isAnimating = true
+                 }
+             })
     }
 }
 struct OnBoardingInfoView_Previews: PreviewProvider {
