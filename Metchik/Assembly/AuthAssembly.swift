@@ -30,6 +30,11 @@ class AuthAssembly: Assembly {
             guard let coordinator = resolver.resolve(AppCoordinatorProtocol.self)
             else {fatalError("error resolver AppCoordinatorProtocol")}
             return LoginViewModel(coordinator: coordinator)
+        }      
+        sharedContainer.register(SignUpViewModel.self) { resolver in
+            guard let coordinator = resolver.resolve(AppCoordinatorProtocol.self)
+            else {fatalError("error resolver AppCoordinatorProtocol")}
+            return SignUpViewModel(coordinator: coordinator)
         }
        
     }

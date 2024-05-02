@@ -72,7 +72,10 @@ class AppCoordinator: AppCoordinatorProtocol {
     }
     
     func showSignUp() {
-        
+        let viewModel = SignUpViewModel(coordinator: self)
+        let signUpView = SignUpView(viewModel: viewModel)
+        let signUpViewController = UIHostingController(rootView: signUpView)
+        router.push(signUpViewController, animated: true)
     }
     
 }
