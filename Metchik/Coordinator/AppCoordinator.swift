@@ -46,7 +46,11 @@ class AppCoordinator: AppCoordinatorProtocol {
     }
     
     func showOnboarding() {
-        print("showOnboarding")
+        let viewModel = OnBoardingViewModel(coordinator: self)
+        let onBoardingView = OnBoardingView(viewModel: viewModel)
+        let onBoardingViewController = UIHostingController(rootView: onBoardingView)
+        router.push(onBoardingViewController)
+        router.navigationController.navigationBar.isHidden = true
     }
     
     func showAuth() {

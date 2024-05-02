@@ -52,6 +52,9 @@ internal enum Asset {
     internal static let discountImage5 = ImageAsset(name: "Images/discount_image5")
     internal static let metchickLogo = ImageAsset(name: "Images/metchick_logo")
     internal static let newArrival = ImageAsset(name: "Images/newArrival")
+    internal static let onboarding1 = ImageAsset(name: "Images/onboarding1")
+    internal static let onboarding2 = ImageAsset(name: "Images/onboarding2")
+    internal static let onboarding3 = ImageAsset(name: "Images/onboarding3")
   }
   internal enum LaunchColors {
     internal static let launchAccentColor = ColorAsset(name: "LaunchColors/LaunchAccentColor")
@@ -226,4 +229,3 @@ private final class BundleToken {
   }()
 }
 // swiftlint:enable convenience_type
-// swiftlint:enable all
