@@ -9,10 +9,13 @@ import Foundation
 
 public enum RemoteError: Error {
     case detectError(statusCode: Int)
+    case authMessage(message: String)
     public var description: String {
         switch self {
         case .detectError(let statusCode):
-           return chooseFromCommonErrors(statusCode: statusCode)
+            return chooseFromCommonErrors(statusCode: statusCode)
+        case .authMessage(let message):
+            return message
         }
     }
     

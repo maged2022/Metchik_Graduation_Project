@@ -12,8 +12,10 @@ class LoginViewModel: ObservableObject {
     @Published var password = ""
     @Published var isLoggenActive: Bool = true
     let coordinator: AppCoordinatorProtocol
-    init(coordinator: AppCoordinatorProtocol) {
+    let useCase: AuthRepositories
+    init(coordinator: AppCoordinatorProtocol, useCase: AuthRepositories) {
         self.coordinator = coordinator
+        self.useCase = useCase
         loginButtonBind()
     }
      
@@ -26,28 +28,35 @@ class LoginViewModel: ObservableObject {
             .assign(to: &$isLoggenActive)
     }
     
-    private func login() {
-        coordinator.showTabBar()
+    private func login(completion: @escaping (RemoteError) -> Void) {
+        useCase.login(email: email, password: password) { result in
+            switch result {
+            case .success:
+                self.coordinator.showTabBar()
+            case .failure(let failure):
+                completion(failure)
+            }
+        }
     }
     
-    func loginButtonPressed() {
+    func loginButtonPressed(completion: @escaping (RemoteError) -> Void) {
         
-        login()
-    }  
-    
-    func loginWithFacebookButtonPressed() {
-        
-        login()
-    }   
-    
-    func loginWithGoogleButtonPressed() {
-        
-        login()
+        login(completion: completion)
     }
     
-    func loginWithAppleButtonPressed() {
+    func loginWithFacebookButtonPressed(completion: @escaping (RemoteError) -> Void) {
         
-        login()
+        login(completion: completion)
+    }
+    
+    func loginWithGoogleButtonPressed(completion: @escaping (RemoteError) -> Void) {
+        
+        login(completion: completion)
+    }
+    
+    func loginWithAppleButtonPressed(completion: @escaping (RemoteError) -> Void) {
+        
+        login(completion: completion)
     }
     
 }

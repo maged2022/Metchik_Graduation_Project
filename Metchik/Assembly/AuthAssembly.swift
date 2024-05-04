@@ -29,12 +29,14 @@ class AuthAssembly: Assembly {
         sharedContainer.register(LoginViewModel.self) { resolver in
             guard let coordinator = resolver.resolve(AppCoordinatorProtocol.self)
             else {fatalError("error resolver AppCoordinatorProtocol")}
-            return LoginViewModel(coordinator: coordinator)
-        }      
+            let useCase = AuthUseCase.instance
+            return LoginViewModel(coordinator: coordinator, useCase: useCase)
+        }
         sharedContainer.register(SignUpViewModel.self) { resolver in
             guard let coordinator = resolver.resolve(AppCoordinatorProtocol.self)
             else {fatalError("error resolver AppCoordinatorProtocol")}
-            return SignUpViewModel(coordinator: coordinator)
+            let useCase = AuthUseCase.instance
+            return SignUpViewModel(coordinator: coordinator, useCase: useCase)
         }
        
     }

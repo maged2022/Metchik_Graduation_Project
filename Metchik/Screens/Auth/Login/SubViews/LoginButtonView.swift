@@ -9,10 +9,15 @@ import SwiftUI
 
 struct LoginButtonView: View {
     @EnvironmentObject var viewModel: LoginViewModel
+    @State private var showAlert = false
+    @State private var alertMessage: String = "error"
     var body: some View {
         VStack(spacing: 10) {
             Button(action: {
-                viewModel.loginButtonPressed()
+                viewModel.loginButtonPressed {error in
+                    self.alertMessage = error.description
+                    self.showAlert = true
+                }
             }, label: {
                 Text("Login")
                     .font(.poppins(.bold, size: 16))
@@ -27,7 +32,10 @@ struct LoginButtonView: View {
             Text("or")
             VStack(spacing: 15) {
                 Button(action: {
-                    viewModel.loginWithFacebookButtonPressed()
+                    viewModel.loginWithFacebookButtonPressed {error in
+                        self.alertMessage = error.description
+                        self.showAlert = true
+                    }
                 }, label: {
                     Text("Continue with Facebook")
                         .font(.poppins(.semiBold, size: 16))
@@ -40,7 +48,10 @@ struct LoginButtonView: View {
                 .disabled(viewModel.isLoggenActive)
 
                 Button(action: {
-                    viewModel.loginWithGoogleButtonPressed()
+                    viewModel.loginWithGoogleButtonPressed {error in
+                        self.alertMessage = error.description
+                        self.showAlert = true
+                    }
                 }, label: {
                     Text("Continue with Google")
                         .font(.poppins(.semiBold, size: 16))
@@ -56,7 +67,10 @@ struct LoginButtonView: View {
                 .disabled(viewModel.isLoggenActive)
 
                 Button(action: {
-                    viewModel.loginWithAppleButtonPressed()
+                    viewModel.loginWithAppleButtonPressed {error in
+                        self.alertMessage = error.description
+                        self.showAlert = true
+                    }
                 }, label: {
                     Text("Continue with Apple")
                         .font(.poppins(.semiBold, size: 16))
@@ -72,6 +86,13 @@ struct LoginButtonView: View {
                 .disabled(viewModel.isLoggenActive)
 
             }
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Error"),
+                message: Text(alertMessage),
+                dismissButton: .default(Text("OK"))
+            )
         }
     }
 }

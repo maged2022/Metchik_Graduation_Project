@@ -9,8 +9,11 @@ import SwiftUI
 
 struct SignUpView: View {
     @StateObject var viewModel: SignUpViewModel
+    @State private var showAlert = false
+    @State private var alertMessage: String = "error"
+
     var body: some View {
-        VStack (spacing: 25){
+        VStack(spacing: 25) {
             logoImage
             welcomeSection
             InputView(
@@ -35,15 +38,14 @@ struct SignUpView: View {
                 placeholder: "Enter your Confirm password",
                 isSecureField: true
             )
-            HStack(alignment:.top,spacing: 15) {
-                Image(systemName: "square")
-                Text("By creating an account you have to agree with our them & condication.")
-                    .font(.poppins(.regular, size: 14))
-            }
-            .foregroundColor(Asset.Colors.searchLabelColor.swiftUIColor)
+            
+            agreementSection
             
             Button(action: {
-                viewModel.signUpButtonPressed()
+                viewModel.signUpButtonPressed {error in
+                    self.alertMessage = error.description
+                    self.showAlert = true
+                }
             }, label: {
                 Text("Login")
                     .font(.poppins(.bold, size: 16))
@@ -55,7 +57,15 @@ struct SignUpView: View {
                     
             })
             .disabled(viewModel.isSignUpActive)
-        }.padding(25)
+        }
+        .padding(25)
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Error"),
+                message: Text(alertMessage),
+                dismissButton: .default(Text("OK"))
+            )
+        }
     }
 }
 
@@ -86,5 +96,21 @@ extension SignUpView {
                 .font(.poppins(.regular, size: 14))
                 .foregroundStyle(Asset.Colors.secondaryLabelColor.swiftUIColor)
         }
+    }
+    
+    private var agreementSection: some View {
+        HStack(alignment:.top,spacing: 15) {
+            Button {
+                viewModel.agreedToTerms.toggle()
+            } label: {
+                Image(systemName: viewModel.agreedToTerms ? "checkmark.square.fill" : "square")
+                    .foregroundColor(viewModel.agreedToTerms ? .blue : Asset.Colors.searchLabelColor.swiftUIColor)
+            }
+            Text("By creating an account you have to agree with our them & condication.")
+                .font(.poppins(.regular, size: 14))
+                .foregroundColor(Asset.Colors.searchLabelColor.swiftUIColor)
+
+        }
+        
     }
 }

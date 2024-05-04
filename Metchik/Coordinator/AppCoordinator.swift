@@ -16,6 +16,7 @@ protocol AppCoordinatorProtocol: Coordinator {
     func showAuth()
     func showLogin()
     func showSignUp()
+    func showSignUpSuccess(token: String)
 }
 
 class AppCoordinator: AppCoordinatorProtocol {
@@ -65,17 +66,23 @@ class AppCoordinator: AppCoordinatorProtocol {
     }
     
     func showLogin() {
-        let viewModel = LoginViewModel(coordinator: self)
+        let useCase = AuthUseCase.instance
+        let viewModel = LoginViewModel(coordinator: self,useCase: useCase)
         let loginView = LoginView(viewModel: viewModel)
         let loginViewController = UIHostingController(rootView: loginView)
         router.push(loginViewController, animated: true)
     }
     
     func showSignUp() {
-        let viewModel = SignUpViewModel(coordinator: self)
+        let useCase = AuthUseCase.instance
+        let viewModel = SignUpViewModel(coordinator: self, useCase: useCase)
         let signUpView = SignUpView(viewModel: viewModel)
         let signUpViewController = UIHostingController(rootView: signUpView)
         router.push(signUpViewController, animated: true)
+    }  
+    
+    func showSignUpSuccess(token: String) {
+        print("showSignUpSuccess \(token)")
     }
     
 }

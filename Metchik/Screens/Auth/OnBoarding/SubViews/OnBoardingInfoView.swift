@@ -20,7 +20,7 @@ struct OnBoardingInfoView: View {
                     .scaleEffect(isAnimating ? 1 : 0.9)
 
             }
-            VStack(spacing: 10) {
+            VStack(alignment:.leading,spacing: 10) {
                 Text(item.title)
                     .font(.poppins(.bold, size: 30))
                     .lineLimit(2)
