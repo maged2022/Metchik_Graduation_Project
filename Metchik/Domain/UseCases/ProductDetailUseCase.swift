@@ -22,7 +22,12 @@ class ProductDetailUseCase: ProductDetailRepositories, ObservableObject {
         repo.getProductSourceDetail(parameters: parameters ) { result in
             switch result {
             case .success(let success):
-                self.productDetail = success.data.productContain[0].toProductDetail()  
+                if let firstProduct = success.data.productContain.first {
+                    self.productDetail = firstProduct.toProductDetail()
+                } else {
+                    // Handle the case where the product array is empty
+                    print("Product array is empty")
+                }
             case .failure(let failure):
                 print(failure)
             }
