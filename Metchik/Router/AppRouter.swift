@@ -54,8 +54,11 @@ extension AppRouter: Router {
     }
     
     public func reset(completion: @escaping () -> Void) {
-        navigationController.dismiss(animated: false)
-        navigationController.viewControllers.removeAll()
+        if !self.navigationController.viewControllers.isEmpty {
+            navigationController.dismiss(animated: false)
+            navigationController.viewControllers.removeAll()
+            completion()
+        }
     }
     
     public func popToViewController(

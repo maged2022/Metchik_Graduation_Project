@@ -9,13 +9,13 @@ import Foundation
 
 class SplashViewModel {
     
-    let coordinator: AppCoordinatorProtocol
-    init(coordinator: AppCoordinatorProtocol) {
+    var coordinator: AuthCoordinatorProtocol
+    init(coordinator: AuthCoordinatorProtocol) {
         self.coordinator = coordinator
     }
     
     func guestButtonPressed () {
-        coordinator.showTabBar()
+        coordinator.showGuest()
     }
     
     func loginButtonPressed () {

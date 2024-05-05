@@ -11,9 +11,9 @@ class LoginViewModel: ObservableObject {
     @Published var email = ""
     @Published var password = ""
     @Published var isLoggenActive: Bool = true
-    let coordinator: AppCoordinatorProtocol
+    let coordinator: AuthCoordinatorProtocol
     let useCase: AuthRepositories
-    init(coordinator: AppCoordinatorProtocol, useCase: AuthRepositories) {
+    init(coordinator: AuthCoordinatorProtocol, useCase: AuthRepositories) {
         self.coordinator = coordinator
         self.useCase = useCase
         loginButtonBind()
@@ -30,9 +30,10 @@ class LoginViewModel: ObservableObject {
     
     private func login(completion: @escaping (RemoteError) -> Void) {
         useCase.login(email: email, password: password) { result in
+        useCase.login(email: email, password: password) { [weak self] result in
             switch result {
             case .success:
-                self.coordinator.showTabBar()
+                self?.coordinator.showGuest()
             case .failure(let failure):
                 completion(failure)
             }

@@ -19,9 +19,9 @@ class SignUpViewModel: ObservableObject {
     }
     @Published var agreedToTerms = false
     
-    let coordinator: AppCoordinatorProtocol
+    let coordinator: AuthCoordinatorProtocol
     let useCase: AuthRepositories
-    init(coordinator: AppCoordinatorProtocol, useCase: AuthUseCase) {
+    init(coordinator: AuthCoordinatorProtocol, useCase: AuthUseCase) {
         self.coordinator = coordinator
         self.useCase = useCase
         isSignUpActive = true
