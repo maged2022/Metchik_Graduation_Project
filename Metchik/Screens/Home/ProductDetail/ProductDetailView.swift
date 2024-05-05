@@ -40,7 +40,7 @@ struct ProductDetailView: View {
                 .ignoresSafeArea()
                 .cornerRadius(30)
             )
-            .offset(y:-30)
+            .offset(y:-33)
         }
         .animation(.spring())
         .padding(.bottom,40)

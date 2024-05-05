@@ -25,7 +25,7 @@ struct ProductMetaView: View {
             HStack(spacing:10) {
                 ForEach(1..<6) { index in
                     Image(systemName: "star.fill")
-                        .foregroundColor(Color(Int(rating) >= index ? .yellow: .gray).opacity(0.5) )
+                        .foregroundColor((Int(rating) >= index ? Colors.starYellowColor.swiftUIColor : .gray))
                         .frame(width: 12,height: 12)
                         .scaledToFill()
                         .onTapGesture {

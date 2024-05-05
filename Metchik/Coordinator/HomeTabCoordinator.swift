@@ -69,6 +69,7 @@ class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
         let productDetailViewModel = ProductDetailViewModel(product: product, coordinator: self)
         let productDetailView = ProductDetailView(productDetailViewModel: productDetailViewModel)
         let productDetailViewController = UIHostingController(rootView: productDetailView)
+        coordinator.hideTabBar()
         router.push(productDetailViewController)
     }
     

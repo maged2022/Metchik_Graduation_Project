@@ -24,15 +24,18 @@ struct ProductColorsView: View {
                                     Image(systemName: "checkmark")
                                         .resizable()
                                         .frame(width: 10,height: 10)
-                                        .foregroundColor(.white)
+                                        .foregroundColor(color == .white ? .black : .white)
                                 }
                             }
                             .frame(width: 20, height: 20)
                             .cornerRadius(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 25)
+                                    .stroke(Color.black.opacity(0.3), lineWidth: 1))
+                            .padding(0.6)
                             .onTapGesture {
                                 viewModel.selectedColor = color
                             }
-                            
                     })
                 }
             }
