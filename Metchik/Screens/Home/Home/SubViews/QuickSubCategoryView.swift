@@ -52,7 +52,7 @@ struct CardSubCategoriesView: View {
                         .padding(.trailing, 20)
                 }
             }
-            HStack() {
+            HStack {
                 ForEach(products.prefix(2)) { product in
                     let productItemViewModel = vmod.getProductItemViewModel(product: product)
                     ProductItemView(productItemViewModel: productItemViewModel)
