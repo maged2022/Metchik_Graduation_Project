@@ -62,7 +62,7 @@ struct SignUpView: View {
             )
         }
         .navigationBarBackButtonHidden()
-        .navigationBarItems(leading: BackButton())
+        .navigationBarItems(leading: BackButton(router: viewModel.coordinator.router))
     }
 }
 

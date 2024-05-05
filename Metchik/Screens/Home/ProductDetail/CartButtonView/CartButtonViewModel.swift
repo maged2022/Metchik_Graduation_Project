@@ -15,6 +15,7 @@ class CartButtonViewModel: ObservableObject {
         self.coordinator = coordinator
         updateCartProductCount()
     }
+    
     private func updateCartProductCount() {
         self.cancellables["updateCartProductCount"]?.cancel()
         let cancellable = AnyCancellable(cartUseCase.getCartProductsCount()

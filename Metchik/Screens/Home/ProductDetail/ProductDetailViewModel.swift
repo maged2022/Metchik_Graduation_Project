@@ -104,7 +104,7 @@ class ProductDetailViewModel: ObservableObject {
 }
 extension ProductDetailViewModel {
     func getCartButtonViewModel() -> CartButtonViewModel {
-        coordinator.createCartButtonViewModel()
+        CartButtonViewModel(coordinator: coordinator)
     }
     
     func pressedTryItButton(personImage: UIImage?) {

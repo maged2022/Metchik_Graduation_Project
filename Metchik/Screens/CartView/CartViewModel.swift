@@ -63,9 +63,3 @@ class CartViewModel: CartViewModelProtocol , ObservableObject {
         cartUseCase.deleteCartProduct(indexSet: indexSet)
     }
 }
-
-extension CartViewModel {
-    func getCartButtonViewModel() -> CartButtonViewModel {
-        coordinator.createCartButtonViewModel()
-    }
-}

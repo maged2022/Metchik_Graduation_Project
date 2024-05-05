@@ -49,7 +49,7 @@ struct ProductDetailView: View {
         .environmentObject(productDetailViewModel)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(
-            leading: BackButton(),
+            leading: BackButton(router: productDetailViewModel.coordinator.router),
             trailing:
                 CartButtonView(cartViewModel: productDetailViewModel.getCartButtonViewModel())
         )

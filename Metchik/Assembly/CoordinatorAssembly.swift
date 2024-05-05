@@ -18,17 +18,46 @@ class CoordinatorAssembly: Assembly {
     }
     // MARK: - Functions
     func assemble(container: Swinject.Container) {
+        
+        sharedContainer.register(AppRouter.self) { resolver in
+            let navigationController = UINavigationController()
+            return AppRouter(navigationController: navigationController)
+        } 
+        sharedContainer.register(TabBarRouter.self) { resolver in
+            let navigationController = UINavigationController()
+            return TabBarRouter(navigationController: navigationController)
+        }
         sharedContainer.register(AppCoordinatorProtocol.self) { resolver in
             AppCoordinator(resolver: resolver)
         }
+        sharedContainer.register(AuthCoordinatorProtocol.self) { resolver in
+            let appCoordinator = AppCoordinator(resolver: resolver)
+            return AuthCoordinator(
+                router: appCoordinator.router,
+                parentCoordinator: appCoordinator
+            )
+        }
         sharedContainer.register(TabBarCoordinatorProtocol.self) { resolver in
-            TabBarCoordinator(router: AppCoordinator(resolver: resolver).router, resolver: resolver)
+            let appCoordinator = AppCoordinator(resolver: resolver)
+
+            return TabBarCoordinator(
+                router: appCoordinator.router,
+                resolver: resolver,
+                parentCoordinator: appCoordinator
+            )
         }
         sharedContainer.register(HomeTabCoordinatorProtocol.self) { resolver in
-            let navigationController = UINavigationController()
-            let router = AppRouter(navigationController: navigationController)
-            let coordinator = TabBarCoordinator(router: router, resolver: resolver)
-            return HomeTabCoordinator(router: router, coordinator: coordinator, resolver: resolver)
+            let appCoordinator = AppCoordinator(resolver: resolver)
+            let tabBarCoordinator = TabBarCoordinator(
+                router: appCoordinator.router,
+                resolver: resolver,
+                parentCoordinator: appCoordinator
+            )
+            return HomeTabCoordinator(
+                router: appCoordinator.router,
+                tabBarCoordinator: tabBarCoordinator,
+                resolver: resolver
+            )
         }
     }
 }

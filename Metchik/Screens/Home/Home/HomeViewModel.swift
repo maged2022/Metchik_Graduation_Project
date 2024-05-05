@@ -88,6 +88,6 @@ extension HomeViewModel {
     }
     
     func getProductItemViewModel(product: Product) -> ProductItemViewModel {
-        coordinator.createProductItemViewModel(product: product)
+        ProductItemViewModel(product: product, coordinator: coordinator)
     }
 }

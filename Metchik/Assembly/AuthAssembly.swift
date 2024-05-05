@@ -38,6 +38,5 @@ class AuthAssembly: Assembly {
             let useCase = AuthUseCase.instance
             return SignUpViewModel(coordinator: coordinator, useCase: useCase)
         }
-       
     }
 }
