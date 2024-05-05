@@ -25,10 +25,10 @@ struct ProductView: View {
                 }
             }
         }
-        .animation(.spring)
+        .animation(.spring())
         .padding(.horizontal,25)
         .background(Asset.Colors.backgroundScreenColor.swiftUIColor )
-        .navigationBarBackButtonHidden()
+        .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: BackButton(), trailing: searchButton )
         .navigationTitle(productViewModel.selectedSubCategory)
     }

@@ -9,32 +9,45 @@ import SwiftUI
 
 struct VirtualTryView: View {
     @StateObject var virtualTryViewModel : VirtualTryViewModel
-
+    
     var body: some View {
         VStack {
+            Spacer().frame(height: 10)
             HStack {
                 AsyncImage(url: virtualTryViewModel.productImageURL) { image in
                     image
                         .resizable()
-                        .frame(maxWidth: .infinity, minHeight: 200, maxHeight: 430)
+                        .frame(height: 180)
+                        .aspectRatio(contentMode: .fit)
+                        .cornerRadius(8)
                 } placeholder: {
                     ProgressView()
                 }
                 Image(uiImage: virtualTryViewModel.personImage)
                     .resizable()
+                    .frame(height: 180)
                     .aspectRatio(contentMode: .fit)
-                    .navigationBarTitle("Selected Image")
-                    .edgesIgnoringSafeArea(.all)
+                    .cornerRadius(8)
             }
-           
+            .frame(maxWidth: .infinity)
+            .padding(.horizontal)
+            
+            Spacer().frame(height: 40)
+            
             AsyncImage(url: virtualTryViewModel.virtualImageURL) { image in
                 image
                     .resizable()
                     .frame(maxWidth: .infinity, minHeight: 200, maxHeight: 430)
             } placeholder: {
-                ProgressView()
+                ProgressView("ML Processing Image")
+                    .padding()
+                    .scaleEffect(1.2)
             }
+            Spacer()
         }
+        .background(
+            Asset.Colors.backgroundScreenColor.swiftUIColor
+        )
     }
 }
 

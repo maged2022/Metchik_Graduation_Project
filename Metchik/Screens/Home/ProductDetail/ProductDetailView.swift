@@ -40,14 +40,14 @@ struct ProductDetailView: View {
                 .ignoresSafeArea()
                 .cornerRadius(30)
             )
-            .offset(y:-30)
+            .offset(y:-33)
         }
-        .animation(.spring)
+        .animation(.spring())
         .padding(.bottom,40)
         .ignoresSafeArea()
         .background(Colors.backgroundScreenColor.swiftUIColor )
         .environmentObject(productDetailViewModel)
-        .navigationBarBackButtonHidden()
+        .navigationBarBackButtonHidden(true)
         .navigationBarItems(
             leading: BackButton(),
             trailing:

@@ -19,7 +19,6 @@ struct OffersView: View {
                 }
             }
         }
-        .padding(.leading,25)
     }
 }
 

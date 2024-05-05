@@ -17,8 +17,8 @@ struct SubCategoryView: View {
                 SubCategoryCardView()
             }
         }
-        .animation(.spring)
-        .navigationBarBackButtonHidden()
+        .animation(.spring())
+        .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: BackButton())
         .padding(.horizontal,25)
         .frame(maxWidth: .infinity)

@@ -16,12 +16,13 @@ struct SearchBarView: View {
         HStack {
             HStack {
                 Image(systemName: "magnifyingglass")
+                    .font(.title2)
                     .scaledToFill()
                     .foregroundColor(Colors.primaryLabelColor.swiftUIColor)
                     .padding(.trailing,8)
                 TextField(text: $searchText, label: {
                     Text(placeholder)
-                        .font(.poppins(.regular, size: 13))
+                        .font(.poppins(.regular, size: 16))
                         .foregroundStyle(Colors.searchLabelColor.swiftUIColor)
                 })
                 
@@ -35,17 +36,20 @@ struct SearchBarView: View {
                     
                 } label: {
                     Circle()
-                        .frame(width: 50)
+                        .fill(.black)
+                        .frame(width: 50, height: 50)
                         .overlay {
                             Image(systemName: "list.bullet")
                                 .foregroundColor(.white)
                         }
                         .padding(.leading,8)
+                        .padding(.trailing, 20)
                     
                 }
                 
             }
         }
+        .padding(.vertical)
         
     }
 }

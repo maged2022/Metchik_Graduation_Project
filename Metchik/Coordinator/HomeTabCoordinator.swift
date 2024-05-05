@@ -69,6 +69,7 @@ class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
         let productDetailViewModel = ProductDetailViewModel(product: product, coordinator: self)
         let productDetailView = ProductDetailView(productDetailViewModel: productDetailViewModel)
         let productDetailViewController = UIHostingController(rootView: productDetailView)
+        coordinator.hideTabBar()
         router.push(productDetailViewController)
     }
     
@@ -92,7 +93,7 @@ class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
         personImage: UIImage?,
         productImageURL: URL?
     ) {
-        guard let personImage else {
+        guard let personImage = personImage else {
             fatalError("personImage error ")
         }
         let virtualTryUseCase = VirtualTryUseCase()

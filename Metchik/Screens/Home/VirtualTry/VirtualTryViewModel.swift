@@ -29,7 +29,7 @@ class VirtualTryViewModel: ObservableObject {
     }
     
     func getVirtualImage(personImageUrl: URL) {
-        guard let productImageURL else {
+        guard let productImageURL = productImageURL else {
             fatalError("can not unwrap productImageURL ")
         }
         virtualTryUseCase.requestVirtualImage(

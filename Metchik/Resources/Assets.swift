@@ -39,6 +39,7 @@ internal enum Asset {
     internal static let secondaryLabelColor = ColorAsset(name: "Colors/SecondaryLabelColor")
     internal static let seconderyFacebookButtonColor = ColorAsset(name: "Colors/SeconderyFacebookButtonColor")
     internal static let userBackground = ColorAsset(name: "Colors/UserBackground")
+    internal static let starYellowColor = ColorAsset(name: "Colors/StarYellowColor")
   }
   internal enum Icons {
     internal static let backIcon = ImageAsset(name: "Icons/backIcon")

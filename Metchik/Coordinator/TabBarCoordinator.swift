@@ -45,7 +45,7 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
     }
     
     func hideTabBar() {
-        self.tabViewController.hidesBottomBarWhenPushed = true
+        self.tabViewController.tabBar.isHidden = true
     }
     
     func showHome() {
