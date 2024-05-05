@@ -23,6 +23,7 @@ class DependencyManager {
     private func setupAssemblers() {
         storeAssempler = Assembler([CoordinatorAssembly(sharedContainer: sharedContainer),
                                     HomeAssemply(sharedContainer: sharedContainer),
-                                    CartAssembly(sharedContainer: sharedContainer)])
+                                    CartAssembly(sharedContainer: sharedContainer),
+                                    AuthAssembly(sharedContainer: sharedContainer)])
     }
 }

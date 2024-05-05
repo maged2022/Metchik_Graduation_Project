@@ -28,6 +28,7 @@ internal enum Asset {
     internal static let accentColor = ColorAsset(name: "Colors/AccentColor")
     internal static let backgroundScreenColor = ColorAsset(name: "Colors/BackgroundScreenColor")
     internal static let backgroundSearchColor = ColorAsset(name: "Colors/BackgroundSearchColor")
+    internal static let borderButtonColor = ColorAsset(name: "Colors/BorderButtonColor")
     internal static let borderCategoryColor = ColorAsset(name: "Colors/BorderCategoryColor")
     internal static let greenColor = ColorAsset(name: "Colors/GreenColor")
     internal static let primaryButtonColor = ColorAsset(name: "Colors/PrimaryButtonColor")
@@ -36,6 +37,7 @@ internal enum Asset {
     internal static let searchLabelColor = ColorAsset(name: "Colors/SearchLabelColor")
     internal static let secondaryButtonColor = ColorAsset(name: "Colors/SecondaryButtonColor")
     internal static let secondaryLabelColor = ColorAsset(name: "Colors/SecondaryLabelColor")
+    internal static let seconderyFacebookButtonColor = ColorAsset(name: "Colors/SeconderyFacebookButtonColor")
     internal static let userBackground = ColorAsset(name: "Colors/UserBackground")
     internal static let starYellowColor = ColorAsset(name: "Colors/StarYellowColor")
   }
@@ -51,8 +53,13 @@ internal enum Asset {
     internal static let discountImage3 = ImageAsset(name: "Images/discount_image3")
     internal static let discountImage4 = ImageAsset(name: "Images/discount_image4")
     internal static let discountImage5 = ImageAsset(name: "Images/discount_image5")
+    internal static let logo = ImageAsset(name: "Images/logo")
     internal static let metchickLogo = ImageAsset(name: "Images/metchick_logo")
     internal static let newArrival = ImageAsset(name: "Images/newArrival")
+    internal static let onboarding1 = ImageAsset(name: "Images/onboarding1")
+    internal static let onboarding2 = ImageAsset(name: "Images/onboarding2")
+    internal static let onboarding3 = ImageAsset(name: "Images/onboarding3")
+    internal static let splash = ImageAsset(name: "Images/splash")
   }
   internal enum LaunchColors {
     internal static let launchAccentColor = ColorAsset(name: "LaunchColors/LaunchAccentColor")
