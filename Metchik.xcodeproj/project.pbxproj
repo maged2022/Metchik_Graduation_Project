@@ -307,6 +307,7 @@
 		121BD4E22B344AF4000126C6 /* Reusable Component */ = {
 			isa = PBXGroup;
 			children = (
+				5CA670422BE4402A0030BF59 /* InputView.swift */,
 				5C431D212B89BA3B0091BF09 /* StepperView.swift */,
 				121BD4E32B344B58000126C6 /* SearchBarView.swift */,
 				12C8BABE2B3523D600AEA6C9 /* ImagePicker.swift */,
@@ -625,7 +626,6 @@
 			isa = PBXGroup;
 			children = (
 				5CA670402BE40D0D0030BF59 /* LoginButtonView.swift */,
-				5CA670422BE4402A0030BF59 /* InputView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";

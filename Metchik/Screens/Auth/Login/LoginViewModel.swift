@@ -10,12 +10,19 @@ import Combine
 class LoginViewModel: ObservableObject {
     @Published var email = ""
     @Published var password = ""
-    @Published var isLoggenActive: Bool = true
+    @Published var isLoggenActive: Bool {
+        didSet {
+            objectWillChange.send()
+        }
+    }
+    @Published var showAlert = false
+    @Published var alertMessage: String = "error"
     let coordinator: AuthCoordinatorProtocol
     let useCase: AuthRepositories
     init(coordinator: AuthCoordinatorProtocol, useCase: AuthRepositories) {
         self.coordinator = coordinator
         self.useCase = useCase
+        isLoggenActive = true
         loginButtonBind()
     }
      
@@ -23,41 +30,41 @@ class LoginViewModel: ObservableObject {
         Publishers.CombineLatest($email, $password)
             .map { email, password in
                 // Check if both email and password are not empty
-                email.isEmpty && password.isEmpty
+                email.isEmpty || password.isEmpty
             }
             .assign(to: &$isLoggenActive)
     }
     
-    private func login(completion: @escaping (RemoteError) -> Void) {
-        useCase.login(email: email, password: password) { result in
+    private func login() {
         useCase.login(email: email, password: password) { [weak self] result in
             switch result {
             case .success:
                 self?.coordinator.showGuest()
             case .failure(let failure):
-                completion(failure)
+                self?.alertMessage = failure.description
+                self?.showAlert = true
             }
         }
     }
     
-    func loginButtonPressed(completion: @escaping (RemoteError) -> Void) {
+    func loginButtonPressed() {
         
-        login(completion: completion)
+        login()
     }
     
-    func loginWithFacebookButtonPressed(completion: @escaping (RemoteError) -> Void) {
+    func loginWithFacebookButtonPressed() {
         
-        login(completion: completion)
+        login()
     }
     
-    func loginWithGoogleButtonPressed(completion: @escaping (RemoteError) -> Void) {
+    func loginWithGoogleButtonPressed() {
         
-        login(completion: completion)
+        login()
     }
     
-    func loginWithAppleButtonPressed(completion: @escaping (RemoteError) -> Void) {
+    func loginWithAppleButtonPressed() {
         
-        login(completion: completion)
+        login()
     }
     
 }

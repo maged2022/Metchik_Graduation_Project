@@ -9,15 +9,10 @@ import SwiftUI
 
 struct LoginButtonView: View {
     @EnvironmentObject var viewModel: LoginViewModel
-    @State private var showAlert = false
-    @State private var alertMessage: String = "error"
     var body: some View {
         VStack(spacing: 10) {
             Button(action: {
-                viewModel.loginButtonPressed {error in
-                    self.alertMessage = error.description
-                    self.showAlert = true
-                }
+                viewModel.loginButtonPressed()
             }, label: {
                 Text("Login")
                     .font(.poppins(.bold, size: 16))
@@ -32,10 +27,7 @@ struct LoginButtonView: View {
             Text("or")
             VStack(spacing: 15) {
                 Button(action: {
-                    viewModel.loginWithFacebookButtonPressed {error in
-                        self.alertMessage = error.description
-                        self.showAlert = true
-                    }
+                    viewModel.loginWithFacebookButtonPressed()
                 }, label: {
                     Text("Continue with Facebook")
                         .font(.poppins(.semiBold, size: 16))
@@ -48,10 +40,7 @@ struct LoginButtonView: View {
                 .disabled(viewModel.isLoggenActive)
 
                 Button(action: {
-                    viewModel.loginWithGoogleButtonPressed {error in
-                        self.alertMessage = error.description
-                        self.showAlert = true
-                    }
+                    viewModel.loginWithGoogleButtonPressed()
                 }, label: {
                     Text("Continue with Google")
                         .font(.poppins(.semiBold, size: 16))
@@ -67,10 +56,7 @@ struct LoginButtonView: View {
                 .disabled(viewModel.isLoggenActive)
 
                 Button(action: {
-                    viewModel.loginWithAppleButtonPressed {error in
-                        self.alertMessage = error.description
-                        self.showAlert = true
-                    }
+                    viewModel.loginWithAppleButtonPressed()
                 }, label: {
                     Text("Continue with Apple")
                         .font(.poppins(.semiBold, size: 16))
@@ -87,10 +73,10 @@ struct LoginButtonView: View {
 
             }
         }
-        .alert(isPresented: $showAlert) {
+        .alert(isPresented: $viewModel.showAlert) {
             Alert(
                 title: Text("Error"),
-                message: Text(alertMessage),
+                message: Text(viewModel.alertMessage),
                 dismissButton: .default(Text("OK"))
             )
         }

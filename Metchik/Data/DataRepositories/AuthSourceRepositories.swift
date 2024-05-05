@@ -15,12 +15,12 @@ protocol AuthSourceRepositoriesProtocol {
 class AuthSourceRepositories: AuthSourceRepositoriesProtocol {
     
     func login(parameters: [String: Any], completion: @escaping (Result<String, RemoteError>) -> Void) {
-//        completion(.success("token 124353245"))
-        completion(.failure(RemoteError.detectError(statusCode: 400)))
+        completion(.success("token 124353245"))
+//        completion(.failure(RemoteError.detectError(statusCode: 400)))
     }
     
     func signUp(parameters: [String: Any], completion: @escaping (Result<String, RemoteError>) -> Void) {
-//        completion(.success("token 124353245"))
-        completion(.failure(RemoteError.detectError(statusCode: 200)))
+        completion(.success("token 124353245"))
+//        completion(.failure(RemoteError.detectError(statusCode: 200)))
     }
 }
