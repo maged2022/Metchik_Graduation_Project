@@ -16,7 +16,11 @@ class WishListViewUseCase: ObservableObject, WishListViewRepositories {
     private var cartUseCase: CartRepositories = CartUseCase.instance
     
     @Published var products : [Product] = []
-    @Published var cartProducts: [CartProduct] = []
+    @Published var cartProducts: [CartProduct] = [] {
+        didSet {
+            getProduct()
+        }
+    }
 
     func getCartProducts(completion: @escaping ([CartProduct]) -> Void) {
         cartUseCase.getCartProducts { cartProducts in
