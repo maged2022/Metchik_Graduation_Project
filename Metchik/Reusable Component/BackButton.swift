@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct BackButton: View {
-    @Environment(\.presentationMode) var presintationmode
+    var router: Router
 
     var body: some View {
         Button {
-                 presintationmode.wrappedValue.dismiss()
-             } label: {
+            router.dismiss()
+        } label: {
                  Asset.Icons.backIcon.swiftUIImage
                      .resizable()
                      .frame(width: 18,height: 12)
@@ -29,6 +29,6 @@ struct BackButton: View {
 
 struct BackButton_Previews: PreviewProvider {
     static var previews: some View {
-        BackButton()
+        BackButton(router: AppRouter(navigationController: UINavigationController()))
     }
 }

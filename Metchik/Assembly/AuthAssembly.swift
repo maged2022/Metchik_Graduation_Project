@@ -22,22 +22,21 @@ class AuthAssembly: Assembly {
             return OnBoardingViewModel(coordinator: coordinator)
         }     
         sharedContainer.register(SplashViewModel.self) { resolver in
-            guard let coordinator = resolver.resolve(AppCoordinatorProtocol.self)
-            else {fatalError("error resolver AppCoordinatorProtocol")}
+            guard let coordinator = resolver.resolve(AuthCoordinatorProtocol.self)
+            else {fatalError("error resolver AuthCoordinatorProtocol")}
             return SplashViewModel(coordinator: coordinator)
         }
         sharedContainer.register(LoginViewModel.self) { resolver in
-            guard let coordinator = resolver.resolve(AppCoordinatorProtocol.self)
-            else {fatalError("error resolver AppCoordinatorProtocol")}
+            guard let coordinator = resolver.resolve(AuthCoordinatorProtocol.self)
+            else {fatalError("error resolver AuthCoordinatorProtocol")}
             let useCase = AuthUseCase.instance
             return LoginViewModel(coordinator: coordinator, useCase: useCase)
         }
         sharedContainer.register(SignUpViewModel.self) { resolver in
-            guard let coordinator = resolver.resolve(AppCoordinatorProtocol.self)
-            else {fatalError("error resolver AppCoordinatorProtocol")}
+            guard let coordinator = resolver.resolve(AuthCoordinatorProtocol.self)
+            else {fatalError("error resolver AuthCoordinatorProtocol")}
             let useCase = AuthUseCase.instance
             return SignUpViewModel(coordinator: coordinator, useCase: useCase)
         }
-       
     }
 }

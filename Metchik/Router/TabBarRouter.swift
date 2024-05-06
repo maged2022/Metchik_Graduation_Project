@@ -1,13 +1,12 @@
 //
-//  AppRouter.swift
+//  TabBarRouter.swift
 //  Metchik
 //
-//  Created by Hassan on 05/03/2024.
+//  Created by Hassan on 05/05/2024.
 //
 
 import UIKit
-
-public final class AppRouter {
+public final class TabBarRouter {
     public let navigationController: UINavigationController
     
     public required init(navigationController: UINavigationController) {
@@ -15,7 +14,7 @@ public final class AppRouter {
     }
 }
 
-extension AppRouter: Router {
+extension TabBarRouter: Router {
     public func present(_ viewController: UIViewController, animated: Bool = true, completion: @escaping () -> Void = {}) {
         navigationController.present(viewController, animated: animated, completion: completion)
     }
@@ -45,20 +44,20 @@ extension AppRouter: Router {
             navigationController.popViewController(animated: animated)
             completion()
         }
+        if navigationController.viewControllers.count == 1 {
+            navigationController.tabBarController?.tabBar.isHidden = false
+        }
     }
     
     public func push(_ viewController: UIViewController, animated: Bool = true, completion: @escaping () -> Void = {}) {
-        navigationController.dismiss(animated: false)
+        navigationController.tabBarController?.tabBar.isHidden = true
         navigationController.pushViewController(viewController, animated: animated)
         completion()
     }
     
     public func reset(completion: @escaping () -> Void) {
-        if !self.navigationController.viewControllers.isEmpty {
-            navigationController.dismiss(animated: false)
-            navigationController.viewControllers.removeAll()
-            completion()
-        }
+        navigationController.viewControllers.removeAll()
+        completion()
     }
     
     public func popToViewController(
@@ -72,6 +71,7 @@ extension AppRouter: Router {
     
     public func popToRoot(animated: Bool = true, completion: @escaping () -> Void = {}) {
         navigationController.popToRootViewController(animated: animated)
+        navigationController.tabBarController?.tabBar.isHidden = false
         completion()
     }
 }

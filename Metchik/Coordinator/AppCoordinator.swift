@@ -14,9 +14,6 @@ protocol AppCoordinatorProtocol: Coordinator {
     func showTabBar()
     func showOnboarding()
     func showAuth()
-    func showLogin()
-    func showSignUp()
-    func showSignUpSuccess(token: String)
 }
 
 class AppCoordinator: AppCoordinatorProtocol {
@@ -37,6 +34,15 @@ class AppCoordinator: AppCoordinatorProtocol {
     }
     
     func start() {
+/*       
+ if notshowOnboarding && !isLogin {
+ showOnboarding()
+ } else if isLogin {
+ showTabBar()
+ } else {
+showAuth()
+ }
+*/
         if isLogin {
             showTabBar()
         } else {
@@ -45,7 +51,8 @@ class AppCoordinator: AppCoordinatorProtocol {
     }
     
     func showTabBar() {
-        TabBarCoordinator(router: router, resolver: resolver).start()
+        router.reset()
+        TabBarCoordinator(router: router, resolver: resolver, parentCoordinator: self).start()
     }
     
     func showOnboarding() {
@@ -57,32 +64,9 @@ class AppCoordinator: AppCoordinatorProtocol {
     }
     
     func showAuth() {
-        let viewModel = SplashViewModel(coordinator: self)
-        let splashView = SplashView(viewModel: viewModel)
-        let splashViewController = UIHostingController(rootView: splashView)
         router.reset()
-        router.push(splashViewController, animated: true)
-        router.navigationController.navigationBar.isHidden = false
-    }
-    
-    func showLogin() {
-        let useCase = AuthUseCase.instance
-        let viewModel = LoginViewModel(coordinator: self,useCase: useCase)
-        let loginView = LoginView(viewModel: viewModel)
-        let loginViewController = UIHostingController(rootView: loginView)
-        router.push(loginViewController, animated: true)
-    }
-    
-    func showSignUp() {
-        let useCase = AuthUseCase.instance
-        let viewModel = SignUpViewModel(coordinator: self, useCase: useCase)
-        let signUpView = SignUpView(viewModel: viewModel)
-        let signUpViewController = UIHostingController(rootView: signUpView)
-        router.push(signUpViewController, animated: true)
-    }  
-    
-    func showSignUpSuccess(token: String) {
-        print("showSignUpSuccess \(token)")
+        let coordinator = AuthCoordinator(router: router, parentCoordinator: self)
+        coordinator.start()
     }
     
 }

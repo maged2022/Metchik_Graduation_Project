@@ -28,9 +28,6 @@ struct CartView: View {
         .padding(25)
         .background(Colors.backgroundScreenColor.swiftUIColor )
         .environmentObject(viewModel)
-        .navigationBarItems(
-            leading: BackButton(),
-            trailing: CartButtonView(cartViewModel: viewModel.getCartButtonViewModel()))
 
     }
     

@@ -10,43 +10,86 @@ import SwiftUI
 import Swinject
 
 protocol TabBarCoordinatorProtocol: Coordinator {
-    func showTabBar()
-    func hideTabBar()
     func showHome()
     func showCart()
-    func showNotifications()
+    func showFavorites()
     func showProfile()
-    func createCartButtonViewModel() -> CartButtonViewModel
-
 }
 
 class TabBarCoordinator: TabBarCoordinatorProtocol {
     
-    var tabViewController: UITabBarController
+    private var tabViewController: UITabBarController
     private let resolver : Resolver
-    let router: Router
-    
-    init(router: Router, resolver: Resolver) {
+    var router: Router
+    var parentCoordinator: AppCoordinatorProtocol
+    init(router: Router, resolver: Resolver, parentCoordinator: AppCoordinatorProtocol) {
         self.router = router
         self.resolver = resolver
+        self.parentCoordinator = parentCoordinator
         self.tabViewController = UITabBarController()
         tabViewController.tabBar.isTranslucent = true
         tabViewController.tabBar.backgroundColor = .lightGray
         router.navigationController.isNavigationBarHidden = true
+        setupTabBarViewControllers()
     }
     
     func start() {
-        self.tabViewController.viewControllers = [homeViewController(), cartViewController()]
-        self.router.push(tabViewController)
+        router.push(tabViewController)
     }
     
-    func showTabBar() {
-        self.tabViewController.hidesBottomBarWhenPushed = false
+    private func setupTabBarViewControllers () {
+        homeViewController()
+        cartViewController()
+        wishListViewController()
+        profileViewController()
     }
     
-    func hideTabBar() {
-        self.tabViewController.tabBar.isHidden = true
+    private func homeViewController() {
+        let navigationController = UINavigationController()
+        let router = TabBarRouter(navigationController: navigationController)
+        let coordinator = HomeTabCoordinator(router: router, tabBarCoordinator: self, resolver: resolver)
+        coordinator.start()
+        setup(view: navigationController ,
+              title: "Home",
+              imageName: "house",
+              selectedImageName: "house.fill")
+        tabViewController.viewControllers = [navigationController]
     }
+    
+    private func cartViewController() {
+        //        guard let cartViewModel = resolver.resolve(CartViewModel.self) else {fatalError()}
+        let navigationController = UINavigationController()
+        let router = TabBarRouter(navigationController: navigationController)
+        let cartViewModel = CartViewModel(coordinator: self)
+        let cartViewController =  UIHostingController(rootView: CartView(viewModel: cartViewModel))
+        router.push(cartViewController)
+        setup(view: cartViewController,
+              title: "Cart",
+              imageName: "cart",
+              selectedImageName: "cart.fill")
+        navigationController.isNavigationBarHidden = true
+        tabViewController.viewControllers?.append(navigationController)
+    }
+    
+    private func wishListViewController() {
+        let navigationController = UINavigationController()
+        let router = TabBarRouter(navigationController: navigationController)
+        let wishListViewController = UIHostingController(rootView: WishListView())
+        router.push(wishListViewController)
+        wishListViewController.tabBarItem = .init(tabBarSystemItem: .favorites, tag: 2)
+        tabViewController.viewControllers?.append(navigationController)
+    }
+    
+    private func profileViewController() {
+        let navigationController = UINavigationController()
+        let router = TabBarRouter(navigationController: navigationController)
+        let profileViewController = UIHostingController(rootView: ProfileView())
+        router.push(profileViewController)
+        profileViewController.tabBarItem = .init(tabBarSystemItem: .more, tag: 3)
+        tabViewController.viewControllers?.append(navigationController)
+    }
+}
+extension TabBarCoordinator {
     
     func showHome() {
         self.tabViewController.selectedIndex = 0
@@ -56,35 +99,12 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
         self.tabViewController.selectedIndex = 1
     }
     
-    func showNotifications() {
-        self.tabViewController.selectedIndex = 1
+    func showFavorites() {
+        self.tabViewController.selectedIndex = 2
     }
     
     func showProfile() {
-        self.tabViewController.selectedIndex = 1
-    }
-    
-    private func homeViewController() -> UIViewController {
-        let navigationController = UINavigationController()
-        let router = AppRouter(navigationController: navigationController)
-        let coordinator = HomeTabCoordinator(router: router, coordinator: self, resolver: resolver)
-        coordinator.start()
-        setup(view: navigationController ,
-              title: "Home",
-              imageName: "house",
-              selectedImageName: "house.fill")
-        return navigationController
-    }
-    
-    private func cartViewController() -> UIViewController {
-        guard let cartViewModel = resolver.resolve(CartViewModel.self) else {fatalError()}
-        let cartViewController =  UIHostingController(rootView: CartView(viewModel: cartViewModel))
-        router.push(cartViewController)
-        setup(view: cartViewController,
-              title: "Cart",
-              imageName: "cart",
-              selectedImageName: "cart.fill")
-        return cartViewController
+        self.tabViewController.selectedIndex = 3
     }
     
     private func setup(view: UIViewController, title: String, imageName: String, selectedImageName: String) {
@@ -92,12 +112,5 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
         let selectedImage = UIImage(systemName: selectedImageName)
         let tabBarItem = UITabBarItem(title: title, image: defaultImage, selectedImage: selectedImage)
         view.tabBarItem = tabBarItem
-    }
-    
-    func createCartButtonViewModel() -> CartButtonViewModel {
-        let navigationController = UINavigationController()
-        let router = AppRouter(navigationController: navigationController)
-        let homeCoordinator = HomeTabCoordinator(router: router, coordinator: self, resolver: resolver)
-        return CartButtonViewModel(coordinator: homeCoordinator)
     }
 }

@@ -18,10 +18,12 @@ class SignUpViewModel: ObservableObject {
         }
     }
     @Published var agreedToTerms = false
+    @Published var showAlert = false
+    @Published var alertMessage: String = "error"
     
-    let coordinator: AppCoordinatorProtocol
+    let coordinator: AuthCoordinatorProtocol
     let useCase: AuthRepositories
-    init(coordinator: AppCoordinatorProtocol, useCase: AuthUseCase) {
+    init(coordinator: AuthCoordinatorProtocol, useCase: AuthUseCase) {
         self.coordinator = coordinator
         self.useCase = useCase
         isSignUpActive = true
@@ -36,18 +38,21 @@ class SignUpViewModel: ObservableObject {
             .assign(to: &$isSignUpActive)
     }
     
-    func signUpButtonPressed(completion: @escaping (RemoteError) -> Void) {
+    func signUpButtonPressed() {
         if password != confirmPassword {
-            completion(RemoteError.authMessage(message: "password not match"))
+            self.alertMessage = "password not match"
+            self.showAlert = true
         } else if !agreedToTerms {
-            completion(RemoteError.authMessage(message: "agree terms and condition"))
+            self.alertMessage = "agree terms and condition"
+            self.showAlert = true
         } else {
             useCase.signUp(userName: userName, email: email, password: password) { result in
                 switch result {
                 case .success(let token):
                     self.coordinator.showSignUpSuccess(token: token)
                 case .failure(let failure):
-                    completion(failure)
+                    self.alertMessage = failure.description
+                    self.showAlert = true
                 }
             }
         }

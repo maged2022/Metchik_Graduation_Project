@@ -9,8 +9,6 @@ import SwiftUI
 
 struct SignUpView: View {
     @StateObject var viewModel: SignUpViewModel
-    @State private var showAlert = false
-    @State private var alertMessage: String = "error"
 
     var body: some View {
         VStack(spacing: 25) {
@@ -42,10 +40,7 @@ struct SignUpView: View {
             agreementSection
             
             Button(action: {
-                viewModel.signUpButtonPressed {error in
-                    self.alertMessage = error.description
-                    self.showAlert = true
-                }
+                viewModel.signUpButtonPressed()
             }, label: {
                 Text("Login")
                     .font(.poppins(.bold, size: 16))
@@ -59,13 +54,15 @@ struct SignUpView: View {
             .disabled(viewModel.isSignUpActive)
         }
         .padding(25)
-        .alert(isPresented: $showAlert) {
+        .alert(isPresented: $viewModel.showAlert) {
             Alert(
                 title: Text("Error"),
-                message: Text(alertMessage),
+                message: Text(viewModel.alertMessage),
                 dismissButton: .default(Text("OK"))
             )
         }
+        .navigationBarBackButtonHidden()
+        .navigationBarItems(leading: BackButton(router: viewModel.coordinator.router))
     }
 }
 
