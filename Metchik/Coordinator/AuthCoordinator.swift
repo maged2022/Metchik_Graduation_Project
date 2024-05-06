@@ -33,7 +33,7 @@ class AuthCoordinator: AuthCoordinatorProtocol {
         let splashView = SplashView(viewModel: viewModel)
         let splashViewController = UIHostingController(rootView: splashView)
         router.push(splashViewController, animated: true)
-        router.navigationController.navigationBar.isHidden = false
+        router.navigationController.isNavigationBarHidden = false
     }
     func showGuest() {
         parentCoordinator.showTabBar()

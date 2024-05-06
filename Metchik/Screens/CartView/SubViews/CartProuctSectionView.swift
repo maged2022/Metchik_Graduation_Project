@@ -13,8 +13,8 @@ struct CartProuctSectionView: View {
     var body: some View {
         ScrollView {
             ForEach(viewModel.cartProducts,id: \.self) { cartProduct in
-                CartProductViewCell(
-                    viewModel: CartProductViewModelCell(
+                CartAndWishListViewCell(
+                    viewModel: CartAndWishListViewModelCell(
                         product: viewModel.getProduct(by: cartProduct),
                         cartProduct: cartProduct))
             }

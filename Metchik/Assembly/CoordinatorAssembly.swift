@@ -19,11 +19,11 @@ class CoordinatorAssembly: Assembly {
     // MARK: - Functions
     func assemble(container: Swinject.Container) {
         
-        sharedContainer.register(AppRouter.self) { resolver in
+        sharedContainer.register(AppRouter.self) { _ in
             let navigationController = UINavigationController()
             return AppRouter(navigationController: navigationController)
         } 
-        sharedContainer.register(TabBarRouter.self) { resolver in
+        sharedContainer.register(TabBarRouter.self) { _ in
             let navigationController = UINavigationController()
             return TabBarRouter(navigationController: navigationController)
         }
@@ -58,6 +58,15 @@ class CoordinatorAssembly: Assembly {
                 tabBarCoordinator: tabBarCoordinator,
                 resolver: resolver
             )
+        }
+        sharedContainer.register(ProfileViewModel.self) { resolver in
+            guard let coordinator = resolver.resolve(AppCoordinatorProtocol.self)
+            else {fatalError("error resolver AppCoordinatorProtocol")}
+            return ProfileViewModel(coordinator: coordinator)
+        }     
+        sharedContainer.register(WishListViewModel.self) { _ in
+            let useCase = WishListViewUseCase()
+            return WishListViewModel(wishListUseCase: useCase)
         }
     }
 }

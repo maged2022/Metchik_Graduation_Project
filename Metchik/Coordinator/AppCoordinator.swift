@@ -19,7 +19,7 @@ protocol AppCoordinatorProtocol: Coordinator {
 class AppCoordinator: AppCoordinatorProtocol {
 
     private let resolver : Resolver
-    var isLogin = false
+    var isLogin = true
     var router: Router
     
     init(resolver: Resolver) {

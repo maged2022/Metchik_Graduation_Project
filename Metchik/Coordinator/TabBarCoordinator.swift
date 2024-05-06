@@ -60,7 +60,7 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
         //        guard let cartViewModel = resolver.resolve(CartViewModel.self) else {fatalError()}
         let navigationController = UINavigationController()
         let router = TabBarRouter(navigationController: navigationController)
-        let cartViewModel = CartViewModel(coordinator: self)
+        let cartViewModel = CartViewModel(coordinator: self, cartUseCase: CartViewUseCase())
         let cartViewController =  UIHostingController(rootView: CartView(viewModel: cartViewModel))
         router.push(cartViewController)
         setup(view: cartViewController,
@@ -74,7 +74,9 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
     private func wishListViewController() {
         let navigationController = UINavigationController()
         let router = TabBarRouter(navigationController: navigationController)
-        let wishListViewController = UIHostingController(rootView: WishListView())
+        let useCase = WishListViewUseCase()
+        let viewModel = WishListViewModel(wishListUseCase: useCase)
+        let wishListViewController = UIHostingController(rootView: WishListView(viewModel: viewModel))
         router.push(wishListViewController)
         wishListViewController.tabBarItem = .init(tabBarSystemItem: .favorites, tag: 2)
         tabViewController.viewControllers?.append(navigationController)
@@ -83,7 +85,8 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
     private func profileViewController() {
         let navigationController = UINavigationController()
         let router = TabBarRouter(navigationController: navigationController)
-        let profileViewController = UIHostingController(rootView: ProfileView())
+        let viewModel = ProfileViewModel(coordinator: parentCoordinator)
+        let profileViewController = UIHostingController(rootView: ProfileView(viewModel: viewModel))
         router.push(profileViewController)
         profileViewController.tabBarItem = .init(tabBarSystemItem: .more, tag: 3)
         tabViewController.viewControllers?.append(navigationController)

@@ -1,13 +1,13 @@
 //
-//  CartProductViewModelCell.swift
+//  CartAndWishListViewModelCell.swift
 //  Metchik
 //
-//  Created by Hassan on 12/03/2024.
+//  Created by Hassan on 06/05/2024.
 //
 
 import Foundation
 
-class CartProductViewModelCell: ObservableObject {
+class CartAndWishListViewModelCell: ObservableObject {
     private var cartUseCase: CartRepositories = CartUseCase.instance
     @Published var cartProduct: CartProduct
     @Published var product: Product = .mockData
