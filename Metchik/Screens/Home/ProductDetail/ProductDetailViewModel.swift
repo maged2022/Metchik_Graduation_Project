@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 class ProductDetailViewModel: ObservableObject {
-    private var productUseCase: ProductDetailRepositories = ProductDetailUseCase.instance
+    private var productDetailUseCase: ProductDetailRepositories = ProductDetailUseCase.instance
     private var cartUseCase: CartRepositories = CartUseCase.instance
     let product: Product
     let coordinator: HomeTabCoordinatorProtocol
@@ -45,8 +45,8 @@ class ProductDetailViewModel: ObservableObject {
     }
     
     private func getProductdetail() {
-        productUseCase.fetchProductDetail(by: product.id)
-        productUseCase.getProductDetail {[weak self] result in
+        productDetailUseCase.fetchProductDetail(by: product.id)
+        productDetailUseCase.getProductDetail {[weak self] result in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let productDetail):
@@ -59,7 +59,7 @@ class ProductDetailViewModel: ObservableObject {
     }
     
     private func getAvilableSizes () {
-        productUseCase.getAvilableSizes { [weak self] sizes in
+        productDetailUseCase.getAvilableSizes { [weak self] sizes in
                 self?.availableSizes = sizes
                 if let firstSize = sizes.first {
                     self?.selectedSize = firstSize
@@ -68,7 +68,7 @@ class ProductDetailViewModel: ObservableObject {
     }
     
     private func getAvilableColors () {
-        productUseCase.getAvilableColors(forSize: selectedSize) { [weak self] colors in
+        productDetailUseCase.getAvilableColors(forSize: selectedSize) { [weak self] colors in
                 self?.availableColors = colors
                 if let firstColor = colors.first {
                     self?.selectedColor = firstColor
@@ -77,7 +77,10 @@ class ProductDetailViewModel: ObservableObject {
     }
     
     private func getMaxAvilableProducts () {
-        productUseCase.getMaxAvilableProducts(size: selectedSize, color: selectedColor) { [weak self] maxAvilable in
+        productDetailUseCase.getMaxAvilableProducts(
+            size: selectedSize,
+            color: selectedColor
+        ) { [weak self] maxAvilable in
                 self?.maxAvailableProduct = maxAvilable
             }
     }

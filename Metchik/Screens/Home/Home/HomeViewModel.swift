@@ -9,57 +9,45 @@ import Foundation
 import Combine
 
 class HomeViewModel: ObservableObject {
-    private let offersUseCase: OffersRepositories = OffersUseCase.instance
-    private let productUseCase: ProductRepositories = ProductUseCase.instance
+    private let homeViewUseCase: HomeViewUseCase
+
     private var cancellables = Set<AnyCancellable>()
     let coordinator: HomeTabCoordinatorProtocol
     
     @Published var offers: [Offer] = []
     @Published var categories: [String] = []
-    @Published var subCategories: [String] = [] {
-        didSet {
-            updateProducts()
-        }
-    }
+    @Published var subCategories: [String] = []
     @Published var products: [String: [Product]] = [:]
     @Published var selectedCategory: String = "" {
         didSet {
-            updateSubCategories()
+            homeViewUseCase.updateSelectedCategory(selectedCategory: selectedCategory)
         }
     }
     
-    init(coordinator: HomeTabCoordinatorProtocol) {
+    init(coordinator: HomeTabCoordinatorProtocol, homeViewUseCase: HomeViewUseCase) {
         self.coordinator = coordinator
-        updateOffers()
-        updateCategories()
+        self.homeViewUseCase = homeViewUseCase
+        bindUseCase()
     }
     
-    private func updateOffers() {
-        offersUseCase.getOffers()
+    private func bindUseCase() {
+        homeViewUseCase.$offers
             .receive(on: DispatchQueue.main)
             .assign(to: &$offers)
+        homeViewUseCase.$categories
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$categories)  
+        homeViewUseCase.$subCategories
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$subCategories)
+        homeViewUseCase.$products
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$products)
+        homeViewUseCase.$selectedCategory
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$selectedCategory)
     }
     
-    private func updateCategories() {
-        productUseCase.getCategories { [weak self] categories in
-            self?.categories = categories
-            if let firstCategory = categories.first {
-                self?.selectedCategory = firstCategory
-            }
-        }
-    }
-    
-    private func updateSubCategories() {
-        productUseCase.getSubCategories(category: selectedCategory) { [weak self] subCategories in
-            self?.subCategories = subCategories
-        }
-    }
-    
-    private func updateProducts() {
-        productUseCase.getProducts(category: selectedCategory, subCategories: subCategories) { [weak self] product in
-            self?.products = product
-        }
-    }
 }
 extension HomeViewModel {
     func pressedViewAllButton(selectedSubCategory: String) {

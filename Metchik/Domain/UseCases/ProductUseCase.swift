@@ -10,22 +10,13 @@ import Combine
 
 class ProductUseCase: ProductRepositories, ObservableObject {
     private var repo = ProductSourceRepositoriesImpl()
-    @Published private var products: Result<[Product], RemoteError> = .success([])
-    
+    @Published var products: Result<[Product], RemoteError> = .success([])
+    var productsPublisher: AnyPublisher<Result<[Product], RemoteError>, Never> { $products.eraseToAnyPublisher() }
     private var cancellables = Set<AnyCancellable>()
     static var instance = ProductUseCase()
     
     private init() {
-        setupObserving()
         updateProducts()
-    }
-    
-    private func setupObserving() {
-        $products
-            .sink { [weak self] _ in
-                self?.objectWillChange.send()
-            }
-            .store(in: &cancellables)
     }
     
     private func updateProducts() {
@@ -39,21 +30,8 @@ class ProductUseCase: ProductRepositories, ObservableObject {
         }
     }
     
-    func getCategories(completion: @escaping ([String]) -> Void) {
-        return $products
-            .sink { result in
-                switch result {
-                case .success(let products):
-                    completion(Array(Set(products.map { $0.category.capitalized })).sorted())
-                case .failure(let failure):
-                    print(failure)
-                }
-            }.store(in: &cancellables)
-        
-    }
-    
     func getSubCategories(category: String, completion: @escaping ([String]) -> Void) {
-        return $products
+         $products
             .sink { result in
                 switch result {
                 case .success(let products):
@@ -70,13 +48,13 @@ class ProductUseCase: ProductRepositories, ObservableObject {
     }
     
     func getProducts(category: String, subCategories: [String], completion: @escaping ([String: [Product]]) -> Void) {
-        return $products
+        $products
             .sink { result in
                 switch result {
                 case .success(let products):
                     completion(Dictionary(grouping: products.filter {
                         $0.category.capitalized == category
-                        }, by: { $0.subCategory.capitalized }).mapValues {
+                    }, by: { $0.subCategory.capitalized }).mapValues {
                         $0.sorted { $0.name < $1.name }
                     })
                 case .failure(let failure):
@@ -86,14 +64,14 @@ class ProductUseCase: ProductRepositories, ObservableObject {
         
     }
     
-    func getProducts(category: String, subCategories: String, completion: @escaping ([Product]) -> Void) {
+    func getProducts(category: String, subCategory: String, completion: @escaping ([Product]) -> Void) {
         $products
             .sink { result in
                 switch result {
                 case .success(let products):
                     completion(products.filter {
                         $0.category.lowercased() == category.lowercased() &&
-                        $0.subCategory.lowercased() == subCategories.lowercased()
+                        $0.subCategory.lowercased() == subCategory.lowercased()
                     })
                 case .failure(let failure):
                     print(failure)

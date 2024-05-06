@@ -36,7 +36,8 @@ class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
     }
     
     private func showHome() {
-        let homeViewModel = HomeViewModel(coordinator: self)
+        let useCase = HomeViewUseCase()
+        let homeViewModel = HomeViewModel(coordinator: self, homeViewUseCase: useCase)
         let homeViewController = UIHostingController(rootView: HomeView(homeViewModel: homeViewModel))
         router.push(homeViewController)
     }
