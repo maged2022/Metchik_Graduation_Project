@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol CartSourceRepositories {
-    func getCartProducts() -> AnyPublisher<[CartProductSource], Never>
+    func getCartProducts(completion: @escaping ([CartProductSource]) -> Void)
     func saveCartProductSource(_ cartProductSource: CartProductSource)
     func deleteCartProductSource(indexSet: IndexSet)
     func updateCartProductSource(for cartProductSource: CartProductSource ,with count: Int)
@@ -17,21 +17,12 @@ protocol CartSourceRepositories {
 
 class CartSourceRepositoriesImpl: CartSourceRepositories {
     @Published var coreManager = CoreDataManager()
-    @Published var cartProducts: [CartProductSource] = []
     private var cancellables = Set<AnyCancellable>()
 
-    init() {
-        fetchCartProducts()
-    }
-    
-    private func fetchCartProducts() {
-        coreManager.$cartProducts.sink { [weak self] cartProducts in
-            self?.cartProducts = cartProducts
+    func getCartProducts(completion: @escaping ([CartProductSource]) -> Void) {
+        coreManager.$cartProducts.sink { cartProducts in
+            completion(cartProducts)
         }.store(in: &cancellables)
-    }
-    
-    func getCartProducts() -> AnyPublisher<[CartProductSource], Never> {
-        $cartProducts.eraseToAnyPublisher()
     }
     
     func saveCartProductSource(_ cartProductSource: CartProductSource) {

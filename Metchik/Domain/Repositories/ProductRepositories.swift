@@ -8,9 +8,9 @@
 import Foundation
 import Combine
 protocol ProductRepositories {
-    func getCategories() -> AnyPublisher<[String], Never>
-    func getSubCategories(category: String) -> AnyPublisher<[String], Never>
-    func getProducts(category: String, subCategories: [String]) -> AnyPublisher<[String : [Product]], Never>
-    func getProducts(category: String, subCategories: String) -> AnyPublisher< [Product], Never>
-    func getProducts(by id: [String]) -> AnyPublisher< [Product], Never>
+    func getCategories(completion: @escaping ([String]) -> Void)
+    func getSubCategories(category: String, completion: @escaping ([String]) -> Void)
+    func getProducts(category: String, subCategories: [String], completion: @escaping ([String : [Product]]) -> Void)
+    func getProducts(category: String, subCategories: String, completion: @escaping ([Product]) -> Void)
+    func getProducts(by id: [String], completion: @escaping (Result<[Product], RemoteError>) -> Void)
 }
