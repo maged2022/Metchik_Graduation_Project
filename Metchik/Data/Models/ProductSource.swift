@@ -20,7 +20,6 @@ struct DataProductSource: Codable {
 // MARK: - ProductSource
 struct ProductSource: Codable {
     let id, title: String
-    let avatar: String
     let shortDescription: String
     let price: Double
 //    let isFavorite: Bool
@@ -30,6 +29,6 @@ struct ProductSource: Codable {
     
     enum CodingKeys: String, CodingKey {
         case id = "_id"
-        case title, avatar, shortDescription, price, discountPrecentage, category, subCategory, imageUrl
+        case title, shortDescription, price, discountPrecentage, category, subCategory, imageUrl
     }
 }

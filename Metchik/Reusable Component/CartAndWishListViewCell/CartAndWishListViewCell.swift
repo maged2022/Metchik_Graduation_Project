@@ -1,15 +1,15 @@
 //
-//  CartProductViewCell.swift
+//  CartAndWishListViewCell.swift
 //  Metchik
 //
-//  Created by Hassan on 28/02/2024.
+//  Created by Hassan on 06/05/2024.
 //
 
 import SwiftUI
 
-struct CartProductViewCell: View {
+struct CartAndWishListViewCell: View {
     typealias Colors = Asset.Colors
-    @StateObject var viewModel: CartProductViewModelCell
+    @StateObject var viewModel: CartAndWishListViewModelCell
     
     var body: some View {
         HStack(alignment: .bottom, spacing: 6) {
@@ -65,8 +65,8 @@ struct CartProductViewCell: View {
 struct CartProductViewCell_Previews: PreviewProvider {
     static var previews: some View {
         if let cartProductViewModelCell = DependencyManager.shared.sharedContainer
-            .resolve(CartProductViewModelCell.self) {
-            CartProductViewCell(viewModel: cartProductViewModelCell)
+            .resolve(CartAndWishListViewModelCell.self) {
+            CartAndWishListViewCell(viewModel: cartProductViewModelCell)
         }
     }
 }

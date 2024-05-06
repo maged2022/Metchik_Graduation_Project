@@ -20,15 +20,15 @@ class CartAssembly: Assembly {
         sharedContainer.register(CartViewModel.self) { resolver in
             guard let coordinator = resolver.resolve(TabBarCoordinatorProtocol.self)
             else {fatalError("error resolver TabBarCoordinatorProtocol")}
-            return CartViewModel(coordinator: coordinator)
+            return CartViewModel(coordinator: coordinator, cartUseCase: CartViewUseCase())
         }  
         sharedContainer.register(CartButtonViewModel.self) { resolver in
             guard let coordinator = resolver.resolve(HomeTabCoordinatorProtocol.self)
             else {fatalError("error resolver TabBarCoordinatorProtocol")}
             return CartButtonViewModel(coordinator: coordinator)
         }     
-        sharedContainer.register(CartProductViewModelCell.self) { _ in
-            return CartProductViewModelCell(
+        sharedContainer.register(CartAndWishListViewModelCell.self) { _ in
+            return CartAndWishListViewModelCell(
                 product: Product.mockData,
                 cartProduct: CartProduct(productID: "1", size: .l, color: .black, selectedCount: 3)
             )

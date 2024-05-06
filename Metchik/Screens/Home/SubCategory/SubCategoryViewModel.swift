@@ -25,20 +25,15 @@ class SubCategoryViewModel: ObservableObject {
         updateSubCategories()
     }
     private func updateSubCategories() {
-        productUseCase.getSubCategories(category: category)
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] subCategories in
+        productUseCase.getSubCategories(category: category) { [weak self] subCategories in
                 self?.subCategories = subCategories
             }
-            .store(in: &cancellables)
     }
 
     private func updateProducts() {
-        productUseCase.getProducts(category: category, subCategories: subCategories)
-            .sink { [weak self] product in
+        productUseCase.getProducts(category: category, subCategories: subCategories) { [weak self] product in
                 self?.products = product
             }
-            .store(in: &cancellables)
     }
     
     func isLeadingAlignment(for outerSubCategory: String) -> Bool {

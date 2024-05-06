@@ -12,7 +12,6 @@ import Combine
 class ProductDetailViewModel: ObservableObject {
     private var productUseCase: ProductDetailRepositories = ProductDetailUseCase.instance
     private var cartUseCase: CartRepositories = CartUseCase.instance
-    private var cancellables: [String: AnyCancellable] = [:]
     let product: Product
     let coordinator: HomeTabCoordinatorProtocol
     @Published var productDetail: ProductDetail = .mockData {
@@ -47,47 +46,40 @@ class ProductDetailViewModel: ObservableObject {
     
     private func getProductdetail() {
         productUseCase.fetchProductDetail(by: product.id)
-        self.cancellables["Productdetail"]?.cancel()
-        let cancellable = AnyCancellable(productUseCase.getProductDetail()
-            .sink {[weak self] productDetail in
+        productUseCase.getProductDetail {[weak self] result in
                 DispatchQueue.main.async {
-                    self?.productDetail = productDetail
+                    switch result {
+                    case .success(let productDetail):
+                        self?.productDetail = productDetail
+                    case .failure(let failure):
+                        print(failure)
+                    }
                 }
-            })
-        self.cancellables["Productdetail"] = cancellable
+            }
     }
     
     private func getAvilableSizes () {
-        self.cancellables["AvilableSizes"]?.cancel()
-        let cancellable = AnyCancellable(productUseCase.getAvilableSizes()
-            .sink { [weak self] sizes in
+        productUseCase.getAvilableSizes { [weak self] sizes in
                 self?.availableSizes = sizes
                 if let firstSize = sizes.first {
                     self?.selectedSize = firstSize
                 }
-            })
-        self.cancellables["AvilableSizes"] = cancellable
+            }
     }
     
     private func getAvilableColors () {
-        self.cancellables["AvilableColors"]?.cancel()
-        let cancellable = AnyCancellable(productUseCase.getAvilableColors(forSize: selectedSize)
-            .sink { [weak self] colors in
+        productUseCase.getAvilableColors(forSize: selectedSize) { [weak self] colors in
                 self?.availableColors = colors
                 if let firstColor = colors.first {
                     self?.selectedColor = firstColor
                 }
-            })
-        self.cancellables["AvilableColors"] = cancellable
+            }
     }
     
     private func getMaxAvilableProducts () {
-        self.cancellables["MaxAvilableProducts"]?.cancel()
-        let cancellable = AnyCancellable(productUseCase.getMaxAvilableProducts(size: selectedSize, color: selectedColor)
-            .sink { [weak self] maxAvilable in
+        productUseCase.getMaxAvilableProducts(size: selectedSize, color: selectedColor) { [weak self] maxAvilable in
                 self?.maxAvailableProduct = maxAvilable
-            })
-        self.cancellables["MaxAvilableProducts"] = cancellable
+            }
     }
     
     func getTotalPrice() -> Double {

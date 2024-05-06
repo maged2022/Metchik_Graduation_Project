@@ -18,16 +18,15 @@ class CartUseCase: CartRepositories {
     }
     
     func fetchCartProduct () {
-        cartRepo.getCartProducts()
-            .map {$0.map {$0.toCartProduct()}}
-            .sink {[weak self] products in
-            self?.cartProducts = products
+        cartRepo.getCartProducts { products in
+            self.cartProducts = products.map {$0.toCartProduct()}
         }
-            .store(in: &cancellables)
     }
     
-    func getCartProducts() -> AnyPublisher<[CartProduct], Never> {
-        $cartProducts.eraseToAnyPublisher()
+    func getCartProducts(completion: @escaping ([CartProduct]) -> Void) {
+        $cartProducts.sink { cartProducts in
+            completion(cartProducts)
+        }.store(in: &cancellables)
     }
     
     func saveCartProduct(product: Product, size: ProductSizes, color: Color, count: Int) {
@@ -44,7 +43,10 @@ class CartUseCase: CartRepositories {
         cartRepo.updateCartProductSource(for: cartProductSource, with: count)
     }
     
-    func getCartProductsCount() -> AnyPublisher<Int, Never> {
-        $cartProducts.map {$0.count}.eraseToAnyPublisher()
+    func getCartProductsCount(completion: @escaping (Int) -> Void) {
+        $cartProducts.sink { cartProducts in
+            completion(cartProducts.count)
+        }
+        .store(in: &cancellables)
     }
 }

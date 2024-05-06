@@ -24,11 +24,12 @@ class ProductViewModel: ObservableObject {
     }
     
     func getProducts() {
-        productUseCase.getProducts(category: selectedCategory, subCategories: selectedSubCategory)
-            .sink { [weak self] products in
+        productUseCase.getProducts(
+            category: selectedCategory,
+            subCategories: selectedSubCategory
+        ) { [weak self] products in
                 self?.products = products
             }
-            .store(in: &cancellables)
     }
     
     func getProductItemViewModel(product: Product) -> ProductItemViewModel {

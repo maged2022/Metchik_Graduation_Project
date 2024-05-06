@@ -10,7 +10,7 @@ import SwiftUI
 
 class ProductDetailUseCase: ProductDetailRepositories, ObservableObject {
     private var repo = ProductSourceDetailRepositoriesImpl()
-    @Published private var productDetail: ProductDetail = .mockData
+    @Published private var productDetail: Result<ProductDetail, RemoteError> = .success(.mockData)
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -23,45 +23,71 @@ class ProductDetailUseCase: ProductDetailRepositories, ObservableObject {
             switch result {
             case .success(let success):
                 if let firstProduct = success.data.productContain.first {
-                    self.productDetail = firstProduct.toProductDetail()
+                    self.productDetail = .success(firstProduct.toProductDetail())
                 } else {
                     // Handle the case where the product array is empty
                     print("Product array is empty")
                 }
             case .failure(let failure):
-                print(failure)
+                self.productDetail = .failure(failure)
             }
         }
     }
     
-    func getProductDetail() -> AnyPublisher<ProductDetail, Never> {
-        $productDetail.eraseToAnyPublisher()
+    func getProductDetail(completion: @escaping (Result<ProductDetail, RemoteError>) -> Void) {
+        $productDetail.sink { result in
+            switch result {
+            case .success(let productDetail):
+                completion(.success(productDetail))
+            case .failure(let failure):
+                completion(.failure(failure))
+            }
+        }
+        .store(in: &cancellables)
     }
 
-    func getAvilableSizes() -> AnyPublisher<[ProductSizes], Never> {
-        return $productDetail.map { $0.productAttribute.map {$0.sizes}} .eraseToAnyPublisher()
+    func getAvilableSizes(completion: @escaping ([ProductSizes]) -> Void) {
+        $productDetail.sink { result in
+            switch result {
+            case .success(let productDetail):
+                completion(productDetail.productAttribute.map {$0.sizes})
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+        .store(in: &cancellables)
     }
     
-    func getAvilableColors(forSize selectedSize: ProductSizes) -> AnyPublisher<[Color], Never> {
-        return $productDetail
-            .map({$0.productAttribute
+    func getAvilableColors(forSize selectedSize: ProductSizes, completion: @escaping ([Color]) -> Void) {
+        $productDetail.sink { result in
+            switch result {
+            case .success(let productDetail):
+                completion(productDetail.productAttribute
                     .first {$0.sizes == selectedSize }
-                    .map {$0.colors} ?? []
-            })
-            .eraseToAnyPublisher()
+                    .map {$0.colors} ?? [])
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+        .store(in: &cancellables)
     }
     
-    func getMaxAvilableProducts(size: ProductSizes, color: Color) -> AnyPublisher<Int, Never> {
-        return $productDetail
-              .map { productDetail in
-                  guard let sizeAttribute = productDetail.productAttribute
-                      .filter({ $0.sizes == size })
-                      .first,
-                      let colorIndex = sizeAttribute.colors.firstIndex(where: { $0 == color }) else {
-                          return 0
-                  }
-                  return sizeAttribute.avaliableInStok[colorIndex]
-              }
-              .eraseToAnyPublisher()
+    func getMaxAvilableProducts(size: ProductSizes, color: Color, completion: @escaping (Int) -> Void) {
+        $productDetail.sink { result in
+            switch result {
+            case .success(let productDetail):
+                guard let sizeAttribute = productDetail.productAttribute
+                    .filter({ $0.sizes == size })
+                    .first,
+                    let colorIndex = sizeAttribute.colors.firstIndex(where: { $0 == color }) else {
+                        completion(0)
+                    return
+                }
+                completion(sizeAttribute.avaliableInStok[colorIndex])
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+        .store(in: &cancellables)
     }
 }

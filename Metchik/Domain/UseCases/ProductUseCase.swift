@@ -10,8 +10,8 @@ import Combine
 
 class ProductUseCase: ProductRepositories, ObservableObject {
     private var repo = ProductSourceRepositoriesImpl()
-    @Published private var products: [Product] = []
-
+    @Published private var products: Result<[Product], RemoteError> = .success([])
+    
     private var cancellables = Set<AnyCancellable>()
     static var instance = ProductUseCase()
     
@@ -19,7 +19,7 @@ class ProductUseCase: ProductRepositories, ObservableObject {
         setupObserving()
         updateProducts()
     }
-
+    
     private func setupObserving() {
         $products
             .sink { [weak self] _ in
@@ -27,70 +27,93 @@ class ProductUseCase: ProductRepositories, ObservableObject {
             }
             .store(in: &cancellables)
     }
-
+    
     private func updateProducts() {
         repo.getProductsSource(parameters: [:]) { result in
             switch result {
             case .success(let success):
-                self.products = success.data.products.toProducts()
+                self.products = .success(success.data.products.toProducts())
             case .failure(let failure):
-                print(failure)
+                self.products = .failure(failure)
             }
         }
     }
-
-    func getCategories() -> AnyPublisher<[String], Never> {
+    
+    func getCategories(completion: @escaping ([String]) -> Void) {
         return $products
-            .map { products in
-                Array(Set(products.map { $0.category.capitalized }))
-                    .sorted()
-            }
-            .eraseToAnyPublisher()
+            .sink { result in
+                switch result {
+                case .success(let products):
+                    completion(Array(Set(products.map { $0.category.capitalized })).sorted())
+                case .failure(let failure):
+                    print(failure)
+                }
+            }.store(in: &cancellables)
+        
     }
     
-    func getSubCategories(category: String) -> AnyPublisher<[String], Never> {
+    func getSubCategories(category: String, completion: @escaping ([String]) -> Void) {
         return $products
-            .map { products in
-                Set(products
-                    .filter { $0.category.capitalized == category }
-                    .map { $0.subCategory.capitalized }
-                )
-                .sorted()
-                
-            }
-            .eraseToAnyPublisher()
+            .sink { result in
+                switch result {
+                case .success(let products):
+                    completion(
+                        Set(products.filter {
+                            $0.category.capitalized == category
+                        }.map { $0.subCategory.capitalized }).sorted()
+                    )
+                case .failure(let failure):
+                    print(failure)
+                }
+            }.store(in: &cancellables)
+        
     }
     
-    func getProducts(category: String, subCategories: [String]) -> AnyPublisher<[String: [Product]], Never> {
+    func getProducts(category: String, subCategories: [String], completion: @escaping ([String: [Product]]) -> Void) {
         return $products
-            .map { products in
-                products.filter { $0.category.capitalized == category }
-            }
-            .map { filteredProducts in
-                Dictionary(grouping: filteredProducts, by: { $0.subCategory.capitalized })
-                    .mapValues { products in
-                        products.sorted { $0.name < $1.name }
-                    }
-            }
-            .eraseToAnyPublisher()
+            .sink { result in
+                switch result {
+                case .success(let products):
+                    completion(Dictionary(grouping: products.filter {
+                        $0.category.capitalized == category
+                        }, by: { $0.subCategory.capitalized }).mapValues {
+                        $0.sorted { $0.name < $1.name }
+                    })
+                case .failure(let failure):
+                    print(failure)
+                }
+            }.store(in: &cancellables)
+        
     }
     
-    func getProducts(category: String, subCategories: String) -> AnyPublisher< [Product], Never> {
-        return $products
-            .map {
-                $0.filter { $0.category.lowercased() == category.lowercased() }
-                    .filter { $0.subCategory.lowercased() == subCategories.lowercased() }
-            }
-            .eraseToAnyPublisher()
+    func getProducts(category: String, subCategories: String, completion: @escaping ([Product]) -> Void) {
+        $products
+            .sink { result in
+                switch result {
+                case .success(let products):
+                    completion(products.filter {
+                        $0.category.lowercased() == category.lowercased() &&
+                        $0.subCategory.lowercased() == subCategories.lowercased()
+                    })
+                case .failure(let failure):
+                    print(failure)
+                }
+            }.store(in: &cancellables)
+        
     }
     
-    func getProducts(by id: [String]) -> AnyPublisher< [Product], Never> {
-        return $products
-            .map { products in
-                products.filter { product in
-                    id.contains { $0.lowercased() == product.id.lowercased() }
+    func getProducts(by id: [String], completion: @escaping (Result<[Product], RemoteError>) -> Void) {
+        $products
+            .sink { result in
+                switch result {
+                case .success(let products):
+                    completion(.success(products.filter { product in
+                        id.contains { $0.lowercased() == product.id.lowercased() }
+                    }))
+                case .failure(let failure):
+                    completion(.failure(failure))
                 }
             }
-            .eraseToAnyPublisher()
+            .store(in: &cancellables)
     }
 }
