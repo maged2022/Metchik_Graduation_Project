@@ -23,7 +23,7 @@ struct HomeView: View {
             contentScrollView
         }
         .offset(CGSize(width: 0,height: (offset < height) ? (offset > -1 ) ? -offset : 0  : -height))
-        //.animation(.spring())
+        // .animation(.spring())
         .background(Asset.Colors.backgroundScreenColor.swiftUIColor
             .ignoresSafeArea())
         .navigationBarItems(

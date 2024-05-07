@@ -19,7 +19,9 @@ protocol AppCoordinatorProtocol: Coordinator {
 class AppCoordinator: AppCoordinatorProtocol {
 
     private let resolver : Resolver
-    var isLogin = true
+    @AppStorage("isLogin") var isLogin: Bool = false
+    @AppStorage("isShowOnboarding") var isShowOnboarding: Bool = false
+
     var router: Router
     
     init(resolver: Resolver) {
@@ -34,19 +36,12 @@ class AppCoordinator: AppCoordinatorProtocol {
     }
     
     func start() {
-/*       
- if notshowOnboarding && !isLogin {
- showOnboarding()
- } else if isLogin {
- showTabBar()
- } else {
-showAuth()
- }
-*/
         if isLogin {
             showTabBar()
-        } else {
+        } else if isShowOnboarding {
             showOnboarding()
+        } else {
+           showAuth()
         }
     }
     

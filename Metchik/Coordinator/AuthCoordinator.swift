@@ -12,11 +12,13 @@ protocol AuthCoordinatorProtocol: Coordinator {
     func showGuest()
     func showLogin()
     func showSignUp()
-    func showSignUpSuccess(token: String)
+    func showSignUpSuccess(userID: String)
+    func showTabBar(userID: String)
 }
 
 class AuthCoordinator: AuthCoordinatorProtocol {
-
+    @AppStorage("isLogin") var isLogin: Bool = false
+    @AppStorage("userID") var userID: String?
     var router: Router
     var parentCoordinator: AppCoordinatorProtocol
     init(router: Router,parentCoordinator: AppCoordinatorProtocol) {
@@ -25,6 +27,8 @@ class AuthCoordinator: AuthCoordinatorProtocol {
     }
 
     func start() {
+        userID = nil
+        isLogin = false
         showSplash()
     }
 
@@ -33,6 +37,7 @@ class AuthCoordinator: AuthCoordinatorProtocol {
         let splashView = SplashView(viewModel: viewModel)
         let splashViewController = UIHostingController(rootView: splashView)
         router.push(splashViewController, animated: true)
+        router.navigationController.navigationBar.isHidden = false
         router.navigationController.isNavigationBarHidden = false
     }
     func showGuest() {
@@ -55,8 +60,17 @@ class AuthCoordinator: AuthCoordinatorProtocol {
         router.push(signUpViewController, animated: true)
     }
     
-    func showSignUpSuccess(token: String) {
-        print("showSignUpSuccess \(token)")
+    func showSignUpSuccess(userID: String) {
+        let useCase = AuthUseCase.instance
+        let viewModel = SignUpSuccessViewModel(coordinator: self,userID: userID)
+        let signUpView = SignUpSuccessView(viewModel: viewModel)
+        let signUpViewController = UIHostingController(rootView: signUpView)
+        router.push(signUpViewController, animated: true)
     }
     
+    func showTabBar(userID: String) {
+        isLogin = true
+        self.userID = userID
+        parentCoordinator.showTabBar()
+    }
 }
