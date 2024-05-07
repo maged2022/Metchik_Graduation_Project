@@ -50,6 +50,7 @@ struct VirtualTryButtonView: View {
             }
             .sheet(isPresented: $showImagePicker) {
                 ImagePicker(sourceType: .photoLibrary) { image in
+                    showImagePicker = false
                     self.viewModel.pressedTryItButton(personImage: image)
                 }
             }
