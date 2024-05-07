@@ -13,6 +13,7 @@ public enum EndPoints: ServiceLayer {
     case getProductsWith(parameters: [String: Any])
     case getProductDetailWith(parameters: [String: Any])
     case getVirtualImageWith(parameters: [String: Any])
+    case getUserData
     
     public var headers: [String : String] {
         switch self {
@@ -39,6 +40,8 @@ public enum EndPoints: ServiceLayer {
             return "ProductContain"
         case .getVirtualImageWith:
             return "process_images"
+        case .getUserData:
+            return "users/66355d4bba75412dfc1a829a"
         }
     }
     
@@ -50,6 +53,8 @@ public enum EndPoints: ServiceLayer {
               return .requestWithParameters(parameters: parameters, encoding: URLEncoding.default)
         case .getVirtualImageWith(let parameters):
               return .requestWithParameters(parameters: parameters, encoding: URLEncoding.default)
+        case .getUserData:
+            return .plainRequest
         }
     }
 }

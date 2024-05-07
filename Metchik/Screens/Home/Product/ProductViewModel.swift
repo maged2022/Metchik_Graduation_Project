@@ -26,7 +26,7 @@ class ProductViewModel: ObservableObject {
     func getProducts() {
         productUseCase.getProducts(
             category: selectedCategory,
-            subCategories: selectedSubCategory
+            subCategory: selectedSubCategory
         ) { [weak self] products in
                 self?.products = products
             }

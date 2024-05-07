@@ -38,8 +38,8 @@ class LoginViewModel: ObservableObject {
     private func login() {
         useCase.login(email: email, password: password) { [weak self] result in
             switch result {
-            case .success:
-                self?.coordinator.showGuest()
+            case .success(let userID):
+                self?.coordinator.showTabBar(userID: userID )
             case .failure(let failure):
                 self?.alertMessage = failure.description
                 self?.showAlert = true

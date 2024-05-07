@@ -78,17 +78,24 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
         let viewModel = WishListViewModel(wishListUseCase: useCase)
         let wishListViewController = UIHostingController(rootView: WishListView(viewModel: viewModel))
         router.push(wishListViewController)
-        wishListViewController.tabBarItem = .init(tabBarSystemItem: .favorites, tag: 2)
+        setup(view: wishListViewController,
+              title: "WishList",
+              imageName: "heart",
+              selectedImageName: "heart.fill")
         tabViewController.viewControllers?.append(navigationController)
     }
     
     private func profileViewController() {
         let navigationController = UINavigationController()
         let router = TabBarRouter(navigationController: navigationController)
-        let viewModel = ProfileViewModel(coordinator: parentCoordinator)
+        let useCase = AuthUseCase.instance
+        let viewModel = ProfileViewModel(coordinator: parentCoordinator, authUseCase: useCase)
         let profileViewController = UIHostingController(rootView: ProfileView(viewModel: viewModel))
         router.push(profileViewController)
-        profileViewController.tabBarItem = .init(tabBarSystemItem: .more, tag: 3)
+        setup(view: profileViewController,
+              title: "Profile",
+              imageName: "person",
+              selectedImageName: "person.fill")
         tabViewController.viewControllers?.append(navigationController)
     }
 }

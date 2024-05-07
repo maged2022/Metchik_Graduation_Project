@@ -42,7 +42,7 @@ struct SignUpView: View {
             Button(action: {
                 viewModel.signUpButtonPressed()
             }, label: {
-                Text("Login")
+                Text("Sign Up")
                     .font(.poppins(.bold, size: 16))
                     .frame(height: 50)
                     .frame(maxWidth: .infinity)
@@ -93,6 +93,7 @@ extension SignUpView {
                 .font(.poppins(.regular, size: 14))
                 .foregroundStyle(Asset.Colors.secondaryLabelColor.swiftUIColor)
         }
+        .frame(maxWidth: .infinity,alignment: .leading)
     }
     
     private var agreementSection: some View {

@@ -27,4 +27,15 @@ class AuthUseCase: AuthRepositories {
         ]
         repo.signUp(parameters: parameters, completion: completion)
     }
+    
+    func getUserData(by userID: String, completion: @escaping (Result<User, RemoteError>) -> Void) {
+        repo.getUserData { result in
+            switch result {
+            case .success(let success):
+                completion(.success(success.data.user.toUser()))
+            case .failure(let failure):
+                completion(.failure(failure))
+            }
+        }
+    }
 }

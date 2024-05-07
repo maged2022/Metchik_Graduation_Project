@@ -20,7 +20,8 @@ class HomeAssemply: Assembly {
         sharedContainer.register(HomeViewModel.self) { resolver in
             guard let coordinator = resolver.resolve(HomeTabCoordinatorProtocol.self)
             else {fatalError("error resolver HomeTabCoordinatorProtocol")}
-            return HomeViewModel(coordinator: coordinator)
+            let useCase = HomeViewUseCase()
+            return HomeViewModel(coordinator: coordinator, homeViewUseCase: useCase)
         }
         sharedContainer.register(ProductDetailViewModel.self) { resolver in
             guard let coordinator = resolver.resolve(HomeTabCoordinatorProtocol.self)

@@ -10,6 +10,8 @@ import SwiftUI
 struct OnBoardingView: View {
     @StateObject var viewModel: OnBoardingViewModel
     @State var pageNumber = 0
+    @AppStorage("isShowOnboarding") var isShowOnboarding: Bool = false
+
     var body: some View {
         VStack(spacing: 35) {
             TabView(selection: $pageNumber) {
@@ -46,6 +48,7 @@ extension OnBoardingView {
             Button {
                 if pageNumber == viewModel.items.count - 1 {
                     viewModel.nextButtonPressed()
+                    isShowOnboarding = true
                 } else {
                     pageNumber = (pageNumber + 1)
                 }

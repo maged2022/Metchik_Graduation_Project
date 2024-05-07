@@ -48,8 +48,8 @@ class SignUpViewModel: ObservableObject {
         } else {
             useCase.signUp(userName: userName, email: email, password: password) { result in
                 switch result {
-                case .success(let token):
-                    self.coordinator.showSignUpSuccess(token: token)
+                case .success(let userID):
+                    self.coordinator.showSignUpSuccess(userID: userID)
                 case .failure(let failure):
                     self.alertMessage = failure.description
                     self.showAlert = true

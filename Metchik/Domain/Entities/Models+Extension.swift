@@ -108,3 +108,19 @@ extension CartProductSource {
     }
     
 }
+
+extension UserSource {
+    func toUser() -> User {
+        User(
+            id: id,
+            userName: userName,
+            email: email,
+            password: password,
+            role: role,
+            avatar: avatar,
+            imageURL: imageURL,
+            token: token
+        )
+    }
+    
+}

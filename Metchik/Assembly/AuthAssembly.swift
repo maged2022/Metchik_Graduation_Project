@@ -37,6 +37,12 @@ class AuthAssembly: Assembly {
             else {fatalError("error resolver AuthCoordinatorProtocol")}
             let useCase = AuthUseCase.instance
             return SignUpViewModel(coordinator: coordinator, useCase: useCase)
+        }    
+        sharedContainer.register(SignUpSuccessViewModel.self) { resolver in
+            guard let coordinator = resolver.resolve(AuthCoordinatorProtocol.self)
+            else {fatalError("error resolver AuthCoordinatorProtocol")}
+            let useCase = AuthUseCase.instance
+            return SignUpSuccessViewModel(coordinator: coordinator, userID: "test")
         }
     }
 }

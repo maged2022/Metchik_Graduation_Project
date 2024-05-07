@@ -17,7 +17,7 @@ class CartUseCase: CartRepositories {
         fetchCartProduct()
     }
     
-    func fetchCartProduct () {
+    private func fetchCartProduct () {
         cartRepo.getCartProducts { products in
             self.cartProducts = products.map {$0.toCartProduct()}
         }
