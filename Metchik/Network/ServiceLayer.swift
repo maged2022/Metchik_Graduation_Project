@@ -14,3 +14,9 @@ public protocol ServiceLayer {
     var task: Task { get }
     var headers: [String: String] {get}
 }
+
+public extension ServiceLayer {
+    var headers: [String: String] {
+        [:]
+    }
+}

@@ -9,5 +9,5 @@ import UIKit
 
 protocol VirtualTryRepositories {
     func uploadImageToCloudinary(image: UIImage, completion: @escaping (URL) -> Void)
-    func requestVirtualImage(personImageURL: URL ,productImageURL: URL ,completion: @escaping (URL) -> Void)
+    func requestVirtualImage(personImageURL: URL ,productImageURL: URL ,completion: @escaping (URL?) -> Void)
 }

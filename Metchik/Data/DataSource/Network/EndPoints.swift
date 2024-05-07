@@ -8,26 +8,17 @@
 import Foundation
 import Alamofire
 
-public enum EndPoints: ServiceLayer {
+public enum EndPoints: ServiceLayer {    
     
     case getProductsWith(parameters: [String: Any])
     case getProductDetailWith(parameters: [String: Any])
     case getVirtualImageWith(parameters: [String: Any])
     case getUserData
     
-    public var headers: [String : String] {
-        switch self {
-        case .getVirtualImageWith:
-           return ["Content-Type": "application/json"]
-        default:
-            return [:]
-        }
-    }
-
     public var baseUrl: String {
         switch self {
         case .getVirtualImageWith:
-            return "https://0517-197-59-122-223.ngrok-free.app/"
+            return "https://242b-197-59-36-82.ngrok-free.app/"
         default :
             return "https://metchik.onrender.com/api/"
         }
@@ -39,7 +30,7 @@ public enum EndPoints: ServiceLayer {
         case .getProductDetailWith:
             return "ProductContain"
         case .getVirtualImageWith:
-            return "process_images"
+            return ""
         case .getUserData:
             return "users/66355d4bba75412dfc1a829a"
         }
