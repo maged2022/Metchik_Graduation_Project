@@ -62,8 +62,9 @@ class CoordinatorAssembly: Assembly {
         sharedContainer.register(ProfileViewModel.self) { resolver in
             guard let coordinator = resolver.resolve(AppCoordinatorProtocol.self)
             else {fatalError("error resolver AppCoordinatorProtocol")}
-            return ProfileViewModel(coordinator: coordinator)
-        }     
+            let useCase = AuthUseCase.instance
+            return ProfileViewModel(coordinator: coordinator,authUseCase: useCase)
+        }
         sharedContainer.register(WishListViewModel.self) { _ in
             let useCase = WishListViewUseCase()
             return WishListViewModel(wishListUseCase: useCase)
