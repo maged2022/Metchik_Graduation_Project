@@ -26,6 +26,9 @@ struct ProductItemView: View {
                         
                     } placeholder: {
                         ProgressView()
+                            .scaledToFit()
+                            .frame( height: 170)
+                            .cornerRadius(15)
                     }
                     Text(productItemViewModel.product.name)
                         .font(.poppins(.semiBold, size: 14))
