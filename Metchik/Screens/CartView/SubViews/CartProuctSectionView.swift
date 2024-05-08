@@ -11,7 +11,7 @@ struct CartProuctSectionView: View {
     @EnvironmentObject var viewModel: CartViewModel
     
     var body: some View {
-        ScrollView {
+        ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 22) {
                 ForEach(viewModel.cartProducts,id: \.self) { cartProduct in
                     CartAndWishListViewCell(

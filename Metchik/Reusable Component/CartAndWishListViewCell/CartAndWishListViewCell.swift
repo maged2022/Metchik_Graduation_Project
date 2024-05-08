@@ -40,12 +40,16 @@ struct CartAndWishListViewCell: View {
                     .padding(.bottom,4)
             }
             .frame(maxWidth: .infinity,alignment: .leading)
+            .padding(.leading, 5)
             VStack {
                 HStack {
-                    
                     viewModel.cartProduct.color
                         .frame(width: 20, height: 20)
                         .cornerRadius(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 25)
+                                .stroke(Color.black.opacity(0.3), lineWidth: 1))
+                        .padding(0.6)
                     Text(viewModel.cartProduct.size.rawValue)
                         .font(.poppins(.semiBold, size: 14))
                         .foregroundColor(Colors.secondaryButtonColor.swiftUIColor
