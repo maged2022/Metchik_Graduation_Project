@@ -18,7 +18,8 @@ struct ProductImagesSectionView: View {
                     AsyncImage(url: viewModel.productDetail.images[index]) { image in
                         image
                             .resizable()
-                            .frame(maxWidth: .infinity, minHeight: 200, maxHeight: 430)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .scaledToFill()
                     } placeholder: {
                         ProgressView()
                     }
