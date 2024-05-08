@@ -20,8 +20,12 @@ struct CartAndWishListViewCell: View {
                     .scaledToFill()
                     .frame(width: 80,height: 80)
                     .cornerRadius(10)
+                    .padding(.leading)
             } placeholder: {
                 ProgressView()
+                    .frame(width: 80,height: 80)
+                    .cornerRadius(10)
+                    .padding(.leading)
             }
             VStack(alignment: .leading,spacing: 2) {
                 Text(viewModel.product.name)
@@ -57,9 +61,14 @@ struct CartAndWishListViewCell: View {
                         currentStepperValue: $viewModel.currentStepperValue)
                 }
             }
+            .padding(.trailing)
             .cornerRadius(13)
         }
-        
+        .frame(height: 115)
+        .background(.white)
+        .cornerRadius(13)
+        .padding(1)
+        .shadow(color: Color.black.opacity(0.1), radius: 5, x: -1, y: -1)
     }
 }
 struct CartProductViewCell_Previews: PreviewProvider {
