@@ -13,7 +13,7 @@ struct Product: Identifiable {
     let shortDescription: String
     let price: Double
     let discountPrecentage: Double
-//    let isFavorite: Bool
+    let isFavorite: Bool
     let imageURL: URL?
     let category: String
     let subCategory: String
@@ -23,6 +23,7 @@ struct Product: Identifiable {
         shortDescription: "shortDescription",
         price: 44.7,
         discountPrecentage: 32,
+        isFavorite: false,
         imageURL: URL(
             string: "https://shopgroove.pk/cdn/shop/products/S01e7c5c3f5bf4632b8e94d2d73cd6f6e5_jpg_640x640Q90_jpg.jpg"
         )  ,

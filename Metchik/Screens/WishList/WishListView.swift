@@ -12,11 +12,12 @@ struct WishListView: View {
 
     var body: some View {
         ScrollView {
-            ForEach(viewModel.cartProducts,id: \.self) { cartProduct in
-                CartAndWishListViewCell(
-                    viewModel: CartAndWishListViewModelCell(
-                        product: viewModel.getProduct(by: cartProduct),
-                        cartProduct: cartProduct)
+            ForEach(viewModel.wishListProducts,id: \.self) { wishListProduct in
+                WishListViewCell(
+                    viewModel: WishListViewModelCell(
+                        coordinator: viewModel.coordinator,
+                        product: viewModel.getProduct(by: wishListProduct)
+                    )
                 )
             }
         }

@@ -49,7 +49,7 @@ struct ProductItemView: View {
             }
             
             Button {
-                print("favorite button pressed ")
+                productItemViewModel.favoriteButtonPressed()
             } label: {
                 Image(systemName: "heart")
                     .resizable()
