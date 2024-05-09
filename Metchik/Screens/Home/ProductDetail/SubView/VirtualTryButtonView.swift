@@ -18,18 +18,19 @@ struct VirtualTryButtonView: View {
     @State private var showActionSheet = false
     @State private var showImagePicker = false
     @EnvironmentObject var viewModel: ProductDetailViewModel
-
+    
     var body: some View {
         VStack {
             
             Button {
                 showActionSheet = true
             } label: {
-                Image(systemName: "camera.on.rectangle")
-                    .font(.system(size: 25))
-                    .frame(width: 30,height: 30)
-                    .aspectRatio(contentMode: .fill)
-                    .background(Colors.primaryButtonColor.swiftUIColor.cornerRadius(15))
+                Asset.Icons.screenerIcon.swiftUIImage
+                    .resizable()
+                    .frame(width: 19.56, height: 16)
+                    .foregroundColor(Asset.Colors.primaryButtonColor.swiftUIColor)
+                    .frame(width: 35, height: 35)
+                    .background(Asset.Colors.secondaryButtonColor.swiftUIColor.cornerRadius(20))
                     .padding(25)
                     .padding(.bottom,25)
             }

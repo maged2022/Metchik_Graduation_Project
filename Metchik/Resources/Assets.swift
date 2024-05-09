@@ -47,6 +47,7 @@ internal enum Asset {
     internal static let menuIcon = ImageAsset(name: "Icons/menuIcon")
     internal static let userIcon = ImageAsset(name: "Icons/userIcon")
     internal static let caseIcon = ImageAsset(name: "Icons/caseIcon")
+    internal static let screenerIcon = ImageAsset(name: "Icons/screenerIcon")
   }
   internal enum Images {
     internal static let offerBackground = ImageAsset(name: "Images/OfferBackground")
