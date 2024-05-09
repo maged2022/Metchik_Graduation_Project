@@ -61,7 +61,6 @@ class AuthCoordinator: AuthCoordinatorProtocol {
     }
     
     func showSignUpSuccess(userID: String) {
-        let useCase = AuthUseCase.instance
         let viewModel = SignUpSuccessViewModel(coordinator: self,userID: userID)
         let signUpView = SignUpSuccessView(viewModel: viewModel)
         let signUpViewController = UIHostingController(rootView: signUpView)

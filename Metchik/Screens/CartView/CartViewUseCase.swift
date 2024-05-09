@@ -12,7 +12,7 @@ protocol CartViewRepositories {
     func getProduct(completion: @escaping (Result<[Product],RemoteError>) -> Void)
     func getProduct(by cartProduct: CartProduct) -> Product
     func calculateTotalPrice() -> Double
-    func deleteCartProduct(indexSet: IndexSet) 
+    func deleteCartProduct(index: Int) 
 }
 
 class CartViewUseCase: ObservableObject, CartViewRepositories {
@@ -52,8 +52,8 @@ class CartViewUseCase: ObservableObject, CartViewRepositories {
             .reduce(0.0, +)
     }
     
-    func deleteCartProduct(indexSet: IndexSet) {
-        cartUseCase.deleteCartProduct(indexSet: indexSet)
+    func deleteCartProduct(index: Int) {
+        cartUseCase.deleteCartProduct(index: index)
     }
     
 }
