@@ -10,7 +10,7 @@ import Foundation
 protocol WishListViewRepositories {
     func getWishListProducts(userID: String, completion: @escaping ([WishListProduct]) -> Void)
     func getProduct(by cartProduct: WishListProduct) -> Product
-    func removeWishListProduct(wishListID: String)
+    func removeWishListProduct(wishListID: String ,completion: @escaping (Result<Status, RemoteError>) -> Void)
 }
 class WishListViewUseCase: ObservableObject, WishListViewRepositories {
     private var productUseCase: ProductRepositories = ProductUseCase.instance
@@ -24,7 +24,7 @@ class WishListViewUseCase: ObservableObject, WishListViewRepositories {
     }
     
     func getWishListProducts(userID: String,completion: @escaping ([WishListProduct]) -> Void) {
-        wishListProductsUseCase.getWishListProducts(userID: userID) { result in
+        wishListProductsUseCase.getWishListProducts { result in
             switch result {
             case .success(let cartProducts):
                 self.wishListProducts = cartProducts
@@ -52,14 +52,7 @@ class WishListViewUseCase: ObservableObject, WishListViewRepositories {
         products.first(where: {$0.id == cartProduct.productID}) ?? .mockData
     }
     
-    func removeWishListProduct(wishListID: String) {
-        wishListProductsUseCase.deleteFromWishListProductSource(wishListID: wishListID) { result in
-            switch result {
-            case .success(let success):
-                print(success)
-            case .failure(let failure):
-                print(failure)
-            }
-        }
+    func removeWishListProduct(wishListID: String, completion: @escaping (Result<Status, RemoteError>) -> Void) {
+        wishListProductsUseCase.deleteFromWishListProductSource(wishListID: wishListID , completion: completion)
     }
 }

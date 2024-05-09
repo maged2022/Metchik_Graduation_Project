@@ -46,11 +46,6 @@ struct SwipeToDeleteEffect<Content: View>: View {
                 let translation = gesture.translation.width
                 swipeToDeleteIndex = translation < -30 ? index : nil
             }
-            .onEnded { _ in
-                if let index = swipeToDeleteIndex {
-//                    swipeToDeleteIndex = nil
-                }
-            }
         )
     }
 }

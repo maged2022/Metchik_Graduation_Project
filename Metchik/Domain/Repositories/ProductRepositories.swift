@@ -13,4 +13,5 @@ protocol ProductRepositories {
     func getProducts(category: String, subCategories: [String], completion: @escaping ([String : [Product]]) -> Void)
     func getProducts(category: String, subCategory: String, completion: @escaping ([Product]) -> Void)
     func getProducts(by id: [String], completion: @escaping (Result<[Product], RemoteError>) -> Void)
+    func updateWithWishListProducts(_ wishListProducts: [WishListProduct])
 }

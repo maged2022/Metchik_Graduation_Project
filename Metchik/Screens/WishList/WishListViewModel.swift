@@ -31,6 +31,13 @@ class WishListViewModel: ObservableObject {
     }
     
     func removeButtonPressed(index: Int) {
-        wishListUseCase.removeWishListProduct(wishListID: wishListProducts[index].wishListID)
+        wishListUseCase.removeWishListProduct(wishListID: wishListProducts[index].wishListID) { result in
+            switch result {
+            case .success(let success):
+                print(success)
+            case .failure(let failure):
+                print(failure)
+            }
+        }
     }
 }

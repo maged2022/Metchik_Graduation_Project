@@ -7,7 +7,8 @@
 
 import Foundation
 protocol WishListRepositories {
-    func getWishListProducts(userID: String, completion: @escaping (Result<[WishListProduct], RemoteError>) -> Void)
-    func addToWishListProducts(userID: String, productID: String, completion: @escaping (Result<Status, RemoteError>) -> Void)
+    func getWishListProducts( completion: @escaping (Result<[WishListProduct], RemoteError>) -> Void)
+    func addToWishListProducts( productID: String, completion: @escaping (Result<Status, RemoteError>) -> Void)
     func deleteFromWishListProductSource(wishListID: String, completion: @escaping (Result<Status, RemoteError>) -> Void)
+    func favoriteButtonPressed( productID: String,completion: @escaping (Result<Status, RemoteError>) -> Void)
 }

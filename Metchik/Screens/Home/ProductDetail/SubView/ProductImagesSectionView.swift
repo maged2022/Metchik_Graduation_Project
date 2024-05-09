@@ -36,7 +36,6 @@ struct ProductImagesSectionView: View {
                             .frame(width: 7, height: 7)
                             .foregroundColor(.white)
                         
-                        // Draw white border when selected
                             .overlay(
                                 Circle()
                                     .stroke(Color.white, lineWidth: index == currentPage ? 2 : 0)
@@ -76,14 +75,15 @@ struct ProductImagesSectionView_Previews: PreviewProvider {
 
 extension ProductImagesSectionView {
     var heartButton: some View {
-        Button(action: {}, label: {
-            Image(systemName: "heart")
-            
-                .frame(width: 30,height: 30)
-                .aspectRatio(contentMode: .fill)
-                .background(Colors.primaryButtonColor.swiftUIColor
-                    .cornerRadius(15)
-                )
+        Button(action: {
+            viewModel.favoriteButtonPressed()
+        }, label: {
+            Image(uiImage:
+                    viewModel.product.isFavorite ?  Asset.Icons.love.image : Asset.Icons.lovewhite.image
+            )
+                .resizable()
+                .frame(width: 20,height: 20)
+                .padding(15)
         })
         .padding(25)
         .padding(.bottom,25)

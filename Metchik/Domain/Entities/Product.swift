@@ -13,7 +13,7 @@ struct Product: Identifiable {
     let shortDescription: String
     let price: Double
     let discountPrecentage: Double
-    let isFavorite: Bool
+    var isFavorite: Bool
     let imageURL: URL?
     let category: String
     let subCategory: String

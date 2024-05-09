@@ -16,16 +16,15 @@ struct WishListView: View {
             VStack(spacing: 15) {
                 ForEach(Array(viewModel.wishListProducts.enumerated()), id: \.element) { index, wishListProduct in
                     SwipeToDeleteEffect(index: index, swipeToDeleteIndex: $swipeToDeleteIndex, onDelete: {
-                          // Perform action here, for example:
                         viewModel.removeButtonPressed(index: index)
-                      }) {
+                      },content: {
                           WishListViewCell(
                               viewModel: WishListViewModelCell(
                                   coordinator: viewModel.coordinator,
                                   product: viewModel.getProduct(by: wishListProduct)
                               )
                           )
-                      }
+                      })
                 }
             }
         }

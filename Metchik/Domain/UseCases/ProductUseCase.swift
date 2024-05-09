@@ -94,4 +94,15 @@ class ProductUseCase: ProductRepositories, ObservableObject {
             }
             .store(in: &cancellables)
     }
+    
+    func updateWithWishListProducts(_ wishListProducts: [WishListProduct]) {
+        products = products.map({products in
+            
+            products.map({
+                var product = $0
+                product.isFavorite = !wishListProducts.filter({$0.productID == product.id}).isEmpty
+                return product
+            })
+        })
+    }
 }
