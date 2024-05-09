@@ -75,7 +75,8 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
         let navigationController = UINavigationController()
         let router = TabBarRouter(navigationController: navigationController)
         let useCase = WishListViewUseCase()
-        let viewModel = WishListViewModel(wishListUseCase: useCase)
+        let homeCoordinator = HomeTabCoordinator(router: router, tabBarCoordinator: self, resolver: resolver)
+        let viewModel = WishListViewModel(wishListUseCase: useCase, coordinator: homeCoordinator)
         let wishListViewController = UIHostingController(rootView: WishListView(viewModel: viewModel))
         router.push(wishListViewController)
         setup(view: wishListViewController,

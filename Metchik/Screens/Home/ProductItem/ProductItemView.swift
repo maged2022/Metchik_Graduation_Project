@@ -52,18 +52,13 @@ struct ProductItemView: View {
             }
             
             Button {
-                print("favorite button pressed ")
+                productItemViewModel.favoriteButtonPressed()
             } label: {
-                Image(systemName: "heart")
+                Image(uiImage:
+                        productItemViewModel.product.isFavorite ?  Asset.Icons.love.image : Asset.Icons.lovewhite.image
+                )
                     .resizable()
-                    .frame(width: 8,height: 8)
-                    .foregroundColor(Colors.primaryButtonColor.swiftUIColor)
-                    .scaledToFit()
-                    .font(.poppins(.semiBold, size: 8))
                     .frame(width: 20,height: 20)
-                    .background(Colors.secondaryButtonColor.swiftUIColor
-                    )
-                    .cornerRadius(10)
                     .padding(15)
 
             }

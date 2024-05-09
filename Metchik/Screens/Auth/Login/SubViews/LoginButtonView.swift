@@ -86,6 +86,10 @@ struct LoginButtonView: View {
 struct LoginButtonView_Previews: PreviewProvider {
     
     static var previews: some View {
-        LoginButtonView()
+        if let loginViewModel = DependencyManager.shared.sharedContainer
+            .resolve(LoginViewModel.self) {
+            LoginButtonView()
+                .environmentObject(loginViewModel)
+        }
     }
 }

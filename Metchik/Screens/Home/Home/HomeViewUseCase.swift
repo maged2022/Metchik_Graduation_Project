@@ -24,6 +24,7 @@ class HomeViewUseCase: ObservableObject {
         }
     }
     var productsLocal: [Product] = []
+    
     init() {
         updateOffers()
         bindUseCase()
@@ -50,9 +51,6 @@ class HomeViewUseCase: ObservableObject {
     
     private func updateCategories() {
         self.categories = Array(Set(productsLocal.map { $0.category.capitalized })).sorted()
-        if let firstCategory = self.categories.first {
-            self.selectedCategory = firstCategory
-        }
     }
     
     func updateSelectedCategory(selectedCategory: String) {
