@@ -23,10 +23,6 @@ struct ProductDetail {
             ),
             URL(
                 string:
-                    "https://us.123rf.com/450wm/shubhamo0o/shubhamo0o2310/shubhamo0o231004262/216540043-blank-white-t-shirt-isolated-on-gray-background-3-d-renderingblank-white-t-shirt-isolated-on-gray.jpg?ver=6"
-            ),
-            URL(
-                string:
                     "https://i.pinimg.com/474x/f7/d6/16/f7d6164f24b5d0d99a6a2a1937a188ef.jpg"
             )
         ],

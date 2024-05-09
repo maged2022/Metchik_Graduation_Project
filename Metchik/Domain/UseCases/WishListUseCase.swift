@@ -12,7 +12,9 @@ class WishListUseCase: WishListRepositories {
     private var wishListRepo: WishListSourceRepositories = WishListSourceRepositoriesImpl()
 
     @Published var wishListProducts: Result<[WishListProduct], RemoteError> = .success([])
-    var wishListProductsPublisher: AnyPublisher<Result<[WishListProduct], RemoteError>, Never> { $wishListProducts.eraseToAnyPublisher() }
+    var wishListProductsPublisher: AnyPublisher<Result<[WishListProduct], RemoteError>, Never> {
+        $wishListProducts.eraseToAnyPublisher()
+    }
     @AppStorage("userID") var userID: String?
     static var instance = WishListUseCase()
     private init() {
