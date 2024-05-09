@@ -29,6 +29,19 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
         self.tabViewController = UITabBarController()
         tabViewController.tabBar.isTranslucent = true
         tabViewController.tabBar.backgroundColor = .lightGray
+        
+      
+        // Change the color of the tab bar selected Item
+        tabViewController.tabBar.tintColor = .black
+        
+        // Change the color of the tab bar UnSelected Item
+        //tabViewController.tabBar.unselectedItemTintColor = (Un Selected Item )
+        
+        // Set tab bar item text attributes
+        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        UITabBarItem.appearance().setTitleTextAttributes(attributes, for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes(attributes, for: .selected)
+        
         router.navigationController.isNavigationBarHidden = true
         setupTabBarViewControllers()
     }
