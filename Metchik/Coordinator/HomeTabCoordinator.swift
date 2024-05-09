@@ -70,7 +70,7 @@ class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
         productImageURL: URL?
     ) {
         guard let personImage = personImage else {
-            fatalError("personImage error ")
+            return
         }
         let virtualTryUseCase = VirtualTryUseCase()
         let viewModel = VirtualTryViewModel(
