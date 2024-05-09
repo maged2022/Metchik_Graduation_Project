@@ -11,7 +11,7 @@ struct QuickSubCategoryView: View {
     typealias Colors = Asset.Colors
     @EnvironmentObject var vmod: HomeViewModel
     var body: some View {
-        VStack {
+        LazyVStack {
             ForEach(vmod.subCategories,id: \.self) { subCategorie in
                 if let products = vmod.products[subCategorie] , products.count > 1 {
                     CardSubCategoriesView(sectionName: subCategorie, products: products)
@@ -33,8 +33,8 @@ struct QuickSubCategoryView_Previews: PreviewProvider {
 struct CardSubCategoriesView: View {
     typealias Colors = Asset.Colors
     @EnvironmentObject var vmod: HomeViewModel
-    @State var sectionName: String
-    @State var products: [Product]
+    var sectionName: String
+    var products: [Product]
     
     var body: some View {
         VStack {
@@ -53,11 +53,12 @@ struct CardSubCategoriesView: View {
                 }
             }
             HStack {
-                ForEach(products.prefix(2)) { product in
-                    let productItemViewModel = vmod.getProductItemViewModel(product: product)
-                    ProductItemView(productItemViewModel: productItemViewModel)
+                
+                    ProductItemView(productItemViewModel: vmod.getProductItemViewModel(product: products[0]))
+                        .frame(maxWidth: .infinity)     
+                    ProductItemView(productItemViewModel: vmod.getProductItemViewModel(product: products[1]))
                         .frame(maxWidth: .infinity)
-                }
+                
             }
             .padding(.trailing)
         }

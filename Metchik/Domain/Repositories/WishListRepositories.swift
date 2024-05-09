@@ -5,9 +5,10 @@
 //  Created by Hassan on 09/05/2024.
 //
 
-import Foundation
+import Combine
 protocol WishListRepositories {
-    func getWishListProducts( completion: @escaping (Result<[WishListProduct], RemoteError>) -> Void)
+    var wishListProductsPublisher: AnyPublisher<Result<[WishListProduct], RemoteError>, Never> { get  }
+    func updateWishListProducts( )
     func addToWishListProducts( productID: String, completion: @escaping (Result<Status, RemoteError>) -> Void)
     func deleteFromWishListProductSource(wishListID: String, completion: @escaping (Result<Status, RemoteError>) -> Void)
     func favoriteButtonPressed( productID: String,completion: @escaping (Result<Status, RemoteError>) -> Void)

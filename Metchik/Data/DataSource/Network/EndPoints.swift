@@ -49,8 +49,8 @@ public enum EndPoints: ServiceLayer {
             return "favorite/list"
         case .addToWishList:
             return "favorite/add"
-        case .removeFromWishList(parameters: let parameters):
-            return "favorite/remove/\( parameters["wishListID"] ?? "663c0568cc661c74706b75db")"
+        case .removeFromWishList:
+            return "favorite/remove/"
         }
     }
     
@@ -69,7 +69,7 @@ public enum EndPoints: ServiceLayer {
         case .addToWishList(parameters: let parameters):
             return .requestWithParameters(parameters: parameters, encoding: URLEncoding.default)
         case .removeFromWishList(parameters: let parameters):
-            return .plainRequest
+            return .requestWithParameters(parameters: parameters, encoding: URLEncoding.default)
         }
     }
 }

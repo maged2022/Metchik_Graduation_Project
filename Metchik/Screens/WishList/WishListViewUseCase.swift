@@ -5,17 +5,19 @@
 //  Created by Hassan on 06/05/2024.
 //
 
-import Foundation
+import Combine
 
 protocol WishListViewRepositories {
-    func getWishListProducts(userID: String, completion: @escaping ([WishListProduct]) -> Void)
+    func updateWishListProducts()
+    func getWishListProducts( completion: @escaping ([WishListProduct]) -> Void)
     func getProduct(by cartProduct: WishListProduct) -> Product
     func removeWishListProduct(wishListID: String ,completion: @escaping (Result<Status, RemoteError>) -> Void)
 }
 class WishListViewUseCase: ObservableObject, WishListViewRepositories {
     private var productUseCase: ProductRepositories = ProductUseCase.instance
     private var wishListProductsUseCase: WishListRepositories = WishListUseCase.instance
-    
+    private var cancellables = Set<AnyCancellable>()
+
     @Published var products : [Product] = []
     @Published var wishListProducts: [WishListProduct] = [] {
         didSet {
@@ -23,8 +25,8 @@ class WishListViewUseCase: ObservableObject, WishListViewRepositories {
         }
     }
     
-    func getWishListProducts(userID: String,completion: @escaping ([WishListProduct]) -> Void) {
-        wishListProductsUseCase.getWishListProducts { result in
+    func getWishListProducts(completion: @escaping ([WishListProduct]) -> Void) {
+        wishListProductsUseCase.wishListProductsPublisher.sink { result in
             switch result {
             case .success(let cartProducts):
                 self.wishListProducts = cartProducts
@@ -32,7 +34,12 @@ class WishListViewUseCase: ObservableObject, WishListViewRepositories {
             case .failure(let failure):
                 print("  wishListProductsUseCase.getWishListProducts(userID: userID) { \(failure)")
             }
-        }
+        }.store(in: &cancellables)
+        
+    }
+    
+    func updateWishListProducts() {
+        wishListProductsUseCase.updateWishListProducts()
     }
     
     func getProduct() {

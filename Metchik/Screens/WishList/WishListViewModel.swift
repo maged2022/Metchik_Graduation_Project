@@ -9,7 +9,6 @@ import SwiftUI
 class WishListViewModel: ObservableObject {
     private var wishListUseCase: WishListViewRepositories
     let coordinator: HomeTabCoordinatorProtocol
-    @AppStorage("userID") var userID: String?
 
     @Published var wishListProducts: [WishListProduct] = []
     init(wishListUseCase: WishListViewRepositories, coordinator: HomeTabCoordinatorProtocol) {
@@ -19,8 +18,8 @@ class WishListViewModel: ObservableObject {
     }
     
     func getWishListProducts() {
-        if let userID {
-            wishListUseCase.getWishListProducts(userID: userID) { wishListProduct in
+        wishListUseCase.getWishListProducts { wishListProduct in
+            DispatchQueue.main.async {
                 self.wishListProducts = wishListProduct
             }
         }
@@ -34,7 +33,7 @@ class WishListViewModel: ObservableObject {
         wishListUseCase.removeWishListProduct(wishListID: wishListProducts[index].wishListID) { result in
             switch result {
             case .success(let success):
-                print(success)
+                self.wishListUseCase.updateWishListProducts()
             case .failure(let failure):
                 print(failure)
             }

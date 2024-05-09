@@ -23,7 +23,7 @@ class WishListSourceRepositoriesImpl: WishListSourceRepositories {
     
     func addToWishListProductsSource(parameters: [String: Any], completion: @escaping (Result<Status, RemoteError>) -> Void) {
         let route = EndPoints.addToWishList(parameters: parameters)
-        BaseRequest().request(route: route, method: .post, completion: completion)
+        BaseRequest().request(route: route, method: .get, completion: completion)
     }
     
     func deleteFromWishListProductSource(parameters: [String: Any], completion: @escaping (Result<Status, RemoteError>) -> Void) {

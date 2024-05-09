@@ -129,7 +129,7 @@ extension Array where Element == WishListSource {
     
     func toWishListProducts() -> [WishListProduct] {
        return self.map { wishSource in
-            WishListProduct(wishListID: wishSource.id, productID: wishSource.productID.id)
+            WishListProduct(wishListID: wishSource.id, productID: wishSource.productID)
         }
     }
     

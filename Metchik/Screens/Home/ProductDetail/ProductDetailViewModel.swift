@@ -12,8 +12,8 @@ class ProductDetailViewModel: ObservableObject {
     private var productDetailUseCase: ProductDetailRepositories = ProductDetailUseCase.instance
     private var cartUseCase: CartRepositories = CartUseCase.instance
     private var wishListUseCase: WishListRepositories = WishListUseCase.instance
-
-    let product: Product
+    private var cancellables = Set<AnyCancellable>()
+    @Published var product: Product
     let coordinator: HomeTabCoordinatorProtocol
     @Published var productDetail: ProductDetail = .mockData {
         didSet {
@@ -43,6 +43,7 @@ class ProductDetailViewModel: ObservableObject {
         self.product = product
         self.coordinator = coordinator
         getProductdetail()
+        bindFavoriteValue()
     }
     
     private func getProductdetail() {
@@ -98,11 +99,26 @@ class ProductDetailViewModel: ObservableObject {
             count: currentStepperValue)
     }
     
+    func bindFavoriteValue() {
+        wishListUseCase.wishListProductsPublisher.sink { result in
+            switch result {
+            case .success(let success):
+                DispatchQueue.main.async {
+                    let state = success.filter({ $0.productID == self.product.id}).isEmpty
+                    self.product.isFavorite = !state
+                }
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+        .store(in: &cancellables)
+    }
+    
     func favoriteButtonPressed() {
         wishListUseCase.favoriteButtonPressed( productID: product.id) { result in
             switch result {
-            case .success(let success):
-                print(success)
+            case .success:
+                self.wishListUseCase.updateWishListProducts()
             case .failure(let failure):
                 print(failure)
             }

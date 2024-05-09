@@ -21,19 +21,11 @@ struct DataWishListSource: Codable {
 // MARK: - UserFavorite
 struct WishListSource: Codable {
     let id: String
-    let productID: ProductID
+    let productID: String
 
     enum CodingKeys: String, CodingKey {
         case id = "_id"
         case productID = "productId"
-    }
-}
-
-// MARK: - ProductID
-struct ProductID: Codable {
-    let id: String
-    enum CodingKeys: String, CodingKey {
-        case id = "_id"
     }
 }
 
