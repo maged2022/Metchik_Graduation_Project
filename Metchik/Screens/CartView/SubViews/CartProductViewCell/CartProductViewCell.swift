@@ -1,5 +1,5 @@
 //
-//  CartAndWishListViewCell.swift
+//  CartProductViewCell.swift
 //  Metchik
 //
 //  Created by Hassan on 06/05/2024.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct CartAndWishListViewCell: View {
+struct CartProductViewCell: View {
     typealias Colors = Asset.Colors
-    @StateObject var viewModel: CartAndWishListViewModelCell
+    @StateObject var viewModel: CartProductViewModelCell
     
     var body: some View {
         HStack(alignment: .bottom, spacing: 6) {
@@ -78,8 +78,8 @@ struct CartAndWishListViewCell: View {
 struct CartProductViewCell_Previews: PreviewProvider {
     static var previews: some View {
         if let cartProductViewModelCell = DependencyManager.shared.sharedContainer
-            .resolve(CartAndWishListViewModelCell.self) {
-            CartAndWishListViewCell(viewModel: cartProductViewModelCell)
+            .resolve(CartProductViewModelCell.self) {
+            CartProductViewCell(viewModel: cartProductViewModelCell)
         }
     }
 }

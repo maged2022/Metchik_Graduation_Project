@@ -47,8 +47,8 @@ struct SwipeToDeleteEffect<Content: View>: View {
                 swipeToDeleteIndex = translation < -30 ? index : nil
             }
                 .onEnded({ _ in
-                    if let index = swipeToDeleteIndex {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3){
+                    if swipeToDeleteIndex != nil {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                             swipeToDeleteIndex = nil
 
                         }
