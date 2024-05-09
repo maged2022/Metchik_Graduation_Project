@@ -15,10 +15,10 @@ class WishListViewModel: ObservableObject {
     init(wishListUseCase: WishListViewRepositories, coordinator: HomeTabCoordinatorProtocol) {
         self.wishListUseCase = wishListUseCase
         self.coordinator = coordinator
-        getCartProducts()
+        getWishListProducts()
     }
     
-    func getCartProducts() {
+    func getWishListProducts() {
         if let userID {
             wishListUseCase.getWishListProducts(userID: userID) { wishListProduct in
                 self.wishListProducts = wishListProduct
@@ -26,7 +26,11 @@ class WishListViewModel: ObservableObject {
         }
     }
     
-    func getProduct(by cartProduct: WishListProduct) -> Product {
-        wishListUseCase.getProduct(by: cartProduct)
+    func getProduct(by wishList: WishListProduct) -> Product {
+        wishListUseCase.getProduct(by: wishList)
+    }
+    
+    func removeButtonPressed(index: Int) {
+        wishListUseCase.removeWishListProduct(wishListID: wishListProducts[index].wishListID)
     }
 }

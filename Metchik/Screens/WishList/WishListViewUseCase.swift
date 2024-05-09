@@ -10,6 +10,7 @@ import Foundation
 protocol WishListViewRepositories {
     func getWishListProducts(userID: String, completion: @escaping ([WishListProduct]) -> Void)
     func getProduct(by cartProduct: WishListProduct) -> Product
+    func removeWishListProduct(wishListID: String)
 }
 class WishListViewUseCase: ObservableObject, WishListViewRepositories {
     private var productUseCase: ProductRepositories = ProductUseCase.instance
@@ -51,4 +52,14 @@ class WishListViewUseCase: ObservableObject, WishListViewRepositories {
         products.first(where: {$0.id == cartProduct.productID}) ?? .mockData
     }
     
+    func removeWishListProduct(wishListID: String) {
+        wishListProductsUseCase.deleteFromWishListProductSource(wishListID: wishListID) { result in
+            switch result {
+            case .success(let success):
+                print(success)
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+    }
 }

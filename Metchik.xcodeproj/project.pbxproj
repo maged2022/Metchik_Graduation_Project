@@ -120,6 +120,7 @@
 		5C8B589C2BEC87C500C3563D /* WishListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8B589B2BEC87C500C3563D /* WishListUseCase.swift */; };
 		5C8B589E2BEC885300C3563D /* WishListSourceRepositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8B589D2BEC885300C3563D /* WishListSourceRepositories.swift */; };
 		5C8B58A02BEC88D600C3563D /* WishListSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8B589F2BEC88D600C3563D /* WishListSource.swift */; };
+		5C8B58A22BECA32100C3563D /* SwipeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8B58A12BECA32100C3563D /* SwipeItem.swift */; };
 		5C8E5DBE2BDFBB0000DEF02D /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8E5DBD2BDFBB0000DEF02D /* BaseRequest.swift */; };
 		5C8E5DC52BDFBB3900DEF02D /* RemoteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8E5DC42BDFBB3900DEF02D /* RemoteError.swift */; };
 		5C8E5DC72BDFBB6200DEF02D /* ResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8E5DC62BDFBB6200DEF02D /* ResponseHandler.swift */; };
@@ -281,6 +282,7 @@
 		5C8B589B2BEC87C500C3563D /* WishListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListUseCase.swift; sourceTree = "<group>"; };
 		5C8B589D2BEC885300C3563D /* WishListSourceRepositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListSourceRepositories.swift; sourceTree = "<group>"; };
 		5C8B589F2BEC88D600C3563D /* WishListSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListSource.swift; sourceTree = "<group>"; };
+		5C8B58A12BECA32100C3563D /* SwipeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeItem.swift; sourceTree = "<group>"; };
 		5C8E5DBD2BDFBB0000DEF02D /* BaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
 		5C8E5DC42BDFBB3900DEF02D /* RemoteError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteError.swift; sourceTree = "<group>"; };
 		5C8E5DC62BDFBB6200DEF02D /* ResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseHandler.swift; sourceTree = "<group>"; };
@@ -521,6 +523,7 @@
 				5C4F4CF52BE80E730040FD9C /* WishListView.swift */,
 				5C4F4CFD2BE874CC0040FD9C /* WishListViewModel.swift */,
 				5C4F4D012BE89A590040FD9C /* WishListViewUseCase.swift */,
+				5C8B58A12BECA32100C3563D /* SwipeItem.swift */,
 			);
 			path = WishList;
 			sourceTree = "<group>";
@@ -1063,6 +1066,7 @@
 				5C713B742B835BD90040AE10 /* OffersSourceRepositories.swift in Sources */,
 				5CA670302BE3C9B80030BF59 /* OnBoardingRepositories.swift in Sources */,
 				5CDA08522B96EA99001EBBEF /* SceneDelegate.swift in Sources */,
+				5C8B58A22BECA32100C3563D /* SwipeItem.swift in Sources */,
 				121BD4E62B344D05000126C6 /* UIApplication.swift in Sources */,
 				12EEBF312B246360003B0B0C /* HomeView.swift in Sources */,
 				12A2DE462B2FBDEF0027A253 /* SubCategoryViewModel.swift in Sources */,

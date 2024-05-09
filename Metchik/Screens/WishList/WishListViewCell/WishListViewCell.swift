@@ -16,7 +16,7 @@ struct WishListViewCell: View {
             AsyncImage(url: viewModel.product.imageURL) { image in
                 image
                     .resizable()
-                    .scaledToFill()
+                    .scaledToFit()
                     .frame(width: 80,height: 80)
                     .cornerRadius(10)
             } placeholder: {

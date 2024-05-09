@@ -8,8 +8,6 @@
 import Foundation
 
 class WishListViewModelCell: ObservableObject {
-    private var cartUseCase: CartRepositories = CartUseCase.instance
-    
     let coordinator: HomeTabCoordinatorProtocol
 
     @Published var product: Product = .mockData
