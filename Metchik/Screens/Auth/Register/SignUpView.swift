@@ -61,7 +61,7 @@ struct SignUpView: View {
                 dismissButton: .default(Text("OK"))
             )
         }
-        .navigationBarBackButtonHidden()
+        .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: BackButton(router: viewModel.coordinator.router))
     }
 }

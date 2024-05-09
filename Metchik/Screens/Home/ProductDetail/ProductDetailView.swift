@@ -43,7 +43,6 @@ struct ProductDetailView: View {
             .offset(y:-33)
         }
         .animation(.spring())
-        .padding(.bottom,40)
         .ignoresSafeArea()
         .background(Colors.backgroundScreenColor.swiftUIColor )
         .environmentObject(productDetailViewModel)

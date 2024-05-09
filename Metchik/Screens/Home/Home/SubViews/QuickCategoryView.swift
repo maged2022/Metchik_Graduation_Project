@@ -18,7 +18,7 @@ struct QuickCategoryView: View {
                 HStack {
                     ForEach(vmod.categories,id: \.self) { category in
                         Text(category)
-                            .font(.poppins(.bold, size: 15))
+                            .font(.poppins(.bold, size: 13))
                             .foregroundColor(
                                 ((vmod.selectedCategory == category) ?
                                  Colors.primaryButtonColor : Colors.secondaryButtonColor).swiftUIColor

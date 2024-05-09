@@ -19,15 +19,15 @@ struct ProductDetail {
         images: [
             URL(
                 string:
-                    "https://shopgroove.pk/cdn/shop/products/S01e7c5c3f5bf4632b8e94d2d73cd6f6e5_jpg_640x640Q90_jpg.jpg"
+                    "https://us.123rf.com/450wm/serezniy/serezniy1809/serezniy180917794/108061719-blank-white-t-shirt-against-brick-wall.jpg?ver=6"
             ),
             URL(
                 string:
-                    "https://shopgroove.pk/cdn/shop/products/S01e7c5c3f5bf4632b8e94d2d73cd6f6e5_jpg_640x640Q90_jpg.jpg"
+                    "https://us.123rf.com/450wm/shubhamo0o/shubhamo0o2310/shubhamo0o231004262/216540043-blank-white-t-shirt-isolated-on-gray-background-3-d-renderingblank-white-t-shirt-isolated-on-gray.jpg?ver=6"
             ),
             URL(
                 string:
-                    "https://shopgroove.pk/cdn/shop/products/S01e7c5c3f5bf4632b8e94d2d73cd6f6e5_jpg_640x640Q90_jpg.jpg"
+                    "https://i.pinimg.com/474x/f7/d6/16/f7d6164f24b5d0d99a6a2a1937a188ef.jpg"
             )
         ],
         rating: 4,
