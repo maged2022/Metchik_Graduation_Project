@@ -39,4 +39,8 @@ class WishListViewModel: ObservableObject {
             }
         }
     }
+    
+    func showTabBar () {
+        coordinator.showTabBar()
+    }
 }

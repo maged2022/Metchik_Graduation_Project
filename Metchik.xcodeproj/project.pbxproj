@@ -73,7 +73,6 @@
 		5C4F4CEE2BE7D2B90040FD9C /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4F4CED2BE7D2B90040FD9C /* AuthCoordinator.swift */; };
 		5C4F4CF62BE80E730040FD9C /* WishListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4F4CF52BE80E730040FD9C /* WishListView.swift */; };
 		5C4F4CF82BE80E880040FD9C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4F4CF72BE80E880040FD9C /* ProfileView.swift */; };
-		5C4F4CFA2BE825CC0040FD9C /* TabBarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4F4CF92BE825CC0040FD9C /* TabBarRouter.swift */; };
 		5C4F4CFC2BE832590040FD9C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4F4CFB2BE832590040FD9C /* ProfileViewModel.swift */; };
 		5C4F4CFE2BE874CC0040FD9C /* WishListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4F4CFD2BE874CC0040FD9C /* WishListViewModel.swift */; };
 		5C4F4D002BE87C400040FD9C /* CartViewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4F4CFF2BE87C400040FD9C /* CartViewUseCase.swift */; };
@@ -86,6 +85,13 @@
 		5C5A6D202B92114F0013E0B2 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5A6D1F2B92114F0013E0B2 /* Color.swift */; };
 		5C6F48B82BED7DFF005B80BD /* CartProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6F48B52BED7DFF005B80BD /* CartProductViewCell.swift */; };
 		5C6F48B92BED7DFF005B80BD /* CartProductViewModelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6F48B62BED7DFF005B80BD /* CartProductViewModelCell.swift */; };
+		5C6F48BC2BED8354005B80BD /* CustomTabBarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6F48BB2BED8354005B80BD /* CustomTabBarType.swift */; };
+		5C6F48BE2BED837E005B80BD /* CustomTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6F48BD2BED837E005B80BD /* CustomTabBarViewModel.swift */; };
+		5C6F48C02BED8396005B80BD /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6F48BF2BED8396005B80BD /* CustomTabBarViewController.swift */; };
+		5C6F48C22BED83A1005B80BD /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6F48C12BED83A1005B80BD /* CustomTabBar.swift */; };
+		5C6F48C42BED83AF005B80BD /* CustomTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6F48C32BED83AF005B80BD /* CustomTabBarItem.swift */; };
+		5C6F48C62BED893B005B80BD /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6F48C52BED893B005B80BD /* UIView.swift */; };
+		5C6F48C82BED8AA0005B80BD /* mainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6F48C72BED8AA0005B80BD /* mainWindow.swift */; };
 		5C713B6C2B83599C0040AE10 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C713B6B2B83599C0040AE10 /* Offer.swift */; };
 		5C713B6E2B835AEA0040AE10 /* OffersRepositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C713B6D2B835AEA0040AE10 /* OffersRepositories.swift */; };
 		5C713B702B835B2A0040AE10 /* OffersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C713B6F2B835B2A0040AE10 /* OffersUseCase.swift */; };
@@ -235,7 +241,6 @@
 		5C4F4CED2BE7D2B90040FD9C /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		5C4F4CF52BE80E730040FD9C /* WishListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListView.swift; sourceTree = "<group>"; };
 		5C4F4CF72BE80E880040FD9C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		5C4F4CF92BE825CC0040FD9C /* TabBarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarRouter.swift; sourceTree = "<group>"; };
 		5C4F4CFB2BE832590040FD9C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		5C4F4CFD2BE874CC0040FD9C /* WishListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListViewModel.swift; sourceTree = "<group>"; };
 		5C4F4CFF2BE87C400040FD9C /* CartViewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewUseCase.swift; sourceTree = "<group>"; };
@@ -248,6 +253,13 @@
 		5C5A6D1F2B92114F0013E0B2 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		5C6F48B52BED7DFF005B80BD /* CartProductViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartProductViewCell.swift; sourceTree = "<group>"; };
 		5C6F48B62BED7DFF005B80BD /* CartProductViewModelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartProductViewModelCell.swift; sourceTree = "<group>"; };
+		5C6F48BB2BED8354005B80BD /* CustomTabBarType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarType.swift; sourceTree = "<group>"; };
+		5C6F48BD2BED837E005B80BD /* CustomTabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewModel.swift; sourceTree = "<group>"; };
+		5C6F48BF2BED8396005B80BD /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewController.swift; sourceTree = "<group>"; };
+		5C6F48C12BED83A1005B80BD /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		5C6F48C32BED83AF005B80BD /* CustomTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarItem.swift; sourceTree = "<group>"; };
+		5C6F48C52BED893B005B80BD /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		5C6F48C72BED8AA0005B80BD /* mainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainWindow.swift; sourceTree = "<group>"; };
 		5C713B6B2B83599C0040AE10 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 		5C713B6D2B835AEA0040AE10 /* OffersRepositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersRepositories.swift; sourceTree = "<group>"; };
 		5C713B6F2B835B2A0040AE10 /* OffersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersUseCase.swift; sourceTree = "<group>"; };
@@ -378,6 +390,8 @@
 				5C91C40F2B85E34A00308218 /* HapticsManager.swift */,
 				5C45B0862B8AF3CB00BE62F4 /* NavigationView.swift */,
 				5C5A6D1F2B92114F0013E0B2 /* Color.swift */,
+				5C6F48C52BED893B005B80BD /* UIView.swift */,
+				5C6F48C72BED8AA0005B80BD /* mainWindow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -511,7 +525,6 @@
 			children = (
 				5C469C082B9716A2004DD1A0 /* Router.swift */,
 				5C469C0A2B9716B7004DD1A0 /* AppRouter.swift */,
-				5C4F4CF92BE825CC0040FD9C /* TabBarRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -553,6 +566,18 @@
 				5C6F48B62BED7DFF005B80BD /* CartProductViewModelCell.swift */,
 			);
 			path = CartProductViewCell;
+			sourceTree = "<group>";
+		};
+		5C6F48BA2BED8301005B80BD /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				5C6F48BB2BED8354005B80BD /* CustomTabBarType.swift */,
+				5C6F48BD2BED837E005B80BD /* CustomTabBarViewModel.swift */,
+				5C6F48BF2BED8396005B80BD /* CustomTabBarViewController.swift */,
+				5C6F48C12BED83A1005B80BD /* CustomTabBar.swift */,
+				5C6F48C32BED83AF005B80BD /* CustomTabBarItem.swift */,
+			);
+			path = TabBarController;
 			sourceTree = "<group>";
 		};
 		5C713B692B834E930040AE10 /* Home */ = {
@@ -913,6 +938,7 @@
 		97E0AE712B28F99E0078BD74 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				5C6F48BA2BED8301005B80BD /* TabBarController */,
 				5CA6700F2BE1BF7C0030BF59 /* Auth */,
 				5C713B692B834E930040AE10 /* Home */,
 				1263ED9B2B6FFB6400658725 /* CartView */,
@@ -1088,6 +1114,7 @@
 				5C3EB67B2BE141780093BE26 /* VirtualTryRepositories.swift in Sources */,
 				5C91C4022B84A1FF00308218 /* JSONDecoder.swift in Sources */,
 				5C45B0E82B8F5E8900BE62F4 /* CartSourceRepositories.swift in Sources */,
+				5C6F48C62BED893B005B80BD /* UIView.swift in Sources */,
 				5C3EB67D2BE142C20093BE26 /* VirtualTrySourceRepositories.swift in Sources */,
 				5C431D262B89BACE0091BF09 /* AddToCartSectionView.swift in Sources */,
 				5CA670232BE332B40030BF59 /* OnBoardingView.swift in Sources */,
@@ -1110,6 +1137,7 @@
 				5CA670382BE3F28E0030BF59 /* SplashViewModel.swift in Sources */,
 				5C45B0DE2B8F069200BE62F4 /* CartPromoCodeSection.swift in Sources */,
 				5C8B58962BEC7DDD00C3563D /* ProfileAssembly.swift in Sources */,
+				5C6F48BE2BED837E005B80BD /* CustomTabBarViewModel.swift in Sources */,
 				5CA6702E2BE3C8FB0030BF59 /* OnBoardingUseCase.swift in Sources */,
 				5C45B0DC2B8EFFEB00BE62F4 /* CartViewModel.swift in Sources */,
 				5CEA29802B9C8AE6009DA889 /* HomeAssembly.swift in Sources */,
@@ -1117,13 +1145,14 @@
 				5CF5E8AA2B8073090096F7AB /* ProductUseCase.swift in Sources */,
 				5CDA08562B96EB7A001EBBEF /* TabBarCoordinator.swift in Sources */,
 				5C4F4D202BE998F40040FD9C /* User.swift in Sources */,
+				5C6F48C82BED8AA0005B80BD /* mainWindow.swift in Sources */,
+				5C6F48C42BED83AF005B80BD /* CustomTabBarItem.swift in Sources */,
 				5C4F4CEE2BE7D2B90040FD9C /* AuthCoordinator.swift in Sources */,
 				5C45B0872B8AF3CB00BE62F4 /* NavigationView.swift in Sources */,
 				12A2DE522B2FC4640027A253 /* ProductItemView.swift in Sources */,
 				5C3EB6752BE1285D0093BE26 /* VirtualTryView.swift in Sources */,
 				123612E92B2480A10087B346 /* LaunchView.swift in Sources */,
 				1295C06F2B30881D00C1F4CA /* OffersView.swift in Sources */,
-				5C4F4CFA2BE825CC0040FD9C /* TabBarRouter.swift in Sources */,
 				5C45B0EA2B8F687100BE62F4 /* Models+Extension.swift in Sources */,
 				5C431D202B89B8310091BF09 /* ProductImagesSectionView.swift in Sources */,
 				5CA670432BE4402A0030BF59 /* InputView.swift in Sources */,
@@ -1138,6 +1167,7 @@
 				5C431D122B893B520091BF09 /* ProductDetailViewModel.swift in Sources */,
 				5C431D1A2B89AC370091BF09 /* ProductDetailUseCase.swift in Sources */,
 				12A2DE4E2B2FC1DB0027A253 /* ProductView.swift in Sources */,
+				5C6F48C22BED83A1005B80BD /* CustomTabBar.swift in Sources */,
 				5C6F48B82BED7DFF005B80BD /* CartProductViewCell.swift in Sources */,
 				5C82AE9C2B76F485001742E8 /* Fonts.swift in Sources */,
 				5C3EB6772BE134600093BE26 /* VirtualTryViewModel.swift in Sources */,
@@ -1156,6 +1186,7 @@
 				5CA6703C2BE3FF530030BF59 /* LoginView.swift in Sources */,
 				5C8B58902BEC7BA100C3563D /* WishListViewCell.swift in Sources */,
 				5CEA29842B9CCFE9009DA889 /* CartAssembly.swift in Sources */,
+				5C6F48C02BED8396005B80BD /* CustomTabBarViewController.swift in Sources */,
 				12BE29222B2F958300049E36 /* HomeViewModel.swift in Sources */,
 				5CA670362BE3E4E20030BF59 /* AuthAssembly.swift in Sources */,
 				97BA53082B37022A0061DF1B /* SubCategoryCardView.swift in Sources */,
@@ -1167,6 +1198,7 @@
 				5C8B58922BEC7BC000C3563D /* WishListViewModelCell.swift in Sources */,
 				12A2DE4C2B2FC16B0027A253 /* ProductViewModel.swift in Sources */,
 				5C6F48B92BED7DFF005B80BD /* CartProductViewModelCell.swift in Sources */,
+				5C6F48BC2BED8354005B80BD /* CustomTabBarType.swift in Sources */,
 				5C431D2A2B89CF250091BF09 /* ProductColorsView.swift in Sources */,
 				5C431D182B89ABF60091BF09 /* ProductSourceDetail.swift in Sources */,
 				5CEA29692B99E7CC009DA889 /* ProductItemViewModel.swift in Sources */,
@@ -1325,6 +1357,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1355,6 +1388,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

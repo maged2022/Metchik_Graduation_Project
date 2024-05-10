@@ -55,4 +55,8 @@ class CartViewModel: CartViewModelProtocol , ObservableObject {
     func deleteCartProduct(index: Int) {
         cartUseCase.deleteCartProduct(index: index)
     }
+    
+    func showTabBar () {
+        coordinator.showTabBar()
+    }
 }

@@ -41,7 +41,6 @@ class AuthAssembly: Assembly {
         sharedContainer.register(SignUpSuccessViewModel.self) { resolver in
             guard let coordinator = resolver.resolve(AuthCoordinatorProtocol.self)
             else {fatalError("error resolver AuthCoordinatorProtocol")}
-            let useCase = AuthUseCase.instance
             return SignUpSuccessViewModel(coordinator: coordinator, userID: "test")
         }
     }
