@@ -12,9 +12,9 @@ struct QuickSubCategoryView: View {
     @EnvironmentObject var vmod: HomeViewModel
     var body: some View {
         LazyVStack {
-            ForEach(vmod.subCategories,id: \.self) { subCategorie in
-                if let products = vmod.products[subCategorie] , products.count > 1 {
-                    CardSubCategoriesView(sectionName: subCategorie, products: products)
+            ForEach(vmod.subCategories,id: \.0) { subCategorie in
+                if let products = vmod.products[subCategorie.1] , products.count > 1 {
+                    CardSubCategoriesView(sectionName: subCategorie.1, products: products)
                 }
             }
         }

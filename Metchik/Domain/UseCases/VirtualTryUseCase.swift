@@ -14,17 +14,17 @@ class VirtualTryUseCase: VirtualTryRepositories {
         virtualTryRepo.uploadImageToCloudinary(image: image,completion: completion)
     }  
     
-    func requestVirtualImage(personImageURL: URL ,productImageURL: URL ,completion: @escaping (URL) -> Void) {
+    func requestVirtualImage(personImageURL: URL ,productImageURL: URL ,completion: @escaping (URL?) -> Void) {
         let paramters = [
-            "user_picture_url":personImageURL.absoluteString,
-            "garment_image_url" : productImageURL.absoluteString
+            "human_img": personImageURL.absoluteString,
+            "garm_img" : productImageURL.absoluteString
         ]
         
         virtualTryRepo.requestVirtualImage(parameters: paramters) { result in
             switch result {
             case .success(let success):
-                if let url = URL(string: success.newImageURL) {
-                    completion(url)
+                if let imageUrl = success.newImageURL {
+                    completion(URL(string: imageUrl))
                 }
             case .failure(let failure):
                 print(failure)

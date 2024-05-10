@@ -16,7 +16,7 @@ class VirtualTrySourceRepositories: VirtualTrySourceRepositoriesProtocol {
     func uploadImageToCloudinary(image: UIImage, completion: @escaping (URL) -> Void) {
 //        UploadImage().uploadImageToCloudinary(image: image, completion: completion)
         if let url = URL(
-            string: 
+            string:
                 """
 https://encrypted-tbn0.gstatic.com/images?
 q=tbn:ANd9GcRF-_d9jnE2w7Mt00B2RWtJXdAK97ogKFF1L7ZBlQy4D6m0THKPlLzesu9D&s=10
@@ -28,7 +28,7 @@ q=tbn:ANd9GcRF-_d9jnE2w7Mt00B2RWtJXdAK97ogKFF1L7ZBlQy4D6m0THKPlLzesu9D&s=10
     
     func requestVirtualImage(parameters: [String: Any] , completion: @escaping (Result<VirtualTrySource, RemoteError>) -> Void) {
 //        let route = EndPoints.getVirtualImageWith(parameters: parameters)
-//        BaseRequest().request(route: route, method: .post, completion: completion)
+//        BaseRequest().request(route: route, method: .get, completion: completion)
         completion(
             .success(
                 VirtualTrySource(
