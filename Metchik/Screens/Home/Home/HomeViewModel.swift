@@ -16,7 +16,7 @@ class HomeViewModel: ObservableObject {
     
     @Published var offers: [Offer] = []
     @Published var categories: [String] = [] 
-    @Published var subCategories: [String] = []
+    @Published var subCategories: [(String,String)] = []
     @Published var products: [String: [Product]] = [:]
     
     @Published var selectedCategory: String = "" {

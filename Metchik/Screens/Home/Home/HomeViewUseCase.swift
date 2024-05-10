@@ -15,7 +15,7 @@ class HomeViewUseCase: ObservableObject {
 
     @Published var offers: [Offer] = []
     @Published var categories: [String] = []
-    @Published var subCategories: [String] = []
+    @Published var subCategories: [(String,String)] = []
     @Published var products: [String: [Product]] = [:]
     @Published var selectedCategory: String = "" {
         didSet {
@@ -58,9 +58,11 @@ class HomeViewUseCase: ObservableObject {
     }
     
     private func updateSubCategories() {
-        self.subCategories =  Set(productsLocal.filter {
+        let subCategoriesArray =  Set(productsLocal.filter {
             $0.category.capitalized == self.selectedCategory
-        }.map { $0.subCategory.capitalized }).sorted()
+        }.map {$0.subCategory.capitalized }).sorted()
+        
+        self.subCategories = subCategoriesArray.map({(self.selectedCategory + $0,$0) })
     }
     
     private func updateProducts() {

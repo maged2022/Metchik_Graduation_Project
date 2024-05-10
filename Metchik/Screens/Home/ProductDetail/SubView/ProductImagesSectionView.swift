@@ -83,7 +83,7 @@ extension ProductImagesSectionView {
                     viewModel.product.isFavorite ?  Asset.Icons.love.image : Asset.Icons.lovewhite.image
             )
                 .resizable()
-                .frame(width: 20,height: 20)
+                .frame(width: 30,height: 30)
                 .padding(15)
         })
         .padding(25)

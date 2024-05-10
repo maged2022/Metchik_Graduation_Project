@@ -16,7 +16,7 @@ class VirtualTryUseCase: VirtualTryRepositories {
     
     func requestVirtualImage(personImageURL: URL ,productImageURL: URL ,completion: @escaping (URL?) -> Void) {
         let paramters = [
-            "human_img":personImageURL.absoluteString,
+            "human_img": personImageURL.absoluteString,
             "garm_img" : productImageURL.absoluteString
         ]
         

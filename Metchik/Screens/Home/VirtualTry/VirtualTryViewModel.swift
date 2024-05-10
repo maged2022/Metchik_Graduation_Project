@@ -36,7 +36,9 @@ class VirtualTryViewModel: ObservableObject {
             personImageURL: personImageUrl,
             productImageURL: productImageURL
         ) { aiImage in
-            self.virtualImageURL = aiImage
+            DispatchQueue.main.async {
+                self.virtualImageURL = aiImage
+            }
         }
     }
 }
