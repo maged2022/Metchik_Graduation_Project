@@ -22,7 +22,7 @@ class WishListUseCase: WishListRepositories {
     }
     
     func updateWishListProducts( ) {
-        guard let userID else {
+        guard let userID = userID else {
             wishListProducts = .failure(RemoteError.authMessage(message: "Please Login First"))
             return
         }
@@ -42,7 +42,7 @@ class WishListUseCase: WishListRepositories {
     }
     
     func addToWishListProducts( productID: String, completion: @escaping (Result<Status, RemoteError>) -> Void) {
-        guard let userID else {
+        guard let userID = userID else {
             completion(.failure(RemoteError.authMessage(message: "Please Login First")))
             return
         }
