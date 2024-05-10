@@ -65,6 +65,7 @@ extension CartView {
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundStyle(Colors.secondaryButtonColor.swiftUIColor)
                 )
+                .padding(.bottom,50)
         })
     }
 }

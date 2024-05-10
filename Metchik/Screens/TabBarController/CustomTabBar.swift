@@ -44,7 +44,7 @@ class CustomTabBar: UIView {
     //
     private func setup() {
         backgroundColor = Asset.Colors.backgroundScreenColor.color
-        heightConstraints(46 + (UIApplication.shared.mainWindow?.safeAreaInsets.bottom ?? 20))
+        _ = heightConstraints(46 + (UIApplication.shared.mainWindow?.safeAreaInsets.bottom ?? 20))
         layer.cornerRadius = 12
         setupStackView()
     }
