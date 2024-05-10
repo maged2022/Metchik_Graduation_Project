@@ -34,8 +34,8 @@ class CartUseCase: CartRepositories {
         cartRepo.saveCartProductSource(cartProduct.toCartProductSource())
     } 
     
-    func deleteCartProduct(indexSet: IndexSet) {
-        cartRepo.deleteCartProductSource(indexSet: indexSet)
+    func deleteCartProduct(index: Int) {
+        cartRepo.deleteCartProductSource(index: index)
     }
     
     func updateCartProduct(for cartProduct: CartProduct,with count: Int) {

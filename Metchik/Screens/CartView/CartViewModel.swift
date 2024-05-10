@@ -52,7 +52,7 @@ class CartViewModel: CartViewModelProtocol , ObservableObject {
         cartUseCase.calculateTotalPrice()
     }
     
-    func deleteCartProduct(indexSet: IndexSet) {
-        cartUseCase.deleteCartProduct(indexSet: indexSet)
+    func deleteCartProduct(index: Int) {
+        cartUseCase.deleteCartProduct(index: index)
     }
 }

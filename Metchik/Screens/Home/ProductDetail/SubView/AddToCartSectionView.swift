@@ -35,6 +35,12 @@ struct AddToCartSectionView: View {
                         RoundedRectangle(cornerRadius: 30)
                             .foregroundColor(Colors.secondaryButtonColor.swiftUIColor)
                     )
+                    .overlay(alignment: .leading) {
+                        Asset.Icons.caseIcon.swiftUIImage
+                            .resizable()
+                            .frame(width: 15, height: 16)
+                            .padding(.horizontal, 25)
+                    }
                 
             })
         }

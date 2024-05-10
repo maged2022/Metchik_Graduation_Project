@@ -15,7 +15,8 @@ extension ProductSource {
             shortDescription: shortDescription,
             price: price,
             discountPrecentage: discountPrecentage,
-//                    isFavorite: source.isFavorite, 
+            isFavorite: false,
+//                    isFavorite: source.isFavorite,
             imageURL: URL(string: imageUrl),
             category: category,
             subCategory: subCategory
@@ -121,6 +122,15 @@ extension UserSource {
             imageURL: imageURL,
             token: token
         )
+    }
+    
+}
+extension Array where Element == WishListSource {
+    
+    func toWishListProducts() -> [WishListProduct] {
+       return self.map { wishSource in
+            WishListProduct(wishListID: wishSource.id, productID: wishSource.productID)
+        }
     }
     
 }

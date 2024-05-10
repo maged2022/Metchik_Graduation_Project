@@ -54,8 +54,7 @@ class CoreDataManager: ObservableObject {
         saveData()
     }
     
-    func deleteCartProduct(indexSet: IndexSet) {
-        guard let index = indexSet.first else {return}
+    func deleteCartProduct(index: Int) {
         let cartProduct = cartProductsEntity[index]
         container.viewContext.delete(cartProduct)
         saveData()

@@ -14,6 +14,9 @@ public enum EndPoints: ServiceLayer {
     case getProductDetailWith(parameters: [String: Any])
     case getVirtualImageWith(parameters: [String: Any])
     case getUserData
+    case getWishList(parameters: [String: Any])
+    case addToWishList(parameters: [String: Any])
+    case removeFromWishList(parameters: [String: Any])
     
     public var baseUrl: String {
         switch self {
@@ -33,6 +36,12 @@ public enum EndPoints: ServiceLayer {
             return ""
         case .getUserData:
             return "users/66355d4bba75412dfc1a829a"
+        case .getWishList:
+            return "favorite/list"
+        case .addToWishList:
+            return "favorite/add"
+        case .removeFromWishList:
+            return "favorite/remove/"
         }
     }
     
@@ -46,6 +55,12 @@ public enum EndPoints: ServiceLayer {
               return .requestWithParameters(parameters: parameters, encoding: URLEncoding.default)
         case .getUserData:
             return .plainRequest
+        case .getWishList(parameters: let parameters):
+            return .requestWithParameters(parameters: parameters, encoding: URLEncoding.default)
+        case .addToWishList(parameters: let parameters):
+            return .requestWithParameters(parameters: parameters, encoding: URLEncoding.default)
+        case .removeFromWishList(parameters: let parameters):
+            return .requestWithParameters(parameters: parameters, encoding: URLEncoding.default)
         }
     }
 }

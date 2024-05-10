@@ -5,21 +5,38 @@
 //  Created by Hassan on 06/05/2024.
 //
 
-import Foundation
+import SwiftUI
 class WishListViewModel: ObservableObject {
     private var wishListUseCase: WishListViewRepositories
-    @Published var cartProducts: [CartProduct] = []
-    init(wishListUseCase: WishListViewRepositories) {
+    let coordinator: HomeTabCoordinatorProtocol
+
+    @Published var wishListProducts: [WishListProduct] = []
+    init(wishListUseCase: WishListViewRepositories, coordinator: HomeTabCoordinatorProtocol) {
         self.wishListUseCase = wishListUseCase
-        getCartProducts()
+        self.coordinator = coordinator
+        getWishListProducts()
     }
-    func getCartProducts() {
-        wishListUseCase.getCartProducts { cartProducts in
-            self.cartProducts = cartProducts
+    
+    func getWishListProducts() {
+        wishListUseCase.getWishListProducts { wishListProduct in
+            DispatchQueue.main.async {
+                self.wishListProducts = wishListProduct
+            }
         }
     }
     
-    func getProduct(by cartProduct: CartProduct) -> Product {
-        wishListUseCase.getProduct(by: cartProduct)
+    func getProduct(by wishList: WishListProduct) -> Product {
+        wishListUseCase.getProduct(by: wishList)
+    }
+    
+    func removeButtonPressed(index: Int) {
+        wishListUseCase.removeWishListProduct(wishListID: wishListProducts[index].wishListID) { result in
+            switch result {
+            case .success:
+                self.wishListUseCase.updateWishListProducts()
+            case .failure(let failure):
+                print(failure)
+            }
+        }
     }
 }

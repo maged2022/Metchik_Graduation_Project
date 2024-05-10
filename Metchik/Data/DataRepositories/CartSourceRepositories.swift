@@ -11,7 +11,7 @@ import Combine
 protocol CartSourceRepositories {
     func getCartProducts(completion: @escaping ([CartProductSource]) -> Void)
     func saveCartProductSource(_ cartProductSource: CartProductSource)
-    func deleteCartProductSource(indexSet: IndexSet)
+    func deleteCartProductSource(index: Int)
     func updateCartProductSource(for cartProductSource: CartProductSource ,with count: Int)
 }
 
@@ -33,7 +33,7 @@ class CartSourceRepositoriesImpl: CartSourceRepositories {
         coreManager.updateCartProduct(for: cartProductSource, with: count)
     }
     
-    func deleteCartProductSource(indexSet: IndexSet) {
-        coreManager.deleteCartProduct(indexSet: indexSet)
+    func deleteCartProductSource(index: Int) {
+        coreManager.deleteCartProduct(index: index)
     }
 }

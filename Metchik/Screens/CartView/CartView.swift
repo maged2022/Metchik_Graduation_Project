@@ -18,7 +18,8 @@ struct CartView: View {
             titleLabel
             
             CartProuctSectionView()
-            
+                .padding(.horizontal,-25)
+
             CartPromoCodeSection()
             
             CartPricingSectionView()

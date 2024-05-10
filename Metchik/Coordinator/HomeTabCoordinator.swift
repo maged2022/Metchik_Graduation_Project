@@ -69,7 +69,9 @@ class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
         personImage: UIImage?,
         productImageURL: URL?
     ) {
-        guard let personImage = personImage else { return }
+        guard let personImage = personImage else {
+            return
+        }
         let virtualTryUseCase = VirtualTryUseCase()
         let viewModel = VirtualTryViewModel(
             personImage: personImage,

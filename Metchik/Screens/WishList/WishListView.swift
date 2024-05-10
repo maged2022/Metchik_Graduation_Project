@@ -9,15 +9,23 @@ import SwiftUI
 
 struct WishListView: View {
     @StateObject var viewModel: WishListViewModel
+    @State private var swipeToDeleteIndex: Int?
 
     var body: some View {
         ScrollView {
-            ForEach(viewModel.cartProducts,id: \.self) { cartProduct in
-                CartAndWishListViewCell(
-                    viewModel: CartAndWishListViewModelCell(
-                        product: viewModel.getProduct(by: cartProduct),
-                        cartProduct: cartProduct)
-                )
+            VStack(spacing: 15) {
+                ForEach(Array(viewModel.wishListProducts.enumerated()), id: \.element) { index, wishListProduct in
+                    SwipeToDeleteEffect(index: index, swipeToDeleteIndex: $swipeToDeleteIndex, onDelete: {
+                        viewModel.removeButtonPressed(index: index)
+                      },content: {
+                          WishListViewCell(
+                              viewModel: WishListViewModelCell(
+                                  coordinator: viewModel.coordinator,
+                                  product: viewModel.getProduct(by: wishListProduct)
+                              )
+                          )
+                      })
+                }
             }
         }
     }

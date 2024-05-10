@@ -9,15 +9,16 @@ import Foundation
 import Combine
 
 class HomeViewModel: ObservableObject {
-    private let homeViewUseCase: HomeViewUseCase
+    let homeViewUseCase: HomeViewUseCase
 
     private var cancellables = Set<AnyCancellable>()
     let coordinator: HomeTabCoordinatorProtocol
     
     @Published var offers: [Offer] = []
-    @Published var categories: [String] = []
+    @Published var categories: [String] = [] 
     @Published var subCategories: [String] = []
     @Published var products: [String: [Product]] = [:]
+    
     @Published var selectedCategory: String = "" {
         didSet {
             homeViewUseCase.updateSelectedCategory(selectedCategory: selectedCategory)
@@ -36,16 +37,18 @@ class HomeViewModel: ObservableObject {
             .assign(to: &$offers)
         homeViewUseCase.$categories
             .receive(on: DispatchQueue.main)
-            .assign(to: &$categories)  
+            .sink { categories in
+                self.categories = categories
+                if let selected = categories.first {
+                    self.selectedCategory = selected
+                }
+            }.store(in: &cancellables)
         homeViewUseCase.$subCategories
             .receive(on: DispatchQueue.main)
             .assign(to: &$subCategories)
         homeViewUseCase.$products
             .receive(on: DispatchQueue.main)
             .assign(to: &$products)
-        homeViewUseCase.$selectedCategory
-            .receive(on: DispatchQueue.main)
-            .assign(to: &$selectedCategory)
     }
     
 }

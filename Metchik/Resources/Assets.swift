@@ -38,14 +38,18 @@ internal enum Asset {
     internal static let secondaryButtonColor = ColorAsset(name: "Colors/SecondaryButtonColor")
     internal static let secondaryLabelColor = ColorAsset(name: "Colors/SecondaryLabelColor")
     internal static let seconderyFacebookButtonColor = ColorAsset(name: "Colors/SeconderyFacebookButtonColor")
-    internal static let userBackground = ColorAsset(name: "Colors/UserBackground")
     internal static let starYellowColor = ColorAsset(name: "Colors/StarYellowColor")
+    internal static let userBackground = ColorAsset(name: "Colors/UserBackground")
   }
   internal enum Icons {
     internal static let backIcon = ImageAsset(name: "Icons/backIcon")
     internal static let cartIcon = ImageAsset(name: "Icons/cartIcon")
+    internal static let love = ImageAsset(name: "Icons/love")
+    internal static let lovewhite = ImageAsset(name: "Icons/lovewhite")
     internal static let menuIcon = ImageAsset(name: "Icons/menuIcon")
     internal static let userIcon = ImageAsset(name: "Icons/userIcon")
+    internal static let caseIcon = ImageAsset(name: "Icons/caseIcon")
+    internal static let screenerIcon = ImageAsset(name: "Icons/screenerIcon")
   }
   internal enum Images {
     internal static let offerBackground = ImageAsset(name: "Images/OfferBackground")
