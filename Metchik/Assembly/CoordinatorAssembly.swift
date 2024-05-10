@@ -23,10 +23,6 @@ class CoordinatorAssembly: Assembly {
             let navigationController = UINavigationController()
             return AppRouter(navigationController: navigationController)
         } 
-        sharedContainer.register(TabBarRouter.self) { _ in
-            let navigationController = UINavigationController()
-            return TabBarRouter(navigationController: navigationController)
-        }
         sharedContainer.register(AppCoordinatorProtocol.self) { resolver in
             AppCoordinator(resolver: resolver)
         }

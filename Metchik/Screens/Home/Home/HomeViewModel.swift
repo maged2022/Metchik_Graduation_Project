@@ -73,4 +73,7 @@ extension HomeViewModel {
     func getProductItemViewModel(product: Product) -> ProductItemViewModel {
         ProductItemViewModel(product: product, coordinator: coordinator)
     }
+    func showTabBar() {
+        coordinator.showTabBar()
+    }
 }

@@ -31,6 +31,9 @@ struct HomeView: View {
             ,trailing: trailingNavigationButton )
         .environmentObject(homeViewModel)
         .onAppear {showCategory() }
+        .onAppear {
+            homeViewModel.showTabBar()
+        }
         .padding(.leading)
     }
 }

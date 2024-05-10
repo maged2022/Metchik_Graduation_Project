@@ -16,6 +16,7 @@ protocol HomeTabCoordinatorProtocol: Coordinator {
     func showVirtualTry(personImage: UIImage?, productImageURL: URL?)
     func showProfile()
     func showCart()
+    func showTabBar()
 }
 
 class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
@@ -47,6 +48,8 @@ class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
         let subCategoryView = SubCategoryView(subCategoryViewModel: subCategoryViewModel)
         let subCategoryViewController = UIHostingController(rootView: subCategoryView)
         router.push(subCategoryViewController)
+        tabBarCoordinator.hideTabBar()
+        
     }
     
     func showProductView(selectedCategory: String, selectedSubCategory: String) {
@@ -56,6 +59,8 @@ class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
             coordinator: self)
         let productViewController = UIHostingController(rootView: ProductView(productViewModel: productViewModel))
         router.push(productViewController)
+        tabBarCoordinator.hideTabBar()
+
     }
     
     func showDetails(product: Product) {
@@ -63,6 +68,8 @@ class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
         let productDetailView = ProductDetailView(productDetailViewModel: productDetailViewModel)
         let productDetailViewController = UIHostingController(rootView: productDetailView)
         router.push(productDetailViewController)
+        tabBarCoordinator.hideTabBar()
+
     }
     
     func showVirtualTry(
@@ -81,6 +88,8 @@ class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
         let virualTry = VirtualTryView(virtualTryViewModel: viewModel)
         let virualTryViewController = UIHostingController(rootView: virualTry)
         router.push(virualTryViewController)
+        tabBarCoordinator.hideTabBar()
+
     }
     
     func showProfile() {
@@ -91,5 +100,7 @@ class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
         router.popToRoot(animated: false)
         tabBarCoordinator.showCart()
     }
-    
+    func showTabBar() {
+        tabBarCoordinator.showTabBar()
+    }
 }
