@@ -33,10 +33,6 @@ struct ProductItemView: View {
                     Text(productItemViewModel.product.name)
                         .font(.poppins(.semiBold, size: 14))
                         .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
-                   
-                    Text(productItemViewModel.product.shortDescription)
-                        .font(.poppins(.regular, size: 11))
-                        .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)
 
                     HStack {
                         Text("\(String(format: "%.2f", productItemViewModel.product.price)) L.E")
@@ -44,7 +40,8 @@ struct ProductItemView: View {
                             .foregroundColor(Colors.secondaryLabelColor.swiftUIColor)
                             .strikethrough()
                         
-                        Text("\(String(format: "%.2f", productItemViewModel.product.discountPrecentage)) L.E")
+                        Text(String(format: "%.2f", productItemViewModel.product.price - ((productItemViewModel.product.discountPrecentage / 100.00)
+                                   * productItemViewModel.product.price)) + "L.E")
                             .font(.poppins(.semiBold, size: 14))
                             .foregroundColor(Colors.primaryLabelColor.swiftUIColor)
                     }
