@@ -15,28 +15,28 @@ enum CustomTabBarType: Int, CaseIterable, Hashable {
     
     private var title: String {
         switch self {
-        case .home: "Home"
-        case .cart: "Cart"
-        case .wishList: "Favorite"
-        case .profile: "Profile"
+        case .home: return "Home"
+        case .cart: return "Cart"
+        case .wishList: return "Favorite"
+        case .profile: return "Profile"
         }
     }
     
     private var icon: UIImage? {
         switch self {
-        case .home: UIImage(named: "tabbar/home")?.withRenderingMode(.alwaysOriginal)
-        case .cart: UIImage(named: "tabbar/cart")?.withRenderingMode(.alwaysOriginal)
-        case .wishList: UIImage(named: "tabbar/favorite")?.withRenderingMode(.alwaysOriginal)
-        case .profile: UIImage(named: "tabbar/profile")?.withRenderingMode(.alwaysOriginal)
+        case .home: return UIImage(named: "tabbar/home")?.withRenderingMode(.alwaysOriginal)
+        case .cart: return UIImage(named: "tabbar/cart")?.withRenderingMode(.alwaysOriginal)
+        case .wishList: return UIImage(named: "tabbar/favorite")?.withRenderingMode(.alwaysOriginal)
+        case .profile: return UIImage(named: "tabbar/profile")?.withRenderingMode(.alwaysOriginal)
         }
     }
     
     private var selectedIcon: UIImage? {
         switch self {
-        case .home: UIImage(named: "tabbar/home-selected")?.withRenderingMode(.alwaysOriginal)
-        case .cart: UIImage(named: "tabbar/cart-selected")?.withRenderingMode(.alwaysOriginal)
-        case .wishList: UIImage(named: "tabbar/favorite-selected")?.withRenderingMode(.alwaysOriginal)
-        case .profile: UIImage(named: "tabbar/profile-selected")?.withRenderingMode(.alwaysOriginal)
+        case .home: return UIImage(named: "tabbar/home-selected")?.withRenderingMode(.alwaysOriginal)
+        case .cart: return UIImage(named: "tabbar/cart-selected")?.withRenderingMode(.alwaysOriginal)
+        case .wishList: return UIImage(named: "tabbar/favorite-selected")?.withRenderingMode(.alwaysOriginal)
+        case .profile: return UIImage(named: "tabbar/profile-selected")?.withRenderingMode(.alwaysOriginal)
         }
     }
     
