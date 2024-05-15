@@ -20,8 +20,19 @@ struct SnackBar: View {
                 .resizable()
                 .frame(width: 33.3, height: 30)
                 .foregroundColor(.white)
-                .frame(width: 90, height: 90)
-                .background(Color.black.cornerRadius(45))
+                .frame(width: 80, height: 80)
+                .background(Color.black.cornerRadius(40))
+                .overlay(
+                    Image(systemName: "checkmark")
+                        .resizable()
+                        .frame(width: 10, height: 7)
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(.white)
+                        .background(Color.green)
+                        .cornerRadius(10)
+                    , alignment: .topTrailing
+                )
+            
                 .padding(25)
             
             Text(title)
@@ -32,21 +43,21 @@ struct SnackBar: View {
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 50)
-          
-                Button(action: {
-                    self.onClick()
-                }) {
-                    Text(buttonTitle)
-                        .foregroundColor(.white)
-                        .font(.poppins(.boldItalic, size: 16))
-                        .padding(.horizontal, 25)
-                        .frame( height: 50)
-                        .background(
-                            RoundedRectangle(cornerRadius: 30)
-                                .foregroundColor(.black)
-                        )
-                        .padding(.vertical, 25)
-                }
+            
+            Button(action: {
+                self.onClick()
+            }) {
+                Text(buttonTitle)
+                    .foregroundColor(.white)
+                    .font(.poppins(.boldItalic, size: 16))
+                    .padding(.horizontal, 25)
+                    .frame( height: 50)
+                    .background(
+                        RoundedRectangle(cornerRadius: 30)
+                            .foregroundColor(.black)
+                    )
+                    .padding(.vertical, 25)
+            }
         }
         .padding()
         .frame(maxWidth: .infinity)
