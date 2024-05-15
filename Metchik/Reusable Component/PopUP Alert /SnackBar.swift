@@ -14,19 +14,15 @@ struct SnackBar: View {
     let buttonTitle: String
     var onClick: () -> Void
     
-    let buttonWidth: CGFloat = 100 // Adjust as needed
-    
     var body: some View {
-        VStack {
-            
+        VStack(spacing: 13) {
             Asset.Icons.alertIcon.swiftUIImage
                 .resizable()
                 .frame(width: 33.3, height: 30)
                 .foregroundColor(.white)
-                .frame(width: 80, height: 80)
-                .background(Color.black.cornerRadius(40))
-                .clipShape(Circle())
-                .padding()
+                .frame(width: 90, height: 90)
+                .background(Color.black.cornerRadius(45))
+                .padding(25)
             
             Text(title)
                 .font(.poppins(.bold, size: 24))
@@ -36,8 +32,6 @@ struct SnackBar: View {
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 50)
-
-            
           
                 Button(action: {
                     self.onClick()
@@ -51,7 +45,7 @@ struct SnackBar: View {
                             RoundedRectangle(cornerRadius: 30)
                                 .foregroundColor(.black)
                         )
-                        
+                        .padding(.vertical, 25)
                 }
         }
         .padding()
