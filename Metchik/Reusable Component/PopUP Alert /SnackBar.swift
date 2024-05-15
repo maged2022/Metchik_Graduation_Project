@@ -19,7 +19,7 @@ struct SnackBar: View {
     var body: some View {
         VStack {
             
-            Image("alertIcon")
+            Asset.Icons.alertIcon.swiftUIImage
                 .resizable()
                 .frame(width: 33.3, height: 30)
                 .foregroundColor(.white)
