@@ -24,19 +24,19 @@ enum CustomTabBarType: Int, CaseIterable, Hashable {
     
     private var icon: UIImage? {
         switch self {
-        case .home: return UIImage(named: "tabbar/home")?.withRenderingMode(.alwaysOriginal)
-        case .cart: return UIImage(named: "tabbar/cart")?.withRenderingMode(.alwaysOriginal)
-        case .wishList: return UIImage(named: "tabbar/favorite")?.withRenderingMode(.alwaysOriginal)
-        case .profile: return UIImage(named: "tabbar/profile")?.withRenderingMode(.alwaysOriginal)
+        case .home: return UIImage(asset: Asset.Tabbar.home)?.withRenderingMode(.alwaysOriginal)
+        case .cart: return UIImage(asset: Asset.Tabbar.cart)?.withRenderingMode(.alwaysOriginal)
+        case .wishList: return UIImage(asset: Asset.Tabbar.favorite)?.withRenderingMode(.alwaysOriginal)
+        case .profile: return UIImage(asset: Asset.Tabbar.profile)?.withRenderingMode(.alwaysOriginal)
         }
     }
     
     private var selectedIcon: UIImage? {
         switch self {
-        case .home: return UIImage(named: "tabbar/home-selected")?.withRenderingMode(.alwaysOriginal)
-        case .cart: return UIImage(named: "tabbar/cart-selected")?.withRenderingMode(.alwaysOriginal)
-        case .wishList: return UIImage(named: "tabbar/favorite-selected")?.withRenderingMode(.alwaysOriginal)
-        case .profile: return UIImage(named: "tabbar/profile-selected")?.withRenderingMode(.alwaysOriginal)
+        case .home: return UIImage(asset: Asset.Tabbar.homeSelected)?.withRenderingMode(.alwaysOriginal)
+        case .cart: return UIImage(asset: Asset.Tabbar.cartSelected)?.withRenderingMode(.alwaysOriginal)
+        case .wishList: return UIImage(asset: Asset.Tabbar.favoriteSelected)?.withRenderingMode(.alwaysOriginal)
+        case .profile: return UIImage(asset: Asset.Tabbar.profileSelected)?.withRenderingMode(.alwaysOriginal)
         }
     }
     
