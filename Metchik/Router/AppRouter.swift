@@ -12,6 +12,10 @@ public final class AppRouter {
     
     public required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        self.navigationController.navigationBar.backIndicatorImage = UIImage(asset: Asset.Icons.arrow)?
+            .withRenderingMode(.alwaysOriginal)
+        self.navigationController.navigationBar.backIndicatorTransitionMaskImage = UIImage(asset: Asset.Icons.arrow)?
+            .withRenderingMode(.alwaysOriginal)
     }
 }
 
@@ -48,6 +52,7 @@ extension AppRouter: Router {
     }
     
     public func push(_ viewController: UIViewController, animated: Bool = true, completion: @escaping () -> Void = {}) {
+        viewController.navigationItem.backButtonTitle = ""
         navigationController.dismiss(animated: false)
         navigationController.pushViewController(viewController, animated: animated)
         completion()

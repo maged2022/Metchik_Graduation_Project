@@ -42,14 +42,15 @@ internal enum Asset {
     internal static let userBackground = ColorAsset(name: "Colors/UserBackground")
   }
   internal enum Icons {
+    internal static let arrow = ImageAsset(name: "Icons/arrow")
     internal static let backIcon = ImageAsset(name: "Icons/backIcon")
     internal static let cartIcon = ImageAsset(name: "Icons/cartIcon")
+    internal static let caseIcon = ImageAsset(name: "Icons/caseIcon")
     internal static let love = ImageAsset(name: "Icons/love")
     internal static let lovewhite = ImageAsset(name: "Icons/lovewhite")
     internal static let menuIcon = ImageAsset(name: "Icons/menuIcon")
-    internal static let userIcon = ImageAsset(name: "Icons/userIcon")
-    internal static let caseIcon = ImageAsset(name: "Icons/caseIcon")
     internal static let screenerIcon = ImageAsset(name: "Icons/screenerIcon")
+    internal static let userIcon = ImageAsset(name: "Icons/userIcon")
   }
   internal enum Images {
     internal static let offerBackground = ImageAsset(name: "Images/OfferBackground")
@@ -76,6 +77,18 @@ internal enum Asset {
     internal static let red = ColorAsset(name: "ProductColor/Red")
     internal static let white = ColorAsset(name: "ProductColor/White")
     internal static let yellow = ColorAsset(name: "ProductColor/Yellow")
+  }
+  internal enum Tabbar {
+    internal static let cartSelected = ImageAsset(name: "tabbar/cart-selected")
+    internal static let cart = ImageAsset(name: "tabbar/cart")
+    internal static let favoriteSelected = ImageAsset(name: "tabbar/favorite-selected")
+    internal static let favorite = ImageAsset(name: "tabbar/favorite")
+    internal static let homeSelected = ImageAsset(name: "tabbar/home-selected")
+    internal static let home = ImageAsset(name: "tabbar/home")
+    internal static let notificationSelected = ImageAsset(name: "tabbar/notification-selected")
+    internal static let notification = ImageAsset(name: "tabbar/notification")
+    internal static let profileSelected = ImageAsset(name: "tabbar/profile-selected")
+    internal static let profile = ImageAsset(name: "tabbar/profile")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
@@ -238,4 +251,3 @@ private final class BundleToken {
   }()
 }
 // swiftlint:enable convenience_type
-// swiftlint:enable all
