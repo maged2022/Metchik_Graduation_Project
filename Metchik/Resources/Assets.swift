@@ -42,6 +42,7 @@ internal enum Asset {
     internal static let userBackground = ColorAsset(name: "Colors/UserBackground")
   }
   internal enum Icons {
+    internal static let alertIcon = ImageAsset(name: "Icons/alertIcon")
     internal static let arrow = ImageAsset(name: "Icons/arrow")
     internal static let backIcon = ImageAsset(name: "Icons/backIcon")
     internal static let cartIcon = ImageAsset(name: "Icons/cartIcon")
@@ -251,3 +252,4 @@ private final class BundleToken {
   }()
 }
 // swiftlint:enable convenience_type
+// swiftlint:enable all
