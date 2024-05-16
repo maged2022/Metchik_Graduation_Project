@@ -40,7 +40,9 @@ struct ProductItemView: View {
                             .foregroundColor(Colors.secondaryLabelColor.swiftUIColor)
                             .strikethrough()
                         
-                        Text(String(format: "%.2f", productItemViewModel.product.price - ((productItemViewModel.product.discountPrecentage / 100.00)
+                        Text(String(format: "%.2f",
+                                    productItemViewModel.product.price -
+                                    ((productItemViewModel.product.discountPrecentage / 100.00)
                                    * productItemViewModel.product.price)) + "L.E")
                             .font(.poppins(.semiBold, size: 14))
                             .foregroundColor(Colors.primaryLabelColor.swiftUIColor)

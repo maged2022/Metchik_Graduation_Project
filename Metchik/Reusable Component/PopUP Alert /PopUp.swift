@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-
-import SwiftUI
-
 struct Popup<T: View>: ViewModifier {
     let popup: T
     let alignment: Alignment
@@ -70,4 +67,3 @@ extension View {
         return modifier(Popup(isPresented: isPresented, alignment: alignment, direction: direction, content: content))
     }
 }
-

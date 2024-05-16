@@ -46,7 +46,7 @@ struct SnackBar: View {
             
             Button(action: {
                 self.onClick()
-            }) {
+            }, label: {
                 Text(buttonTitle)
                     .foregroundColor(.white)
                     .font(.poppins(.boldItalic, size: 16))
@@ -57,7 +57,7 @@ struct SnackBar: View {
                             .foregroundColor(.black)
                     )
                     .padding(.vertical, 25)
-            }
+            })
         }
         .padding()
         .frame(maxWidth: .infinity)
@@ -68,10 +68,12 @@ struct SnackBar: View {
     }
 }
 
-
 struct SnackBar_Previews: PreviewProvider {
     static var previews: some View {
-        SnackBar(title: "Successful!", message: "You have successfully your Confirm Payment send!", buttonTitle: "continue shopping", onClick: {})
+        SnackBar(title: "Successful!",
+                 message: "You have successfully your Confirm Payment send!",
+                 buttonTitle: "continue shopping",
+                 onClick: {
+        })
     }
 }
-
