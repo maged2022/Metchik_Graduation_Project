@@ -18,8 +18,6 @@ struct SubCategoryView: View {
             }
         }
         .animation(.spring())
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: BackButton(router: subCategoryViewModel.coordinator.router))
         .padding(.horizontal,25)
         .frame(maxWidth: .infinity)
         .background(Asset.Colors.backgroundScreenColor.swiftUIColor
