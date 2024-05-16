@@ -17,11 +17,13 @@ struct ProfileView: View {
             VStack {
                 
                 AsyncImage(url: URL(string: viewModel.user.imageURL)) { image in
-                    image.image?
+                    image
                         .resizable()
                         .scaledToFit()
                         .frame(width: 100,height: 100)
                     
+                } placeholder: {
+                    ProgressView()
                 }
                 Text("Upload image")
             }
@@ -50,7 +52,7 @@ struct ProfileView: View {
                             GenderView(isSelected: $genderFemale, title: "Female")
                         }
                     }
-                    Text("22 Year")
+                    Text(viewModel.user.age)
                     Divider()
                     Text(viewModel.user.email)
                     Divider()
