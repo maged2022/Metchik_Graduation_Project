@@ -9,7 +9,7 @@ import SwiftUI
 class WishListViewModel: ObservableObject {
     private var wishListUseCase: WishListViewRepositories
     let coordinator: HomeTabCoordinatorProtocol
-
+    @AppStorage("userID") var userID: String?
     @Published var wishListProducts: [WishListProduct] = []
     init(wishListUseCase: WishListViewRepositories, coordinator: HomeTabCoordinatorProtocol) {
         self.wishListUseCase = wishListUseCase
@@ -18,9 +18,12 @@ class WishListViewModel: ObservableObject {
     }
     
     func getWishListProducts() {
-        wishListUseCase.getWishListProducts { wishListProduct in
-            DispatchQueue.main.async {
-                self.wishListProducts = wishListProduct
+        if let userID = userID {
+            wishListUseCase.updateWishListProducts()
+            wishListUseCase.getWishListProducts { wishListProduct in
+                DispatchQueue.main.async {
+                    self.wishListProducts = wishListProduct
+                }
             }
         }
     }

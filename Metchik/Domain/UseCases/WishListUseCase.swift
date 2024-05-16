@@ -18,12 +18,11 @@ class WishListUseCase: WishListRepositories {
     @AppStorage("userID") var userID: String?
     static var instance = WishListUseCase()
     private init() {
-        updateWishListProducts()
     }
     
     func updateWishListProducts( ) {
         guard let userID = userID else {
-            wishListProducts = .failure(RemoteError.authMessage(message: "Please Login First"))
+            wishListProducts = .failure(RemoteError.authMessage(message: "Can't get wishlist Please Login First"))
             return
         }
         let parameters = [
@@ -41,7 +40,7 @@ class WishListUseCase: WishListRepositories {
         
     }
     
-    func addToWishListProducts( productID: String, completion: @escaping (Result<Status, RemoteError>) -> Void) {
+    private func addToWishListProducts( productID: String, completion: @escaping (Result<Status, RemoteError>) -> Void) {
         guard let userID = userID else {
             completion(.failure(RemoteError.authMessage(message: "Please Login First")))
             return
