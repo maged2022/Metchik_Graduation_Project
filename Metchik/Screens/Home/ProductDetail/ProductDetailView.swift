@@ -46,9 +46,7 @@ struct ProductDetailView: View {
         .ignoresSafeArea()
         .background(Colors.backgroundScreenColor.swiftUIColor )
         .environmentObject(productDetailViewModel)
-        .navigationBarBackButtonHidden(true)
         .navigationBarItems(
-            leading: BackButton(router: productDetailViewModel.coordinator.router),
             trailing:
                 CartButtonView(cartViewModel: productDetailViewModel.getCartButtonViewModel())
         )

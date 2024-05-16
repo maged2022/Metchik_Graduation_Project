@@ -28,9 +28,7 @@ struct ProductView: View {
         .animation(.spring())
         .padding(.horizontal,25)
         .background(Asset.Colors.backgroundScreenColor.swiftUIColor )
-        .navigationBarBackButtonHidden(true)
         .navigationBarItems(
-            leading: BackButton(router: productViewModel.coordinator.router),
             trailing: searchButton
         )
         .navigationTitle(productViewModel.selectedSubCategory)
