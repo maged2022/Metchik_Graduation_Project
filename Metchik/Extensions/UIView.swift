@@ -25,7 +25,10 @@ extension UIView {
         translatesAutoresizingMaskIntoConstraints = false
         var anchoredConstraints = AnchoredConstraints()
         if let superview = superview {
-            anchoredConstraints.centerX = centerXAnchor.constraint(equalTo: superview.centerXAnchor, constant: xConstant)
+            anchoredConstraints.centerX = centerXAnchor.constraint(
+                equalTo: superview.centerXAnchor,
+                constant: xConstant
+            )
             anchoredConstraints.centerY = centerYAnchor.constraint(equalTo: superview.centerYAnchor,
                                                                    constant: yConstant)
         }

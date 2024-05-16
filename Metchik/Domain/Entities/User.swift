@@ -12,6 +12,7 @@ struct User {
     let avatar: String
     let imageURL: String
     let token: String
+    let age: String
     static let mock: User = .init(
         id: "",
         userName: "guest",
@@ -20,6 +21,8 @@ struct User {
         role: "user",
         avatar: "test",
         imageURL: "https://res.cloudinary.com/daapjokhn/image/upload/v1715037331/urlyjh6zeogchyjacu0f.png",
-        token: "guest token"
+        token: "guest token",
+        age: "??"
+        
     )
 }

@@ -9,18 +9,21 @@ import SwiftUI
 
 struct ProfileView: View {
     @StateObject var viewModel: ProfileViewModel
-    
+    @State var genderMale: Bool = true
+    @State var genderFemale: Bool = false
     var body: some View {
         
         VStack(spacing:30) {
             VStack {
                 
                 AsyncImage(url: URL(string: viewModel.user.imageURL)) { image in
-                    image.image?
+                    image
                         .resizable()
                         .scaledToFit()
                         .frame(width: 100,height: 100)
                     
+                } placeholder: {
+                    ProgressView()
                 }
                 Text("Upload image")
             }
@@ -40,36 +43,16 @@ struct ProfileView: View {
                     Text(viewModel.user.userName)
                     Divider()
                     HStack {
-                        
-                        RoundedRectangle(cornerRadius: 5)
-                            .frame(width: 60,height: 30)
-                            .foregroundStyle(Asset.Colors.secondaryButtonColor.swiftUIColor)
-                            .overlay {
-                                HStack {
-                                    Image(systemName: "circle.circle.fill")
-                                        .foregroundStyle(Asset.Colors.primaryButtonColor.swiftUIColor)
-                                    Text("Male")
-                                        .font(.poppins(.semiBold, size: 11))
-                                        .foregroundStyle(Asset.Colors.primaryButtonColor.swiftUIColor)
-                                }
-                            }
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke()
-                            .frame(width: 60,height: 30)
-                            .foregroundStyle(
-                                Asset.Colors.searchLabelColor.swiftUIColor)
-                            .overlay {
-                                HStack {
-                                    Image(systemName: "circle")
-                                        .foregroundStyle(Asset.Colors.searchLabelColor.swiftUIColor)
-                                    Text("Male")
-                                        .font(.poppins(.semiBold, size: 11))
-                                        .foregroundStyle(Asset.Colors.searchLabelColor.swiftUIColor)
-                                }
-                            }
-                        
+                        Button {
+                            genderMale.toggle()
+                            genderFemale.toggle()
+                        } label: {
+                            GenderView(isSelected: $genderMale, title: "Male")
+                                
+                            GenderView(isSelected: $genderFemale, title: "Female")
+                        }
                     }
-                    Text("22 Year")
+                    Text(viewModel.user.age)
                     Divider()
                     Text(viewModel.user.email)
                     Divider()
