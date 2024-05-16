@@ -36,8 +36,6 @@ struct LoginView: View {
             LoginButtonView()
             
         }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: BackButton(router: viewModel.coordinator.router))
         .padding(25)
         .environmentObject(viewModel)
     }
