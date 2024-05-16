@@ -159,6 +159,7 @@
 		5CA670432BE4402A0030BF59 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA670422BE4402A0030BF59 /* InputView.swift */; };
 		5CA670452BE455530030BF59 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA670442BE455530030BF59 /* SignUpView.swift */; };
 		5CA670472BE455CD0030BF59 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA670462BE455CD0030BF59 /* SignUpViewModel.swift */; };
+		5CD27D7C2BF65A9F00B4559A /* GenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD27D7B2BF65A9F00B4559A /* GenderView.swift */; };
 		5CDA084E2B96E9EF001EBBEF /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA084D2B96E9EF001EBBEF /* Coordinator.swift */; };
 		5CDA08502B96EA62001EBBEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA084F2B96EA62001EBBEF /* AppDelegate.swift */; };
 		5CDA08522B96EA99001EBBEF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA08512B96EA99001EBBEF /* SceneDelegate.swift */; };
@@ -330,6 +331,7 @@
 		5CA670422BE4402A0030BF59 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		5CA670442BE455530030BF59 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		5CA670462BE455CD0030BF59 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		5CD27D7B2BF65A9F00B4559A /* GenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderView.swift; sourceTree = "<group>"; };
 		5CDA084D2B96E9EF001EBBEF /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		5CDA084F2B96EA62001EBBEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5CDA08512B96EA99001EBBEF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -558,6 +560,7 @@
 		5C4F4CF22BE80E440040FD9C /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				5CD27D7A2BF65A0100B4559A /* SubViews */,
 				5C4F4CF72BE80E880040FD9C /* ProfileView.swift */,
 				5C4F4CFB2BE832590040FD9C /* ProfileViewModel.swift */,
 			);
@@ -763,6 +766,14 @@
 			isa = PBXGroup;
 			children = (
 				5CA670402BE40D0D0030BF59 /* LoginButtonView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		5CD27D7A2BF65A0100B4559A /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				5CD27D7B2BF65A9F00B4559A /* GenderView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -1206,6 +1217,7 @@
 				12BE29222B2F958300049E36 /* HomeViewModel.swift in Sources */,
 				5CA670362BE3E4E20030BF59 /* AuthAssembly.swift in Sources */,
 				97BA53082B37022A0061DF1B /* SubCategoryCardView.swift in Sources */,
+				5CD27D7C2BF65A9F00B4559A /* GenderView.swift in Sources */,
 				12A2DE4A2B2FC1230027A253 /* Product.swift in Sources */,
 				5C4F4D1C2BE98EA00040FD9C /* SignUpSuccessViewModel.swift in Sources */,
 				121BD4E42B344B58000126C6 /* SearchBarView.swift in Sources */,
