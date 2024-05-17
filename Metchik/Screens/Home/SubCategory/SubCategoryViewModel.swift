@@ -57,4 +57,8 @@ extension SubCategoryViewModel {
     func subCategoryViewPressed(subCategory: String) {
         coordinator.showProductView(selectedCategory: category, selectedSubCategory: subCategory)
     }
+    
+    func showSearchView() {
+        coordinator.showSearchView()
+    }
 }

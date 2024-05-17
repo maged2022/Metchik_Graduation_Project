@@ -136,14 +136,11 @@ extension HomeView {
         }
     }
     var searchBarButton: some View {
-        ZStack {
+        Button(action: {
+            homeViewModel.showSearchView()
+        }) {
             SearchBarView(searchText: .constant(""))
-            Button(action: {
-                homeViewModel.showSearchView()
-            }) {
-                Color.clear
-            }
+                .disabled(true)
         }
-        .frame(height: 50)
     }
 }
