@@ -19,7 +19,7 @@ struct HomeView: View {
             if showWelcome {
                 headerView
             }
-            SearchBarView(searchText: .constant(""))
+            searchBarButton
             quickCategoryView
             
             contentScrollView
@@ -133,6 +133,14 @@ extension HomeView {
                 }
                 return Color.clear
             })
+        }
+    }
+    var searchBarButton: some View {
+        Button(action: {
+            homeViewModel.showSearchView()
+        }) {
+            SearchBarView(searchText: .constant(""))
+                .disabled(true)
         }
     }
 }

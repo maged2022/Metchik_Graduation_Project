@@ -12,8 +12,8 @@ struct SubCategoryView: View {
     var body: some View {
         ScrollView {
             VStack(spacing:0) {
-                SearchBarView(searchText: .constant("") )
-                    .padding(.vertical,20)
+                searchBarButton
+                  .padding(.vertical,20)
                 SubCategoryCardView()
             }
         }
@@ -34,6 +34,17 @@ struct CategoryView_Previews: PreviewProvider {
             if let subCategoryViewModel = DependencyManager.shared.sharedContainer.resolve(SubCategoryViewModel.self) {
                 SubCategoryView(subCategoryViewModel: subCategoryViewModel)
             }
+        }
+    }
+}
+
+extension SubCategoryView {
+    private var searchBarButton: some View {
+        Button(action: {
+            subCategoryViewModel.showSearchView()
+        }) {
+            SearchBarView(searchText: .constant(""))
+                .disabled(true)
         }
     }
 }

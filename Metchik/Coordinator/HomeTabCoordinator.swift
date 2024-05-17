@@ -17,6 +17,7 @@ protocol HomeTabCoordinatorProtocol: Coordinator {
     func showProfile()
     func showCart()
     func showTabBar()
+    func showSearchView()
 }
 
 class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
@@ -61,6 +62,14 @@ class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
         router.push(productViewController)
         tabBarCoordinator.hideTabBar()
 
+    }
+    
+    func showSearchView() {
+        let searchUseCase = SearchUseCase()
+        let searchViewModel = SearchViewModel(coordinator: self, searchUseCase: searchUseCase)
+        let searchViewController = UIHostingController(rootView: SearchView(viewModel: searchViewModel))
+        router.push(searchViewController)
+        tabBarCoordinator.hideTabBar()
     }
     
     func showDetails(product: Product) {
