@@ -27,9 +27,6 @@ struct CartProuctSectionView: View {
                 }
             }
         }
-        .onAppear {
-            viewModel.showTabBar()
-        }
     }
 }
 

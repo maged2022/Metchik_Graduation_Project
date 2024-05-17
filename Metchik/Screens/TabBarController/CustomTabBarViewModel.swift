@@ -14,10 +14,7 @@ protocol CustomTabBarViewModelInterface: AnyObject {
     
     var selectedTab: CustomTabBarType { get set }
     var selectedTabPublisher: Published<CustomTabBarType>.Publisher { get }
-    
-    var notifications: [Notification] { get set }
-    var notificationsPublisher: Published<[Notification]>.Publisher { get }
-    
+
     var viewControllers: [UIViewController] { get set }
     
 }
@@ -31,9 +28,6 @@ class CustomTabBarViewModel: ObservableObject, CustomTabBarViewModelInterface {
     
     @Published var selectedTab: CustomTabBarType = .home
     var selectedTabPublisher: Published<CustomTabBarType>.Publisher { $selectedTab }
-    
-    @Published var notifications: [Notification] = []
-    var notificationsPublisher: Published<[Notification]>.Publisher { $notifications }
     
     var viewControllers: [UIViewController] = []
 
