@@ -21,6 +21,8 @@ struct WishListViewCell: View {
                     .cornerRadius(10)
             } placeholder: {
                 ProgressView()
+                    .frame(width: 80,height: 80)
+                    .cornerRadius(10)
             }
             VStack(alignment: .leading,spacing: 2) {
                 Text(viewModel.product.name)

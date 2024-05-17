@@ -22,6 +22,8 @@ struct VirtualTryView: View {
                         .cornerRadius(8)
                 } placeholder: {
                     ProgressView()
+                        .frame(height: 180)
+                        .cornerRadius(8)
                 }
                 Image(uiImage: virtualTryViewModel.personImage)
                     .resizable()
