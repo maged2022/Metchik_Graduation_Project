@@ -52,6 +52,7 @@ struct CardSubCategoriesView: View {
                         .padding(.trailing, 20)
                 }
             }
+            .padding(.horizontal)
             HStack {
                 
                     ProductItemView(productItemViewModel: vmod.getProductItemViewModel(product: products[0]))

@@ -76,4 +76,8 @@ extension HomeViewModel {
     func showTabBar() {
         coordinator.showTabBar()
     }
+    
+    func showSearchView() {
+        coordinator.showSearchView()
+    }
 }

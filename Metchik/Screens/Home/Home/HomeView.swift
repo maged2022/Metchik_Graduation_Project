@@ -18,6 +18,9 @@ struct HomeView: View {
             headerView
             
             SearchBarView(searchText: .constant(""))
+                .onTapGesture {
+                    homeViewModel.showSearchView()
+                }
             quickCategoryView
             
             contentScrollView
