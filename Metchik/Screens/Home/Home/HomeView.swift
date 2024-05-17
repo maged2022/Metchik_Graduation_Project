@@ -19,10 +19,7 @@ struct HomeView: View {
             if showWelcome {
                 headerView
             }
-            SearchBarView(searchText: .constant(""))
-                .onTapGesture {
-                    homeViewModel.showSearchView()
-                }
+            searchBarButton
             quickCategoryView
             
             contentScrollView
@@ -137,5 +134,16 @@ extension HomeView {
                 return Color.clear
             })
         }
+    }
+    var searchBarButton: some View {
+        ZStack {
+            SearchBarView(searchText: .constant(""))
+            Button(action: {
+                homeViewModel.showSearchView()
+            }) {
+                Color.clear
+            }
+        }
+        .frame(height: 50)
     }
 }

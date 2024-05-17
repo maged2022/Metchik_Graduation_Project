@@ -34,14 +34,15 @@ class SearchUseCase: ObservableObject {
         .store(in: &cancellables)
     }
     
-    func filterProducts(by searchProductId: String) {
-        guard !searchProductId.isEmpty else {
+    func filterProducts(by searchText: String) {
+        guard !searchText.isEmpty else {
             self.products = productsLocal
             return
         }
         
         self.products =  productsLocal.filter { product  in
-            product.id.lowercased().contains(searchProductId.lowercased())
+            product.id.lowercased().contains(searchText.lowercased()) || product.name.lowercased().contains(searchText.lowercased())
+            
         }
     }
 }

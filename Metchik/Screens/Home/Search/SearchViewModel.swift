@@ -32,10 +32,6 @@ class SearchViewModel: ObservableObject {
             .sink { [weak self] searchText in
                 guard let self = self else { return }
                 self.searchUseCase.filterProducts(by: searchText)
-                
-                print("Before----------")
-                print("\(self.products)")
-                print("Before----------")
             }
             .store(in: &cancellables)
         
@@ -44,10 +40,6 @@ class SearchViewModel: ObservableObject {
             .sink(receiveValue: { [weak self] products in
                 guard let self = self else { return }
                 self.products = products
-                
-                print("After----------")
-                print("\(self.products)")
-                print("After----------")
             })
             .store(in: &cancellables)
     }
