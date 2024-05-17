@@ -26,7 +26,6 @@ class CustomTabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        viewModel.viewDidLoad()
         tabBar.isHidden = true
         viewControllers = viewModel.viewControllers
         setupEMTapBar()
@@ -58,14 +57,8 @@ class CustomTabBarViewController: UITabBarController {
         viewModel.tabBarIsHiddenPublisher
             .sink { [self] hidden in
                 self.tabBarConstraints?.bottom?.constant = hidden ? 100 : 0
-                
-                UIView.animate(withDuration: 0.5) {
-                    self.view.layoutIfNeeded()
-                    
-                    if !hidden {
-                        self.customTabBar.isHidden = hidden
-                    }
-                } completion: { _ in
+                self.view.layoutIfNeeded()
+                if !hidden {
                     self.customTabBar.isHidden = hidden
                 }
                 

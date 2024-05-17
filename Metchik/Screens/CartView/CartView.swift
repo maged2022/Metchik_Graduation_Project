@@ -29,6 +29,9 @@ struct CartView: View {
         .padding(25)
         .background(Colors.backgroundScreenColor.swiftUIColor )
         .environmentObject(viewModel)
+        .onAppear {
+            viewModel.showTabBar()
+        }
 
     }
     

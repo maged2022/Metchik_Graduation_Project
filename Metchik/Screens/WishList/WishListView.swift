@@ -28,6 +28,9 @@ struct WishListView: View {
                 }
             }
         }
+        .onAppear {
+            viewModel.showTabBar()
+        }
     }
 }
 

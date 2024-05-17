@@ -10,31 +10,31 @@ import SwiftUI
 struct HomeView: View {
     
     @StateObject var homeViewModel: HomeViewModel
-    @State private var offset = CGFloat.zero
+    @State private var showWelcome = true
     @State private var showQuickCategoryView = false
-    let height: CGFloat = 70
+    let height: CGFloat = 80
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            headerView
-            
+            Spacer().frame(height: 1)
+            if showWelcome {
+                headerView
+            }
             SearchBarView(searchText: .constant(""))
             quickCategoryView
             
             contentScrollView
         }
-        .offset(CGSize(width: 0,height: (offset < height) ? (offset > -1 ) ? -offset : 0  : -height))
-        // .animation(.spring())
+        .padding(.leading)
         .background(Asset.Colors.backgroundScreenColor.swiftUIColor
             .ignoresSafeArea())
         .navigationBarItems(
             leading: leadingNavigationButton
             ,trailing: trailingNavigationButton )
         .environmentObject(homeViewModel)
-        .onAppear {showCategory() }
         .onAppear {
+            showCategory()
             homeViewModel.showTabBar()
         }
-        .padding(.leading)
     }
 }
 
@@ -79,20 +79,14 @@ extension HomeView {
     }
     
     private var headerView: some View {
-        HStack {
-            VStack(alignment:.leading, spacing: 5) {
-                Spacer().frame(height: 15)
-                Text("Welcome,")
-                    .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
-                    .font(.poppins(.bold, size: 25))
-                Text("Our Fashions App")
-                    .foregroundStyle(Asset.Colors.secondaryLabelColor.swiftUIColor)
-                    .font(.poppins(.bold, size: 20))
-            }
-            Spacer()
+        VStack(alignment:.leading, spacing: 5) {
+            Text("Welcome,")
+                .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
+                .font(.poppins(.bold, size: 25))
+            Text("Our Fashions App")
+                .foregroundStyle(Asset.Colors.secondaryLabelColor.swiftUIColor)
+                .font(.poppins(.bold, size: 20))
         }
-        .offset(getNewHeaderOffset())
-        .scaleEffect(getNewHeaderScale())
     }
     
     private var quickCategoryView: some View {
@@ -121,43 +115,24 @@ extension HomeView {
     }
     
     private var contentScrollView: some View {
-            ScrollView(.vertical, showsIndicators: false) {
-                
+        ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing:25) {
                 OffersView()
                 QuickSubCategoryView()
             }
             .background(GeometryReader { proxy -> Color in
+                let offset = proxy.frame(in: .named("scroll")).origin.y - 291
                 DispatchQueue.main.async {
-                    offset = -proxy.frame(in: .named("scroll")).origin.y
-                    if offset < -1 {
+                    if offset > 30 {
                         showCategory()
+                    } else if offset < -height {
+                        self.showWelcome = false
+                    } else if offset > -height {
+                        self.showWelcome = true
                     }
                 }
                 return Color.clear
             })
         }
-    }
-    
-    func getNewHeaderOffset() -> CGSize {
-        let newOffset = -offset
-        if newOffset > 0 {
-            return CGSize(width: 0, height: 0)
-        } else if newOffset > -height {
-            return CGSize(width: newOffset*4 , height: offset)
-        }
-        return CGSize(width: 0, height: 0)
-    }
-    
-    func getNewHeaderScale() -> CGSize {
-        let newOffset = offset
-        if newOffset < 0 {
-            return CGSize(width: 1, height: 1)
-        } else if newOffset + 10 < height {
-            return CGSize(
-                width: 1 - newOffset / height,
-                height: 1 - newOffset / height)
-        }
-        return CGSize(width: 0, height: 0)
     }
 }

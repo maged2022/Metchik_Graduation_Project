@@ -49,7 +49,6 @@ struct SearchBarView: View {
                 
             }
         }
-        .padding(.vertical)
         
     }
 }
