@@ -13,7 +13,9 @@ struct SearchView: View {
     
     var body: some View {
         VStack {
-            SearchBarView(searchText: $viewModel.searchText)
+            SearchBarView(searchText: $viewModel.searchText, filterButtonClicked: {
+                print("Filter Button Clicked 😎")
+            })
                 .padding()
             // Grid layout to display products
             ScrollView {

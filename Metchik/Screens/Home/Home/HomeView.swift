@@ -139,7 +139,7 @@ extension HomeView {
         Button(action: {
             homeViewModel.showSearchView()
         }) {
-            SearchBarView(searchText: .constant(""))
+            SearchBarView(searchText: .constant(""), filterButtonClicked: {})
                 .disabled(true)
         }
     }

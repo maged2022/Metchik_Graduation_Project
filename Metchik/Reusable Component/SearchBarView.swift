@@ -11,6 +11,7 @@ struct SearchBarView: View {
     typealias Colors = Asset.Colors
     @Binding var searchText: String
     var placeholder: String = "Search..."
+    let filterButtonClicked: () -> ()
     
     var body: some View {
         HStack {
@@ -33,7 +34,7 @@ struct SearchBarView: View {
             .cornerRadius(30)
             if true {
                 Button {
-                    
+                    filterButtonClicked()
                 } label: {
                     Circle()
                         .fill(.black)
@@ -55,6 +56,6 @@ struct SearchBarView: View {
 
 struct SearchBarView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBarView(searchText: .constant(""))
+        SearchBarView(searchText: .constant(""), filterButtonClicked: {})
     }
 }

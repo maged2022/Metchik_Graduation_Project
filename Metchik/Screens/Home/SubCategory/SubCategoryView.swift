@@ -43,7 +43,7 @@ extension SubCategoryView {
         Button(action: {
             subCategoryViewModel.showSearchView()
         }) {
-            SearchBarView(searchText: .constant(""))
+            SearchBarView(searchText: .constant(""), filterButtonClicked: {})
                 .disabled(true)
         }
     }
