@@ -36,7 +36,7 @@ struct FilterView: View {
                     spacing: 20
                 ) {
                     ForEach(viewModel.categories, id: \.self) { category in
-                        CategoryButton(category: category, isSelected: selectedItem == category) {
+                        CategoryButton(category: category, isSelected: selectedItem == category, padding: 14) {
                             print("\(category) button clicked")
                             selectedItem = category
                         }
@@ -63,7 +63,7 @@ struct FilterView: View {
             
             HStack {
                 ForEach(dayList, id: \.self) { day in
-                    CategoryButton(category: day, isSelected: dayListSelected == day) {
+                    CategoryButton(category: day, isSelected: dayListSelected == day, padding: 14) {
                         print("\(day) button Clicked")
                         dayListSelected = day
                     }
@@ -78,15 +78,15 @@ struct FilterView: View {
                 Spacer()
             }
             
-            VStack {
+            VStack(spacing: 20) {
                 ForEach((2..<6).reversed(), id: \.self) { index in
                     StarView(rating: Double(index), numberOfStars: index, sizeOfStar: 20, starButtonClicked: {})
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
+            .padding(.horizontal,10)
             
-            
-            CategoryButton(category: "Apply Now", isSelected: true) {
+            CategoryButton(category: "Apply Now", isSelected: true, padding: 50) {
                 print("button Clickd")
             }
             

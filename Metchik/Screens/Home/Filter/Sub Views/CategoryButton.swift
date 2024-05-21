@@ -9,8 +9,9 @@ import SwiftUI
 
 
 struct CategoryButton: View {
-    var category: String
-    var isSelected: Bool
+    let category: String
+    let isSelected: Bool
+    let padding: CGFloat
     var onTap: () -> Void
     
     typealias Colors = Asset.Colors
@@ -22,7 +23,7 @@ struct CategoryButton: View {
                 isSelected ? Colors.primaryButtonColor.swiftUIColor : Colors.secondaryButtonColor.swiftUIColor
             )
             .frame(height: 30)
-            .padding(.horizontal, 14)
+            .padding(.horizontal, padding)
             .background(capsuleBackground)
             .onTapGesture {
                 onTap()
@@ -41,6 +42,6 @@ struct CategoryButton: View {
 
 struct CategoryButton_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryButton(category: "Dresses", isSelected: true, onTap: {})
+        CategoryButton(category: "Dresses", isSelected: true, padding: 14, onTap: {})
     }
 }
