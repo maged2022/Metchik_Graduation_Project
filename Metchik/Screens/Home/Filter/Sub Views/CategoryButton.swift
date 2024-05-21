@@ -12,7 +12,7 @@ struct CategoryButton: View {
     var category: String
     var isSelected: Bool
     var onTap: () -> Void
-
+    
     typealias Colors = Asset.Colors
     
     var body: some View {
@@ -21,7 +21,8 @@ struct CategoryButton: View {
             .foregroundColor(
                 isSelected ? Colors.primaryButtonColor.swiftUIColor : Colors.secondaryButtonColor.swiftUIColor
             )
-            .frame(width: 80, height: 30)
+            .frame(height: 30)
+            .padding(.horizontal, 14)
             .background(capsuleBackground)
             .onTapGesture {
                 onTap()
@@ -32,7 +33,7 @@ struct CategoryButton: View {
         if isSelected {
             return AnyView(Capsule().fill(Color.black))
         } else {
-            return AnyView(Capsule().stroke(Colors.borderCategoryColor.swiftUIColor, lineWidth: 2))
+            return AnyView(Capsule().stroke(Colors.borderCategoryColor.swiftUIColor, lineWidth: 1))
         }
     }
 }
@@ -40,6 +41,6 @@ struct CategoryButton: View {
 
 struct CategoryButton_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryButton(category: "Category 1", isSelected: true, onTap: {})
+        CategoryButton(category: "Dresses", isSelected: true, onTap: {})
     }
 }

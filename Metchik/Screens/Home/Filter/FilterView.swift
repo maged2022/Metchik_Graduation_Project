@@ -16,7 +16,7 @@ struct FilterView: View {
         VStack {
             HStack {
                 Text("Categories")
-                    .font(.poppins(.black, size: 16))
+                    .font(.poppins(.bold, size: 20))
                 Spacer()
             }
             
