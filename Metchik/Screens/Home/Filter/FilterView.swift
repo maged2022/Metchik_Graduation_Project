@@ -86,7 +86,7 @@ struct FilterView: View {
             }
             .padding(.horizontal,10)
             
-            CategoryButton(category: "Apply Now", isSelected: true, padding: 50) {
+            CategoryButton(category: "Apply Now", isSelected: true, padding: 100) {
                 print("button Clickd")
             }
             
