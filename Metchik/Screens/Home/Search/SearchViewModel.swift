@@ -46,8 +46,7 @@ class SearchViewModel: ObservableObject {
 }
 
 extension SearchViewModel {
-    func showSearchView() {
-        coordinator.showSearchView()
+    func showFilterView() {
+        coordinator.showFilterView()
     }
-    
 }

@@ -15,8 +15,9 @@ struct SearchView: View {
         VStack {
             SearchBarView(searchText: $viewModel.searchText, filterButtonClicked: {
                 print("Filter Button Clicked 😎")
+                viewModel.showFilterView()
             })
-                .padding()
+            .padding()
             // Grid layout to display products
             ScrollView {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
