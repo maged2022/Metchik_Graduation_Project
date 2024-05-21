@@ -74,8 +74,24 @@ struct FilterView: View {
             HStack {
                 Text("Rating")
                     .font(.poppins(.bold, size: 20))
+                
                 Spacer()
             }
+            
+            VStack {
+                ForEach((2..<6).reversed(), id: \.self) { index in
+                    StarView(rating: Double(index), numberOfStars: index, sizeOfStar: 20, starButtonClicked: {})
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
+            
+            
+            CategoryButton(category: "Apply Now", isSelected: true) {
+                print("button Clickd")
+            }
+            
+            
+            
             
             Spacer()
         }
