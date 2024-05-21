@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct FilterView: View {
-    let categories = ["Category 1", "Category 2", "Category 3", "Category 4",
-                      "Category 5", "Category 6", "Category 7", "Category 8",
-                      "Category 9", "Category 10", "Category 11", "Category 12"]
-    
+  
+    let spacingBetweenColumns: CGFloat = 5
+    let viewModel: FilterViewModel = FilterViewModel()
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             HStack {
                 Text("Categories")
                     .font(.poppins(.bold, size: 20))
@@ -22,20 +21,26 @@ struct FilterView: View {
             
             
             ScrollView {
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
-                    ForEach(categories, id: \.self) { category in
+                LazyVGrid(
+                    columns: [
+                        GridItem(.flexible(), spacing: spacingBetweenColumns),
+                        GridItem(.flexible(), spacing: spacingBetweenColumns),
+                        GridItem(.flexible(), spacing: spacingBetweenColumns),
+                        GridItem(.flexible(), spacing: spacingBetweenColumns)
+                    ],
+                    spacing: 20
+                ) {
+                    ForEach(viewModel.categories, id: \.self) { category in
                         CategoryButton(category: category, isSelected: false) {
                             print("\(category) button clicked")
                         }
                     }
                 }
-               
             }
         }
-        .padding()
+        .padding(.horizontal, 10)
     }
 }
-
 struct FilterView_Previews: PreviewProvider {
     static var previews: some View {
         FilterView()
