@@ -14,41 +14,30 @@ struct FilterView: View {
     
     var body: some View {
         VStack {
-            Text("Categories")
-                .font(.poppins(.bold, size: 16))
+            HStack {
+                Text("Categories")
+                    .font(.poppins(.black, size: 16))
+                Spacer()
+            }
+            
             
             ScrollView {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
                     ForEach(categories, id: \.self) { category in
-                        CategoryButton(category: category)
+                        CategoryButton(category: category, isSelected: false) {
+                            print("\(category) button clicked")
+                        }
                     }
                 }
-                .background(.red)
-                .padding()
+               
             }
         }
+        .padding()
     }
 }
 
 struct FilterView_Previews: PreviewProvider {
     static var previews: some View {
         FilterView()
-    }
-}
-
-
-import SwiftUI
-
-struct CategoryButton: View {
-    var category: String
-    
-    var body: some View {
-        Text(category)
-            .padding()
-            .frame(maxWidth: .infinity)
-            .background(Color.blue)
-            .foregroundColor(.white)
-            .clipShape(Capsule())
-            .shadow(radius: 5)
     }
 }
