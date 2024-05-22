@@ -40,7 +40,7 @@ struct FilterView: View {
                         spacing: 20
                     ) {
                         ForEach(viewModel.categories, id: \.self) { category in
-                            CategoryButton(category: category, isSelected: selectedItem == category, padding: 14) {
+                            CapsuleButton(category: category, isSelected: selectedItem == category, padding: 14) {
                                 print("\(category) button clicked")
                                 selectedItem = category
                             }
@@ -76,7 +76,7 @@ struct FilterView: View {
                 
                 HStack {
                     ForEach(dayList, id: \.self) { day in
-                        CategoryButton(category: day, isSelected: dayListSelected == day, padding: 14) {
+                        CapsuleButton(category: day, isSelected: dayListSelected == day, padding: 14) {
                             print("\(day) button Clicked")
                             dayListSelected = day
                         }
@@ -105,7 +105,7 @@ struct FilterView: View {
             }
         
             
-            CategoryButton(category: "Apply Now", isSelected: true, padding: 100) {
+            CapsuleButton(category: "Apply Now", isSelected: true, padding: 100) {
                 print("button Clickd")
             }
             .padding(.top, 8)
