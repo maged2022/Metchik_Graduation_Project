@@ -68,12 +68,14 @@ struct CustomSlider: View {
                         )
                 }
                 HStack () {
-                    Text("0$")
+                    Text("$0")
                     Spacer()
-                    Text("750$")
+                    Text("$750")
+                        .foregroundColor(.black)
                     Spacer()
-                    Text("1750$")
+                    Text("$1750")
                 }
+                .foregroundColor(.gray)
                 .padding(.horizontal, 10)
             }
         }
