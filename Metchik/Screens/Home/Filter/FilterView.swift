@@ -18,73 +18,92 @@ struct FilterView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 20){
-            HStack {
-                Text("Categories")
-                    .font(.poppins(.bold, size: 20))
-                Spacer()
+            
+            Spacer().frame(height: 30)
+            VStack {
+                HStack {
+                    Text("Categories")
+                        .font(.poppins(.bold, size: 20))
+                    Spacer()
+                }
+                .padding(.horizontal, 5)
+                
+                
+                ScrollView {
+                    LazyVGrid(
+                        columns: [
+                            GridItem(.flexible(), spacing: spacingBetweenColumns),
+                            GridItem(.flexible(), spacing: spacingBetweenColumns),
+                            GridItem(.flexible(), spacing: spacingBetweenColumns),
+                            GridItem(.flexible(), spacing: spacingBetweenColumns)
+                        ],
+                        spacing: 20
+                    ) {
+                        ForEach(viewModel.categories, id: \.self) { category in
+                            CategoryButton(category: category, isSelected: selectedItem == category, padding: 14) {
+                                print("\(category) button clicked")
+                                selectedItem = category
+                            }
+                        }
+                    }
+                }
+                .frame(height: 140 )
             }
+         
+            
+            // Price Range Section
+            VStack(spacing: 50) {
+                HStack {
+                    Text("Price Range")
+                        .font(.poppins(.bold, size: 20))
+                    Spacer()
+                }
+                .padding(.horizontal)
+                
+                CustomSlider()
+            }
+           
             
             
-            ScrollView {
-                LazyVGrid(
-                    columns: [
-                        GridItem(.flexible(), spacing: spacingBetweenColumns),
-                        GridItem(.flexible(), spacing: spacingBetweenColumns),
-                        GridItem(.flexible(), spacing: spacingBetweenColumns),
-                        GridItem(.flexible(), spacing: spacingBetweenColumns)
-                    ],
-                    spacing: 20
-                ) {
-                    ForEach(viewModel.categories, id: \.self) { category in
-                        CategoryButton(category: category, isSelected: selectedItem == category, padding: 14) {
-                            print("\(category) button clicked")
-                            selectedItem = category
+            // Sort by Section
+            VStack {
+                HStack {
+                    Text("Sort By")
+                        .font(.poppins(.bold, size: 20))
+                    Spacer()
+                }
+                .padding(.horizontal)
+                
+                HStack {
+                    ForEach(dayList, id: \.self) { day in
+                        CategoryButton(category: day, isSelected: dayListSelected == day, padding: 14) {
+                            print("\(day) button Clicked")
+                            dayListSelected = day
                         }
                     }
                 }
             }
-            .frame(height: 140 )
-            
-            
-            // Price Range Section
-            HStack {
-                Text("Price Range")
-                    .font(.poppins(.bold, size: 20))
-                Spacer()
-            }
-            
-            
-            // Sort by Section
-            HStack {
-                Text("Sort By")
-                    .font(.poppins(.bold, size: 20))
-                Spacer()
-            }
-            
-            HStack {
-                ForEach(dayList, id: \.self) { day in
-                    CategoryButton(category: day, isSelected: dayListSelected == day, padding: 14) {
-                        print("\(day) button Clicked")
-                        dayListSelected = day
-                    }
-                }
-            }
+        
             
             // Rating Section
-            HStack {
-                Text("Rating")
-                    .font(.poppins(.bold, size: 20))
-                
-                Spacer()
-            }
-            
-            VStack(spacing: 20) {
-                ForEach((2..<6).reversed(), id: \.self) { index in
-                    StarView(rating: Double(index), numberOfStars: index, sizeOfStar: 20, starButtonClicked: {})
-                        .frame(maxWidth: .infinity, alignment: .leading)
+            VStack {
+                HStack {
+                    Text("Rating")
+                        .font(.poppins(.bold, size: 20))
+                    
+                    Spacer()
                 }
+                .padding(.horizontal)
+                
+                VStack(spacing: 20) {
+                    ForEach((2..<6).reversed(), id: \.self) { index in
+                        StarView(rating: Double(index), numberOfStars: index, sizeOfStar: 20, starButtonClicked: {})
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                }
+                .padding(.horizontal)
             }
-            .padding(.horizontal,10)
+        
             
             CategoryButton(category: "Apply Now", isSelected: true, padding: 100) {
                 print("button Clickd")
