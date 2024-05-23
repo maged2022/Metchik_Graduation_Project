@@ -25,8 +25,8 @@ class SearchViewModel: ObservableObject {
         
     }
     
-    func applyPriceFilter() {
-        // Implement your price filter logic here
+    func sortProductsByPrice() {
+        searchUseCase.sortProductsByPrice()
         showFilterOptions = false
     }
     

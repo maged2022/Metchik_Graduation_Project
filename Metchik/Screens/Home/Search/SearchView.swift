@@ -55,7 +55,7 @@ struct filterViewOptions: View {
     var body: some View {
         VStack(spacing: 20) {
             Button("Price Filter") {
-                viewModel.applyPriceFilter()
+                viewModel.sortProductsByPrice()
             }
             Button("Other Filter") {
                 viewModel.showFilterView()
