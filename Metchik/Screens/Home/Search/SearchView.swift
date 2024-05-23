@@ -33,7 +33,7 @@ struct SearchView: View {
                 VStack {
                     Spacer().frame(height: 70)
                     
-                    filterViewOptions(viewModel: viewModel)
+                    FilterOptionsView(viewModel: viewModel)
                         .background(Color.white)
                         .cornerRadius(20)
                         .shadow(radius: 10)
@@ -45,25 +45,5 @@ struct SearchView: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
             }
         }
-    }
-}
-
-struct filterViewOptions: View {
-    
-    @ObservedObject var viewModel: SearchViewModel
-    
-    var body: some View {
-        VStack(spacing: 20) {
-            Button("Price Filter") {
-                viewModel.sortProductsByPrice()
-            }
-            Button("Other Filter") {
-                viewModel.showFilterView()
-            }
-            Button("Cancel") {
-                viewModel.showFilterOptions = false
-            }
-        }
-        .padding()
     }
 }
