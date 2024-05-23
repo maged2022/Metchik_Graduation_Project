@@ -54,6 +54,10 @@ class SearchUseCase: ObservableObject {
             return isCategoryMatch || isSubCategoryMatch || isNameMatch || isDescriptionMatch
         }
     }
+    
+    func sortProductsByPrice() {
+        self.products = self.products.sorted { $0.price < $1.price }
+    }
 }
 
 extension String {
