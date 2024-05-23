@@ -8,7 +8,7 @@ struct SearchView: View {
         ZStack {
             VStack {
                 SearchBarView(searchText: $viewModel.searchText, filterButtonClicked: {
-                    viewModel.showFilterViewOptions()
+                    viewModel.showFilterOptions = true
                 })
                 .padding()
                 

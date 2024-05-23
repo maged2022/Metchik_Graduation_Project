@@ -24,9 +24,6 @@ class SearchViewModel: ObservableObject {
         subscribe()
         
     }
-    func showFilterViewOptions() {
-        showFilterOptions = true
-    }
     
     func applyPriceFilter() {
         // Implement your price filter logic here
