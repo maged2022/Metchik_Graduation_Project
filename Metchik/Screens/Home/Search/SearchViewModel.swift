@@ -16,12 +16,21 @@ class SearchViewModel: ObservableObject {
     let coordinator: HomeTabCoordinatorProtocol
     private var searchUseCase: SearchUseCase
     private var cancellables = Set<AnyCancellable>()
+    @Published var showFilterOptions: Bool = false
     
     init(coordinator: HomeTabCoordinator, searchUseCase: SearchUseCase) {
         self.searchUseCase = searchUseCase
         self.coordinator = coordinator
         subscribe()
         
+    }
+    func showFilterViewOptions() {
+        showFilterOptions = true
+    }
+    
+    func applyPriceFilter() {
+        // Implement your price filter logic here
+        showFilterOptions = false
     }
     
     private func subscribe() {
@@ -48,5 +57,6 @@ class SearchViewModel: ObservableObject {
 extension SearchViewModel {
     func showFilterView() {
         coordinator.showFilterView()
+        showFilterOptions = false
     }
 }
