@@ -34,7 +34,7 @@ struct SearchView: View {
                     Spacer().frame(height: 70)
                     
                     FilterOptionsView(viewModel: viewModel)
-                        .background(Color.white)
+                        .background(Color.black)
                         .cornerRadius(20)
                         .shadow(radius: 10)
                         .padding(.trailing,5)

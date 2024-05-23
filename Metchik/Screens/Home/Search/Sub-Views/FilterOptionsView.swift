@@ -23,6 +23,9 @@ struct FilterOptionsView: View {
                 viewModel.showFilterOptions = false
             }
         }
+        .foregroundColor(.white)
+        .font(.poppins(.extraBold, size: 15))
+        .background(.black)
         .padding()
     }
 }
