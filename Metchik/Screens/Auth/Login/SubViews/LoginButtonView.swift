@@ -73,13 +73,14 @@ struct LoginButtonView: View {
 
             }
         }
-        .alert(isPresented: $viewModel.showAlert) {
-            Alert(
-                title: Text("Error"),
-                message: Text(viewModel.alertMessage),
-                dismissButton: .default(Text("OK"))
-            )
-        }
+        .popup(isPresented: viewModel.showAlert, content: {
+            SnackBar(title: "Error!",
+                     message: viewModel.alertMessage,
+                     buttonTitle: "OK",
+                     onClick: {
+                viewModel.showAlert = false
+            })
+        })
     }
 }
 
