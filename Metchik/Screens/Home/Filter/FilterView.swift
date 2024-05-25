@@ -17,7 +17,7 @@ struct FilterView: View {
     @State var dayListSelected = "New Today"
     
     var body: some View {
-        VStack(alignment: .center, spacing: 20){
+        VStack(alignment: .center, spacing: 20) {
             
             Spacer().frame(height: 30)
             VStack {
@@ -27,7 +27,6 @@ struct FilterView: View {
                     Spacer()
                 }
                 .padding(.horizontal, 5)
-                
                 
                 ScrollView {
                     LazyVGrid(
@@ -50,7 +49,6 @@ struct FilterView: View {
                 .frame(height: 140 )
             }
          
-            
             // Price Range Section
             VStack(spacing: 50) {
                 HStack {
@@ -62,9 +60,7 @@ struct FilterView: View {
                 
                 CustomSlider()
             }
-           
-            
-            
+               
             // Sort by Section
             VStack {
                 HStack {
@@ -83,8 +79,7 @@ struct FilterView: View {
                     }
                 }
             }
-        
-            
+              
             // Rating Section
             VStack {
                 HStack {
@@ -104,15 +99,11 @@ struct FilterView: View {
                 .padding(.horizontal)
             }
         
-            
             CapsuleButton(category: "Apply Now", isSelected: true, padding: 100) {
                 print("button Clickd")
             }
             .padding(.top, 8)
-            
-            
-            
-            
+ 
             Spacer()
         }
         .padding(.horizontal, 10)

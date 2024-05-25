@@ -8,5 +8,18 @@
 import Foundation
 
 class FilterViewModel {
-    let categories = ["Dresses", "Jackets", "Jeans","Shoses", "Bags", "Clothes", "Panatoln", "Shorts", "Tops", "Sneakers", "Cats", "Lingeny" ]
+    let categories = [
+        "Dresses",
+        "Jackets",
+        "Jeans",
+        "Shoses",
+        "Bags",
+        "Clothes",
+        "Panatoln",
+        "Shorts",
+        "Tops",
+        "Sneakers",
+        "Cats",
+        "Lingeny"
+    ]
 }

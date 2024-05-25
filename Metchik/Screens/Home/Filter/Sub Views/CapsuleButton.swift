@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct CapsuleButton: View {
     let category: String
     let isSelected: Bool
@@ -40,7 +39,6 @@ struct CapsuleButton: View {
         }
     }
 }
-
 
 struct CategoryButton_Previews: PreviewProvider {
     static var previews: some View {

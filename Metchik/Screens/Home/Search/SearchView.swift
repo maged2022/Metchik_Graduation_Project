@@ -16,7 +16,12 @@ struct SearchView: View {
                 ScrollView {
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
                         ForEach(viewModel.products) { product in
-                            ProductItemView(productItemViewModel: ProductItemViewModel(product: product, coordinator: viewModel.coordinator))
+                            ProductItemView(
+                                productItemViewModel: ProductItemViewModel(
+                                    product: product,
+                                    coordinator: viewModel.coordinator
+                                )
+                            )
                         }
                     }
                     .padding(.top, 6)

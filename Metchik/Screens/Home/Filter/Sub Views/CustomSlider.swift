@@ -32,7 +32,6 @@ struct CustomSlider: View {
                         .padding(.horizontal, 20)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         
-
                     // Lower Thumb
                     Circle()
                         .fill(Color.white)
@@ -67,7 +66,7 @@ struct CustomSlider: View {
                                 }
                         )
                 }
-                HStack () {
+                HStack {
                     Text("$0")
                     Spacer()
                     Text("$750")
