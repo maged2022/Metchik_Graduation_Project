@@ -53,6 +53,14 @@ struct ProductDetailView: View {
         .onDisappear {
             productDetailViewModel.productDetailOnDisapear()
         }
+        .popup(isPresented: productDetailViewModel.showAlert, content: {
+            SnackBar(title: "Error!",
+                     message: productDetailViewModel.alertMessage,
+                     buttonTitle: "OK",
+                     onClick: {
+                productDetailViewModel.showAlert = false
+            })
+        })
     }
 }
 

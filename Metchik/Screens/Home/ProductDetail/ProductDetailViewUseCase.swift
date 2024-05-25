@@ -36,7 +36,9 @@ class ProductDetailViewUseCase {
     @Published var availableColors: [Color] = []
     @Published var maxAvailableProduct: Int = 1
     @Published var currentStepperValue: Int = 1
-
+    @Published var showAlert = false
+    @Published var alertMessage: String = "error"
+    
     init (product:Product) {
         self.product = product
         self.productPulish = self.product
@@ -45,7 +47,7 @@ class ProductDetailViewUseCase {
     }
 
 }
-// Mark:- productDetailUseCase
+// MARk:- productDetailUseCase
 extension ProductDetailViewUseCase {
     
     func fetchProductDetail(by id : String) {
@@ -58,7 +60,8 @@ extension ProductDetailViewUseCase {
             case .success(let productDetail):
                 self?.productDetail = productDetail
             case .failure(let failure):
-                print("productDetailUseCase.productDetailPublisher.sink ")
+                self?.showAlert = true
+                self?.alertMessage = failure.description
             }
         }.store(in: &cancellables)
         
@@ -102,7 +105,7 @@ extension ProductDetailViewUseCase {
     }
 }
 
-// Mark:- CartUseCase
+// MARk:- CartUseCase
 extension ProductDetailViewUseCase {
 
     func addToCart() {
@@ -116,31 +119,33 @@ extension ProductDetailViewUseCase {
     
 }
 
-// Mark:- FavoriteUseCase
+// MARk:- FavoriteUseCase
 extension ProductDetailViewUseCase {
 
     func bindFavoriteValue() {
-        wishListUseCase.wishListProductsPublisher.sink { result in
+        wishListUseCase.wishListProductsPublisher.sink {[weak self] result in
             switch result {
             case .success(let success):
                 DispatchQueue.main.async {
-                    let state = success.filter({ $0.productID == self.product.id}).isEmpty
-                    self.productPulish.isFavorite = !state
+                    let state = success.filter({ $0.productID == self?.product.id}).isEmpty
+                    self?.productPulish.isFavorite = !state
                 }
             case .failure(let failure):
-                print(failure)
+                self?.showAlert = true
+                self?.alertMessage = failure.description
             }
         }
         .store(in: &cancellables)
     }
     
     func favoriteButtonPressed() {
-        wishListUseCase.favoriteButtonPressed( productID: product.id) { result in
+        wishListUseCase.favoriteButtonPressed( productID: product.id) {[weak self] result in
             switch result {
             case .success:
-                self.wishListUseCase.updateWishListProducts()
+                self?.wishListUseCase.updateWishListProducts()
             case .failure(let failure):
-                print(failure)
+                self?.showAlert = true
+                self?.alertMessage = failure.description
             }
         }
     }

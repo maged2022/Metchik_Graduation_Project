@@ -66,6 +66,14 @@ struct ProductItemView: View {
         .background(Color.white)
         .cornerRadius(10)
         .shadow(radius: 5)
+        .popup(isPresented: productItemViewModel.showAlert, content: {
+            SnackBar(title: "Error!",
+                     message: productItemViewModel.alertMessage,
+                     buttonTitle: "OK",
+                     onClick: {
+                productItemViewModel.showAlert = false
+            })
+        })
     }
 }
 

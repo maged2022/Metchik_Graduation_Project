@@ -36,6 +36,8 @@ class ProductDetailViewModel: ObservableObject {
             productDetailViewUseCase.updateCurrentStepperValue(value: currentStepperValue)
         }
     }
+    @Published var showAlert = false
+    @Published var alertMessage: String = "error"
     
     init(product: Product, coordinator: HomeTabCoordinatorProtocol) {
         self.product = product
@@ -69,6 +71,12 @@ class ProductDetailViewModel: ObservableObject {
         productDetailViewUseCase.$productPulish
             .receive(on: DispatchQueue.main)
             .assign(to: &$product)
+        productDetailViewUseCase.$showAlert
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$showAlert)  
+        productDetailViewUseCase.$alertMessage
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$alertMessage)
     }
     
     func favoriteButtonPressed() {
