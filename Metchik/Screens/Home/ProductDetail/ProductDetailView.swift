@@ -50,6 +50,9 @@ struct ProductDetailView: View {
             trailing:
                 CartButtonView(cartViewModel: productDetailViewModel.getCartButtonViewModel())
         )
+        .onDisappear {
+            productDetailViewModel.productDetailOnDisapear()
+        }
     }
 }
 

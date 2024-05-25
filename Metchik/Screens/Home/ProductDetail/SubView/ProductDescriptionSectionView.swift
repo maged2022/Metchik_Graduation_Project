@@ -18,7 +18,7 @@ struct ProductDescriptionSectionView: View {
                 .font(.poppins(.semiBold, size: 16))
                 .foregroundColor(Colors.primaryLabelColor.swiftUIColor)
             
-            Text(viewModel.productDetail.description)
+            Text(viewModel.productDetail?.description ?? "????")
             .font(.poppins(.regular, size: 11))
             .foregroundColor(Colors.secondaryLabelColor.swiftUIColor)
         }

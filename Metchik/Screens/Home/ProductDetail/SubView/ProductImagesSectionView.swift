@@ -14,8 +14,8 @@ struct ProductImagesSectionView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             TabView(selection: $currentPage) {
-                ForEach(viewModel.productDetail.images.indices, id: \.self) { index in
-                    AsyncImage(url: viewModel.productDetail.images[index]) { image in
+                ForEach(viewModel.productDetail?.images.indices ?? 1..<2, id: \.self) { index in
+                    AsyncImage(url: viewModel.productDetail?.images[index]) { image in
                         image
                             .resizable()
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -32,7 +32,7 @@ struct ProductImagesSectionView: View {
             // Custom pagination indicator
             VStack {
                 HStack(spacing: 13) {
-                    ForEach(viewModel.productDetail.images.indices, id: \.self) { index in
+                    ForEach(viewModel.productDetail?.images.indices ?? 1..<2, id: \.self) { index in
                         Circle()
                             .frame(width: 7, height: 7)
                             .foregroundColor(.white)
