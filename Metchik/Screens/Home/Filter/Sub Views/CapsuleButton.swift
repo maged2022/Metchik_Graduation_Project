@@ -11,6 +11,7 @@ struct CapsuleButton: View {
     let title: String
     let isSelected: Bool
     let horizontalPadding: CGFloat
+    let height: CGFloat 
     var onTap: () -> Void
     
     typealias Colors = Asset.Colors
@@ -21,7 +22,7 @@ struct CapsuleButton: View {
             .foregroundColor(
                 isSelected ? Colors.primaryButtonColor.swiftUIColor : Colors.secondaryButtonColor.swiftUIColor
             )
-            .frame(height: 30)
+            .frame(height: height)
             .lineLimit(1)
             .minimumScaleFactor(0.5)
             .padding(.horizontal, horizontalPadding)
@@ -42,6 +43,6 @@ struct CapsuleButton: View {
 
 struct CategoryButton_Previews: PreviewProvider {
     static var previews: some View {
-        CapsuleButton(title: "Dresses", isSelected: true, horizontalPadding: 14, onTap: {})
+        CapsuleButton(title: "Dresses", isSelected: true, horizontalPadding: 14, height: 30, onTap: {})
     }
 }
