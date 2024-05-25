@@ -10,7 +10,7 @@ import SwiftUI
 struct CapsuleButton: View {
     let title: String
     let isSelected: Bool
-    let padding: CGFloat
+    let horizontalPadding: CGFloat
     var onTap: () -> Void
     
     typealias Colors = Asset.Colors
@@ -24,7 +24,7 @@ struct CapsuleButton: View {
             .frame(height: 30)
             .lineLimit(1)
             .minimumScaleFactor(0.5)
-            .padding(.horizontal, padding)
+            .padding(.horizontal, horizontalPadding)
             .background(capsuleBackground)
             .onTapGesture {
                 onTap()
@@ -42,6 +42,6 @@ struct CapsuleButton: View {
 
 struct CategoryButton_Previews: PreviewProvider {
     static var previews: some View {
-        CapsuleButton(title: "Dresses", isSelected: true, padding: 14, onTap: {})
+        CapsuleButton(title: "Dresses", isSelected: true, horizontalPadding: 14, onTap: {})
     }
 }
