@@ -13,7 +13,7 @@ struct StarView: View {
     let numberOfStars: Int
     typealias Colors = Asset.Colors
     let sizeOfStar: CGFloat
-    let starButtonClicked: () -> ()
+    let starButtonClicked: () -> Void
     
     var body: some View {
         HStack(spacing:10) {
@@ -23,7 +23,7 @@ struct StarView: View {
                     .frame(width: sizeOfStar,height: sizeOfStar)
                     .scaledToFill()
                     .onTapGesture {
-                        //rating = Double(index)
+                        // rating = Double(index)
                         starButtonClicked()
                     }
             }

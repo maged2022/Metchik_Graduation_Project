@@ -40,9 +40,9 @@ struct CategoryView_Previews: PreviewProvider {
 
 extension SubCategoryView {
     private var searchBarButton: some View {
-        Button(action: {
+        Button {
             subCategoryViewModel.showSearchView()
-        }) {
+        } label: {
             SearchBarView(searchText: .constant(""), filterButtonClicked: {})
                 .disabled(true)
         }

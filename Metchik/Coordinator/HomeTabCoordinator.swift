@@ -73,8 +73,8 @@ class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
         tabBarCoordinator.hideTabBar()
     }
     func showFilterView() {
-        let FilterViewController = UIHostingController(rootView: FilterView())
-        router.push(FilterViewController)
+        let filterViewController = UIHostingController(rootView: FilterView())
+        router.push(filterViewController)
         tabBarCoordinator.hideTabBar()
     }
     

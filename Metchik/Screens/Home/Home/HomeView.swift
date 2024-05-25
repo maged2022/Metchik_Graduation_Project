@@ -136,9 +136,9 @@ extension HomeView {
         }
     }
     var searchBarButton: some View {
-        Button(action: {
+        Button {
             homeViewModel.showSearchView()
-        }) {
+        } label: {
             SearchBarView(searchText: .constant(""), filterButtonClicked: {})
                 .disabled(true)
         }
