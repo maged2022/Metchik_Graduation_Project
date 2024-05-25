@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CapsuleButton: View {
-    let category: String
+    let title: String
     let isSelected: Bool
     let padding: CGFloat
     var onTap: () -> Void
@@ -16,7 +16,7 @@ struct CapsuleButton: View {
     typealias Colors = Asset.Colors
     
     var body: some View {
-        Text(category)
+        Text(title)
             .font(.poppins(.bold, size: 13))
             .foregroundColor(
                 isSelected ? Colors.primaryButtonColor.swiftUIColor : Colors.secondaryButtonColor.swiftUIColor
@@ -42,6 +42,6 @@ struct CapsuleButton: View {
 
 struct CategoryButton_Previews: PreviewProvider {
     static var previews: some View {
-        CapsuleButton(category: "Dresses", isSelected: true, padding: 14, onTap: {})
+        CapsuleButton(title: "Dresses", isSelected: true, padding: 14, onTap: {})
     }
 }
