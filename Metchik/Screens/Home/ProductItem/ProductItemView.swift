@@ -49,6 +49,10 @@ struct ProductItemView: View {
                     }
                 }
             }
+            .padding()
+            .background(Color.white)
+            .cornerRadius(10)
+            .shadow(radius: 5)
             
             Button {
                 productItemViewModel.favoriteButtonPressed()
@@ -57,15 +61,10 @@ struct ProductItemView: View {
                         productItemViewModel.product.isFavorite ?  Asset.Icons.love.image : Asset.Icons.lovewhite.image
                 )
                     .resizable()
-                    .frame(width: 20,height: 20)
+                    .frame(width: 25,height: 25)
                     .padding(15)
-
             }
         }
-        .padding()
-        .background(Color.white)
-        .cornerRadius(10)
-        .shadow(radius: 5)
     }
 }
 

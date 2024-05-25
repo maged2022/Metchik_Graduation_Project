@@ -17,35 +17,14 @@ struct QuickCategoryView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(vmod.categories,id: \.self) { category in
-                        Text(category)
-                            .font(.poppins(.bold, size: 13))
-                            .foregroundColor(
-                                ((vmod.selectedCategory == category) ?
-                                 Colors.primaryButtonColor : Colors.secondaryButtonColor).swiftUIColor
-                               )
-                            .frame(width: 80, height: 30)
-                            .background( capsuleBackground(for: category))
-                            .onTapGesture {
-                                vmod.selectedCategory = category
-                            }
+                        CapsuleButton(title: category, isSelected: (vmod.selectedCategory == category), horizontalPadding: 14, height: 30) {
+                            vmod.selectedCategory = category
+                        }
                     }
                 }
             }
-            
         }
     }
-    
-    @ViewBuilder
-    func capsuleBackground(for category: String) -> some View {
-        if vmod.selectedCategory == category {
-            Capsule()
-                .fill( Color.black)
-        } else {
-            Capsule()
-                .stroke( Colors.borderCategoryColor.swiftUIColor, lineWidth: 2)
-        }
-    }
-
 }
 
 struct QuickCategoryView_Previews: PreviewProvider {
