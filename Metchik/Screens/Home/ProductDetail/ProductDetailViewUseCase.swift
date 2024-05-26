@@ -16,8 +16,7 @@ class ProductDetailViewUseCase {
     private var cancellables = Set<AnyCancellable>()
     @AppStorage("userID") var userID: String?
     
-    let product: Product
-    @Published var productPulish: Product
+    @Published var product: Product
     @Published var productDetail: ProductDetail? {
         didSet {
             getAvilableSizes()
@@ -42,7 +41,7 @@ class ProductDetailViewUseCase {
     
     init (product:Product) {
         self.product = product
-        self.productPulish = self.product
+        fetchProductDetail(by: product.id)
         bindProductDetail()
         bindFavoriteValue()
     }
@@ -130,7 +129,7 @@ extension ProductDetailViewUseCase {
                 case .success(let success):
                     DispatchQueue.main.async {
                         let state = success.filter({ $0.productID == self?.product.id}).isEmpty
-                        self?.productPulish.isFavorite = !state
+                        self?.product.isFavorite = !state
                     }
                 case .failure(let failure):
                     self?.showAlert = true

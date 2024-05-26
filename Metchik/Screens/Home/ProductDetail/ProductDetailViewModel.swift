@@ -11,7 +11,7 @@ import Combine
 class ProductDetailViewModel: ObservableObject {
     private var productDetailViewUseCase: ProductDetailViewUseCase
     private var cancellables = Set<AnyCancellable>()
-    @Published var product: Product
+    @Published var product: Product = .mockData
     let coordinator: HomeTabCoordinatorProtocol
     @Published var productDetail: ProductDetail?
     @Published var selectedSize: ProductSizes? {
@@ -39,15 +39,13 @@ class ProductDetailViewModel: ObservableObject {
     @Published var showAlert = false
     @Published var alertMessage: String = "error"
     
-    init(product: Product, coordinator: HomeTabCoordinatorProtocol) {
-        self.product = product
+    init(productDetailViewUseCase: ProductDetailViewUseCase, coordinator: HomeTabCoordinatorProtocol) {
         self.coordinator = coordinator
-        self.productDetailViewUseCase = .init(product:product)
-        bindUseCase()
+        self.productDetailViewUseCase = productDetailViewUseCase
+        self.bindUseCase()
     }
     
     private func bindUseCase() {
-        productDetailViewUseCase.fetchProductDetail(by: product.id)
         productDetailViewUseCase.$productDetail
             .receive(on: DispatchQueue.main)
             .assign(to: &$productDetail)
@@ -68,7 +66,7 @@ class ProductDetailViewModel: ObservableObject {
         productDetailViewUseCase.$maxAvailableProduct
             .receive(on: DispatchQueue.main)
             .assign(to: &$maxAvailableProduct)
-        productDetailViewUseCase.$productPulish
+        productDetailViewUseCase.$product
             .receive(on: DispatchQueue.main)
             .assign(to: &$product)
         productDetailViewUseCase.$showAlert
