@@ -20,19 +20,19 @@ class ProductUseCase: ProductRepositories, ObservableObject {
     }
     
     private func updateProducts() {
-        repo.getProductsSource(parameters: [:]) { result in
+        repo.getProductsSource(parameters: [:]) {[weak self] result in
             switch result {
             case .success(let success):
-                self.products = .success(success.data.products.toProducts())
+                self?.products = .success(success.data.products.toProducts())
             case .failure(let failure):
-                self.products = .failure(failure)
+                self?.products = .failure(failure)
             }
         }
     }
     
     func getSubCategories(category: String, completion: @escaping ([String]) -> Void) {
          $products
-            .sink { result in
+            .sink { [weak self]result in
                 switch result {
                 case .success(let products):
                     completion(

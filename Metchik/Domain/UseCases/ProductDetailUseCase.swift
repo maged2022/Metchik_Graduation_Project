@@ -11,8 +11,11 @@ import SwiftUI
 class ProductDetailUseCase: ProductDetailRepositories, ObservableObject {
     private var repo = ProductSourceDetailRepositoriesImpl()
     @Published private var productDetail: Result<ProductDetail?, RemoteError> = .success(nil)
-    var productDetailPublisher: AnyPublisher<Result<ProductDetail?, RemoteError>, Never> { $productDetail.eraseToAnyPublisher() }
-
+    var productDetailPublisher: AnyPublisher<
+        Result<ProductDetail?, RemoteError>,
+        Never
+    > { $productDetail.eraseToAnyPublisher() }
+    
     static var instance = ProductDetailUseCase()
     private init() { }
     

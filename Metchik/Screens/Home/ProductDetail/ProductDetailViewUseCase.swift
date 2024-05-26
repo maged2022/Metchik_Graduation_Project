@@ -14,6 +14,7 @@ class ProductDetailViewUseCase {
     private var cartUseCase: CartRepositories = CartUseCase.instance
     private var wishListUseCase: WishListRepositories = WishListUseCase.instance
     private var cancellables = Set<AnyCancellable>()
+    @AppStorage("userID") var userID: String?
     
     let product: Product
     @Published var productPulish: Product
@@ -123,19 +124,21 @@ extension ProductDetailViewUseCase {
 extension ProductDetailViewUseCase {
 
     func bindFavoriteValue() {
-        wishListUseCase.wishListProductsPublisher.sink {[weak self] result in
-            switch result {
-            case .success(let success):
-                DispatchQueue.main.async {
-                    let state = success.filter({ $0.productID == self?.product.id}).isEmpty
-                    self?.productPulish.isFavorite = !state
+        if userID != nil {
+            wishListUseCase.wishListProductsPublisher.sink {[weak self] result in
+                switch result {
+                case .success(let success):
+                    DispatchQueue.main.async {
+                        let state = success.filter({ $0.productID == self?.product.id}).isEmpty
+                        self?.productPulish.isFavorite = !state
+                    }
+                case .failure(let failure):
+                    self?.showAlert = true
+                    self?.alertMessage = failure.description
                 }
-            case .failure(let failure):
-                self?.showAlert = true
-                self?.alertMessage = failure.description
             }
+            .store(in: &cancellables)
         }
-        .store(in: &cancellables)
     }
     
     func favoriteButtonPressed() {

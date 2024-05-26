@@ -26,10 +26,10 @@ class WishListViewUseCase: ObservableObject, WishListViewRepositories {
     }
     
     func getWishListProducts(completion: @escaping ([WishListProduct]) -> Void) {
-        wishListProductsUseCase.wishListProductsPublisher.sink { result in
+        wishListProductsUseCase.wishListProductsPublisher.sink {[weak self] result in
             switch result {
             case .success(let cartProducts):
-                self.wishListProducts = cartProducts
+                self?.wishListProducts = cartProducts
                 completion(cartProducts)
             case .failure(let failure):
                 print("  wishListProductsUseCase.getWishListProducts(userID: userID) { \(failure)")
