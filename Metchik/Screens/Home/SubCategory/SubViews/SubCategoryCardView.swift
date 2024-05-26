@@ -36,11 +36,17 @@ struct SubCategoryViewCell: View {
     @State var subCategory: String
     var body: some View {
         ZStack(alignment: viewModel.isLeadingAlignment(for: subCategory) ? .leading : .trailing) {
-            Asset.Images.discountImage2.swiftUIImage
-                .resizable()
-                .scaledToFill()
-                .frame(height: 100)
-                .cornerRadius(15)
+            AsyncImage(url: viewModel.subCategoriesImages[subCategory] ) { image in
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 200)
+                    .cornerRadius(15)
+            } placeholder: {
+                ProgressView()
+                    .frame(height: 200)
+            }
+                
             VStack(alignment:.leading) {
                 Text(subCategory)
                     .font(.poppins(.bold, size: 16))
@@ -49,6 +55,9 @@ struct SubCategoryViewCell: View {
             }
             .foregroundColor(Asset.Colors.primaryLabelColor.swiftUIColor)
             .padding( viewModel.isLeadingAlignment(for: subCategory) ? .leading : .trailing ,20)
+            .frame(maxHeight: .infinity)
+            .padding(.horizontal,20)
+            .background(Color.white.opacity(0.8).frame(maxHeight: .infinity))
         }
         .padding(.bottom,15)
     }
