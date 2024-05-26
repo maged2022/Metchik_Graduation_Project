@@ -16,28 +16,21 @@ class ProductDetailUseCase: ProductDetailRepositories, ObservableObject {
         Never
     > { $productDetail.eraseToAnyPublisher() }
     
-    static var instance = ProductDetailUseCase()
-    private init() { }
-    
     func fetchProductDetail(by id : String) {
         let parameters = ["productId": id]
-        repo.getProductSourceDetail(parameters: parameters ) { result in
+        repo.getProductSourceDetail(parameters: parameters ) {[weak self] result in
             switch result {
             case .success(let success):
                 if let firstProduct = success.data.productContain.first {
-                    self.productDetail = .success(firstProduct.toProductDetail())
+                    self?.productDetail = .success(firstProduct.toProductDetail())
                 } else {
-                    self.productDetail = .failure(
+                    self?.productDetail = .failure(
                         RemoteError.authMessage(message: "No Data Related to this product please contact admin ")
                     )
                 }
             case .failure(let failure):
-                self.productDetail = .failure(failure)
+                self?.productDetail = .failure(failure)
             }
         }
-    }
-    
-    func productDetailOnDisapear() {
-        productDetail = .success(nil)
     }
 }

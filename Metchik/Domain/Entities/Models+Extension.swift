@@ -56,17 +56,17 @@ extension Array where Element == ProductSourceAttribute {
     
     func getColor (name: String) -> Color {
         switch name {
-        case "Red":
+        case "red":
             return Asset.ProductColor.red.swiftUIColor
-        case "Blue":
+        case "blue":
             return Asset.ProductColor.blue.swiftUIColor
-        case "Green":
+        case "green":
             return Asset.ProductColor.green.swiftUIColor
-        case "Black":
+        case "black":
             return Asset.ProductColor.black.swiftUIColor
-        case "White":
+        case "white":
             return Asset.ProductColor.white.swiftUIColor
-        case "Yellow":
+        case "yellow":
             return Asset.ProductColor.yellow.swiftUIColor
         default:
             return Asset.ProductColor.yellow.swiftUIColor

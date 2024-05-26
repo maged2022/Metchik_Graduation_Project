@@ -10,5 +10,4 @@ import Combine
 protocol ProductDetailRepositories {
     var productDetailPublisher: AnyPublisher<Result<ProductDetail?, RemoteError>, Never> { get }
     func fetchProductDetail(by id : String)
-    func productDetailOnDisapear()
 }

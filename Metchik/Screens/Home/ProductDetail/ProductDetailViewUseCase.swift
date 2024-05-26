@@ -10,7 +10,7 @@ import Combine
 
 class ProductDetailViewUseCase {
     
-    private var productDetailUseCase: ProductDetailRepositories = ProductDetailUseCase.instance
+    private var productDetailUseCase: ProductDetailRepositories = ProductDetailUseCase()
     private var cartUseCase: CartRepositories = CartUseCase.instance
     private var wishListUseCase: WishListRepositories = WishListUseCase.instance
     private var cancellables = Set<AnyCancellable>()
@@ -99,9 +99,6 @@ extension ProductDetailViewUseCase {
     
     func updateCurrentStepperValue(value: Int) {
         currentStepperValue = value
-    }
-    func productDetailOnDisapear() {
-        productDetailUseCase.productDetailOnDisapear()
     }
 }
 

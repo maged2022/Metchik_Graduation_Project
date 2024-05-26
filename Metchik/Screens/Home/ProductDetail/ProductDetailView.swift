@@ -50,9 +50,6 @@ struct ProductDetailView: View {
             trailing:
                 CartButtonView(cartViewModel: productDetailViewModel.getCartButtonViewModel())
         )
-        .onDisappear {
-            productDetailViewModel.productDetailOnDisapear()
-        }
         .popup(isPresented: productDetailViewModel.showAlert, content: {
             SnackBar(title: "Error!",
                      message: productDetailViewModel.alertMessage,

@@ -19,10 +19,6 @@ struct ProductDetail {
         images: [
             URL(
                 string:
-                    "https://us.123rf.com/450wm/serezniy/serezniy1809/serezniy180917794/108061719-blank-white-t-shirt-against-brick-wall.jpg?ver=6"
-            ),
-            URL(
-                string:
                     "https://i.pinimg.com/474x/f7/d6/16/f7d6164f24b5d0d99a6a2a1937a188ef.jpg"
             )
         ],

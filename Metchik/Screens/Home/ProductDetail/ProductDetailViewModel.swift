@@ -99,7 +99,4 @@ extension ProductDetailViewModel {
         coordinator.showVirtualTry(personImage: personImage, productImageURL: product.imageURL)
     }
     
-    func productDetailOnDisapear() {
-        productDetailViewUseCase.productDetailOnDisapear()
-    }
 }
