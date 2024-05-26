@@ -20,48 +20,14 @@ class ProductUseCase: ProductRepositories, ObservableObject {
     }
     
     private func updateProducts() {
-        repo.getProductsSource(parameters: [:]) { result in
+        repo.getProductsSource(parameters: [:]) {[weak self] result in
             switch result {
             case .success(let success):
-                self.products = .success(success.data.products.toProducts())
+                self?.products = .success(success.data.products.toProducts())
             case .failure(let failure):
-                self.products = .failure(failure)
+                self?.products = .failure(failure)
             }
         }
-    }
-    
-    func getSubCategories(category: String, completion: @escaping ([String]) -> Void) {
-         $products
-            .sink { result in
-                switch result {
-                case .success(let products):
-                    completion(
-                        Set(products.filter {
-                            $0.category.capitalized == category
-                        }.map { $0.subCategory.capitalized }).sorted()
-                    )
-                case .failure(let failure):
-                    print(failure)
-                }
-            }.store(in: &cancellables)
-        
-    }
-    
-    func getProducts(category: String, subCategories: [String], completion: @escaping ([String: [Product]]) -> Void) {
-        $products
-            .sink { result in
-                switch result {
-                case .success(let products):
-                    completion(Dictionary(grouping: products.filter {
-                        $0.category.capitalized == category
-                    }, by: { $0.subCategory.capitalized }).mapValues {
-                        $0.sorted { $0.name < $1.name }
-                    })
-                case .failure(let failure):
-                    print(failure)
-                }
-            }.store(in: &cancellables)
-        
     }
     
     func getProducts(category: String, subCategory: String, completion: @escaping ([Product]) -> Void) {

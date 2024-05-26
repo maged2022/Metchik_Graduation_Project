@@ -50,6 +50,14 @@ struct ProductDetailView: View {
             trailing:
                 CartButtonView(cartViewModel: productDetailViewModel.getCartButtonViewModel())
         )
+        .popup(isPresented: productDetailViewModel.showAlert, content: {
+            SnackBar(title: "Error!",
+                     message: productDetailViewModel.alertMessage,
+                     buttonTitle: "OK",
+                     onClick: {
+                productDetailViewModel.showAlert = false
+            })
+        })
     }
 }
 

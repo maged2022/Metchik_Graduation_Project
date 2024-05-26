@@ -9,31 +9,30 @@ import Foundation
 import Combine
 
 class SubCategoryViewModel: ObservableObject {
-    private let productUseCase: ProductRepositories = ProductUseCase.instance
+    private var subCategorUseCase : SubCategoryViewUseCase
     private var cancellables = Set<AnyCancellable>()
     let coordinator: HomeTabCoordinatorProtocol
-    let category: String
-    @Published var subCategories: [String] = [] {
-        didSet {
-            updateProducts()
-        }
-    }
+    @Published var subCategories: [String] = []
     @Published var products: [String: [Product]] = [:]
-    init(category: String,coordinator: HomeTabCoordinatorProtocol) {
-        self.category = category
+    @Published var subCategoriesImages: [String: URL] = [:]
+
+    init(subCategorUseCase: SubCategoryViewUseCase, coordinator: HomeTabCoordinatorProtocol) {
+        self.subCategorUseCase = subCategorUseCase
         self.coordinator = coordinator
-        updateSubCategories()
-    }
-    private func updateSubCategories() {
-        productUseCase.getSubCategories(category: category) { [weak self] subCategories in
-                self?.subCategories = subCategories
-            }
+        bindSubCategorie()
     }
 
-    private func updateProducts() {
-        productUseCase.getProducts(category: category, subCategories: subCategories) { [weak self] product in
-                self?.products = product
-            }
+    func bindSubCategorie() {
+        subCategorUseCase.$subCategories
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$subCategories)
+        subCategorUseCase.$products
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$products)   
+        subCategorUseCase.$subCategoriesImages
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$subCategoriesImages)
+        
     }
     
     func isLeadingAlignment(for outerSubCategory: String) -> Bool {
@@ -55,7 +54,7 @@ class SubCategoryViewModel: ObservableObject {
 
 extension SubCategoryViewModel {
     func subCategoryViewPressed(subCategory: String) {
-        coordinator.showProductView(selectedCategory: category, selectedSubCategory: subCategory)
+        coordinator.showProductView(selectedCategory: subCategorUseCase.category, selectedSubCategory: subCategory)
     }
     
     func showSearchView() {

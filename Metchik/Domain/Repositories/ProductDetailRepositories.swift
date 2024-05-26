@@ -8,9 +8,6 @@
 import SwiftUI
 import Combine
 protocol ProductDetailRepositories {
+    var productDetailPublisher: AnyPublisher<Result<ProductDetail?, RemoteError>, Never> { get }
     func fetchProductDetail(by id : String)
-    func getProductDetail(completion: @escaping (Result<ProductDetail, RemoteError>) -> Void)
-    func getAvilableSizes(completion: @escaping ([ProductSizes]) -> Void)
-    func getAvilableColors(forSize selectedSize: ProductSizes, completion: @escaping ([Color]) -> Void)
-    func getMaxAvilableProducts(size: ProductSizes, color: Color, completion: @escaping (Int) -> Void)
 }

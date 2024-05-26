@@ -37,10 +37,10 @@ class HomeViewModel: ObservableObject {
             .assign(to: &$offers)
         homeViewUseCase.$categories
             .receive(on: DispatchQueue.main)
-            .sink { categories in
-                self.categories = categories
+            .sink {[weak self] categories in
+                self?.categories = categories
                 if let selected = categories.first {
-                    self.selectedCategory = selected
+                    self?.selectedCategory = selected
                 }
             }.store(in: &cancellables)
         homeViewUseCase.$subCategories

@@ -9,120 +9,84 @@ import SwiftUI
 import Combine
 
 class ProductDetailViewModel: ObservableObject {
-    private var productDetailUseCase: ProductDetailRepositories = ProductDetailUseCase.instance
-    private var cartUseCase: CartRepositories = CartUseCase.instance
-    private var wishListUseCase: WishListRepositories = WishListUseCase.instance
+    private var productDetailViewUseCase: ProductDetailViewUseCase
     private var cancellables = Set<AnyCancellable>()
-    @Published var product: Product
+    @Published var product: Product = .mockData
     let coordinator: HomeTabCoordinatorProtocol
-    @Published var productDetail: ProductDetail = .mockData {
+    @Published var productDetail: ProductDetail?
+    @Published var selectedSize: ProductSizes? {
         didSet {
-            getAvilableSizes()
+            productDetailViewUseCase.updateSelectedSize(selectedSize: selectedSize)
         }
     }
-    @Published var selectedSize: ProductSizes = .l {
+    @Published var availableSizes: [ProductSizes] = []
+    @Published var selectedColor: Color? {
         didSet {
-            getAvilableColors()
+            productDetailViewUseCase.updateSelectedColor(selectedColor: selectedColor)
         }
     }
-    @Published var availableSizes: [ProductSizes] = [.m, .l, .xl]
-    @Published var selectedColor: Color = .blue {
-        didSet {
-            getMaxAvilableProducts()
-        }
-    }
-    @Published var availableColors: [Color] = [.blue]
+    @Published var availableColors: [Color] = []
     @Published var maxAvailableProduct: Int = 1 {
         didSet {
             currentStepperValue = 1
         }
     }
-    @Published var currentStepperValue: Int = 1
+    @Published var currentStepperValue: Int = 1 {
+        didSet {
+            productDetailViewUseCase.updateCurrentStepperValue(value: currentStepperValue)
+        }
+    }
+    @Published var showAlert = false
+    @Published var alertMessage: String = "error"
     
-    init(product: Product, coordinator: HomeTabCoordinatorProtocol) {
-        self.product = product
+    init(productDetailViewUseCase: ProductDetailViewUseCase, coordinator: HomeTabCoordinatorProtocol) {
         self.coordinator = coordinator
-        getProductdetail()
-        bindFavoriteValue()
+        self.productDetailViewUseCase = productDetailViewUseCase
+        self.bindUseCase()
     }
     
-    private func getProductdetail() {
-        productDetailUseCase.fetchProductDetail(by: product.id)
-        productDetailUseCase.getProductDetail {[weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let productDetail):
-                    self?.productDetail = productDetail
-                case .failure(let failure):
-                    print(failure)
+    private func bindUseCase() {
+        productDetailViewUseCase.$productDetail
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$productDetail)
+        productDetailViewUseCase.$availableSizes .receive(on: DispatchQueue.main)
+            .sink { [weak self] sizes in
+                self?.availableSizes = sizes
+                if let firstSize = sizes.first {
+                    self?.selectedSize = firstSize
                 }
-            }
-        }
+            }.store(in: &cancellables)
+        productDetailViewUseCase.$availableColors .receive(on: DispatchQueue.main)
+            .sink { [weak self] colors in
+                self?.availableColors = colors
+                if let firstColor = colors.first {
+                    self?.selectedColor = firstColor
+                }
+            }.store(in: &cancellables)
+        productDetailViewUseCase.$maxAvailableProduct
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$maxAvailableProduct)
+        productDetailViewUseCase.$product
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$product)
+        productDetailViewUseCase.$showAlert
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$showAlert)  
+        productDetailViewUseCase.$alertMessage
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$alertMessage)
     }
     
-    private func getAvilableSizes () {
-        productDetailUseCase.getAvilableSizes { [weak self] sizes in
-            self?.availableSizes = sizes
-            if let firstSize = sizes.first {
-                self?.selectedSize = firstSize
-            }
-        }
+    func favoriteButtonPressed() {
+        productDetailViewUseCase.favoriteButtonPressed()
     }
     
-    private func getAvilableColors () {
-        productDetailUseCase.getAvilableColors(forSize: selectedSize) { [weak self] colors in
-            self?.availableColors = colors
-            if let firstColor = colors.first {
-                self?.selectedColor = firstColor
-            }
-        }
-    }
-    
-    private func getMaxAvilableProducts () {
-        productDetailUseCase.getMaxAvilableProducts(
-            size: selectedSize,
-            color: selectedColor
-        ) { [weak self] maxAvilable in
-            self?.maxAvailableProduct = maxAvilable
-        }
+    func addToCart() {
+        productDetailViewUseCase.addToCart()
     }
     
     func getTotalPrice() -> Double {
         return product.price * Double(currentStepperValue)
-    }
-    
-    func addToCart() {
-        cartUseCase.saveCartProduct(
-            product: product,
-            size: selectedSize,
-            color: selectedColor,
-            count: currentStepperValue)
-    }
-    
-    func bindFavoriteValue() {
-        wishListUseCase.wishListProductsPublisher.sink { result in
-            switch result {
-            case .success(let success):
-                DispatchQueue.main.async {
-                    let state = success.filter({ $0.productID == self.product.id}).isEmpty
-                    self.product.isFavorite = !state
-                }
-            case .failure(let failure):
-                print(failure)
-            }
-        }
-        .store(in: &cancellables)
-    }
-    
-    func favoriteButtonPressed() {
-        wishListUseCase.favoriteButtonPressed( productID: product.id) { result in
-            switch result {
-            case .success:
-                self.wishListUseCase.updateWishListProducts()
-            case .failure(let failure):
-                print(failure)
-            }
-        }
     }
     
 }
@@ -134,4 +98,5 @@ extension ProductDetailViewModel {
     func pressedTryItButton(personImage: UIImage?) {
         coordinator.showVirtualTry(personImage: personImage, productImageURL: product.imageURL)
     }
+    
 }

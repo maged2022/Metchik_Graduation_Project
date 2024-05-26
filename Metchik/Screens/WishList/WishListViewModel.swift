@@ -11,6 +11,9 @@ class WishListViewModel: ObservableObject {
     let coordinator: HomeTabCoordinatorProtocol
     @AppStorage("userID") var userID: String?
     @Published var wishListProducts: [WishListProduct] = []
+    @Published var showAlert = false
+    @Published var alertMessage: String = "error"
+    
     init(wishListUseCase: WishListViewRepositories, coordinator: HomeTabCoordinatorProtocol) {
         self.wishListUseCase = wishListUseCase
         self.coordinator = coordinator
@@ -18,7 +21,7 @@ class WishListViewModel: ObservableObject {
     }
     
     func getWishListProducts() {
-        if let userID = userID {
+        if userID != nil {
             wishListUseCase.updateWishListProducts()
             wishListUseCase.getWishListProducts { wishListProduct in
                 DispatchQueue.main.async {
@@ -33,12 +36,13 @@ class WishListViewModel: ObservableObject {
     }
     
     func removeButtonPressed(index: Int) {
-        wishListUseCase.removeWishListProduct(wishListID: wishListProducts[index].wishListID) { result in
+        wishListUseCase.removeWishListProduct(wishListID: wishListProducts[index].wishListID) {[weak self] result in
             switch result {
             case .success:
-                self.wishListUseCase.updateWishListProducts()
+                self?.wishListUseCase.updateWishListProducts()
             case .failure(let failure):
-                print(failure)
+                self?.showAlert = true
+                self?.alertMessage = failure.description
             }
         }
     }

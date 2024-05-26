@@ -17,7 +17,12 @@ struct QuickCategoryView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(vmod.categories,id: \.self) { category in
-                        CapsuleButton(title: category, isSelected: (vmod.selectedCategory == category), horizontalPadding: 14, height: 30) {
+                        CapsuleButton(
+                            title: category,
+                            isSelected: (vmod.selectedCategory == category),
+                            horizontalPadding: 14,
+                            height: 30
+                        ) {
                             vmod.selectedCategory = category
                         }
                     }

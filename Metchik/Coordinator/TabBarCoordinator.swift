@@ -41,6 +41,7 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
         ]
         let viewControler = CustomTabBarViewController(viewModel: viewModel)
         router.push(viewControler)
+        showHome()
     }
     
     private func homeViewController() -> UIViewController {

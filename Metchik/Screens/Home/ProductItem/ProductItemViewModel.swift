@@ -13,6 +13,10 @@ class ProductItemViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
 
     private let useCase: WishListRepositories = WishListUseCase.instance
+    @AppStorage("userID") var userID: String?
+    @Published var showAlert = false
+    @Published var alertMessage: String = "error"
+    
     init(product: Product, coordinator: HomeTabCoordinatorProtocol) {
         self.product = product
         self.coordinator = coordinator
@@ -24,28 +28,32 @@ class ProductItemViewModel: ObservableObject {
     }
     
     func bindFavoriteValue() {
-        useCase.wishListProductsPublisher
-            .sink { result in
-            switch result {
-            case .success(let success):
-                DispatchQueue.main.async {
-                    let state = success.filter({ $0.productID == self.product.id}).isEmpty
-                    self.product.isFavorite = !state
+        if userID != nil {
+            useCase.wishListProductsPublisher
+                .sink { [weak self] result in
+                    switch result {
+                    case .success(let success):
+                        DispatchQueue.main.async {
+                            let state = success.filter({ $0.productID == self?.product.id}).isEmpty
+                            self?.product.isFavorite = !state
+                        }
+                    case .failure(let failure):
+                        self?.showAlert = true
+                        self?.alertMessage = failure.description
+                    }
                 }
-            case .failure(let failure):
-                print(failure)
-            }
+                .store(in: &cancellables)
         }
-        .store(in: &cancellables)
     }
     
     func favoriteButtonPressed() {
-        useCase.favoriteButtonPressed( productID: product.id) { result in
+        useCase.favoriteButtonPressed( productID: product.id) {[weak self] result in
             switch result {
             case .success:
-                self.useCase.updateWishListProducts()
+                self?.useCase.updateWishListProducts()
             case .failure(let failure):
-                print(failure)
+                self?.showAlert = true
+                self?.alertMessage = failure.description
             }
         }
     }

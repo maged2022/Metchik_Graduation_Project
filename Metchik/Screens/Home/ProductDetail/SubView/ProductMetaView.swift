@@ -32,7 +32,7 @@ struct ProductMetaView: View {
                             rating = Double(index)
                         }
                 }
-                Text("(\(viewModel.productDetail.review) Review)")
+                Text("(\(viewModel.productDetail?.review ?? 00) Review)")
                     .font(.poppins(.regular, size: 11))
             }
         }

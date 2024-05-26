@@ -12,6 +12,7 @@ public enum EndPoints: ServiceLayer {
     
     case getProductsWith(parameters: [String: Any])
     case getProductDetailWith(parameters: [String: Any])
+    case getSubCategoryWith(parameters: [String: Any])
     case getVirtualImageWith(parameters: [String: Any])
     case getUserData
     case getWishList(parameters: [String: Any])
@@ -32,6 +33,8 @@ public enum EndPoints: ServiceLayer {
            return "products"
         case .getProductDetailWith:
             return "ProductContain"
+        case .getSubCategoryWith:
+            return "subCategories/data"
         case .getVirtualImageWith:
             return ""
         case .getUserData:
@@ -50,6 +53,8 @@ public enum EndPoints: ServiceLayer {
         case .getProductsWith(let parameters):
                return .requestWithParameters(parameters: parameters, encoding: URLEncoding.default)
         case .getProductDetailWith(let parameters):
+              return .requestWithParameters(parameters: parameters, encoding: URLEncoding.default) 
+        case .getSubCategoryWith(let parameters):
               return .requestWithParameters(parameters: parameters, encoding: URLEncoding.default)
         case .getVirtualImageWith(let parameters):
               return .requestWithParameters(parameters: parameters, encoding: URLEncoding.default)

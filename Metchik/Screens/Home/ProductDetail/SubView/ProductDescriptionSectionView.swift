@@ -18,7 +18,7 @@ struct ProductDescriptionSectionView: View {
                 .font(.poppins(.semiBold, size: 16))
                 .foregroundColor(Colors.primaryLabelColor.swiftUIColor)
             
-            Text(viewModel.productDetail.description)
+            Text(viewModel.productDetail?.description ?? "????")
             .font(.poppins(.regular, size: 11))
             .foregroundColor(Colors.secondaryLabelColor.swiftUIColor)
         }
@@ -29,7 +29,10 @@ struct ProductDescriptionSectionView: View {
 struct ProductDescriptionSectionView_Previews: PreviewProvider {
     static var previews: some View {
         if let homeCoordinator = DependencyManager.shared.sharedContainer.resolve(HomeTabCoordinatorProtocol.self) {
-            let productDetailViewModel = ProductDetailViewModel(product: Product.mockData, coordinator: homeCoordinator)
+            let productDetailViewModel = ProductDetailViewModel(
+                productDetailViewUseCase: .init(product: .mockData),
+                coordinator: homeCoordinator
+            )
             ProductDescriptionSectionView()
                 .environmentObject(productDetailViewModel)
         }
