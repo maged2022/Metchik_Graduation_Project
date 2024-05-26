@@ -26,7 +26,10 @@ class HomeAssemply: Assembly {
         sharedContainer.register(ProductDetailViewModel.self) { resolver in
             guard let coordinator = resolver.resolve(HomeTabCoordinatorProtocol.self)
             else {fatalError("error resolver HomeTabCoordinatorProtocol")}
-            return ProductDetailViewModel(product: Product.mockData, coordinator: coordinator)
+            return ProductDetailViewModel(
+                productDetailViewUseCase: .init(product: .mockData),
+                coordinator: coordinator
+            )
         }
         sharedContainer.register(ProductItemViewModel.self) { resolver in
             guard let coordinator = resolver.resolve(HomeTabCoordinatorProtocol.self)
@@ -41,7 +44,7 @@ class HomeAssemply: Assembly {
         sharedContainer.register(SubCategoryViewModel.self) { resolver in
             guard let coordinator = resolver.resolve(HomeTabCoordinatorProtocol.self)
             else {fatalError("error resolver HomeTabCoordinatorProtocol")}
-            return SubCategoryViewModel(category: "Men", coordinator: coordinator)
+            return SubCategoryViewModel(subCategorUseCase: .init(category: "Men"), coordinator: coordinator)
         }
         sharedContainer.register(VirtualTryViewModel.self) { resolver in
             guard let coordinator = resolver.resolve(HomeTabCoordinatorProtocol.self)

@@ -46,7 +46,10 @@ class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
     }
     
     func showSubCategoryView(category: String) {
-        let subCategoryViewModel = SubCategoryViewModel(category: category, coordinator: self)
+        let subCategoryViewModel = SubCategoryViewModel(
+            subCategorUseCase: .init(category: category),
+            coordinator: self
+        )
         let subCategoryView = SubCategoryView(subCategoryViewModel: subCategoryViewModel)
         let subCategoryViewController = UIHostingController(rootView: subCategoryView)
         router.push(subCategoryViewController)
@@ -79,7 +82,10 @@ class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
     }
     
     func showDetails(product: Product) {
-        let productDetailViewModel = ProductDetailViewModel(product: product, coordinator: self)
+        let productDetailViewModel = ProductDetailViewModel(
+            productDetailViewUseCase: .init(product: product),
+            coordinator: self
+        )
         let productDetailView = ProductDetailView(productDetailViewModel: productDetailViewModel)
         let productDetailViewController = UIHostingController(rootView: productDetailView)
         router.push(productDetailViewController)
