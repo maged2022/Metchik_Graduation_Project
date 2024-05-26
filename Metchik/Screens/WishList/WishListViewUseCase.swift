@@ -43,12 +43,12 @@ class WishListViewUseCase: ObservableObject, WishListViewRepositories {
     }
     
     func getProduct() {
-        productUseCase.getProducts(by: wishListProducts.map {$0.productID}) { result in
+        productUseCase.getProducts(by: wishListProducts.map {$0.productID}) {[weak self] result in
             switch result {
             case .success(let products):
                 guard !products.isEmpty else {return}
-                self.products = self.wishListProducts.map({wishListProduct in
-                    products[products.firstIndex(where: {$0.id == wishListProduct.productID}) ?? 0] })
+                self?.products = self?.wishListProducts.map({wishListProduct in
+                    products[products.firstIndex(where: {$0.id == wishListProduct.productID}) ?? 0] }) ?? []
             case .failure(let failure):
                 print("failure  productUseCase.getProducts(by: cartProducts.map {$0.productID}) \(failure)")
             }

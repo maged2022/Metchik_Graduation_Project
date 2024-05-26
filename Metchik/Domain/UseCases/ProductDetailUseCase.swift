@@ -27,7 +27,9 @@ class ProductDetailUseCase: ProductDetailRepositories, ObservableObject {
                 if let firstProduct = success.data.productContain.first {
                     self.productDetail = .success(firstProduct.toProductDetail())
                 } else {
-                    self.productDetail = .failure(RemoteError.authMessage(message: "No Data Related to this product please contact admin "))
+                    self.productDetail = .failure(
+                        RemoteError.authMessage(message: "No Data Related to this product please contact admin ")
+                    )
                 }
             case .failure(let failure):
                 self.productDetail = .failure(failure)
