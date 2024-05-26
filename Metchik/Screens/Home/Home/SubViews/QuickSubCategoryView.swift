@@ -17,6 +17,7 @@ struct QuickSubCategoryView: View {
                     CardSubCategoriesView(sectionName: subCategorie.1, products: products)
                 }
             }
+            Spacer().frame(height: 50)
         }
     }
 }
