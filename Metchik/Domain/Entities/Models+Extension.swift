@@ -50,26 +50,7 @@ extension Array where Element == ProductSourceAttribute {
         return self.map { source in
             ProductAttribute(sizes: ProductSizes(rawValue: source.sizes) ?? .l,
                              avaliableInStok: source.availableInStock,
-                             colors:  source.colors.map { getColor(name: $0)})
-        }
-    }
-    
-    func getColor (name: String) -> Color {
-        switch name {
-        case "red":
-            return Asset.ProductColor.red.swiftUIColor
-        case "blue":
-            return Asset.ProductColor.blue.swiftUIColor
-        case "green":
-            return Asset.ProductColor.green.swiftUIColor
-        case "black":
-            return Asset.ProductColor.black.swiftUIColor
-        case "white":
-            return Asset.ProductColor.white.swiftUIColor
-        case "yellow":
-            return Asset.ProductColor.yellow.swiftUIColor
-        default:
-            return Asset.ProductColor.yellow.swiftUIColor
+                             colors:  source.colors.map { Color(hex: $0)})
         }
     }
 }
@@ -93,7 +74,7 @@ extension CartProduct {
         CartProductSource(
             productID: productID,
             size: size.rawValue,
-            color: color.toString(),
+            color: color.toHex(),
             selectedCount: selectedCount )
     }
   
@@ -104,7 +85,7 @@ extension CartProductSource {
         CartProduct(
             productID: productID ,
             size: ProductSizes(rawValue: size) ?? .l,
-            color: Color.fromString(color) ?? .black,
+            color: Color(hex:color) ,
             selectedCount: selectedCount)
     }
     

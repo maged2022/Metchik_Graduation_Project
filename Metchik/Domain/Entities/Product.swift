@@ -18,7 +18,7 @@ struct Product: Identifiable {
     let category: String
     let subCategory: String
     static let mockData: Product = Product(
-        id: "1",
+        id: "663ac5a3cb3de638fd0fc0de",
         name: "test",
         shortDescription: "shortDescription",
         price: 44.7,

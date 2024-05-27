@@ -9,34 +9,57 @@ import SwiftUI
 import UIKit
 
 extension Color {
-    // Convert Color to a string representation
-    func toString() -> String {
-        if let uiColor = UIColor(self).cgColor.components {
-            let red = Double(uiColor[0])
-            let green = Double(uiColor[1])
-            let blue = Double(uiColor[2])
-            let alpha = Double(uiColor[3])
-            
-            return "Color(red: \(red), green: \(green), blue: \(blue), opacity: \(alpha))"
+    init(hex: String) {
+        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int: UInt64 = 0
+        Scanner(string: hex).scanHexInt64(&int)
+        let aValue, rValue, gValue, bValue: UInt64
+        switch hex.count {
+        case 3: // RGB (12-bit)
+            (aValue, rValue, gValue, bValue) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (aValue, rValue, gValue, bValue) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (aValue, rValue, gValue, bValue) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (aValue, rValue, gValue, bValue) = (255, 0, 0, 0)
         }
         
-        return ""
+        self.init(
+            .sRGB,
+            red: Double(rValue) / 255,
+            green: Double(gValue) / 255,
+            blue: Double(bValue) / 255,
+            opacity: Double(aValue) / 255
+        )
     }
-
-    // Convert a string representation back to Color
-    static func fromString(_ string: String) -> Color? {
-        let regex = try! NSRegularExpression(
-            pattern: #"Color\(red: ([\d.]+), green: ([\d.]+), blue: ([\d.]+), opacity: ([\d.]+)\)"#)
+    
+    func toHex(includeAlpha: Bool = false) -> String {
+        let uiColor = UIColor(self)
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
         
-        if let match = regex.firstMatch(in: string, range: NSRange(string.startIndex..., in: string)) {
-            let red = Double((string as NSString).substring(with: match.range(at: 1))) ?? 0.0
-            let green = Double((string as NSString).substring(with: match.range(at: 2))) ?? 0.0
-            let blue = Double((string as NSString).substring(with: match.range(at: 3))) ?? 0.0
-            let opacity = Double((string as NSString).substring(with: match.range(at: 4))) ?? 1.0
-            
-            return Color(red: red, green: green, blue: blue, opacity: opacity)
+        guard uiColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha) else {
+            return ""
         }
         
-        return nil
+        if includeAlpha {
+            return String(
+                format: "#%02lX%02lX%02lX%02lX",
+                lroundf(Float(red * 255)),
+                lroundf(Float(green * 255)),
+                lroundf(Float(blue * 255)),
+                lroundf(Float(alpha * 255))
+            )
+        } else {
+            return String(
+                format: "#%02lX%02lX%02lX",
+                lroundf(Float(red * 255)),
+                lroundf(Float(green * 255)),
+                lroundf(Float(blue * 255))
+            )
+        }
     }
 }

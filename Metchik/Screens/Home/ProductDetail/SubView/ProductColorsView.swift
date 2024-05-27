@@ -17,6 +17,7 @@ struct ProductColorsView: View {
             VStack(spacing: 10) {
                 ForEach(viewModel.availableColors,id: \.self) { color in
                     Button(action: {
+                        viewModel.selectedColor = color
                     }, label: {
                         color
                             .overlay {
@@ -24,18 +25,11 @@ struct ProductColorsView: View {
                                     Image(systemName: "checkmark")
                                         .resizable()
                                         .frame(width: 10,height: 10)
-                                        .foregroundColor(color == .white ? .black : .white)
+                                        .foregroundColor(checkmarkColor(for: color))
                                 }
                             }
                             .frame(width: 20, height: 20)
                             .cornerRadius(10)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 25)
-                                    .stroke(Color.black.opacity(0.3), lineWidth: 1))
-                            .padding(0.6)
-                            .onTapGesture {
-                                viewModel.selectedColor = color
-                            }
                     })
                 }
             }
@@ -46,14 +40,26 @@ struct ProductColorsView: View {
             .cornerRadius(30))
         .shadow(color: .black.opacity(0.1),radius: 10)
     }
+    
+    func checkmarkColor(for backgroundColor: Color) -> Color {
+        let uiColor = UIColor(backgroundColor)
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+
+        uiColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        
+        // Calculate luminance
+        let luminance = (0.299 * red + 0.587 * green + 0.114 * blue)
+
+        // Return black or white based on luminance
+        return luminance > 0.5 ? .black : .white
+    }
 }
 struct ProductColorsView_Previews: PreviewProvider {
     static var previews: some View {
-        if let homeCoordinator = DependencyManager.shared.sharedContainer.resolve(HomeTabCoordinatorProtocol.self) {
-            let productDetailViewModel = ProductDetailViewModel(
-                productDetailViewUseCase: .init(product: .mockData),
-                coordinator: homeCoordinator
-            )
+        if let productDetailViewModel = DependencyManager.shared.sharedContainer.resolve(ProductDetailViewModel.self) {
             ProductColorsView()
                 .environmentObject(productDetailViewModel)
         }
