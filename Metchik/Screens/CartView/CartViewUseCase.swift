@@ -48,7 +48,11 @@ class CartViewUseCase: ObservableObject, CartViewRepositories {
     }
     
     func calculateTotalPrice() -> Double {
-        products.map {$0.price * ( 1 - ($0.discountPrecentage / 100.0))}
+        products.map { product in
+            let price = product.price * ( 1 - (product.discountPrecentage / 100.0))
+            let cartProduct = cartProducts.first(where: {$0.productID == product.id })
+            return (price * Double(cartProduct?.selectedCount ?? 1))
+        }
             .reduce(0.0, +)
     }
     

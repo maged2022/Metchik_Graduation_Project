@@ -35,7 +35,10 @@ struct CartProductViewCell: View {
                     .font(.poppins(.regular, size: 11))
                     .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)
                     .padding(.bottom,12)
-                Text("\(String(format: "%.2f", viewModel.product.price)) L.E")
+                Text(String(format: "%.2f",
+                            viewModel.product.price -
+                                    ((viewModel.product.discountPrecentage / 100.00)
+                                   * viewModel.product.price)) + " L.E")
                     .font(.poppins(.bold, size: 14))
                     .padding(.bottom,4)
             }

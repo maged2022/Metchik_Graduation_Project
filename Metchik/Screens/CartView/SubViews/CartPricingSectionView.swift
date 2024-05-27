@@ -13,7 +13,7 @@ struct CartPricingSectionView: View {
 
     var body: some View {
             HStack {
-                Text("Total (\(viewModel.products.count) item) :")
+                Text("Total (\(viewModel.cartProducts.map {$0.selectedCount}.reduce(0, +)) item) :")
                     .font(.poppins(.semiBold, size: 16))
                     .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)
                 Spacer()
