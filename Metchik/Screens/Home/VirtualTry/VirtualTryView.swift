@@ -23,6 +23,7 @@ struct VirtualTryView: View {
                 } placeholder: {
                     ProgressView()
                         .frame(height: 180)
+                        .frame(maxWidth: .infinity)
                         .cornerRadius(8)
                 }
                 Image(uiImage: virtualTryViewModel.personImage)
@@ -40,6 +41,8 @@ struct VirtualTryView: View {
                 image
                     .resizable()
                     .frame(maxWidth: .infinity, minHeight: 200, maxHeight: 430)
+                    .cornerRadius(15)
+                    .padding()
             } placeholder: {
                 ProgressView("ML Processing Image")
                     .padding()
