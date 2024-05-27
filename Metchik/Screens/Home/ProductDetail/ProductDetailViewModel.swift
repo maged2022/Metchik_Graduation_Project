@@ -96,7 +96,9 @@ extension ProductDetailViewModel {
     }
     
     func pressedTryItButton(personImage: UIImage?) {
-        coordinator.showVirtualTry(personImage: personImage, productImageURL: product.imageURL)
+        if productDetail != nil {
+            coordinator.showVirtualTry(personImage: personImage, productImageURL: productDetail?.machineImage)
+        }
     }
     
 }

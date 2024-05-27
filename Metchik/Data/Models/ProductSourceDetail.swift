@@ -23,6 +23,7 @@ struct ProductSourceDetail : Codable {
     let review: Int
     let productAttribute: [ProductSourceAttribute]
     let description: String
+    let machineImage: String
 
 }
 

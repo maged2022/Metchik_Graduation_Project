@@ -41,7 +41,8 @@ extension ProductSourceDetail {
                       rating: self.rating,
                       review: self.review,
                       productAttribute: self.productAttribute.toProductSourceAttribute(),
-                      description: self.description)
+                      description: self.description,
+                      machineImage: URL(string: self.machineImage))
     }
 }
 

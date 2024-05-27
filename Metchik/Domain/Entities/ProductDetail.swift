@@ -14,7 +14,7 @@ struct ProductDetail {
     let review: Int
     let productAttribute: [ProductAttribute]
     let description: String
-    
+    let machineImage: URL?
     static let mockData:ProductDetail = ProductDetail(
         images: [
             URL(
@@ -35,6 +35,10 @@ Our Classic Cotton Crewneck T-shirt offers timeless style and comfort. Made from
  Available in various colors, it's perfect for any occasion.
  Upgrade your wardrobe with this versatile essential today!
 """
+        , machineImage: URL(
+            string:
+                "https://i.pinimg.com/474x/f7/d6/16/f7d6164f24b5d0d99a6a2a1937a188ef.jpg"
+        )
     )
 }
 
