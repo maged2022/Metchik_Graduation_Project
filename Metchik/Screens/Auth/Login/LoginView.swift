@@ -55,7 +55,7 @@ extension LoginView {
         Asset.Images.logo.swiftUIImage
             .resizable()
             .scaledToFit()
-            .frame(height: 200)
+            .frame(height: 150)
     }
     
    private var welcomeSection: some View {

@@ -61,7 +61,7 @@ class WishListUseCase: WishListRepositories {
     
     func favoriteButtonPressed( productID: String,completion: @escaping (Result<Status, RemoteError>) -> Void) {
         guard userID != nil else {
-            completion(.failure(RemoteError.authMessage(message: "Please Login First")))
+            completion(.failure(RemoteError.authMessage(message: "you can't add to favorite , Please Login First")))
         return
         }
         
