@@ -28,6 +28,10 @@ class VirtualTryUseCase: VirtualTryRepositories {
                 }
             case .failure(let failure):
                 print(failure)
+                completion(
+                           URL(string: 
+                                "https://res.cloudinary.com/ddy3f2qew/image/upload/v1714509513/20240430T233830209687.png")
+                       )
             }
         }
     }

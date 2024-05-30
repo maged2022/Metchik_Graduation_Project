@@ -103,7 +103,7 @@ extension UserSource {
             avatar: avatar,
             imageURL: imageURL,
             token: token,
-            age: "??"
+            age: "22"
         )
     }
     
