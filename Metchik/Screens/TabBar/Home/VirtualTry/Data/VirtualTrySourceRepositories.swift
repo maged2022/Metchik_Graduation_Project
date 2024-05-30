@@ -9,7 +9,7 @@ import UIKit
 
 protocol VirtualTrySourceRepositoriesProtocol {
     func uploadImageToCloudinary(image: UIImage, completion: @escaping (URL) -> Void)
-    func requestVirtualImage(parameters: [String: Any] , completion: @escaping (Result<VirtualTrySource, RemoteError>) -> Void)
+    func requestVirtualImage(parameters: [String: Any] , completion: @escaping (Result<VirtualTryModel, RemoteError>) -> Void)
 }
 
 class VirtualTrySourceRepositories: VirtualTrySourceRepositoriesProtocol {
@@ -17,7 +17,7 @@ class VirtualTrySourceRepositories: VirtualTrySourceRepositoriesProtocol {
         UploadImage().uploadImageToCloudinary(image: image, completion: completion)
     }
     
-    func requestVirtualImage(parameters: [String: Any] , completion: @escaping (Result<VirtualTrySource, RemoteError>) -> Void) {
+    func requestVirtualImage(parameters: [String: Any] , completion: @escaping (Result<VirtualTryModel, RemoteError>) -> Void) {
         let route = EndPoints.getVirtualImageWith(parameters: parameters)
         BaseRequest().request(route: route, method: .get, completion: completion)
     }

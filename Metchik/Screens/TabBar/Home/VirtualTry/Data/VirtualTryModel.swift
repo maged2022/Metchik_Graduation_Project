@@ -1,5 +1,5 @@
 //
-//  VirtualTrySource.swift
+//  VirtualTryModel.swift
 //  Metchik
 //
 //  Created by Hassan on 30/04/2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct VirtualTrySource: Codable {
+struct VirtualTryModel: Codable {
     let newImageURL: String?
     
     enum CodingKeys: String, CodingKey {
