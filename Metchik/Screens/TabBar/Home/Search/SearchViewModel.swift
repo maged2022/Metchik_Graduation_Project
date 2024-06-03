@@ -18,6 +18,9 @@ class SearchViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     @Published var showFilterOptions: Bool = false
     
+    @Published var showAlert = false
+    @Published var alertMessage: String = "error"
+    
     init(coordinator: HomeTabCoordinator, searchUseCase: SearchUseCase) {
         self.searchUseCase = searchUseCase
         self.coordinator = coordinator

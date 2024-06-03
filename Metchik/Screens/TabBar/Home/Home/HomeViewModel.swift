@@ -25,6 +25,9 @@ class HomeViewModel: ObservableObject {
         }
     }
     
+    @Published var showAlert = false
+    @Published var alertMessage: String = "error"
+    
     init(coordinator: HomeTabCoordinatorProtocol, homeViewUseCase: HomeViewUseCase) {
         self.coordinator = coordinator
         self.homeViewUseCase = homeViewUseCase
@@ -71,7 +74,10 @@ extension HomeViewModel {
     }
     
     func getProductItemViewModel(product: Product) -> ProductItemViewModel {
-        ProductItemViewModel(product: product, coordinator: coordinator)
+        ProductItemViewModel(product: product, coordinator: coordinator) {[weak self] alertMessage in
+            self?.showAlert = true
+            self?.alertMessage = alertMessage
+        }
     }
     func showTabBar() {
         coordinator.showTabBar()

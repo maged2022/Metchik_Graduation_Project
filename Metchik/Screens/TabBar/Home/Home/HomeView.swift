@@ -35,6 +35,14 @@ struct HomeView: View {
             showCategory()
             homeViewModel.showTabBar()
         }
+        .popup(isPresented: homeViewModel.showAlert, content: {
+            SnackBar(title: "Error!",
+                     message: homeViewModel.alertMessage,
+                     buttonTitle: "OK",
+                     onClick: {
+                homeViewModel.showAlert = false
+            })
+        })
     }
 }
 

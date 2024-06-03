@@ -16,6 +16,9 @@ class ProductViewModel: ObservableObject {
     let coordinator: HomeTabCoordinatorProtocol
     @Published var products: [Product] = []
     
+    @Published var showAlert = false
+    @Published var alertMessage: String = "error"
+    
     init(selectedCategory: String, selectedSubCategory: String, coordinator: HomeTabCoordinatorProtocol) {
         self.selectedCategory = selectedCategory
         self.selectedSubCategory = selectedSubCategory
@@ -33,6 +36,9 @@ class ProductViewModel: ObservableObject {
     }
     
     func getProductItemViewModel(product: Product) -> ProductItemViewModel {
-        ProductItemViewModel(product: product, coordinator: coordinator)
+        ProductItemViewModel(product: product, coordinator: coordinator) {[weak self] alertMessage in
+            self?.showAlert = true
+            self?.alertMessage = alertMessage
+        }
     }
 }

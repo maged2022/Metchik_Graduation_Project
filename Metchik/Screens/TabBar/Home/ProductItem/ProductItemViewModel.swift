@@ -14,12 +14,12 @@ class ProductItemViewModel: ObservableObject {
 
     private let useCase: WishListRepositories = WishListUseCase.instance
     @AppStorage("userID") var userID: String?
-    @Published var showAlert = false
-    @Published var alertMessage: String = "error"
+    var callbackError : (String) -> Void
     
-    init(product: Product, coordinator: HomeTabCoordinatorProtocol) {
+    init(product: Product, coordinator: HomeTabCoordinatorProtocol,callbackError: @escaping (String) -> Void) {
         self.product = product
         self.coordinator = coordinator
+        self.callbackError = callbackError
         bindFavoriteValue()
     }
     
@@ -38,8 +38,7 @@ class ProductItemViewModel: ObservableObject {
                             self?.product.isFavorite = !state
                         }
                     case .failure(let failure):
-                        self?.showAlert = true
-                        self?.alertMessage = failure.description
+                        self?.callbackError(failure.description)
                     }
                 }
                 .store(in: &cancellables)
@@ -52,8 +51,7 @@ class ProductItemViewModel: ObservableObject {
             case .success:
                 self?.useCase.updateWishListProducts()
             case .failure(let failure):
-                self?.showAlert = true
-                self?.alertMessage = failure.description
+                self?.callbackError(failure.description)
             }
         }
     }

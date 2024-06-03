@@ -34,7 +34,9 @@ class HomeAssemply: Assembly {
         sharedContainer.register(ProductItemViewModel.self) { resolver in
             guard let coordinator = resolver.resolve(HomeTabCoordinatorProtocol.self)
             else {fatalError("error resolver HomeTabCoordinatorProtocol")}
-            return ProductItemViewModel(product: Product.mockData, coordinator: coordinator)
+            return ProductItemViewModel(product: Product.mockData, coordinator: coordinator) {
+                print($0)
+            }
         }
         sharedContainer.register(ProductViewModel.self) { resolver in
             guard let coordinator = resolver.resolve(HomeTabCoordinatorProtocol.self)
