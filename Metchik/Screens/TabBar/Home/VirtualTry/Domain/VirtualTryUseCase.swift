@@ -10,11 +10,11 @@ import UIKit
 class VirtualTryUseCase: VirtualTryRepositories {
     private var virtualTryRepo: VirtualTrySourceRepositoriesProtocol = VirtualTrySourceRepositories()
 
-    func uploadImageToCloudinary(image: UIImage,completion: @escaping (URL) -> Void) {
+    func uploadImageToCloudinary(image: UIImage,completion: @escaping (Result<URL, RemoteError>) -> Void) {
         virtualTryRepo.uploadImageToCloudinary(image: image,completion: completion)
     }  
     
-    func requestVirtualImage(personImageURL: URL ,productImageURL: URL ,completion: @escaping (URL?) -> Void) {
+    func requestVirtualImage(personImageURL: URL ,productImageURL: URL ,completion: @escaping (Result<URL?, RemoteError>) -> Void) {
         let paramters = [
             "human_img": personImageURL.absoluteString,
             "garm_img" : productImageURL.absoluteString
@@ -24,16 +24,11 @@ class VirtualTryUseCase: VirtualTryRepositories {
             switch result {
             case .success(let success):
                 if let imageUrl = success.newImageURL {
-                    completion(URL(string: imageUrl))
+                    completion(.success(URL(string: imageUrl)))
                 }
             case .failure(let failure):
-                print(failure)
-                completion(
-                           URL(string: 
-                                "https://res.cloudinary.com/ddy3f2qew/image/upload/v1714509513/20240430T233830209687.png")
-                       )
+                completion(.failure(failure))
             }
         }
     }
-    
 }

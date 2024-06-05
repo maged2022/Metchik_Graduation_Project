@@ -14,6 +14,9 @@ class VirtualTryViewModel: ObservableObject {
     private let coordinator: HomeTabCoordinatorProtocol
     private var virtualTryUseCase: VirtualTryRepositories
 
+    @Published var showAlert = false
+    @Published var alertMessage: String = ""
+    
     init(personImage: UIImage, productImageURL: URL?, coordinator: HomeTabCoordinatorProtocol, virtualTryUseCase: VirtualTryRepositories) {
         self.personImage = personImage
         self.productImageURL = productImageURL
@@ -23,8 +26,16 @@ class VirtualTryViewModel: ObservableObject {
     }
     
     func uplaodPersonImage() {
-        virtualTryUseCase.uploadImageToCloudinary(image: personImage) { imageURL in
-            self.getVirtualImage(personImageUrl: imageURL)
+        virtualTryUseCase.uploadImageToCloudinary(image: personImage) {[weak self] result in
+            switch result {
+            case .success(let success):
+                self?.getVirtualImage(personImageUrl: success)
+            case .failure(let failure):
+                DispatchQueue.main.async {
+                    self?.showAlert = true
+                    self?.alertMessage = failure.description
+                }
+            }
         }
     }
     
@@ -35,9 +46,15 @@ class VirtualTryViewModel: ObservableObject {
         virtualTryUseCase.requestVirtualImage(
             personImageURL: personImageUrl,
             productImageURL: productImageURL
-        ) { aiImage in
+        ) {  [weak self] result in
             DispatchQueue.main.async {
-                self.virtualImageURL = aiImage
+                switch result {
+                case .success(let success):
+                    self?.virtualImageURL = success
+                case .failure(let failure):
+                    self?.showAlert = true
+                    self?.alertMessage = failure.description
+                }
             }
         }
     }

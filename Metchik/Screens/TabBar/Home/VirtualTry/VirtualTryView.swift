@@ -9,7 +9,7 @@ import SwiftUI
 
 struct VirtualTryView: View {
     @StateObject var virtualTryViewModel : VirtualTryViewModel
-    
+    @Environment(\.presentationMode) var presentationMode
     var body: some View {
         VStack {
             Spacer().frame(height: 10)
@@ -53,6 +53,16 @@ struct VirtualTryView: View {
         .background(
             Asset.Colors.backgroundScreenColor.swiftUIColor
         )
+        .popup(isPresented: virtualTryViewModel.showAlert, content: {
+            SnackBar(type: .error,
+                     message: virtualTryViewModel.alertMessage,
+                     icon: .cart,
+                     onClick: {
+                
+                virtualTryViewModel.showAlert = false
+                presentationMode.wrappedValue.dismiss()
+            })
+        })
     }
 }
 
