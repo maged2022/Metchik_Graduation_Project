@@ -51,11 +51,14 @@ struct ProductDetailView: View {
                 CartButtonView(cartViewModel: productDetailViewModel.getCartButtonViewModel())
         )
         .popup(isPresented: productDetailViewModel.showAlert, content: {
-            SnackBar(title: "Error!",
+            SnackBar(type: .authError,
                      message: productDetailViewModel.alertMessage,
-                     buttonTitle: "OK",
+                     icon: .favorite,
                      onClick: {
                 productDetailViewModel.showAlert = false
+            }, onClickLogin: {
+                productDetailViewModel.showAlert = false
+                productDetailViewModel.pressLoginButton()
             })
         })
     }

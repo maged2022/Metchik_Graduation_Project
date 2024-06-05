@@ -53,11 +53,14 @@ struct SearchView: View {
             }
         }
         .popup(isPresented: viewModel.showAlert, content: {
-            SnackBar(title: "Error!",
+            SnackBar(type: .authError,
                      message: viewModel.alertMessage,
-                     buttonTitle: "OK",
+                     icon: .favorite,
                      onClick: {
                 viewModel.showAlert = false
+            }, onClickLogin: {
+                viewModel.showAlert = false 
+                viewModel.pressLoginButton()
             })
         })
     }

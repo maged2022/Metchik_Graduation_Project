@@ -33,11 +33,14 @@ struct ProductView: View {
         )
         .navigationTitle(productViewModel.selectedSubCategory)
         .popup(isPresented: productViewModel.showAlert, content: {
-            SnackBar(title: "Error!",
+            SnackBar(type: .authError,
                      message: productViewModel.alertMessage,
-                     buttonTitle: "OK",
+                     icon:.favorite,
                      onClick: {
                 productViewModel.showAlert = false
+            }, onClickLogin: {
+                productViewModel.showAlert = false
+                productViewModel.pressLoginButton()
             })
         })
     }

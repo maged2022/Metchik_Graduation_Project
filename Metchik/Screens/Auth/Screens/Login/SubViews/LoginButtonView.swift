@@ -74,9 +74,9 @@ struct LoginButtonView: View {
             }
         }
         .popup(isPresented: viewModel.showAlert, content: {
-            SnackBar(title: "Error!",
+            SnackBar(type:.error,
                      message: viewModel.alertMessage,
-                     buttonTitle: "OK",
+                     icon: .auth,
                      onClick: {
                 viewModel.showAlert = false
             })

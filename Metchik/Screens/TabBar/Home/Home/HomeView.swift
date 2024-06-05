@@ -36,11 +36,14 @@ struct HomeView: View {
             homeViewModel.showTabBar()
         }
         .popup(isPresented: homeViewModel.showAlert, content: {
-            SnackBar(title: "Error!",
+            SnackBar(type: .authError,
                      message: homeViewModel.alertMessage,
-                     buttonTitle: "OK",
+                     icon: .favorite,
                      onClick: {
                 homeViewModel.showAlert = false
+            }, onClickLogin: {
+                homeViewModel.showAlert = false
+                homeViewModel.pressLoginButton()
             })
         })
     }

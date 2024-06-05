@@ -101,4 +101,8 @@ extension ProductDetailViewModel {
         }
     }
     
+    func pressLoginButton() {
+        coordinator.showAuth()
+    }
+    
 }

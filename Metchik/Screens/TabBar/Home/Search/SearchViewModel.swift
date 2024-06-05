@@ -59,4 +59,8 @@ extension SearchViewModel {
         coordinator.showFilterView()
         showFilterOptions = false
     }
+    
+    func pressLoginButton() {
+        coordinator.showAuth()
+    }
 }

@@ -41,4 +41,8 @@ class ProductViewModel: ObservableObject {
             self?.alertMessage = alertMessage
         }
     }
+    
+    func pressLoginButton() {
+        coordinator.showAuth()
+    }
 }

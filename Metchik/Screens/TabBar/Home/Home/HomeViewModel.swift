@@ -86,4 +86,8 @@ extension HomeViewModel {
     func showSearchView() {
         coordinator.showSearchView()
     }
+    
+    func pressLoginButton() {
+        coordinator.showAuth()
+    }
 }
