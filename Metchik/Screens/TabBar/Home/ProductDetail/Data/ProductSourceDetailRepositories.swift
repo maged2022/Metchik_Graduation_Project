@@ -21,12 +21,13 @@ class ProductSourceDetailRepositoriesImpl: ProductSourceDetailRepositories {
                 let route = EndPoints.getProductDetailWith(parameters: parameters)
                 BaseRequest().request(route: route, method: .get, completion: completion)
             } else {
-                let productDetail: MetaProductSourceDetail? = JSONDecoder().decode(forResource: "ProductSourceDetail")
-                if let productDetail = productDetail {
-                    completion(.success(productDetail))
-                } else {
-                    completion(.failure(.detectError(statusCode: 400)))
-                }
+//                let productDetail: MetaProductSourceDetail? = JSONDecoder().decode(forResource: "ProductSourceDetail")
+//                if let productDetail = productDetail {
+//                    completion(.success(productDetail))
+//                } else {
+//                    completion(.failure(.detectError(statusCode: 400)))
+//                }
+                completion(.failure(.authMessage(message: "Internet connection is bad 🙁")))
             }
         }
         let queue = DispatchQueue(label: "NetworkMonitor")

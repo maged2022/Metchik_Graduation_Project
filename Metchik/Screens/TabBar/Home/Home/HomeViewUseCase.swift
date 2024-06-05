@@ -24,6 +24,8 @@ class HomeViewUseCase: ObservableObject {
         }
     }
     var productsLocal: [Product] = []
+    @Published var showAlert = false
+    @Published var alertMessage: String = "error"
     
     init() {
         updateOffers()
@@ -37,7 +39,8 @@ class HomeViewUseCase: ObservableObject {
                 self?.productsLocal = products
                 self?.updateCategories()
             case .failure(let failure):
-                print(failure)
+                self?.showAlert = true
+                self?.alertMessage = failure.localizedDescription
             }
         }
         .store(in: &cancellables)

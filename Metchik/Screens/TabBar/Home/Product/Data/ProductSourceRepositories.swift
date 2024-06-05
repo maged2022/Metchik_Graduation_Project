@@ -21,12 +21,13 @@ class ProductSourceRepositoriesImpl: ProductSourceRepositories {
                 let route = EndPoints.getProductsWith(parameters: parameters)
                 BaseRequest().request(route: route, method: .get, completion: completion)
             } else {
-                let products: MetaProductSource? = JSONDecoder().decode(forResource: "ProductSource")
-                if let products = products {
-                    completion(.success(products))
-                } else {
-                    completion(.failure(.detectError(statusCode: 400)))
-                }
+//                let products: MetaProductSource? = JSONDecoder().decode(forResource: "ProductSource")
+//                if let products = products {
+//                    completion(.success(products))
+//                } else {
+//                    completion(.failure(.detectError(statusCode: 400)))
+//                }
+                completion(.failure(.authMessage(message: "Internet connection is bad 🙁")))
             }
         }
         let queue = DispatchQueue(label: "NetworkMonitor")

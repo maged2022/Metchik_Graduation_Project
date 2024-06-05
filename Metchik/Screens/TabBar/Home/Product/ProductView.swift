@@ -32,6 +32,17 @@ struct ProductView: View {
             trailing: searchButton
         )
         .navigationTitle(productViewModel.selectedSubCategory)
+        .popup(isPresented: productViewModel.showAlert, content: {
+            SnackBar(type: .authError,
+                     message: productViewModel.alertMessage,
+                     icon:.favorite,
+                     onClick: {
+                productViewModel.showAlert = false
+            }, onClickLogin: {
+                productViewModel.showAlert = false
+                productViewModel.pressLoginButton()
+            })
+        })
     }
     
     private var searchButton: some View {

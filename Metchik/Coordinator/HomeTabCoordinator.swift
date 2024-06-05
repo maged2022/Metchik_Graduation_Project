@@ -19,6 +19,7 @@ protocol HomeTabCoordinatorProtocol: Coordinator {
     func showTabBar()
     func showSearchView()
     func showFilterView()
+    func showAuth()
 }
 
 class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
@@ -121,7 +122,12 @@ class HomeTabCoordinator: NSObject, HomeTabCoordinatorProtocol {
         router.popToRoot(animated: false)
         tabBarCoordinator.showCart()
     }
+    
     func showTabBar() {
         tabBarCoordinator.showTabBar()
+    }
+    
+    func showAuth() {
+        tabBarCoordinator.showAuth()
     }
 }

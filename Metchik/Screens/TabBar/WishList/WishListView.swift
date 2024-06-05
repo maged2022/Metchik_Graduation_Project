@@ -32,9 +32,9 @@ struct WishListView: View {
             viewModel.showTabBar()
         }
         .popup(isPresented: viewModel.showAlert, content: {
-            SnackBar(title: "Error!",
+            SnackBar(type: .error,
                      message: viewModel.alertMessage,
-                     buttonTitle: "OK",
+                     icon: .favorite,
                      onClick: {
                 viewModel.showAlert = false
             })

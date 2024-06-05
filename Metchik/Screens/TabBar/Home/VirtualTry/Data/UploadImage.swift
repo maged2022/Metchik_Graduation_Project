@@ -9,7 +9,7 @@ import UIKit
 import Cloudinary
 
 class UploadImage {
-    func uploadImageToCloudinary(image: UIImage, completion: @escaping (URL) -> Void) {
+    func uploadImageToCloudinary(image: UIImage, completion: @escaping (Result<URL, RemoteError>) -> Void) {
         let config = CLDConfiguration(cloudName: "daapjokhn", secure: true)
         let cloudinary = CLDCloudinary(configuration: config)
         
@@ -19,11 +19,12 @@ class UploadImage {
         uploader.upload(data: imageData, uploadPreset: "test_preset", progress: nil) { (result, error) in
             if let error = error {
                 print("Error uploading image: \(error.localizedDescription)")
+                completion(.failure(.authMessage(message: error.localizedDescription)))
                 return
             }
             if let result = result, let urlString = result.url,let url = URL(string: urlString) {
                 print("Image uploaded successfully. Secure URL: \(urlString)")
-                completion(url)
+                completion(.success(url))
             }
         }
     }

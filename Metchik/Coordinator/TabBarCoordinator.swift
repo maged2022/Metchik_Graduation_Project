@@ -16,6 +16,7 @@ protocol TabBarCoordinatorProtocol: Coordinator {
     func showCart()
     func showFavorites()
     func showProfile()
+    func showAuth()
 }
 
 class TabBarCoordinator: TabBarCoordinatorProtocol {
@@ -84,6 +85,10 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
         let profileViewController = UIHostingController(rootView: ProfileView(viewModel: viewModel))
         router.push(profileViewController)
         return navigationController
+    }
+    
+    func showAuth() {
+        parentCoordinator.showAuth()
     }
 }
 extension TabBarCoordinator {

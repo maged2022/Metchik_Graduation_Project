@@ -6,36 +6,68 @@
 //
 
 import SwiftUI
+enum SnackBarType {
+    case error
+    case authError
+    case success
+    func description() -> String {
+        switch self {
+        case .error:
+            return "Error!" 
+        case .authError:
+            return "Error! ,Pleass Login First"
+        case .success:
+            return "Successful!"
+        }
+    }
+}
+
+enum SnackBarIcon {
+    case cart
+    case favorite
+    case auth
+    func image() -> Image {
+        switch self {
+        case .cart:
+            Asset.Tabbar.cartSelected.swiftUIImage
+        case .favorite:
+            Asset.Tabbar.favoriteSelected.swiftUIImage
+        case .auth:
+            Asset.Tabbar.profileSelected.swiftUIImage
+        }
+    }
+}
 
 struct SnackBar: View {
     
-    let title: String
+    let type: SnackBarType
     let message: String
-    let buttonTitle: String
-    var onClick: () -> Void
+    let icon: SnackBarIcon
+    var onClick: () -> Void 
+    var onClickLogin: () -> Void = {}
     
     var body: some View {
         VStack(spacing: 13) {
-            Asset.Icons.alertIcon.swiftUIImage
+            icon.image()
                 .resizable()
                 .frame(width: 33.3, height: 30)
                 .foregroundColor(.white)
                 .frame(width: 80, height: 80)
                 .background(Color.black.cornerRadius(40))
                 .overlay(
-                    Image(systemName: "checkmark")
+                    Image(systemName: type == .success ?  "checkmark" : "xmark")
                         .resizable()
                         .frame(width: 10, height: 7)
                         .frame(width: 20, height: 20)
                         .foregroundColor(.white)
-                        .background(Color.green)
+                        .background( type == .success ? .green : .red)
                         .cornerRadius(10)
                     , alignment: .topTrailing
                 )
             
                 .padding(25)
             
-            Text(title)
+            Text(type.description())
                 .font(.poppins(.bold, size: 24))
             
             Text(message)
@@ -44,20 +76,38 @@ struct SnackBar: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 50)
             
-            Button(action: {
-                self.onClick()
-            }, label: {
-                Text(buttonTitle)
-                    .foregroundColor(.white)
-                    .font(.poppins(.boldItalic, size: 16))
-                    .padding(.horizontal, 25)
-                    .frame( height: 50)
-                    .background(
-                        RoundedRectangle(cornerRadius: 30)
-                            .foregroundColor(.black)
-                    )
-                    .padding(.vertical, 25)
+            HStack(spacing:50) {
+                Button(action: {
+                    self.onClick()
+                }, label: {
+                    Text(type == .success ? "continue Shopping" : "OK")
+                        .foregroundColor(.white)
+                        .font(.poppins(.bold, size: 16))
+                        .padding(.horizontal, 25)
+                        .frame( height: 50)
+                        .background(
+                            RoundedRectangle(cornerRadius: 30)
+                                .foregroundColor(.black)
+                        )
+                        .padding(.vertical, 25)
             })
+                if type == .authError {
+                    Button(action: {
+                        self.onClickLogin()
+                    }, label: {
+                        Text("Login Now")
+                            .foregroundColor(.white)
+                            .font(.poppins(.boldItalic, size: 16))
+                            .padding(.horizontal, 25)
+                            .frame( height: 50)
+                            .background(
+                                RoundedRectangle(cornerRadius: 30)
+                                    .foregroundColor(.black)
+                            )
+                            .padding(.vertical, 25)
+                })
+                }
+            }
         }
         .padding()
         .frame(maxWidth: .infinity)
@@ -70,10 +120,11 @@ struct SnackBar: View {
 
 struct SnackBar_Previews: PreviewProvider {
     static var previews: some View {
-        SnackBar(title: "Successful!",
+        SnackBar(type: .authError,
                  message: "You have successfully your Confirm Payment send!",
-                 buttonTitle: "continue shopping",
+                 icon: .cart,
                  onClick: {
+        }, onClickLogin: {
         })
     }
 }

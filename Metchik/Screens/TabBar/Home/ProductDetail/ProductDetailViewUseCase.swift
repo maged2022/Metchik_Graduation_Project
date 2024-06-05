@@ -37,6 +37,7 @@ class ProductDetailViewUseCase {
     @Published var maxAvailableProduct: Int = 1
     @Published var currentStepperValue: Int = 1
     @Published var showAlert = false
+    @Published var showAuthAlert = false
     @Published var alertMessage: String = "error"
     
     init (product:Product) {
@@ -129,7 +130,7 @@ extension ProductDetailViewUseCase {
                         self?.product.isFavorite = !state
                     }
                 case .failure(let failure):
-                    self?.showAlert = true
+                    self?.showAuthAlert = true
                     self?.alertMessage = failure.description
                 }
             }
@@ -143,7 +144,7 @@ extension ProductDetailViewUseCase {
             case .success:
                 self?.wishListUseCase.updateWishListProducts()
             case .failure(let failure):
-                self?.showAlert = true
+                self?.showAuthAlert = true
                 self?.alertMessage = failure.description
             }
         }

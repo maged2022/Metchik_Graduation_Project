@@ -8,6 +8,6 @@
 import UIKit
 
 protocol VirtualTryRepositories {
-    func uploadImageToCloudinary(image: UIImage, completion: @escaping (URL) -> Void)
-    func requestVirtualImage(personImageURL: URL ,productImageURL: URL ,completion: @escaping (URL?) -> Void)
+    func uploadImageToCloudinary(image: UIImage, completion: @escaping (Result<URL, RemoteError>) -> Void)
+    func requestVirtualImage(personImageURL: URL ,productImageURL: URL ,completion: @escaping (Result<URL?, RemoteError>) -> Void)
 }

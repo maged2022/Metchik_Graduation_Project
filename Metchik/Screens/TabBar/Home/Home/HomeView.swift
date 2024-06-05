@@ -35,6 +35,25 @@ struct HomeView: View {
             showCategory()
             homeViewModel.showTabBar()
         }
+        .popup(isPresented: homeViewModel.showAuthAlert, content: {
+            SnackBar(type: .authError,
+                     message: homeViewModel.alertMessage,
+                     icon: .favorite,
+                     onClick: {
+                homeViewModel.showAuthAlert = false
+            }, onClickLogin: {
+                homeViewModel.showAuthAlert = false
+                homeViewModel.pressLoginButton()
+            })
+        })   
+        .popup(isPresented: homeViewModel.showAlert, content: {
+            SnackBar(type: .error,
+                     message: homeViewModel.alertMessage,
+                     icon: .favorite,
+                     onClick: {
+                homeViewModel.showAlert = false
+            })
+        })
     }
 }
 

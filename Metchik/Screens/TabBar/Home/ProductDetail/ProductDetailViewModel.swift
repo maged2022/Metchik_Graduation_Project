@@ -37,6 +37,7 @@ class ProductDetailViewModel: ObservableObject {
         }
     }
     @Published var showAlert = false
+    @Published var showAuthAlert = false
     @Published var alertMessage: String = "error"
     
     init(productDetailViewUseCase: ProductDetailViewUseCase, coordinator: HomeTabCoordinatorProtocol) {
@@ -71,7 +72,10 @@ class ProductDetailViewModel: ObservableObject {
             .assign(to: &$product)
         productDetailViewUseCase.$showAlert
             .receive(on: DispatchQueue.main)
-            .assign(to: &$showAlert)  
+            .assign(to: &$showAlert) 
+        productDetailViewUseCase.$showAuthAlert
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$showAuthAlert)
         productDetailViewUseCase.$alertMessage
             .receive(on: DispatchQueue.main)
             .assign(to: &$alertMessage)
@@ -99,6 +103,10 @@ extension ProductDetailViewModel {
         if productDetail != nil {
             coordinator.showVirtualTry(personImage: personImage, productImageURL: productDetail?.machineImage)
         }
+    }
+    
+    func pressLoginButton() {
+        coordinator.showAuth()
     }
     
 }

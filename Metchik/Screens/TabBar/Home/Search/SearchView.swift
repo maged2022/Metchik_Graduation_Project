@@ -12,7 +12,6 @@ struct SearchView: View {
                 })
                 .padding()
                 
-                // Grid layout to display products
                 ScrollView {
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
                         ForEach(viewModel.products) { product in
@@ -20,7 +19,10 @@ struct SearchView: View {
                                 productItemViewModel: ProductItemViewModel(
                                     product: product,
                                     coordinator: viewModel.coordinator
-                                )
+                                ) { alertMessage in
+                                    viewModel.showAlert = true
+                                    viewModel.alertMessage = alertMessage
+                                }
                             )
                         }
                     }
@@ -50,5 +52,16 @@ struct SearchView: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
             }
         }
+        .popup(isPresented: viewModel.showAlert, content: {
+            SnackBar(type: .authError,
+                     message: viewModel.alertMessage,
+                     icon: .favorite,
+                     onClick: {
+                viewModel.showAlert = false
+            }, onClickLogin: {
+                viewModel.showAlert = false 
+                viewModel.pressLoginButton()
+            })
+        })
     }
 }
