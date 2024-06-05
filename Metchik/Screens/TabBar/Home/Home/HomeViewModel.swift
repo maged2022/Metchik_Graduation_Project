@@ -27,6 +27,7 @@ class HomeViewModel: ObservableObject {
     
     @Published var showAlert = false
     @Published var alertMessage: String = "error"
+    @Published var showAuthAlert = false
     
     init(coordinator: HomeTabCoordinatorProtocol, homeViewUseCase: HomeViewUseCase) {
         self.coordinator = coordinator
@@ -52,6 +53,12 @@ class HomeViewModel: ObservableObject {
         homeViewUseCase.$products
             .receive(on: DispatchQueue.main)
             .assign(to: &$products)
+        homeViewUseCase.$showAlert
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$showAlert)
+        homeViewUseCase.$alertMessage
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$alertMessage)
     }
     
 }
@@ -75,7 +82,7 @@ extension HomeViewModel {
     
     func getProductItemViewModel(product: Product) -> ProductItemViewModel {
         ProductItemViewModel(product: product, coordinator: coordinator) {[weak self] alertMessage in
-            self?.showAlert = true
+            self?.showAuthAlert = true
             self?.alertMessage = alertMessage
         }
     }

@@ -26,7 +26,7 @@ public enum RemoteError: Error {
         case 400: return "Request syntax is invalid"
         case 401: return "Authentication failed, please provide valid credentials"
         case 403: return "Access to resource is forbidden"
-        case 404: return "Resource not found"
+        case 404: return "server not found try again later"
         case 500: return "Internal server error, please try again later"
         case 502: return "Bad gateway, upstream server returned an invalid response"
         case 503: return "Service is currently unavailable, please try again later"

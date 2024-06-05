@@ -50,15 +50,23 @@ struct ProductDetailView: View {
             trailing:
                 CartButtonView(cartViewModel: productDetailViewModel.getCartButtonViewModel())
         )
-        .popup(isPresented: productDetailViewModel.showAlert, content: {
+        .popup(isPresented: productDetailViewModel.showAuthAlert, content: {
             SnackBar(type: .authError,
                      message: productDetailViewModel.alertMessage,
                      icon: .favorite,
                      onClick: {
-                productDetailViewModel.showAlert = false
+                productDetailViewModel.showAuthAlert = false
             }, onClickLogin: {
-                productDetailViewModel.showAlert = false
+                productDetailViewModel.showAuthAlert = false
                 productDetailViewModel.pressLoginButton()
+            })
+        })
+        .popup(isPresented: productDetailViewModel.showAlert, content: {
+            SnackBar(type: .error,
+                     message: productDetailViewModel.alertMessage,
+                     icon: .favorite,
+                     onClick: {
+                productDetailViewModel.showAlert = false
             })
         })
     }
