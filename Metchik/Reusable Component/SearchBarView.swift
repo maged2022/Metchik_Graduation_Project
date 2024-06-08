@@ -26,6 +26,8 @@ struct SearchBarView: View {
                         .font(.poppins(.regular, size: 16))
                         .foregroundStyle(Colors.searchLabelColor.swiftUIColor)
                 })
+                .font(.poppins(.regular, size: 14))
+                .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
                 
             }
             .padding(.horizontal,25)

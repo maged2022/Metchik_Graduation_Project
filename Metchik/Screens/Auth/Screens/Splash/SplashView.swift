@@ -58,6 +58,7 @@ struct SplashView: View {
             }.padding(25)
         }
         .ignoresSafeArea()
+        .background(Asset.Colors.backgroundScreenColor.swiftUIColor )
     }
 }
 

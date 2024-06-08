@@ -25,6 +25,7 @@ struct OnBoardingView: View {
             nextButton
         }
         .padding(15)
+        .background(Asset.Colors.backgroundScreenColor.swiftUIColor )
         
     }
 }

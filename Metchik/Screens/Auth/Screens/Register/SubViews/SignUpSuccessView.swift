@@ -43,7 +43,9 @@ struct SignUpSuccessView: View {
             }
             .padding(.bottom,75)
 
-        }.padding(25)
+        }
+        .padding(25)
+        .background(Asset.Colors.backgroundScreenColor.swiftUIColor )
     }
 }
 struct SignUpSuccessView_Previews: PreviewProvider {

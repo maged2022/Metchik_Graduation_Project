@@ -117,6 +117,7 @@ struct FilterView: View {
             Spacer()
         }
         .padding(.horizontal, 10)
+        .background(Asset.Colors.backgroundScreenColor.swiftUIColor )
     }
 }
 struct FilterView_Previews: PreviewProvider {

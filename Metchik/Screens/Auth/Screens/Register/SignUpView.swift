@@ -67,6 +67,7 @@ struct SignUpView: View {
                 viewModel.showAlert = false
             })
         })
+        .background(Asset.Colors.backgroundScreenColor.swiftUIColor )
     }
 }
 

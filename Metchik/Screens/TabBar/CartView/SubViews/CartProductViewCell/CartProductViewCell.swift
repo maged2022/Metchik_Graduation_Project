@@ -30,7 +30,7 @@ struct CartProductViewCell: View {
             VStack(alignment: .leading,spacing: 2) {
                 Text(viewModel.product.name)
                     .font(.poppins(.semiBold, size: 14))
-                
+                    .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
                 Text(viewModel.product.shortDescription)
                     .font(.poppins(.regular, size: 11))
                     .foregroundStyle(Colors.secondaryLabelColor.swiftUIColor)
@@ -41,6 +41,7 @@ struct CartProductViewCell: View {
                                    * viewModel.product.price)) + " L.E")
                     .font(.poppins(.bold, size: 14))
                     .padding(.bottom,4)
+                    .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
             }
             .frame(maxWidth: .infinity,alignment: .leading)
             .padding(.leading, 5)
@@ -72,7 +73,7 @@ struct CartProductViewCell: View {
             .cornerRadius(13)
         }
         .frame(height: 115)
-        .background(.white)
+        .background(Asset.Colors.backgroundScreenColor.swiftUIColor )
         .cornerRadius(13)
         .padding(1)
         .shadow(color: Color.black.opacity(0.1), radius: 5, x: -1, y: -1)

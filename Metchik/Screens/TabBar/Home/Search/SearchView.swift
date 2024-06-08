@@ -63,5 +63,6 @@ struct SearchView: View {
                 viewModel.pressLoginButton()
             })
         })
+        .background(Asset.Colors.backgroundScreenColor.swiftUIColor )
     }
 }

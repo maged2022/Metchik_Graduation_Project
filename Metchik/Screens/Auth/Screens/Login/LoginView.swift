@@ -38,6 +38,7 @@ struct LoginView: View {
         }
         .padding(25)
         .environmentObject(viewModel)
+        .background(Asset.Colors.backgroundScreenColor.swiftUIColor )
     }
 }
 

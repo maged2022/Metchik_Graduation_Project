@@ -30,6 +30,7 @@ struct LoginButtonView: View {
             })
             .disabled(viewModel.isLoggenActive)
             Text("or")
+                .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
             VStack(spacing: 15) {
                 Button(action: {
                     viewModel.loginWithFacebookButtonPressed()

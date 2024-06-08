@@ -57,7 +57,7 @@ extension CartView {
     
     var proceedButton: some View {
         Button(action: { 
-            
+            print("pressed checkout")
         }, label: {
             Text("Proceed to Checkout")
                 .font(.poppins(.semiBold, size: 16))

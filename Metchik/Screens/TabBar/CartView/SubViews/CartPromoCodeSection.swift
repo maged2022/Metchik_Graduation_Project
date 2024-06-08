@@ -18,9 +18,13 @@ struct CartPromoCodeSection: View {
         }
         .padding(.leading,5)
         .padding(15)
+        .font(.poppins(.regular, size: 14))
+        .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
        
         .overlay(alignment:.trailing) {
-            Button(action: {}, label: {
+            Button(action: {
+                print("pressed Apply promo code")
+            }, label: {
                 Text("Apply")
                     .font(.poppins(.semiBold, size: 11))
                     .padding(.horizontal,14)
