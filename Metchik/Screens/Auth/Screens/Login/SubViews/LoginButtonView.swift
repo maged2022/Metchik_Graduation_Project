@@ -13,13 +13,18 @@ struct LoginButtonView: View {
         VStack(spacing: 10) {
             Button(action: {
                 viewModel.loginButtonPressed()
-            }, label: {
+            },
+                   label: {
                 Text("Login")
                     .font(.poppins(.bold, size: 16))
                     .frame(height: 50)
                     .frame(maxWidth: .infinity)
                     .foregroundColor(Asset.Colors.primaryButtonColor.swiftUIColor)
-                    .background(Asset.Colors.secondaryButtonColor.swiftUIColor)
+                    .background(
+                        Asset.Colors.secondaryButtonColor
+                            .swiftUIColor
+                            .opacity(viewModel.isLoggenActive ? 0.6 : 1)
+                    )
                     .cornerRadius(30)
                     
             })
@@ -28,13 +33,18 @@ struct LoginButtonView: View {
             VStack(spacing: 15) {
                 Button(action: {
                     viewModel.loginWithFacebookButtonPressed()
-                }, label: {
+                },
+                       label: {
                     Text("Continue with Facebook")
                         .font(.poppins(.semiBold, size: 16))
                         .frame(height: 50)
                         .frame(maxWidth: .infinity)
                         .foregroundColor(Asset.Colors.primaryButtonColor.swiftUIColor)
-                        .background(Asset.Colors.seconderyFacebookButtonColor.swiftUIColor)
+                        .background(
+                            Asset.Colors.seconderyFacebookButtonColor
+                                .swiftUIColor
+                                .opacity(viewModel.isLoggenActive ? 0.6 : 1)
+                        )
                         .cornerRadius(30)
                 })
                 .disabled(viewModel.isLoggenActive)
@@ -46,7 +56,10 @@ struct LoginButtonView: View {
                         .font(.poppins(.semiBold, size: 16))
                         .frame(height: 50)
                         .frame(maxWidth: .infinity)
-                        .foregroundColor(Asset.Colors.secondaryLabelColor.swiftUIColor)
+                        .foregroundColor(Asset.Colors.secondaryLabelColor
+                            .swiftUIColor
+                            .opacity(viewModel.isLoggenActive ? 0.7 : 1)
+                        )
                         .background(
                           RoundedRectangle(cornerRadius: 30)
                             .stroke(lineWidth: 1)
@@ -57,16 +70,24 @@ struct LoginButtonView: View {
 
                 Button(action: {
                     viewModel.loginWithAppleButtonPressed()
-                }, label: {
+                },
+                       label: {
                     Text("Continue with Apple")
                         .font(.poppins(.semiBold, size: 16))
                         .frame(height: 50)
                         .frame(maxWidth: .infinity)
-                        .foregroundColor(Asset.Colors.secondaryLabelColor.swiftUIColor)
+                        .foregroundColor(Asset.Colors.secondaryLabelColor
+                            .swiftUIColor
+                            .opacity(viewModel.isLoggenActive ? 0.7 : 1)
+                        )
                         .background(
-                          RoundedRectangle(cornerRadius: 30)
-                            .stroke(lineWidth: 1)
-                            .foregroundStyle(Asset.Colors.borderButtonColor.swiftUIColor)
+                            RoundedRectangle(cornerRadius: 30)
+                                .stroke(lineWidth: 1)
+                                .foregroundStyle(
+                                    Asset.Colors.borderButtonColor
+                                        .swiftUIColor
+                                        
+                                )
                         )
                 })
                 .disabled(viewModel.isLoggenActive)
