@@ -10,8 +10,9 @@ import SwiftUI
 struct VirtualTryView: View {
     @StateObject var virtualTryViewModel : VirtualTryViewModel
     @Environment(\.presentationMode) var presentationMode
+    @State private var scanPosition: CGFloat = 0
     var body: some View {
-        VStack {
+        VStack (spacing: 0){
             Spacer().frame(height: 10)
             HStack {
                 AsyncImage(url: virtualTryViewModel.productImageURL) { image in
@@ -21,6 +22,7 @@ struct VirtualTryView: View {
                         .aspectRatio(contentMode: .fit)
                         .cornerRadius(8)
                         .shadow(color: .black.opacity(0.1), radius: 10)
+                        .frame(maxWidth: .infinity)
                 } placeholder: {
                     ProgressView()
                         .frame(height: 180)
@@ -48,10 +50,23 @@ struct VirtualTryView: View {
                     .padding()
                     .shadow(color: .black.opacity(0.1), radius: 10)
             } placeholder: {
-                ProgressView("ML Processing Image")
-                    .padding()
-                    .scaleEffect(1.2)
-                    .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
+                ZStack {
+                    Image(uiImage: virtualTryViewModel.personImage)
+                        .resizable()
+                        .frame(width: 200, height: 200)
+                        .aspectRatio(contentMode: .fit)
+                        .cornerRadius(8)
+                        .padding()
+                        .mask(
+                            GeometryReader { geometry in
+                                Rectangle()
+                                    .frame(height: scanPosition)
+                            }
+                        )
+                        .overlay {
+                            ScannerView(scanPosition: $scanPosition)
+                        }
+                }
             }
             Spacer()
         }
