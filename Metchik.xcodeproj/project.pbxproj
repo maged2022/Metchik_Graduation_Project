@@ -10,6 +10,8 @@
 		121BD4E42B344B58000126C6 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121BD4E32B344B58000126C6 /* SearchBarView.swift */; };
 		121BD4E62B344D05000126C6 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121BD4E52B344D05000126C6 /* UIApplication.swift */; };
 		121F495A2B2DCCC3000CD3BB /* LocalCacheImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121F49592B2DCCC3000CD3BB /* LocalCacheImage.swift */; };
+		121FCA1A2C15F44100A2B12A /* PartialSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121FCA192C15F44100A2B12A /* PartialSquare.swift */; };
+		121FCA1C2C15F4A200A2B12A /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121FCA1B2C15F4A200A2B12A /* ScannerView.swift */; };
 		123612E92B2480A10087B346 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123612E82B2480A10087B346 /* LaunchView.swift */; };
 		123612F02B2489B00087B346 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 123612EF2B2489B00087B346 /* Launch Screen.storyboard */; };
 		125D25A82BE0A95F002967F4 /* VirtualTryButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D25A72BE0A95F002967F4 /* VirtualTryButtonView.swift */; };
@@ -197,6 +199,8 @@
 		121BD4E32B344B58000126C6 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		121BD4E52B344D05000126C6 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		121F49592B2DCCC3000CD3BB /* LocalCacheImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCacheImage.swift; sourceTree = "<group>"; };
+		121FCA192C15F44100A2B12A /* PartialSquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartialSquare.swift; sourceTree = "<group>"; };
+		121FCA1B2C15F4A200A2B12A /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		123612E82B2480A10087B346 /* LaunchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		123612EF2B2489B00087B346 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		125D25A72BE0A95F002967F4 /* VirtualTryButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualTryButtonView.swift; sourceTree = "<group>"; };
@@ -395,6 +399,7 @@
 		121BD4E22B344AF4000126C6 /* Reusable Component */ = {
 			isa = PBXGroup;
 			children = (
+				121FCA182C15F3F900A2B12A /* Scanner View */,
 				129BC1842BF503C2000A18BF /* PopUP Alert  */,
 				5CA670422BE4402A0030BF59 /* InputView.swift */,
 				5C431D212B89BA3B0091BF09 /* StepperView.swift */,
@@ -404,6 +409,15 @@
 				5C8B58A12BECA32100C3563D /* SwipeItem.swift */,
 			);
 			path = "Reusable Component";
+			sourceTree = "<group>";
+		};
+		121FCA182C15F3F900A2B12A /* Scanner View */ = {
+			isa = PBXGroup;
+			children = (
+				121FCA192C15F44100A2B12A /* PartialSquare.swift */,
+				121FCA1B2C15F4A200A2B12A /* ScannerView.swift */,
+			);
+			path = "Scanner View";
 			sourceTree = "<group>";
 		};
 		123612E72B24808D0087B346 /* Launch */ = {
@@ -1277,6 +1291,7 @@
 				5C45B0E22B8F5D5C00BE62F4 /* CartUseCase.swift in Sources */,
 				5C8B589A2BEC87A200C3563D /* WishListRepositories.swift in Sources */,
 				5C713B722B835B920040AE10 /* OfferSource.swift in Sources */,
+				121FCA1A2C15F44100A2B12A /* PartialSquare.swift in Sources */,
 				5C431D222B89BA3B0091BF09 /* StepperView.swift in Sources */,
 				5C713B702B835B2A0040AE10 /* OffersUseCase.swift in Sources */,
 				5CF5E8A22B806FF50096F7AB /* ProductSource.swift in Sources */,
@@ -1323,6 +1338,7 @@
 				5C3EB6842BE1723C0093BE26 /* UploadImage.swift in Sources */,
 				5CA5E6E32BE58175008641C1 /* AuthRepositories.swift in Sources */,
 				5CA670472BE455CD0030BF59 /* SignUpViewModel.swift in Sources */,
+				121FCA1C2C15F4A200A2B12A /* ScannerView.swift in Sources */,
 				5C8E5DCB2BDFBBA400DEF02D /* Task.swift in Sources */,
 				5C431D1C2B89ACA90091BF09 /* ProductDetailRepositories.swift in Sources */,
 				5C4F4D1A2BE98E590040FD9C /* SignUpSuccessView.swift in Sources */,
