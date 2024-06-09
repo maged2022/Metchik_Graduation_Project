@@ -16,6 +16,7 @@ struct ProductSizeSectionView: View {
             Text("Size")
                 .font(.poppins(.semiBold, size: 16))
                 .frame(maxWidth: .infinity,alignment: .leading)
+                .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
             HStack(alignment: .center, spacing: 15) {
                 ForEach(ProductSizes.allCases, id: \.self) { size in
                     Text(size.rawValue)

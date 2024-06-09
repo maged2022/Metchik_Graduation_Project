@@ -95,6 +95,7 @@ extension ProductDetailView {
                 currentStepperValue: $productDetailViewModel.currentStepperValue)
             Text("Avaliable in stok")
                 .font(.poppins(.semiBold, size: 11))
+                .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
         }
     }
 }

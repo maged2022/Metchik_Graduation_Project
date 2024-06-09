@@ -34,6 +34,7 @@ struct ProductMetaView: View {
                 }
                 Text("(\(viewModel.productDetail?.review ?? 00) Review)")
                     .font(.poppins(.regular, size: 11))
+                    .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
             }
         }
     }

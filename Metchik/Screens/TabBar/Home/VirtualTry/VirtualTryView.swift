@@ -20,17 +20,20 @@ struct VirtualTryView: View {
                         .frame(height: 180)
                         .aspectRatio(contentMode: .fit)
                         .cornerRadius(8)
+                        .shadow(color: .black.opacity(0.1), radius: 10)
                 } placeholder: {
                     ProgressView()
                         .frame(height: 180)
                         .frame(maxWidth: .infinity)
                         .cornerRadius(8)
+                        .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
                 }
                 Image(uiImage: virtualTryViewModel.personImage)
                     .resizable()
                     .frame(height: 180)
                     .aspectRatio(contentMode: .fit)
                     .cornerRadius(8)
+                    .shadow(color: .black.opacity(0.1), radius: 10)
             }
             .frame(maxWidth: .infinity)
             .padding(.horizontal)
@@ -43,10 +46,12 @@ struct VirtualTryView: View {
                     .frame(maxWidth: .infinity, minHeight: 200, maxHeight: 430)
                     .cornerRadius(15)
                     .padding()
+                    .shadow(color: .black.opacity(0.1), radius: 10)
             } placeholder: {
                 ProgressView("ML Processing Image")
                     .padding()
                     .scaleEffect(1.2)
+                    .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
             }
             Spacer()
         }
