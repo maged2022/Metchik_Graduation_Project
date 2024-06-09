@@ -12,7 +12,7 @@ struct VirtualTryView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var scanPosition: CGFloat = 0
     var body: some View {
-        VStack (spacing: 0){
+        VStack(spacing: 0) {
             Spacer().frame(height: 10)
             HStack {
                 AsyncImage(url: virtualTryViewModel.productImageURL) { image in
@@ -58,7 +58,7 @@ struct VirtualTryView: View {
                         .cornerRadius(8)
                         .padding()
                         .mask(
-                            GeometryReader { geometry in
+                            GeometryReader { _ in
                                 Rectangle()
                                     .frame(height: scanPosition)
                             }

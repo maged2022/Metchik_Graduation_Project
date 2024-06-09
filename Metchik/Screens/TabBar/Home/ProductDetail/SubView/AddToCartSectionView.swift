@@ -26,7 +26,7 @@ struct AddToCartSectionView: View {
             Button(action: {
                 viewModel.addToCart()
             }, label: {
-                Text("Add To Cart")
+                Text( viewModel.isAddedToCart ? "Update Count" : "Add To Cart")
                     .foregroundColor(Colors.primaryButtonColor.swiftUIColor)
                     .font(.poppins(.semiBold, size: 16))
                     .frame(maxWidth: .infinity)

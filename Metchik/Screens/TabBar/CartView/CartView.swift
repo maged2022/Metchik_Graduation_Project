@@ -32,6 +32,14 @@ struct CartView: View {
         .onAppear {
             viewModel.showTabBar()
         }
+        .popup(isPresented: viewModel.showAlert, content: {
+            SnackBar(type: .success,
+                     message: viewModel.alertMessage,
+                     icon: .cart,
+                     onClick: {
+                viewModel.showAlert = false
+            })
+        })
 
     }
     
@@ -56,19 +64,25 @@ extension CartView {
     }
     
     var proceedButton: some View {
-        Button(action: { 
-            print("pressed checkout")
-        }, label: {
+        Button(action: {
+            
+            viewModel.pressedCheckOutButton()
+        },
+               label: {
             Text("Proceed to Checkout")
                 .font(.poppins(.semiBold, size: 16))
                 .foregroundStyle(Colors.primaryButtonColor.swiftUIColor)
                 .frame(maxWidth: .infinity)
                 .frame(height: 50)
                 .background(
-                RoundedRectangle(cornerRadius: 10)
-                    .foregroundStyle(Colors.secondaryButtonColor.swiftUIColor)
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundStyle(
+                            Colors.secondaryButtonColor
+                                .swiftUIColor
+                                .opacity(viewModel.isCheckoutActive ? 0.6 : 1) )
                 )
                 .padding(.bottom,50)
         })
+        .disabled(viewModel.isCheckoutActive)
     }
 }

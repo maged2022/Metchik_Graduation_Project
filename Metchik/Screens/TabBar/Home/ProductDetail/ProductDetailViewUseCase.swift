@@ -31,13 +31,17 @@ class ProductDetailViewUseCase {
     @Published var selectedColor: Color? {
         didSet {
             getMaxAvilableProducts()
+            checkSelectedCartProduct()
         }
     }
     @Published var availableColors: [Color] = []
     @Published var maxAvailableProduct: Int = 1
     @Published var currentStepperValue: Int = 1
+    @Published var isAddedToCart: Bool = false
+    
     @Published var showAlert = false
     @Published var showAuthAlert = false
+    @Published var showSuccessPopup = false
     @Published var alertMessage: String = "error"
     
     init (product:Product) {
@@ -113,8 +117,24 @@ extension ProductDetailViewUseCase {
             size: selectedSize,
             color: selectedColor,
             count: currentStepperValue)
+        if isAddedToCart == false {
+            showSuccessPopup = true
+            alertMessage = "You have successfully Add Product To Cart!"
+        } else {
+            showSuccessPopup = true
+            alertMessage = "You have successfully update Product count in Cart!"
+        }
+        isAddedToCart = true
     }
     
+    func checkSelectedCartProduct() {
+        guard let selectedSize = selectedSize, let selectedColor = selectedColor else {return}
+       isAddedToCart =  cartUseCase.checkSelectedCartProduct(
+            product: product,
+            size: selectedSize,
+            color: selectedColor
+        )
+    }
 }
 
 // MARk:- FavoriteUseCase

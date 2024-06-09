@@ -69,6 +69,14 @@ struct ProductDetailView: View {
                 productDetailViewModel.showAlert = false
             })
         })
+        .popup(isPresented: productDetailViewModel.showSuccessPopup, content: {
+            SnackBar(type: .success,
+                     message: productDetailViewModel.alertMessage,
+                     icon: .cart,
+                     onClick: {
+                productDetailViewModel.showSuccessPopup = false
+            })
+        })
     }
 }
 
