@@ -51,7 +51,7 @@ struct SnackBar: View {
             icon.image()
                 .resizable()
                 .frame(width: 33.3, height: 30)
-                .foregroundColor(.white)
+                .foregroundColor(Asset.Colors.primaryButtonColor.swiftUIColor)
                 .frame(width: 80, height: 80)
                 .background(Color.black.cornerRadius(40))
                 .overlay(
@@ -59,7 +59,7 @@ struct SnackBar: View {
                         .resizable()
                         .frame(width: 10, height: 7)
                         .frame(width: 20, height: 20)
-                        .foregroundColor(.white)
+                        .foregroundColor(Asset.Colors.secondaryButtonColor.swiftUIColor)
                         .background( type == .success ? .green : .red)
                         .cornerRadius(10)
                     , alignment: .topTrailing
@@ -69,10 +69,11 @@ struct SnackBar: View {
             
             Text(type.description())
                 .font(.poppins(.bold, size: 24))
-            
+                .foregroundColor(Asset.Colors.primaryLabelColor.swiftUIColor)
+
             Text(message)
                 .font(.poppins(.light, size: 14))
-                .foregroundColor(.gray)
+                .foregroundColor(Asset.Colors.searchLabelColor.swiftUIColor)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 50)
             
@@ -81,13 +82,13 @@ struct SnackBar: View {
                     self.onClick()
                 }, label: {
                     Text(type == .success ? "continue Shopping" : "OK")
-                        .foregroundColor(.white)
+                        .foregroundColor(Asset.Colors.primaryButtonColor.swiftUIColor)
                         .font(.poppins(.bold, size: 16))
                         .padding(.horizontal, 25)
                         .frame( height: 50)
                         .background(
                             RoundedRectangle(cornerRadius: 30)
-                                .foregroundColor(.black)
+                                .foregroundColor(Asset.Colors.secondaryButtonColor.swiftUIColor)
                         )
                         .padding(.vertical, 25)
             })
@@ -96,13 +97,13 @@ struct SnackBar: View {
                         self.onClickLogin()
                     }, label: {
                         Text("Login Now")
-                            .foregroundColor(.white)
+                            .foregroundColor(Asset.Colors.primaryButtonColor.swiftUIColor)
                             .font(.poppins(.boldItalic, size: 16))
                             .padding(.horizontal, 25)
                             .frame( height: 50)
                             .background(
                                 RoundedRectangle(cornerRadius: 30)
-                                    .foregroundColor(.black)
+                                    .foregroundColor(Asset.Colors.secondaryButtonColor.swiftUIColor)
                             )
                             .padding(.vertical, 25)
                 })
@@ -111,7 +112,7 @@ struct SnackBar: View {
         }
         .padding()
         .frame(maxWidth: .infinity)
-        .background(Color.white)
+        .background(Asset.Colors.backgroundScreenColor.swiftUIColor)
         .cornerRadius(10)
         .shadow(radius: 5)
         .padding(15)
