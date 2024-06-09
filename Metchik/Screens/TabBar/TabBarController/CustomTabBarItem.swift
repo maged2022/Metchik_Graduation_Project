@@ -90,7 +90,7 @@ class CustomTabBarItem: UIView {
     // MARK: - Public Methods
     public func select() {
         widthConstraint?.constant = _width
-        backgroundColor = Asset.Colors.primaryButtonColor.color
+        backgroundColor = Asset.Colors.backgroundScreenColor.color
         iconView.backgroundColor =  Asset.Colors.secondaryButtonColor.color
         
         UIView.animate(withDuration: 0.5) { [weak self] in

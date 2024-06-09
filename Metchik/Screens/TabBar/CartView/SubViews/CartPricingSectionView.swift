@@ -19,6 +19,7 @@ struct CartPricingSectionView: View {
                 Spacer()
                 Text("\(String(format: "%.2f", viewModel.calculateTotalPrice())) L.E")
                     .font(.poppins(.semiBold, size: 20))
+                    .foregroundStyle(Colors.primaryLabelColor.swiftUIColor)
             }
     }
 }

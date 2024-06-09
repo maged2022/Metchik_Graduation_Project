@@ -27,7 +27,7 @@ struct WishListViewCell: View {
             VStack(alignment: .leading,spacing: 2) {
                 Text(viewModel.product.name)
                     .font(.poppins(.semiBold, size: 14))
-                
+                    .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
                 Text(viewModel.product.shortDescription)
                     .font(.poppins(.regular, size: 11))
                     .foregroundStyle(Asset.Colors.secondaryLabelColor.swiftUIColor)
@@ -35,6 +35,7 @@ struct WishListViewCell: View {
                 Text("\(String(format: "%.2f", viewModel.product.price)) L.E")
                     .font(.poppins(.bold, size: 14))
                     .padding(.bottom,4)
+                    .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
             }
             .frame(maxWidth: .infinity,alignment: .leading)
             Button {
@@ -51,7 +52,7 @@ struct WishListViewCell: View {
             }
 
         }
-        
+       
     }
 }
 
@@ -60,6 +61,7 @@ struct WishListViewModelCell_Previews: PreviewProvider {
         if let wishListViewModelCell = DependencyManager.shared.sharedContainer
             .resolve(WishListViewModelCell.self) {
             WishListViewCell(viewModel: wishListViewModelCell)
+                .background(Asset.Colors.backgroundScreenColor.swiftUIColor )
         }
     }
 }

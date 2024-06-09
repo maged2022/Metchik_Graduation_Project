@@ -50,7 +50,7 @@ struct ProductItemView: View {
                 }
             }
             .padding()
-            .background(Color.white)
+            .background(Asset.Colors.backgroundScreenColor.swiftUIColor)
             .cornerRadius(10)
             .shadow(radius: 5)
             

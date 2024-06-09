@@ -25,8 +25,10 @@ struct ProfileView: View {
                 } placeholder: {
                     ProgressView()
                         .frame(width: 100,height: 100)
+                        .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
                 }
                 Text("Upload image")
+                    .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
             }
             
             HStack {
@@ -42,6 +44,7 @@ struct ProfileView: View {
                 .foregroundStyle(Asset.Colors.searchLabelColor.swiftUIColor)
                 VStack(alignment:.leading,spacing: 15) {
                     Text(viewModel.user.userName)
+                        .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
                     Divider()
                     HStack {
                         Button {
@@ -54,8 +57,10 @@ struct ProfileView: View {
                         }
                     }
                     Text(viewModel.user.age)
+                        .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
                     Divider()
                     Text(viewModel.user.email)
+                        .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
                     Divider()
                     
                 }
@@ -81,7 +86,9 @@ struct ProfileView: View {
                 .cornerRadius(10)
             }
         }
+        .frame(maxHeight: .infinity)
         .padding(25)
+        .background(Asset.Colors.backgroundScreenColor.swiftUIColor )
         
     }
 }

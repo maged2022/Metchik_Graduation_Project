@@ -41,13 +41,18 @@ struct SignUpView: View {
             
             Button(action: {
                 viewModel.signUpButtonPressed()
-            }, label: {
+            },
+                   label: {
                 Text("Sign Up")
                     .font(.poppins(.bold, size: 16))
                     .frame(height: 50)
                     .frame(maxWidth: .infinity)
                     .foregroundColor(Asset.Colors.primaryButtonColor.swiftUIColor)
-                    .background(Asset.Colors.secondaryButtonColor.swiftUIColor)
+                    .background(
+                        Asset.Colors.secondaryButtonColor
+                            .swiftUIColor
+                            .opacity(viewModel.isSignUpActive ? 0.6 : 1)
+                    )
                     .cornerRadius(30)
                     
             })
@@ -62,6 +67,7 @@ struct SignUpView: View {
                 viewModel.showAlert = false
             })
         })
+        .background(Asset.Colors.backgroundScreenColor.swiftUIColor )
     }
 }
 

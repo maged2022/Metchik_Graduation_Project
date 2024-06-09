@@ -24,9 +24,11 @@ struct OnBoardingInfoView: View {
                 Text(item.title)
                     .font(.poppins(.bold, size: 30))
                     .lineLimit(2)
+                    .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
                 Text(item.subTitle)
                     .font(.poppins(.regular, size: 15))
                     .lineLimit(2)
+                    .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
             }
             
         }
@@ -48,6 +50,7 @@ struct OnBoardingInfoView_Previews: PreviewProvider {
                 subTitle: "test"
             )
         )
+        .background(Asset.Colors.backgroundScreenColor.swiftUIColor)
     }
 }
 

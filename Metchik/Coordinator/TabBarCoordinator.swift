@@ -73,6 +73,7 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
         let viewModel = WishListViewModel(wishListUseCase: useCase, coordinator: homeCoordinator)
         let wishListViewController = UIHostingController(rootView: WishListView(viewModel: viewModel))
         router.push(wishListViewController)
+        navigationController.isNavigationBarHidden = true
         return navigationController
 
     }
@@ -84,6 +85,7 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
         let viewModel = ProfileViewModel(coordinator: parentCoordinator, authUseCase: useCase)
         let profileViewController = UIHostingController(rootView: ProfileView(viewModel: viewModel))
         router.push(profileViewController)
+        navigationController.isNavigationBarHidden = true
         return navigationController
     }
     

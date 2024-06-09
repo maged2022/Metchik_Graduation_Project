@@ -18,13 +18,22 @@ struct InputView: View {
                 .font(.poppins(.semiBold, size: 16))
                 .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
             if isSecureField {
-                SecureField(placeholder,text: $text)
-                    .font(.poppins(.regular, size: 14))
-                    .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
+                SecureField(text: $text, label: {
+                    Text(placeholder)
+                        .font(.poppins(.regular, size: 14))
+                        .foregroundStyle(Asset.Colors.searchLabelColor.swiftUIColor)
+                })
+                .font(.poppins(.regular, size: 14))
+                .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
+                
             } else {
-                TextField(placeholder,text: $text)
-                    .font(.poppins(.regular, size: 14))
-                    .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
+                TextField(text: $text, label: {
+                    Text(placeholder)
+                        .font(.poppins(.regular, size: 14))
+                        .foregroundStyle(Asset.Colors.searchLabelColor.swiftUIColor)
+                })
+                .font(.poppins(.regular, size: 14))
+                .foregroundStyle(Asset.Colors.primaryLabelColor.swiftUIColor)
             }
             Divider()
         }
@@ -35,5 +44,6 @@ struct InputView_Previews: PreviewProvider {
     
     static var previews: some View {
         InputView(text: .constant(""), title: "email address", placeholder: "name@example.com")
+            .background(Asset.Colors.backgroundScreenColor.swiftUIColor )
     }
 }
