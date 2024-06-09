@@ -29,11 +29,11 @@ enum SnackBarIcon {
     func image() -> Image {
         switch self {
         case .cart:
-            Asset.Tabbar.cartSelected.swiftUIImage
+           return Asset.Tabbar.cartSelected.swiftUIImage
         case .favorite:
-            Asset.Tabbar.favoriteSelected.swiftUIImage
+           return Asset.Tabbar.favoriteSelected.swiftUIImage
         case .auth:
-            Asset.Tabbar.profileSelected.swiftUIImage
+           return Asset.Tabbar.profileSelected.swiftUIImage
         }
     }
 }
