@@ -10,6 +10,7 @@ import Combine
 
 protocol CartRepositories {
     func saveCartProduct(product: Product, size: ProductSizes, color: Color, count: Int )
+    func checkSelectedCartProduct(product: Product, size: ProductSizes, color: Color) -> Bool
     func getCartProducts(completion: @escaping ([CartProduct]) -> Void)
     func deleteCartProduct(index: Int)
     func updateCartProduct(for cartProduct: CartProduct,with count: Int)

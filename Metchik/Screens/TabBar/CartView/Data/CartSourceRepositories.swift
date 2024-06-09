@@ -11,6 +11,7 @@ import Combine
 protocol CartSourceRepositories {
     func getCartProducts(completion: @escaping ([CartProductSource]) -> Void)
     func saveCartProductSource(_ cartProductSource: CartProductSource)
+    func checkSelectedCartProductSource(_ cartProductSource: CartProductSource) -> Bool
     func deleteCartProductSource(index: Int)
     func updateCartProductSource(for cartProductSource: CartProductSource ,with count: Int)
     func deleteAllCartProductSource(completion: @escaping () -> Void)
@@ -29,6 +30,14 @@ class CartSourceRepositoriesImpl: CartSourceRepositories {
     
     func saveCartProductSource(_ cartProductSource: CartProductSource) {
         coreManager.addCartProduct(cartProduct: cartProductSource)
+    }
+    
+    func checkSelectedCartProductSource(_ cartProductSource: CartProductSource) -> Bool {
+        if (coreManager.getSavedCartProduct(cartProduct: cartProductSource) != nil) {
+            return true
+        } else {
+            return false
+        }
     }
     
     func updateCartProductSource(for cartProductSource: CartProductSource ,with count: Int) {

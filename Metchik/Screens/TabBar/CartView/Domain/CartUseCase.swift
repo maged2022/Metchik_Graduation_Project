@@ -34,6 +34,11 @@ class CartUseCase: CartRepositories {
         cartRepo.saveCartProductSource(cartProduct.toCartProductSource())
     } 
     
+    func checkSelectedCartProduct(product: Product, size: ProductSizes, color: Color) -> Bool {
+        let cartProduct = CartProduct(productID: product.id, size: size, color: color, selectedCount: 1)
+        return cartRepo.checkSelectedCartProductSource(cartProduct.toCartProductSource())
+    }
+    
     func deleteCartProduct(index: Int) {
         cartRepo.deleteCartProductSource(index: index)
     }

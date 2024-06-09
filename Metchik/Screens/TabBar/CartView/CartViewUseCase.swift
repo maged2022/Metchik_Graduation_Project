@@ -33,7 +33,6 @@ class CartViewUseCase: ObservableObject {
     private var productsLocal: [Product] = []
 
     init() {
-        getCartProducts()
         bindUseCase()
     }
     
@@ -42,6 +41,7 @@ class CartViewUseCase: ObservableObject {
             switch result {
             case .success(let products):
                 self?.productsLocal = products
+                self?.getCartProducts()
             case .failure(let failure):
                 self?.showAlert = true
                 self?.alertMessage = failure.localizedDescription

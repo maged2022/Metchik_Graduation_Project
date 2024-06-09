@@ -36,8 +36,11 @@ class ProductDetailViewModel: ObservableObject {
             productDetailViewUseCase.updateCurrentStepperValue(value: currentStepperValue)
         }
     }
+    @Published var isAddedToCart: Bool = false
+    
     @Published var showAlert = false
     @Published var showAuthAlert = false
+    @Published var showSuccessPopup = false
     @Published var alertMessage: String = "error"
     
     init(productDetailViewUseCase: ProductDetailViewUseCase, coordinator: HomeTabCoordinatorProtocol) {
@@ -50,14 +53,16 @@ class ProductDetailViewModel: ObservableObject {
         productDetailViewUseCase.$productDetail
             .receive(on: DispatchQueue.main)
             .assign(to: &$productDetail)
-        productDetailViewUseCase.$availableSizes .receive(on: DispatchQueue.main)
+        productDetailViewUseCase.$availableSizes 
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] sizes in
                 self?.availableSizes = sizes
                 if let firstSize = sizes.first {
                     self?.selectedSize = firstSize
                 }
             }.store(in: &cancellables)
-        productDetailViewUseCase.$availableColors .receive(on: DispatchQueue.main)
+        productDetailViewUseCase.$availableColors 
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] colors in
                 self?.availableColors = colors
                 if let firstColor = colors.first {
@@ -75,14 +80,16 @@ class ProductDetailViewModel: ObservableObject {
             .assign(to: &$showAlert) 
         productDetailViewUseCase.$showAuthAlert
             .receive(on: DispatchQueue.main)
-            .assign(to: &$showAuthAlert)
+            .assign(to: &$showAuthAlert)    
+        productDetailViewUseCase.$showSuccessPopup
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$showSuccessPopup)
         productDetailViewUseCase.$alertMessage
             .receive(on: DispatchQueue.main)
-            .assign(to: &$alertMessage)
-    }
-    
-    func favoriteButtonPressed() {
-        productDetailViewUseCase.favoriteButtonPressed()
+            .assign(to: &$alertMessage)  
+        productDetailViewUseCase.$isAddedToCart
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$isAddedToCart)
     }
     
     func addToCart() {
@@ -97,6 +104,10 @@ class ProductDetailViewModel: ObservableObject {
 extension ProductDetailViewModel {
     func getCartButtonViewModel() -> CartButtonViewModel {
         CartButtonViewModel(coordinator: coordinator)
+    }
+    
+    func favoriteButtonPressed() {
+        productDetailViewUseCase.favoriteButtonPressed()
     }
     
     func pressedTryItButton(personImage: UIImage?) {
