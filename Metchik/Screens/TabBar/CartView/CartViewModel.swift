@@ -13,37 +13,41 @@ protocol CartViewModelProtocol {
 }
 class CartViewModel: CartViewModelProtocol , ObservableObject {
     
-    private var cartUseCase: CartViewRepositories
+    private var cartUseCase: CartViewUseCase
     private let coordinator: TabBarCoordinatorProtocol
-    @Published var products : [Product] = []
+    @Published var products : [Product] = [] 
+    @Published var cartProducts: [CartProduct] = []
+    
+    @Published var isCheckoutActive: Bool
+    
+    @Published var showAlert = false
+    @Published var alertMessage: String = "error"
 
-    @Published var cartProducts: [CartProduct] = [] {
-        didSet {
-            getProduct()
-        }
-    }
-
-    init(coordinator: TabBarCoordinatorProtocol, cartUseCase: CartViewRepositories) {
+    init(coordinator: TabBarCoordinatorProtocol, cartUseCase: CartViewUseCase) {
         self.coordinator = coordinator
         self.cartUseCase = cartUseCase
-        getCartProducts()
+        isCheckoutActive = true
+        bindCartViewUseCase()
     }
     
-    func getCartProducts() {
-        cartUseCase.getCartProducts { cartProducts in
-            self.cartProducts = cartProducts
-        }
+    func bindCartViewUseCase() {
+        cartUseCase.$cartProducts
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$cartProducts)
+        cartUseCase.$products
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$products)
+        cartUseCase.$isCheckoutActive
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$isCheckoutActive)      
+        cartUseCase.$showAlert
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$showAlert)
+        cartUseCase.$alertMessage
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$alertMessage)
     }
-    private func getProduct() {
-        cartUseCase.getProduct { result in
-            switch result {
-            case .success(let products):
-                self.products = products
-            case .failure(let failure):
-                print("failure  cartUseCase.getProduct \(failure)")
-            }
-        }
-    }
+    
     func getProduct(by cartProduct: CartProduct) -> Product {
         cartUseCase.getProduct(by: cartProduct)
     }
@@ -58,5 +62,9 @@ class CartViewModel: CartViewModelProtocol , ObservableObject {
     
     func showTabBar () {
         coordinator.showTabBar()
+    }
+    
+    func pressedCheckOutButton() {
+        cartUseCase.deleteAllCartProduct()
     }
 }

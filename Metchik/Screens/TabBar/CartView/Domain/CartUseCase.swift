@@ -18,8 +18,8 @@ class CartUseCase: CartRepositories {
     }
     
     private func fetchCartProduct () {
-        cartRepo.getCartProducts { products in
-            self.cartProducts = products.map {$0.toCartProduct()}
+        cartRepo.getCartProducts {[weak self] products in
+            self?.cartProducts = products.map {$0.toCartProduct()}
         }
     }
     
@@ -48,5 +48,9 @@ class CartUseCase: CartRepositories {
             completion(cartProducts.count)
         }
         .store(in: &cancellables)
+    }
+    
+    func deleteAllCartProduct(completion: @escaping () -> Void) {
+        cartRepo.deleteAllCartProductSource(completion: completion)
     }
 }

@@ -60,6 +60,15 @@ class CoreDataManager: ObservableObject {
         saveData()
     }
     
+    func deleteAllCartProduct(completion: @escaping () -> Void) {
+        
+        for cartProduct in cartProductsEntity {
+            container.viewContext.delete(cartProduct)
+        }
+        saveData()
+        completion()
+    }
+    
     func updateCartProduct(for product: CartProductSource ,with count: Int) {
         guard let savedProduct = getSavedCartProduct(cartProduct: product)
         else {return}

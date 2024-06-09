@@ -13,6 +13,8 @@ protocol CartSourceRepositories {
     func saveCartProductSource(_ cartProductSource: CartProductSource)
     func deleteCartProductSource(index: Int)
     func updateCartProductSource(for cartProductSource: CartProductSource ,with count: Int)
+    func deleteAllCartProductSource(completion: @escaping () -> Void)
+
 }
 
 class CartSourceRepositoriesImpl: CartSourceRepositories {
@@ -36,4 +38,9 @@ class CartSourceRepositoriesImpl: CartSourceRepositories {
     func deleteCartProductSource(index: Int) {
         coreManager.deleteCartProduct(index: index)
     }
+    
+    func deleteAllCartProductSource(completion: @escaping () -> Void) {
+        coreManager.deleteAllCartProduct(completion: completion)
+    }
+
 }

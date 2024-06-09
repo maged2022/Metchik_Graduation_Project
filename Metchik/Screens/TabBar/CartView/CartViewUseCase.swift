@@ -6,41 +6,64 @@
 //
 
 import Foundation
+import Combine
 
-protocol CartViewRepositories {
-    func getCartProducts(completion: @escaping ([CartProduct]) -> Void)
-    func getProduct(completion: @escaping (Result<[Product],RemoteError>) -> Void)
-    func getProduct(by cartProduct: CartProduct) -> Product
-    func calculateTotalPrice() -> Double
-    func deleteCartProduct(index: Int) 
-}
-
-class CartViewUseCase: ObservableObject, CartViewRepositories {
+class CartViewUseCase: ObservableObject {
     private var productUseCase: ProductRepositories = ProductUseCase.instance
     private var cartUseCase: CartRepositories = CartUseCase.instance
-    
-    @Published var products : [Product] = []
-    @Published var cartProducts: [CartProduct] = []
+    private var cancellables = Set<AnyCancellable>()
 
-    func getCartProducts(completion: @escaping ([CartProduct]) -> Void) {
-        cartUseCase.getCartProducts { cartProducts in
-            self.cartProducts = cartProducts
-            completion(cartProducts)
+    @Published var products : [Product] = [] {
+        didSet {
+            if products.isEmpty {
+                isCheckoutActive = true
+            } else {
+                isCheckoutActive = false
+            }
+        }
+    }
+    @Published var cartProducts: [CartProduct] = [] {
+        didSet {
+            getProduct()
+        }
+    }
+    @Published var isCheckoutActive: Bool = true
+    @Published var showAlert = false
+    @Published var alertMessage: String = "error"
+    private var productsLocal: [Product] = []
+
+    init() {
+        getCartProducts()
+        bindUseCase()
+    }
+    
+    private func bindUseCase() {
+        productUseCase.productsPublisher.sink {[weak self] result in
+            switch result {
+            case .success(let products):
+                self?.productsLocal = products
+            case .failure(let failure):
+                self?.showAlert = true
+                self?.alertMessage = failure.localizedDescription
+            }
+        }
+        .store(in: &cancellables)
+    }
+    
+    func getCartProducts() {
+        cartUseCase.getCartProducts {[weak self] cartProducts in
+            self?.cartProducts = cartProducts
         }
     }
     
-    func getProduct(completion: @escaping (Result<[Product],RemoteError>) -> Void) {
-        productUseCase.getProducts(by: cartProducts.map {$0.productID}) { result in
-            switch result {
-            case .success(let products):
-                guard !products.isEmpty else {return}
-                self.products = self.cartProducts.map({cartProduct in
-                    products[products.firstIndex(where: {$0.id == cartProduct.productID}) ?? 0] })
-                completion(.success(self.products))
-            case .failure(let failure):
-                completion(.failure(failure))
-            }
-        }
+    func getProduct() {
+        let products = productsLocal.filter { product in
+            cartProducts.map {$0.productID} .contains { $0.lowercased() == product.id.lowercased()}}
+        guard !products.isEmpty else {
+            self.products = []
+            return}
+        self.products = self.cartProducts.map({cartProduct in
+            products[products.firstIndex(where: {$0.id == cartProduct.productID}) ?? 0] })
     }
     
     func getProduct(by cartProduct: CartProduct) -> Product {
@@ -60,4 +83,10 @@ class CartViewUseCase: ObservableObject, CartViewRepositories {
         cartUseCase.deleteCartProduct(index: index)
     }
     
+    func deleteAllCartProduct() {
+        cartUseCase.deleteAllCartProduct { [weak self] in
+            self?.showAlert = true
+            self?.alertMessage = "Your order is on the way"
+        }
+    }
 }

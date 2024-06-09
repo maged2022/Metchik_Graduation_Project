@@ -14,4 +14,5 @@ protocol CartRepositories {
     func deleteCartProduct(index: Int)
     func updateCartProduct(for cartProduct: CartProduct,with count: Int)
     func getCartProductsCount(completion: @escaping (Int) -> Void)
+    func deleteAllCartProduct(completion: @escaping () -> Void)
 }
