@@ -37,7 +37,7 @@ struct VirtualTryView: View {
                     .cornerRadius(8)
                     .shadow(color: .black.opacity(0.1), radius: 10)
             }
-//            .frame(maxWidth: .infinity)
+            //            .frame(maxWidth: .infinity)
             .padding(.horizontal)
             
             Spacer().frame(height: 40)
@@ -58,9 +58,9 @@ struct VirtualTryView: View {
                         .cornerRadius(8)
                         .padding()
                         .mask(
-                            GeometryReader { _ in
-                                Rectangle()
-                                    .frame(height: scanPosition)
+                            GeometryReader { geometry in
+                                GradientEffect(scanPosition: $scanPosition)
+                                    .frame(height: geometry.size.height)
                             }
                         )
                         .overlay {
